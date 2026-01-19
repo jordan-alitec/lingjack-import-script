@@ -856,6 +856,13 @@ def main():
     if "--dry-run" in sys.argv:
         DRY_RUN = True
 
+    # Resolve Excel path relative to this script directory if not absolute,
+    # so it works both when run directly and via run_all_imports.py.
+    excel_path = Path(EXCEL_FILE)
+    if not excel_path.is_absolute():
+        excel_path = script_dir / excel_path
+        EXCEL_FILE = str(excel_path)
+
     logger.info("Excel file: %s", EXCEL_FILE)
     logger.info("Sheet name: %s", SHEET_NAME)
     logger.info("Dry run: %s", DRY_RUN)

@@ -998,6 +998,13 @@ def main():
     if '--execute' in sys.argv:
         dry_run = True
 
+    # Resolve Excel path relative to this script directory if not absolute,
+    # so it works both when run directly and via run_all_imports.py.
+    excel_path = Path(excel_file)
+    if not excel_path.is_absolute():
+        excel_path = Path(__file__).parent / excel_path
+        excel_file = str(excel_path)
+
     try:
         importer = OdooEmployeeImporter(url, db, username, password)
         stats = importer.import_employees(excel_file, dry_run=dry_run)

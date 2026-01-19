@@ -659,6 +659,13 @@ def main():
     if '--execute' in sys.argv:
         DRY_RUN = False
     
+    # Resolve Excel path relative to this script directory if not absolute,
+    # so it works both when run directly and via run_all_imports.py.
+    excel_path = Path(EXCEL_FILE)
+    if not excel_path.is_absolute():
+        excel_path = script_dir / excel_path
+        EXCEL_FILE = str(excel_path)
+    
     try:
         importer = OdooBoMImporter(ODOO_URL, ODOO_DB, ODOO_USERNAME, ODOO_PASSWORD)
         stats = importer.import_boms(EXCEL_FILE, dry_run=DRY_RUN)
