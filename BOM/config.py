@@ -25,7 +25,7 @@ ODOO_PASSWORD = 'Alitec!@#4567'              # Your Odoo password
 
 OPERATION_EXCEL_FILE = 'output.xlsx'
 OPERATION_SHEET_NAME = None  # None = use active sheet
-OPERATION_DRY_RUN = False  # Set to False to actually import
+OPERATION_DRY_RUN = True  # Set to False to actually import
 OPERATION_CATEGORY_COL = 1  # Column A: Lingjack Product Category (1-based)
 OPERATION_COL = 2  # Column B: Operation Name (1-based)
 
@@ -43,14 +43,14 @@ SWO_DRY_RUN = True  # Set to False to actually import
 
 MRP_EXCEL_FILE = 'output.xlsx'
 MRP_SHEET_NAME = None  # None = use active sheet, or specify like 'Manufacturing Order (mrp.produc'
-MRP_DRY_RUN = False  # Set to False to actually import
+MRP_DRY_RUN = True  # Set to False to actually import
 
 # ============================================================================
 # EMPLOYEE IMPORT SETTINGS
 # ============================================================================
 
 EMPLOYEE_EXCEL_FILE = 'employee.xlsx'
-EMPLOYEE_DRY_RUN = False  # Set to False to actually import
+EMPLOYEE_DRY_RUN = True  # Set to False to actually import
 
 # Mapping from internal field keys to Excel header text
 # Update these if your Excel headers differ
@@ -107,7 +107,7 @@ EMPLOYEE_HEADER_MAPPING = {
 # ============================================================================
 
 BOM_EXCEL_FILE = 'output.xlsx'
-BOM_DRY_RUN = False  # Set to False to actually import
+BOM_DRY_RUN = True  # Set to False to actually import
 
 # Optional: Column mapping (if your Excel structure differs)
 BOM_COLUMN_MAPPING = {
@@ -123,5 +123,5 @@ BOM_COLUMN_MAPPING = {
 # ============================================================================
 
 SETSCO_EXCEL_FILE = 'Setsco_Combined.xlsx'
-SETSCO_DRY_RUN = False  # Set to False to actually import
+SETSCO_DRY_RUN = True  # Set to False to actually import
 
