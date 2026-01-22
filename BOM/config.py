@@ -14,10 +14,10 @@ To use this config:
 # ODOO CONNECTION SETTINGS (Common to all scripts)
 # ============================================================================
 
-ODOO_URL = 'https://lingjack-data-migration-script-27621494.dev.odoo.com'  # Your Odoo server URL
-ODOO_DB = 'lingjack-data-migration-script-27621494'            # Your Odoo database name
-ODOO_USERNAME = 'datamigration'              # Your Odoo username
-ODOO_PASSWORD = 'Alitec!@#4567'              # Your Odoo password
+ODOO_URL = 'https://lingjack-data-migration-script-27765375.dev.odoo.com'  # Your Odoo server URL
+ODOO_DB = 'lingjack-data-migration-script-27765375'            # Your Odoo database name
+ODOO_USERNAME = 'datamigration2'              # Your Odoo username
+ODOO_PASSWORD = 'Ab@123456789'              # Your Odoo password
 
 # ============================================================================
 # OPERATION IMPORT SETTINGS

@@ -599,12 +599,39 @@ class OdooBoMImporter:
                         stats['errors'].append(error_msg)
                         stats['skipped_lines'] += 1
                 
+                
             except Exception as e:
                 error_msg = f"BoM {bom_idx}: {str(e)}"
                 logger.error(error_msg)
                 stats['errors'].append(error_msg)
                 stats['skipped_boms'] += 1
-        
+
+        # After all BoMs are imported, trigger the empty cabinet BOM expansion
+        # in Odoo if this is not a dry run. This uses the custom API method
+        # `api_create_empty_cabinet_bom` defined on `mrp.bom`.
+        if not dry_run:
+            try:
+                logger.info(
+                    "Calling mrp.bom.api_create_empty_cabinet_bom() "
+                    "to expand empty cabinet BoMs..."
+                )
+                result = self.models.execute_kw(
+                    self.db,
+                    self.uid,
+                    self.password,
+                    'mrp.bom',
+                    'api_create_empty_cabinet_bom',
+                    [],
+                )
+                logger.info(
+                    "mrp.bom.api_create_empty_cabinet_bom() completed successfully "
+                    f"with result: {result}"
+                )
+            except Exception as e:
+                error_msg = f"Post-import api_create_empty_cabinet_bom failed: {e}"
+                logger.error(error_msg, exc_info=True)
+                stats['errors'].append(error_msg)
+
         return stats
 
 

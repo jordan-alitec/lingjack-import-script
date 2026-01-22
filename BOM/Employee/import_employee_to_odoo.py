@@ -39,8 +39,8 @@ if str(bom_dir) not in sys.path:
 # Try to load configuration from central config.py
 try:
     import config
-    ODOO_URL = getattr(config, 'ODOO_URL', 'http://localhost:8069')
-    ODOO_DB = getattr(config, 'ODOO_DB', 'your_database_name')
+    ODOO_URL = getattr(config, 'ODOO_URL', 'http://localhost:8099')
+    ODOO_DB = getattr(config, 'ODOO_DB', 'lingjack-main')
     ODOO_USERNAME = getattr(config, 'ODOO_USERNAME', 'admin')
     ODOO_PASSWORD = getattr(config, 'ODOO_PASSWORD', 'admin')
     EMPLOYEE_EXCEL_FILE = getattr(config, 'EMPLOYEE_EXCEL_FILE', 'employee.xlsx')
@@ -51,8 +51,10 @@ except ImportError:
     print(f"Warning: Failed to import config from {config_path}")
     print("Please ensure config.py exists in the BOM directory")
     # Fallback defaults
-    ODOO_URL = 'https://lingjack-data-migration-script-27115365.dev.odoo.com'
-    ODOO_DB = 'lingjack-data-migration-script-27115365'
+    # ODOO_URL = 'https://lingjack-data-migration-script-27115365.dev.odoo.com'
+    # ODOO_DB = 'lingjack-data-migration-script-27115365'
+    ODOO_URL = 'http://localhost:8099'
+    ODOO_DB = 'lingjack-main'
     ODOO_USERNAME = 'admin'
     ODOO_PASSWORD = 'admin'
     EMPLOYEE_EXCEL_FILE = 'employee.xlsx'
@@ -422,10 +424,7 @@ class OdooEmployeeImporter:
             for row_idx, row in enumerate(ws.iter_rows(min_row=2, values_only=True), start=2):
                 emp_name_val = self._get_by_header(row, header_index, h('employee_name'))
                 if not emp_name_val or not str(emp_name_val).strip():
-                    # skip empty rows
-                    print('\n\nVals')
-                    print(emp_name_val)
-                    print('\n\n')
+
                     continue
 
                 emp_code_val = self._get_by_header(row, header_index, h('employee_code'))
@@ -544,13 +543,18 @@ class OdooEmployeeImporter:
         company_vals = {
             "LJE": 1,
             "LJD": 2,
-            "LJ Fire": 7,
+            "LJ Fire": 10,
             "LJ Malaysia": 6,
-            "LJDT": 9,
+            "LJDT": 11,
+            'LJ Property':4,
+            'LJ GreenTech':3,
+            'PT Lingjack':1,
+
         }
         return company_vals.get(temp_company_id)
 
     def _find_employee_in_odoo(self, key: str, company_id: Optional[int] = None, temp_company_id: Optional[str] = None, allow_cross_company: bool = False, use_if_found_in_other_company: bool = False) -> Optional[int]:
+        
         """
         Find employee in Odoo by key (code, email, or name) with company filtering.
         
@@ -780,8 +784,8 @@ class OdooEmployeeImporter:
         for idx, rec in enumerate(records, start=1):
             key = self._build_employee_key(rec)
             try:
-                if key in key_to_emp_id:
-                    continue
+                # if key in key_to_emp_id:
+                #     continue
 
                 # Get company context from record
                 temp_company_id = rec.get('sheet_title')
@@ -920,9 +924,13 @@ class OdooEmployeeImporter:
             company_vals = {
                 "LJE": 1,
                 "LJD": 2,
-                "LJ Fire": 7,  # new
-                "LJ Malaysia": 6,  # new
-                "LJDT": 9,  # new
+                "LJ Fire": 10,
+                "LJ Malaysia": 6,
+                "LJDT": 11,
+                'LJ Property':4,
+                'LJ GreenTech':3,
+                'PT Lingjack':1,
+
             }
 
             # Match employees to companies
