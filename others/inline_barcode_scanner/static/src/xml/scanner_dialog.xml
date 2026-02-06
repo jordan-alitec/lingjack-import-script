@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="inline_barcode_scanner.ScannerDialog" owl="1">
+        <Dialog title="'Code Scanner'" fullscreen="true">
+            <ScannerConfigurator t-props="props"/>
+            <t t-set-slot="footer">
+                <button class="btn btn-primary" t-on-click="_cancel">Cancel</button>
+            </t>
+        </Dialog>
+    </t>
+</templates>
+
+
+
+
+
+

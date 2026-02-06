@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Serial Selection Wizard Form View -->
+    <record id="view_setsco_serial_selection_wizard_form" model="ir.ui.view">
+        <field name="name">setsco.serial.selection.wizard.form</field>
+        <field name="model">setsco.serial.selection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Setsco Serial Numbers" >
+                <field name="_barcode_scanned" widget="barcode_handler"/>
+                <sheet>
+                    <!-- Simple Header -->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="product_id" readonly="1"/>
+                        </h1>
+                        <div class="o_row">
+                            <field name="quantity" class="oe_inline" invisible="1"/>
+                            <field name="selection_mode" widget="radio" class="oe_inline"/>
+                        </div>
+                        <!-- Individual Mode Scanner Buttons -->
+                        <div invisible="selection_mode == 'range'" class="d-flex gap-2 mb-2">
+                            <button name="action_scan_individual_serial" type="object"
+                                    string="Camera Scan" class="btn-primary btn-lg o_scan_btn"/>
+                        </div>
+                        
+                        <!-- Range Mode Scanner Buttons -->
+                        <div invisible="selection_mode != 'range'" class="d-flex gap-2 mb-2">
+                            <button name="action_scan_range" type="object"
+                                    string="Camera Scan" class="btn-primary btn-lg o_scan_btn"/>
+                        </div>
+                    </div>
+
+                    <!-- Manual Input Section -->
+                    <div class="o_manual_input_section" invisible="selection_mode != 'individual'">
+                        <div class="o_row g-0 d-flex justify-content-between mb-3">
+                            <div class="d-flex align-items-center">
+                                <span class="h5 m-0 me-2">Manual Input:</span>
+                            </div>
+                        </div>
+                        
+                         <div class="o_manual_input_field">
+                             <field name="start_serial_id" 
+                                     string="Serial Number" 
+                                     class="o_input_lg o_barcode_scanner_field"
+                                     options="{'no_create': True}"
+                                     placeholder="Select, scan, or manually enter serial number"/>
+                         </div>
+                    </div>
+
+                    <!-- Manual Input Section -->
+                        <div class="o_manual_input_section" invisible="selection_mode == 'individual'">
+                            <div class="o_row g-0 d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <span class="h5 m-0 me-2">Manual Input:</span>
+                                </div>
+                  
+                            </div>
+                            
+                             <div class="o_range_inputs">
+                                 <div class="o_range_start">
+                                     <field name="start_serial_id" 
+                                            string="Start Serial" 
+                                            class="o_input_lg o_barcode_scanner_field"
+                                            options="{'no_create': True}"
+                                            placeholder="Select, scan, or manually enter start serial"/>
+                                 </div>
+                                 <div class="o_range_end">
+                                     <field name="end_serial_id" 
+                                            string="End Serial"
+                                            options="{'no_create': True}" 
+                                            class="o_input_lg o_barcode_scanner_field"
+                                            placeholder="Select, scan, or manually enter end serial"/>
+                                 </div>
+                             </div>
+                        </div>
+
+                
+                    <!-- Quantity Warning Banner -->
+                    <div class="alert alert-warning" invisible="not quantity_warning" role="alert">
+                        <field name="quantity_warning" readonly="1" nolabel="1"/>
+                    </div>
+                    
+                    <!-- Individual Selection Mode -->
+                    <group string="Individual Selection" invisible="selection_mode != 'individual'" class="o_individual_mode">
+
+                        <!-- Selection List -->
+                        <div class="o_selection_preview">
+                            <div class="o_row g-0 d-flex justify-content-between mb-2">
+                                <div class="d-flex align-items-center">
+                                    <span class="h5 m-0 me-1">Selected Serials: </span>
+                                    <field name="preview_count" class="ms-2 m-0 h5"/>
+                                </div>
+                                <button name="action_clear_all" type="object" string="Clear All"
+                                        class="btn btn-danger btn-sm"/>
+                            </div>
+
+                            <field name="selection_line_ids" nolabel="1" class="o_serial_list">
+                                
+                                <list editable="bottom" class="o_mobile_friendly"  create='0' edit='0'>
+                                    <field name="sequence" readonly="1" class="o_sequence" column_invisible="1"/>
+                                    <field name="setsco_serial_id" class="o_serial_field" column_invisible="1"/>
+                                    <field name="serial_name" readonly="1" class="o_serial_name"/>
+                                    <field name="serial_state" readonly="1" class="o_serial_state" column_invisible="1"/>
+                                    <field name="location_id" readonly="1" class="o_location" column_invisible="1"/>
+                                    <field name="product_id" readonly="1" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </div>
+                    </group>
+                    
+                    <!-- Range Selection Mode -->
+                    <group string="Range Selection" invisible="selection_mode != 'range'" class="o_range_mode">
+
+                        <!-- Selection List -->
+                        <div class="o_selection_preview">
+                            <div class="o_row g-0 d-flex justify-content-between mb-2">
+                                <div class="d-flex align-items-center">
+                                    <span class="h5 m-0 me-1">Selected Serials: </span>
+                                    <field name="preview_count" class="ms-2 m-0 h5"/>
+                                </div>
+                                <button name="action_clear_all" type="object" string="Clear All"
+                                        class="btn btn-danger btn-sm"/>
+                            </div>
+
+                            <field name="selection_line_ids" nolabel="1" class="o_serial_list">
+                                <list editable="bottom" class="o_mobile_friendly" create='0' edit='0'>
+                                    <field name="sequence" readonly="1" class="o_sequence" column_invisible="1"/>
+                                    <field name="setsco_serial_id" class="o_serial_field" column_invisible="1"/>
+                                    <field name="serial_name" readonly="1" class="o_serial_name"/>
+                                    <field name="serial_state" readonly="1" class="o_serial_state" column_invisible="1"/>
+                                    <field name="location_id" readonly="1" class="o_location" />
+                                    <field name="product_id" readonly="1" column_invisible="1"/>
+                                </list>
+                            </field>
+                        </div>
+                    </group>
+                </sheet>
+                
+                <footer>
+                    <button name="action_confirm_selection" string="Confirm Selection" 
+                            type="object" class="btn-primary btn-lg"/>
+                    <button string="Cancel" class="btn-secondary btn-lg" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for Serial Selection Wizard -->
+    <record id="action_setsco_serial_selection_wizard" model="ir.actions.act_window">
+        <field name="name">Select Setsco Serial Numbers</field>
+        <field name="res_model">setsco.serial.selection.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo> 

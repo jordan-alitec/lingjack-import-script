@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--changes for only header footer [Changes Light header footer like Striped]-->
+    <template id="external_layout_standard" inherit_id="web.external_layout_standard">
+    </template>
+    <template id="external_layout_standard_inherit_lingjack" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[1]" position="replace">
+            <div t-attf-class="o_company_#{company.id}_layout header">
+                <div t-if="not is_chamber" class="d-flex">
+                    <div>
+<!--                        <img t-if="company.logo" class="o_company_logo_big" t-att-src="image_data_uri(company.logo)"-->
+<!--                             alt="Logo"/>-->
+                        <div t-if="company.report_header" t-field="company.report_header" class="o_company_tagline fw-bold mt-2">Company tagline
+                        </div>
+                    </div>
+                    <div class="ms-3" name="company_address">
+                        <ul class="list-unstyled" name="company_address_list">
+                            <li t-if="company.is_company_details_empty">
+                                <span t-field="company.partner_id"
+                                      t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'>
+                                    <div class="bg-light border-1 rounded h-100 d-flex flex-column align-items-center justify-content-center p-4 w-100 opacity-75 text-muted text-center">
+                                        <strong>Company address block</strong>
+                                        <div>Contains the company address.</div>
+                                    </div>
+                                </span>
+                            </li>
+                            <li t-else="">
+                                <span t-field="company.company_details">
+                                    <div class="bg-light border-1 rounded h-100 d-flex flex-column align-items-center justify-content-center p-4 w-100 opacity-75 text-muted text-center">
+                                        <strong>Company details block</strong>
+                                        <div>Contains the company details.</div>
+                                    </div>
+                                </span>
+                            </li>
+                            <li t-if="not forced_vat"/>
+                            <li t-else="">
+                                <t t-esc="company.country_id.vat_label or 'Tax ID'">Tax ID</t>:
+                                <span t-esc="forced_vat">US12345671</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div t-else=" " class="d-flex">
+                    <div>
+                            <table class="table table-borderless">
+                                <tr>
+                                    <!-- 1. Exporter (Name Address)-->
+                                    <td colspan="2" style="width:350px;height:98px;vertical-align: top; font-size:14px;">
+                                        <br/>
+                                        <div style="margin-left:20px;margin-top:3px;">
+
+                                        <t t-if="o.company_id">
+                                            <span t-field="o.company_id"/>
+                                            <br/>
+                                        </t>
+                                        <t>
+                                            <span t-field="o.company_id.street"/>
+                                            <br/>
+                                        </t>
+                                        <t>
+                                            <span t-field="o.company_id.street2"/>
+                                        </t>
+                                        <t>
+                                            <span t-field="o.company_id.city"/>
+                                        </t>
+                                        <t>
+                                            <span t-field="o.company_id.state_id"/>
+                                            <br/>
+                                        </t>
+                                        <t>
+                                            <span t-field="o.company_id.country_id"/>
+                                        </t>
+                                        <t>
+                                            <span t-field="o.company_id.zip"/>
+                                            <br/>
+                                        </t>
+                                        <t>
+                                            Contact :
+                                            <span t-field="o.company_id.phone"/>
+                                            <br/>
+                                        </t>
+
+                                        <!--                            <div name="address">-->
+                                        <!--                                <span t-field="o.company_id"-->
+                                        <!--                                      t-options='{"widget": "contact", "fields": ["name","street", "phone"], "no_marker": True, "phone_icons": True}'/>-->
+                                        <!--                            </div>-->
+                                            </div>
+                                    </td>
+                                     <!-- REPUBLIC OF SINGAPORE-->
+                                    <td colspan="2" rowspan="2" class="text-center" style="width: 356px;height:228px; padding: 5px; vertical-align: top; font-size:14px;">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <!--2. Consignee (Name, Full Address Country)-->
+                                    <td colspan="2" style="height:160px; width:350px; padding: 5px; vertical-align: top; font-size:14px;">
+                                        <br/>
+<!--                                        <span style="margin-left:20px;" t-field="o.consignee_id"/>-->
+                                        <div style="margin-left:20px;">
+                                        <t t-if="o.consignee_id.name">
+                                            <span t-field="o.consignee_id.name"/>
+                                            <span t-field="o.consignee_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+                                        </t>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        <table class="table  table-borderless">
+                            <tbody>
+                                <tr>
+                                    <td width="29.5%;"></td>
+                                    <!--3. Departure Date-->
+                                    <td width="20%;"
+                                        style="height:34px; padding: 2px; vertical-align: top; font-size:14px;">
+                                        <span style="margin-left:0px;" t-field="o.etd_origin"/>
+
+                                    </td>
+                                    <td></td>
+                                </tr>
+
+
+                                <tr>
+                                    <td width="23%;"></td>
+                                    <!--4. Vessel’s Name/Flight No.-->
+                                    <td width="25%;"
+                                        style="width:350px; padding-top: 5px;padding-left: 5px;padding-bottom: 5px;vertical-align: top; font-size:14px;height:38px;">
+                                        <span style="margin-left:0px;" t-field="o.vessel_name"/>
+                                    </td>
+                                    <td></td>
+
+                                </tr>
+                                <tr>
+                                    <td width="23%;"></td>
+                                    <!--5. Port of Discharge-->
+                                    <td width="25%;"
+                                        style=" width:350px; padding: 2px; vertical-align: top; font-size:14px;;height:38px;">
+                                        <span t-field="o.port_discharge_id"/>
+                                    </td>
+                                    <td></td>
+
+                                </tr>
+
+                                <tr>
+                                    <td width="23%;"></td>
+                                    <!--6. Country of Final Destination-->
+                                    <td width="25%;"
+                                        style="width:350px; padding: 2px; vertical-align: top; font-size:14px;;height:38px;">
+                                        <span t-field="o.port_discharge_id"/>
+                                    </td>
+                                    <td style="font-size:14px;" rowspan="2">
+                                        <br/>
+                                        <span style="margin-left:150px;" t-field="o.person_incharge_id"/>
+                                        <br/>
+                                        <span t-field="o.person_incharge_id.job_id" style="margin-left:150px;"/>
+                                        <br/>
+                                        <span t-field="o.invoice_date" style="margin-left:150px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="23%;"></td>
+
+                                    <!--7. Country of Origin of Goods-->
+                                    <td width="25%;"
+                                        style="width:350px; padding: 2px; vertical-align: top; font-size:14px;">
+                                        <span t-field="o.country_of_origin_id"/>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div t-if="report_type == 'pdf'" style="font-size:14px;margin-left:650px; color: black !important;">
+                            <br/>
+                            <span style="color: black !important;">Page</span>
+                            <span class="page" style="color: black !important;"/>
+                            of
+                            <span class="topage" style="color: black !important;"/>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[3]" position="replace">
+            <div t-attf-class="footer o_company_#{company.id}_layout {{report_type != 'pdf' and 'mt-auto'}}">
+                <div t-if="not is_chamber" class="o_footer_content text-center">
+                    <div t-field="company.report_footer"/>
+                    <div t-if="report_type == 'pdf'" class="text-muted">Page
+                        <span class="page"/>
+                        /
+                        <span class="topage"/>
+                        <t t-if="o.name">
+                            <span style="margin-left:5px;">of</span>
+                            <span style="margin-left:5px;" t-field="o.name"/>
+                        </t>
+                    </div>
+                </div>
+                <div t-else=" "/>
+            </div>
+        </xpath>
+
+<!--        <xpath expr="//div[@class='col-6']" position="attributes">-->
+<!--            <attribute name="class" remove="col-6" add="col-12 justify-center" separator=" "/>-->
+<!--        </xpath>-->
+
+    </template>
+</odoo>

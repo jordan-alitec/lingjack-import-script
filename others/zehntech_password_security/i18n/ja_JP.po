@@ -1,0 +1,684 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* zehntech_password_security
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-04-02 05:01+0000\n"
+"PO-Revision-Date: 2025-04-02 10:35+0530\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.5\n"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid ""
+"\n"
+"* Lowercase letter (at least %s characters)"
+msgstr ""
+"\n"
+"* 小文字（少なくとも %s 文字）"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid ""
+"\n"
+"* Numeric digit (at least %s characters)"
+msgstr ""
+"\n"
+"* 数字（少なくとも %s 文字）"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid ""
+"\n"
+"* Special character (at least %s characters)"
+msgstr ""
+"\n"
+"* 特殊文字 (少なくとも %s 文字)"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid ""
+"\n"
+"* Uppercase letter (at least %s characters)"
+msgstr ""
+"\n"
+"* 大文字（少なくとも %s 文字）"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire
+msgid ",<br/>"
+msgstr "、<br/>"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid ""
+"<strong>Password does not meet the following requirements:</strong><ul>"
+msgstr "<strong>パスワードは次の要件を満たしていません:</strong><ul>"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Cannot use the most recent %d passwords"
+msgstr "最新の %d 個のパスワードは使用できません"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__change_date
+msgid "Change Date"
+msgstr "日付の変更"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire
+msgid "Change password"
+msgstr "パスワードを変更する"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__changed_by
+msgid "Changed By"
+msgstr "変更者"
+
+#. module: zehntech_password_security
+#: model:ir.model,name:zehntech_password_security.model_res_config_settings
+msgid "Config Settings"
+msgstr "コンフィグ設定"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.auth_signup_inherit
+msgid "Confirm Password"
+msgstr "パスワードを認証する"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__create_uid
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__create_uid
+msgid "Created by"
+msgstr "作成者"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__create_date
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__create_date
+msgid "Created on"
+msgstr "作成日"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__date
+msgid "Date"
+msgstr "日付"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__day_alert_expire
+msgid "Day Alert Expire"
+msgstr "日アラートの有効期限"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire
+msgid "Dear"
+msgstr "親愛なる"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Disallow reuse of"
+msgstr "再利用を禁止する"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Disallow reuse of previous passwords must be less than 20."
+msgstr "以前のパスワードの再利用を禁止するには、20 未満にする必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Disallow reuse of previous passwords must be non-negative values."
+msgstr ""
+"以前のパスワードの再利用を禁止するには、負でない値を指定する必要があります。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__display_name
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__display_name
+msgid "Display Name"
+msgstr "表示名"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__password_crypt
+msgid "Encrypted Password"
+msgstr "暗号化されたパスワード"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Expiration Alert Period (days)"
+msgstr "有効期限アラート期間（日数）"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid ""
+"Expiration Alert Period (days) must be less than the Password Expiration "
+"Period (days)."
+msgstr ""
+"有効期限アラート期間（日数）はパスワード有効期限（日数）より短くする必要があ"
+"ります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Expiration Alert Period (days) must be non-negative values."
+msgstr "有効期限アラート期間 (日数) は負でない値である必要があります。"
+
+#. module: zehntech_password_security
+#: model:ir.model,name:zehntech_password_security.model_ir_http
+msgid "HTTP Routing"
+msgstr "HTTPルーティング"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__id
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__id
+msgid "ID"
+msgstr "ID"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,help:zehntech_password_security.field_res_config_settings__test_password_expiration
+msgid ""
+"If check it, time unit of password_expiration will be converted from days "
+"to minutes"
+msgstr ""
+"チェックすると、password_expirationの時間単位が日数から分数に変換されます。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__write_uid
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__write_uid
+msgid "Last Updated by"
+msgstr "最終更新者"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__write_date
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__write_date
+msgid "Last Updated on"
+msgstr "最終更新日"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users__password_write_date
+msgid "Last password update"
+msgstr "最後のパスワード更新"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Lowercase Characters must be non-negative values."
+msgstr "小文字は負でない値である必要があります。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire
+msgid "Marc Demo"
+msgstr "マーク・デモ"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum Lowercase Characters"
+msgstr "小文字の最小数"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Lowercase Characters cannot be greater than 10."
+msgstr "小文字の最小文字数は 10 文字以下にする必要があります。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum Numeric Characters"
+msgstr "最小数字文字数"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Numeric Characters cannot be greater than 10."
+msgstr "最小の数字文字数は 10 文字以下にする必要があります。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum Password Length (characters)"
+msgstr "パスワードの最小文字数（文字数）"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid ""
+"Minimum Password Length Characters (%d) cannot be less than the total of "
+"individual requirements of [Minimum Lowercase Characters, Minimum Uppercase "
+"Characters, Minimum Numeric Characters, Minimum Special Characters]  (%d)."
+msgstr ""
+"パスワードの最小文字数 (%d) は、[最小小文字数、最小大文字数、最小数字数、最"
+"小特殊文字数] の個々の要件の合計 (%d) より小さくすることはできません。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Password Length Characters must be greater than 8."
+msgstr "パスワードの最小文字数は 8 文字より大きくする必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Password Length Characters must be less than 20."
+msgstr "パスワードの最小文字数は 20 文字未満である必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Password Length Characters must be non-negative values."
+msgstr "パスワードの最小文字数は負でない値である必要があります。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__minimum_reset_interval
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum Reset Interval (hours)"
+msgstr "最小リセット間隔（時間）"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Reset Interval (hours) must be less than/equal to 24 hours."
+msgstr "最小リセット間隔 (時間) は 24 時間以下にする必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Reset Interval (hours) must be non-negative values."
+msgstr "パスワードの最小文字数は 8 文字より大きくする必要があります。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum Special Characters"
+msgstr "最小特殊文字数"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Special Characters cannot be greater than 10."
+msgstr "最小の特殊文字数は 10 を超えることはできません。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum Uppercase Characters"
+msgstr "大文字の最小文字数"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Minimum Uppercase Characters cannot be greater than 10."
+msgstr "大文字の最小文字数は 10 文字以下にする必要があります。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum number of lowercase letters required in passwords."
+msgstr "パスワードに必要な小文字の最小数。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum number of numeric characters required in passwords."
+msgstr "パスワードに必要な数字の最小数。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum number of special characters required in passwords."
+msgstr "パスワードに必要な特殊文字の最小数。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum number of uppercase letters required in passwords."
+msgstr "パスワードに必要な大文字の最小数。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum time interval between password resets."
+msgstr "パスワードのリセット間の最小時間間隔。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Minimum total number of characters required for passwords."
+msgstr "パスワードに必要な最小文字数。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Must contain the following:"
+msgstr "以下の内容が含まれている必要があります:"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__new_password_hash
+msgid "New Password (Hashed)"
+msgstr "新しいパスワード（ハッシュ化）"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users__next_password_write_date
+msgid "Next password update"
+msgstr "次回のパスワード更新"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Number of days after which the password expires."
+msgstr "パスワードの有効期限が切れるまでの日数。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Number of days before expiration to send an alert."
+msgstr "有効期限の何日前にアラートを送信するか。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Numeric Characters must be non-negative values."
+msgstr "数値は負でない値である必要があります。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire_subject
+msgid "Odoo Password Expire Notification"
+msgstr "Odoo パスワード期限切れ通知"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__old_password_hash
+msgid "Old Password (Hashed)"
+msgstr "古いパスワード（ハッシュ化）"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.auth_login_inherit
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.auth_signup_inherit
+msgid "Password"
+msgstr "パスワード"
+
+#. module: zehntech_password_security
+#: model:ir.actions.act_window,name:zehntech_password_security.action_user_password_log
+msgid "Password Change Logs"
+msgstr "パスワード変更ログ"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__password_expiration
+msgid "Password Expiration"
+msgstr "パスワードの有効期限"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Password Expiration Period (days)"
+msgstr "パスワードの有効期限（日数）"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Password Expiration Period (days) must be non-negative values."
+msgstr "パスワードの有効期限 (日数) は負でない値である必要があります。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__password_history
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users__password_history_ids
+msgid "Password History"
+msgstr "パスワード履歴"
+
+#. module: zehntech_password_security
+#: model:ir.ui.menu,name:zehntech_password_security.menu_user_password_log
+msgid "Password Logs"
+msgstr "パスワードログ"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__password_lower
+msgid "Password Lower"
+msgstr "パスワードを下げる"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__password_numeric
+msgid "Password Numeric"
+msgstr "パスワード 数字"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Password Policy"
+msgstr "パスワードポリシー"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__password_special
+msgid "Password Special"
+msgstr "パスワードスペシャル"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__password_upper
+msgid "Password Upper"
+msgstr "パスワード上限"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid ""
+"Password does not meet the following requirements:\n"
+"\n"
+msgstr ""
+"パスワードが次の要件を満たしていません:\n"
+"\n"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must be %d characters or more."
+msgstr "パスワードは %d 文字以上である必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must be at least %d characters long."
+msgstr "パスワードは少なくとも %d 文字の長さにする必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must be at least %d characters long: %s"
+msgstr "パスワードは少なくとも %d 文字の長さにする必要があります: %s"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d lowercase letter(s)."
+msgstr "パスワードには少なくとも %d 個の小文字が含まれている必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d lowercase letter(s): %s (Found: %d)"
+msgstr ""
+"パスワードには少なくとも %d 個の小文字が含まれている必要があります: %s (見つ"
+"かった数: %d)"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d numeric digit(s)."
+msgstr "パスワードには少なくとも %d 桁の数字が含まれている必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d numeric digit(s): %s (Found: %d)"
+msgstr ""
+"パスワードには少なくとも %d 桁の数字が含まれている必要があります: %s (見つ"
+"かった数: %d)"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d special character(s)."
+msgstr ""
+"パスワードには少なくとも %d 個の特殊文字が含まれている必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d special character(s): %s (Found: %d)"
+msgstr ""
+"パスワードには少なくとも %d 個の特殊文字が含まれている必要があります: %s (見"
+"つかった文字数: %d)"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d uppercase letter(s)."
+msgstr "パスワードには少なくとも %d 個の大文字が含まれている必要があります。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "Password must contain at least %d uppercase letter(s): %s (Found: %d)"
+msgstr ""
+"パスワードには少なくとも %d 個の大文字が含まれている必要があります: %s (見つ"
+"かった数: %d)"
+
+#. module: zehntech_password_security
+#: model:ir.actions.server,name:zehntech_password_security.ir_cron_send_email_password_expire_ir_actions_server
+msgid "Password security: Send reminder password expires"
+msgstr "パスワードのセキュリティ: パスワードの有効期限切れを通知する"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__next_reminder_execution_date
+msgid "Reminder Execution Date"
+msgstr "リマインダー実行日"
+
+#. module: zehntech_password_security
+#: model:ir.model,name:zehntech_password_security.model_res_users_pass_history
+msgid "Res Users Password History"
+msgstr "Res ユーザーのパスワード履歴"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Special Characters must be non-negative values."
+msgstr "パスワードの有効期限（日数）は負でない値である必要があります。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_config_settings__test_password_expiration
+msgid "Test password expiration"
+msgstr "パスワードの有効期限をテストする"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,help:zehntech_password_security.field_user_password_log__change_date
+msgid "The date and time when the password change occurred."
+msgstr "パスワードの変更が発生した日時。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,help:zehntech_password_security.field_user_password_log__new_password_hash
+msgid "The new password hash, stored securely after the change."
+msgstr "変更後に安全に保存される新しいパスワード ハッシュ。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,help:zehntech_password_security.field_user_password_log__old_password_hash
+msgid "The previous password hash, stored securely for reference."
+msgstr "参照用に安全に保存された以前のパスワード ハッシュ。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,help:zehntech_password_security.field_user_password_log__changed_by
+msgid "The user who changed the password."
+msgstr "パスワードを変更したユーザー。"
+
+#. module: zehntech_password_security
+#: model:ir.model.fields,help:zehntech_password_security.field_user_password_log__user_id
+msgid "The user whose password was changed."
+msgstr "パスワードが変更されたユーザー。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire
+msgid "This is a reminder that your Odoo password will expire in"
+msgstr "Odooのパスワードは、"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid "Uppercase Characters must be non-negative values."
+msgstr "大文字は負でない値である必要があります。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "Use 0 to disable the password disallow reuse of previous passwords."
+msgstr ""
+"パスワードを無効にして以前のパスワードの再利用を禁止するには、0 を使用しま"
+"す。"
+
+#. module: zehntech_password_security
+#: model:ir.model,name:zehntech_password_security.model_res_users
+#: model:ir.model.fields,field_description:zehntech_password_security.field_res_users_pass_history__user_id
+#: model:ir.model.fields,field_description:zehntech_password_security.field_user_password_log__user_id
+msgid "User"
+msgstr "ユーザ"
+
+#. module: zehntech_password_security
+#: model:ir.model,name:zehntech_password_security.model_user_password_log
+msgid "User Password Change Log"
+msgstr "ユーザーパスワード変更ログ"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.view_user_password_log_tree
+msgid "User Password Log"
+msgstr "ユーザーパスワードログ"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid ""
+"You can only choose days within 365 days (1 year) for Expiration Alert "
+"Period (days)."
+msgstr ""
+"有効期限アラート期間 (日数) には、365 日 (1 年) 以内の日数のみ選択できます。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_config_settings.py:0
+msgid ""
+"You can only choose days within 365 days (1 year) for Password Expiration "
+"Period (days)"
+msgstr ""
+"パスワードの有効期限（日数）は365日（1年）以内の日数のみ選択できます。"
+
+#. module: zehntech_password_security
+#. odoo-python
+#: code:addons/zehntech_password_security/models/res_users.py:0
+msgid "You cannot reset your password until %s. Please wait for %d hours."
+msgstr "%s までパスワードをリセットできません。%d 時間お待ちください。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire
+msgid ""
+"Your Odoo password has expired. Please reset your password as soon as "
+"possible to regain access."
+msgstr ""
+"Odoo パスワードの有効期限が切れています。再度アクセスするには、できるだけ早"
+"くパスワードをリセットしてください。"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.password_expire
+msgid ""
+"day(s). <br/>\n"
+"                                        To maintain uninterrupted access, "
+"please update your password by following the link below. The link will "
+"remain valid for 24 hours: <br/> \n"
+"                                        If you did not request this email, "
+"you can safely ignore it.<br/>\n"
+"                                         Thank You,<br/>\n"
+"                                         Your Company  <br/>"
+msgstr ""
+"日。<br/>\n"
+"アクセスを中断せずに維持するには、以下のリンクからパスワードを更新してくださ"
+"い。リンクは 24 時間有効です: <br/>\n"
+"このメールをリクエストしていない場合は、無視しても問題ありません。<br/>\n"
+"ありがとうございます。<br/>\n"
+"貴社 <br/>"
+
+#. module: zehntech_password_security
+#: model_terms:ir.ui.view,arch_db:zehntech_password_security.res_config_settings_view_form
+msgid "previous passwords."
+msgstr "以前のパスワード。"

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.form.password_policy</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="auth_password_policy.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//block[@id='user_default_rights']" position="after">
+                <block title="Password Policy" id="password_policy">
+                    <div class="mt16">
+                        <span>
+                            Password Expiration Period (days)
+                            <field name="password_expiration" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                            Number of days after which the password expires.
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <span>
+                            Expiration Alert Period (days)
+                            <field name="day_alert_expire" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                             Number of days before expiration to send an alert.
+                        </div>
+                    </div>
+                    
+                    <div class="mt16">
+                        <span>
+                            Minimum Reset Interval (hours)
+                            <field name="minimum_reset_interval" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                            Minimum time interval between password resets.
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <span>
+                            Minimum Password Length (characters)
+                            <field name="minlength" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                             Minimum total number of characters required for passwords.
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <span>
+                            Disallow reuse of
+                            <field name="password_history" class="oe_inline" />
+                            previous passwords.
+                        </span>
+                        <div class="text-muted">
+                            Use 0 to disable the password disallow reuse of previous passwords.
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <span>
+                            Minimum Lowercase Characters
+                            <field name="password_lower" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                             Minimum number of lowercase letters required in passwords.
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <span>
+                            Minimum Uppercase Characters
+                            <field name="password_upper" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                            Minimum number of uppercase letters required in passwords.
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <span>
+                            Minimum Numeric Characters
+                            <field name="password_numeric" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                            Minimum number of numeric characters required in passwords.
+                        </div>
+                    </div>
+                    <div class="mt16">
+                        <span>
+                            Minimum Special Characters
+                            <field name="password_special" class="oe_inline" />
+                        </span>
+                        <div class="text-muted">
+                             Minimum number of special characters required in passwords.
+                        </div>
+                    </div>
+                </block>
+            </xpath>
+
+            <xpath expr="//field[@name='minlength']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

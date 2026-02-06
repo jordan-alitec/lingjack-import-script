@@ -1,0 +1,16 @@
+// Styles for Priority indicator 
+.urgency-low_priority {
+	border-left: 10px solid #36366C !important;
+}
+
+.urgency-normal {
+	border-left: 10px solid #005c00 !important;
+}
+
+.urgency-high {
+	border-left: 10px solid #ffa500 !important;
+}
+
+.urgency-urgent {
+	border-left: 10px solid #ff0000 !important;
+}

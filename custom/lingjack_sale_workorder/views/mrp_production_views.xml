@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Extend MRP Production Form View -->
+    <record id="mrp_production_form_view_sale_orders" model="ir.ui.view">
+        <field name="name">mrp.production.form.sale.orders</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="sale_order_ids" widget="many2many_tags" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_ids']" position="after">
+                <field name="sfp_distribution_required" invisible="1"/>
+                <field name="sfp_distribution_count" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add SFP Distribution Section to MRP Production Form -->
+    <record id="mrp_production_form_view_sfp_distribution_section" model="ir.ui.view">
+        <field name="name">mrp.production.form.sfp.distribution.section</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="SFP Distribution" invisible="not sfp_distribution_required">
+                    <field name="procurement_group_id" invisible="1"/>
+                    <field name="sfp_distribution_ids" readonly="1" 
+                           domain="[('procurement_group_id', '=', procurement_group_id)]"
+                           context="{'default_procurement_group_id': procurement_group_id}">
+                        <list string="SFP Distribution Plan" decoration-info="state == 'draft'" decoration-success="state == 'done'">
+                            <field name="sequence" widget="handle"/>
+                            <field name="distribution_type" string="Type"/>
+                            <field name="sale_work_order_line_id" string="SWO" optional="show"/>
+                            <field name="customer_id" string="Customer" optional="hide"/>
+                            <field name="location_dest_id" string="Destination"/>
+                            <field name="product_id"/>
+                            <field name="planned_qty" string="Planned Qty"/>
+                            <field name="actual_qty" string="Actual Qty"/>
+                            <field name="state" column_invisible="1" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'ready'" decoration-warning="state == 'draft'"/>
+                            <field name="picking_id" string="Transfer" optional="hide"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo> 

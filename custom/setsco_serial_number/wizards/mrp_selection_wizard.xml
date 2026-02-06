@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- MRP Selection Wizard Form View -->
+    <record id="view_mrp_selection_wizard_form" model="ir.ui.view">
+        <field name="name">mrp.selection.wizard.form</field>
+        <field name="model">mrp.selection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Manufacturing Order">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="production_id" 
+                                   options="{'no_create': True, 'no_edit': True}"
+                                   placeholder="Select a manufacturing order..."/>
+                        </group>
+                    </group>
+                    
+                    <group invisible="not production_id">
+                        <group string="Manufacturing Order Details">
+                            <field name="product_id"/>
+                            <field name="product_qty"/>
+                            <field name="setsco_serial_count"/>
+                            <field name="remaining_qty"/>
+                        </group>
+                        <group string="Assignment Status">
+                            <field name="can_assign_serials" invisible="1"/>
+                            <div class="alert alert-info" role="alert" invisible="not can_assign_serials">
+                                <strong>Ready to assign serials:</strong> This manufacturing order needs 
+                                <field name="remaining_qty" class="fw-bold"/> more setsco serial(s).
+                            </div>
+                            <div class="alert alert-success" role="alert" invisible="can_assign_serials">
+                                <strong>Fully assigned:</strong> This manufacturing order already has all required setsco serials assigned.
+                            </div>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+
+                    <button name="action_assign_setsco_serials"
+                            string="Assign Setsco Serials"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not can_assign_serials"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action for MRP Selection Wizard -->
+    <record id="action_mrp_selection_wizard" model="ir.actions.act_window">
+        <field name="name">Select Manufacturing Order</field>
+        <field name="res_model">mrp.selection.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo> 

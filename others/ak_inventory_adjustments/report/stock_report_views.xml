@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_stock_inventory">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <br/>
+                            <h2 t-field="o.name"/>
+                            <div class="row mt32 mb32" id="informations">
+                                <div t-if="o.date" class="col-auto mw-100 mb-2">
+                                    <strong>Date:</strong>
+                                    <p class="m-0" t-field="o.date"/>
+                                </div>
+                            </div>
+
+                            <t t-set="locations" t-value="o.line_ids.mapped('location_id')"/>
+                            <t t-set="total_cost" t-value="0"/>
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+<!--                                        <th groups="stock.group_stock_multi_locations"><strong>Location</strong></th>-->
+                                        <th><strong>Product</strong></th>
+                                        <th><strong>Image</strong></th>
+                                        <th><strong>Cost</strong></th>
+                                        <th groups="stock.group_tracking_lot"><strong>Package</strong></th>
+                                        <th class="text-right"><strong>On Hand Quantity</strong></th>
+                                        <th class="text-right"><strong>Counted Quantity</strong></th>
+                                        <th class="text-right"><strong>Difference</strong></th>
+                                        <th class="text-right"><strong>Total On Hand</strong></th>
+                                        <th class="text-right"><strong>Total Cost</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="total_on_hand_cost" t-value="0"/>
+                                    <t t-foreach="locations" t-as="location">
+                                        <tr groups="stock.group_stock_multi_locations">
+                                            <td colspan="9" t-if="user.has_group('stock.group_tracking_lot')"><strong t-esc="location.display_name"/></td>
+                                            <td colspan="8" t-else=""><strong t-esc="location.display_name"/></td>
+<!--                                            <td groups="stock.group_production_lot"></td>-->
+<!--                                            <td groups="stock.group_tracking_lot"></td>-->
+<!--                                            <td></td>-->
+                                        </tr>
+
+                                        <tr t-foreach="o.line_ids.filtered(lambda line: line.location_id.id == location.id)" t-as="line">
+<!--                                            <td groups="stock.group_stock_multi_locations"></td>-->
+                                            <td><span t-field="line.product_id"/></td>
+                                            <td style="width: 100px;"><span t-field="line.product_image" t-options="{'widget': 'image', 'class': 'w-100 h-80'}"/></td>
+                                            <td groups="stock.group_production_lot"><span t-field="line.product_id.standard_price"/></td>
+                                            <td groups="stock.group_tracking_lot"><span t-field="line.package_id"/></td>
+                                            <td class="text-right"><span t-field="line.theoretical_qty"/> <span t-field="line.product_uom_id" groups="uom.group_uom"/></td>
+                                            <td class="text-right"><span t-field="line.product_qty"/> <span t-field="line.product_uom_id" groups="uom.group_uom"/></td>
+                                            <td class="text-right"><span t-esc="line.product_qty - line.theoretical_qty"/> <span t-field="line.product_uom_id" groups="uom.group_uom"/></td>
+                                            <td class="text-right"><span t-esc="line.product_id.standard_price * line.product_qty" t-options='{"widget": "float", "precision": 2}'/> </td>
+                                            <td class="text-right"><span t-esc="line.product_id.standard_price * (line.product_qty - line.theoretical_qty)" t-options='{"widget": "float", "precision": 2}'/> </td>
+                                            <t t-set="total_on_hand_cost" t-value="total_on_hand_cost + (line.product_id.standard_price * line.product_qty)"/>
+                                            <t t-set="total_cost" t-value="total_cost + (line.product_id.standard_price * (line.product_qty - line.theoretical_qty))"/>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td class="text-end" t-if="user.has_group('stock.group_tracking_lot')" colspan="7"><b>Total</b></td>
+                                        <td class="text-end" t-else="" colspan="6"><b>Total</b></td>
+                                        <td><span t-esc="total_on_hand_cost" t-options='{"widget": "float", "precision": 2}'/></td>
+                                        <td><span t-esc="total_cost" t-options='{"widget": "float", "precision": 2}'/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </t>
+                 </t>
+             </t>
+        </template>
+    </data>
+</odoo>

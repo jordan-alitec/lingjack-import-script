@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Delivery Order: show Subtask (from procurement group) -->
+        <record id="view_picking_form_inherit_lingjack_service_subtask" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit.lingjack.service.subtask</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <!-- Place near Origin / Sale Order -->
+                <xpath expr="//field[@name='picking_type_id']" position="after">
+                    <field name="fsm_subtask_id" options="{'no_create': True}" readonly="1" />
+                    <field name="fsm_service_location_id" options="{'no_create': True}" readonly="1" />
+                </xpath>
+                <!-- Control Tag smart button (Control Tag group only) -->
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_control_tag" type="object"
+                        class="oe_stat_button" icon="fa-tag"
+                        groups="lingjack_service.group_control_tag"
+                        invisible="control_tag_count == 0">
+                        <field string="Control Tags" name="control_tag_count" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+

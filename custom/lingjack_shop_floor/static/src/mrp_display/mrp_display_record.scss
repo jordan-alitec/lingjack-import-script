@@ -1,0 +1,64 @@
+/* Shop Floor Schedule Info Styling */
+.schedule-info {
+    font-size: 13px;
+    
+    .schedule-dates {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        
+        span {
+            white-space: nowrap;
+            
+            i {
+                font-size: 12px;
+            }
+        }
+    }
+    
+    .fw-bold {
+        font-weight: 600;
+    }
+    
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+        .d-flex.justify-content-between {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 0.5rem;
+        }
+        
+        .schedule-dates {
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+    }
+}
+
+/* Enhanced card styling with schedule info */
+.o_mrp_display_record {
+    .schedule-info {
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+            background-color: #e9ecef !important;
+        }
+    }
+}
+
+/* Status-based color coding for dates */
+.schedule-info {
+    .text-success {
+        color: #28a745 !important;
+    }
+    
+    .text-danger {
+        color: #dc3545 !important;
+    }
+    
+    .text-warning {
+        color: #ffc107 !important;
+    }
+} 

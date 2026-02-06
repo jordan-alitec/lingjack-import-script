@@ -1,0 +1,63 @@
+/* Inline Barcode Scanner Widget Styles */
+
+.o_inline_barcode_scanner_container {
+    width: 100%;
+}
+
+.o_inline_barcode_scanner_wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.o_inline_barcode_input {
+    width: 100%;
+    padding-right: 35px !important;
+}
+
+.o_inline_barcode_scan_button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    color: #7c7bad;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    z-index: 1;
+}
+
+.o_inline_barcode_scan_button:hover {
+    color: #5a5a8a;
+}
+
+.o_inline_barcode_scan_button:active {
+    color: #4a4a7a;
+}
+
+.o_inline_barcode_scan_button:focus {
+    outline: none;
+    color: #5a5a8a;
+}
+
+.o_inline_barcode_scan_button i {
+    font-size: 18px;
+}
+
+/* Ensure button doesn't interfere with input focus */
+.o_inline_barcode_input:focus + .o_inline_barcode_scan_button {
+    color: #7c7bad;
+}
+
+
+
+
+
+

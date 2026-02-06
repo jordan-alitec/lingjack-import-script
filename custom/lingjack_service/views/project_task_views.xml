@@ -1,0 +1,137 @@
+<odoo>
+    <record id="view_task_form_inherit_contact" model="ir.ui.view">
+        <field name="name">project.task.form.inherit.contact</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="industry_fsm.view_task_form2_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='is_task_phone_update']" position="before">
+                <field name="contact_name"/>
+            </xpath>
+            <xpath expr="//field[@name='user_ids']" position="after">
+                <field name="is_internal" invisible="1"/>
+                <field name="service_condition_id" readonly="parent_id"/>
+                <field name="service_location_id" readonly="parent_id" domain="[('id', '=', service_location_ids)]"/>
+                <field name="service_location_ids" invisible="1"/>
+            </xpath>
+            <!-- To deselect auto assignment of assignee in sub task -->
+            <xpath expr="//field[@name='child_ids']" position="attributes">
+                <attribute name="context">{'default_project_id': project_id, 'default_display_in_project': False,'default_parent_id': id, 'default_user_ids': 0,'default_partner_id': partner_id, 'default_milestone_id': allow_milestones and milestone_id, 'kanban_view_ref': 'project.project_sub_task_view_kanban_mobile', 'closed_X2M_count': closed_subtask_count}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Delivery Address</attribute>
+                <attribute name="domain">
+                    ['|',
+                        '&amp;', ('parent_id','=',False),
+                        ('type','in',('contact','invoice')), ('type','=','delivery')
+                    ]
+                </attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <!-- Odoo doesnt show the tags id in mobile view, dont know why but suspect too long -->
+            <xpath expr="//field[@name='tag_ids']" position="before">
+                <label for="tag_ids"/>
+                <div class="text-nowrap">
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" context="{'project_id': project_id}" readonly="parent_id"/>
+                </div>
+            </xpath>
+
+            <label for="partner_phone" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </label>
+            <label for="partner_phone" position="after">
+                <label for="partner_phone" invisible="not is_fsm"/>
+            </label>
+
+            <xpath expr="//div[@name='partner_phone']" position="attributes">
+                <attribute name="class">text-nowrap</attribute>
+
+            </xpath>
+
+            <xpath expr="//field[@name='description']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+            <xpath expr="//field[@name='contact_name']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_phone']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+            <xpath expr="//field[@name='project_sale_order_id']" position="after">
+                <field name="sale_order_id" invisible="sale_line_id"/>
+            </xpath>
+            <xpath expr="//field[@name='sale_line_id'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='project_id']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+            <xpath expr="//field[@name='worksheet_template_id']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_id']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='sale_line_id'][2]" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+            <xpath expr="//field[@name='planned_date_begin']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_deadline']" position="attributes">
+                <attribute name="readonly">parent_id</attribute>
+            </xpath>
+
+
+            <!-- add service_condition_id and service_location_id to the subtasks so that it will update to subtask -->
+
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sub_tasks_page']/field[@name='child_ids']/list[1]/field[@name='user_ids']" position="after">
+                <field name="service_condition_id" optional="hide"/>
+                <field name="service_location_id" optional="hide"/>
+                <field name="sale_order_id" column_invisible="1"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="CS Remarks" name="cs_remarks_page">
+                    <field name="cs_remarks" />
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_project_tags_tree_inherit" model="ir.ui.view">
+        <field name="name">project.tags.tree.inherit</field>
+        <field name="model">project.tags</field>
+        <field name="inherit_id" ref="project.project_tags_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='color']" position="after">
+                <field name="description" widget="html"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_project_tags_form_inherit" model="ir.ui.view">
+        <field name="name">project.tags.form.inherit</field>
+        <field name="model">project.tags</field>
+        <field name="inherit_id" ref="project.project_tags_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='color']" position="after">
+                <field name="description" widget="html"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- My Tasks: kanban action if the number of FSM projects <= 1 -->
+    <record id="industry_fsm.project_task_action_fsm2" model="ir.actions.act_window">
+        <field name="domain">[('is_fsm', '=', True), ('project_id', '!=', False)]</field>
+    </record>
+</odoo>

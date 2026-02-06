@@ -1,0 +1,14 @@
+<odoo>
+    <record id="purchase_type_company_rule" model="ir.rule">
+        <field name="name">Purchase Type: Company Filter</field>
+        <field name="model_id" ref="model_purchase_type"/>
+        <field name="domain_force">['|', ('company_ids', '=', False), ('company_ids', 'in', company_ids) ]</field>
+        <field name="groups" eval="False"/>
+    </record>
+    <record id="customer_category_company_rule" model="ir.rule">
+        <field name="name">Customer Category: Company Filter</field>
+        <field name="model_id" ref="model_customer_category"/>
+        <field name="domain_force">['|', ('company_ids', '=', False), ('company_ids', 'in', company_ids)]</field>
+        <field name="groups" eval="False"/>
+    </record>
+</odoo>

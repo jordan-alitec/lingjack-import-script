@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Setsco Serial Number Sequence -->
+        <record id="seq_setsco_serial_number" model="ir.sequence">
+            <field name="name">Setsco Serial Number</field>
+            <field name="code">setsco.serial.number</field>
+            <field name="prefix">SETSCO</field>
+            <field name="suffix"></field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+    </data>
+    <data>
+        <record id="stock.sequence_production_lots" model="ir.sequence">
+            <field name="prefix">LJ</field>
+        </record>
+    </data>
+</odoo> 

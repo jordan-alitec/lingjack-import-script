@@ -1,0 +1,16 @@
+<odoo>
+    <record id="view_quality_check_form_inherit_po" model="ir.ui.view">
+        <field name="name">quality.check.form.po.number</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_control.quality_check_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_id']" position="after">
+                 <label for="qty_line" invisible="move_line_id" string="Quantity"/>
+                <div class="o_row" invisible="move_line_id">
+                    <field name="qty_line"/>
+                    <field name="uom_id" groups="uom.group_uom"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

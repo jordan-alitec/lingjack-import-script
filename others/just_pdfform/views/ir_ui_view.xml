@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="pdfform_view_from" model="ir.ui.view">
+            <field name="name">pdfform_view_from</field>
+            <field name="inherit_id" ref="base.view_view_form" />
+            <field name="model">ir.ui.view</field>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <div name="button_box" class="oe_button_box">
+                        <button name="pdfform_edit" icon="fa-edit" type="object"
+                            context="{'editor_view': id}" invisible="type != 'pdfForm'">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">pdfform edit</span>
+                            </div>
+                        </button>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

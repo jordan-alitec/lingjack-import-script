@@ -1,0 +1,35 @@
+<odoo>
+    <record id="view_stock_location_selection_form" model="ir.ui.view">
+        <field name="name">stock.location.selection.form</field>
+        <field name="model">stock.location.selection</field>
+        <field name="arch" type="xml">
+            <form string="Update Location">
+                <group>
+                    <field name="is_manually_update_location"/>
+                    <field name="location_selection" widget="radio"/>
+                    <button name="action_open_location_scanner"
+                            string="Open Camera Scanner"
+                            type="object"
+                            class="btn-secondary"
+                            icon="fa-barcode"
+                            invisible="is_manually_update_location"/>
+                    <field name="location_id" invisible="not is_manually_update_location or location_selection != 'location'"/>
+                    <field name="location_dest_id" invisible="not is_manually_update_location or location_selection != 'destination_location'"/>
+                    <field name="picking_id" invisible="1"/>
+                </group>
+                <footer>
+                    <button name="button_confirm" string="Confirm" type="object" class="btn-primary"/>
+                    <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_stock_location_selection" model="ir.actions.act_window">
+        <field name="name">Stock Location Selection</field>
+        <field name="res_model">stock.location.selection</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

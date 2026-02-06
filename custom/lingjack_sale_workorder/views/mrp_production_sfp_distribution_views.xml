@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SFP Distribution list View -->
+    <record id="view_mrp_production_sfp_distribution_list" model="ir.ui.view">
+        <field name="name">mrp.production.sfp.distribution.list</field>
+        <field name="model">mrp.production.sfp.distribution</field>
+        <field name="arch" type="xml">
+            <list string="SFP Distribution Plan" decoration-info="state == 'draft'" decoration-success="state == 'done'">
+                <field name="sequence" widget="handle"/>
+                <field name="distribution_type" string="Type"/>
+                <field name="production_id" string="MO"/>
+                <field name="sale_work_order_line_id" string="SWO Line" optional="show"/>
+                <field name="customer_id" string="Customer" optional="show"/>
+                <field name="location_dest_id" string="Destination"/>
+                <field name="product_id"/>
+                <field name="planned_qty" string="Planned Qty"/>
+                <field name="actual_qty" string="Actual Qty"/>
+                <field name="state" widget="badge" decoration-success="state == 'done'" decoration-info="state == 'ready'" decoration-warning="state == 'draft'"/>
+                <field name="picking_id" string="Transfer" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- SFP Distribution Form View -->
+    <record id="view_mrp_production_sfp_distribution_form" model="ir.ui.view">
+        <field name="name">mrp.production.sfp.distribution.form</field>
+        <field name="model">mrp.production.sfp.distribution</field>
+        <field name="arch" type="xml">
+            <form string="SFP Distribution">
+                <header>
+                    <button name="action_create_sfp_transfer" string="Create Transfer" type="object" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_view_transfer" string="View Transfer" type="object" class="btn-secondary" invisible="not picking_id"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,ready,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_transfer" type="object" class="oe_stat_button" icon="fa-truck" invisible="not picking_id">
+                            <field name="picking_id" widget="statinfo" string="Transfer"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="distribution_type" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="production_id" readonly="1"/>
+                            <field name="sale_work_order_line_id" invisible="distribution_type != 'swo_line'"/>
+                            <field name="customer_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="location_dest_id"/>
+                            <field name="product_id" readonly="1"/>
+                            <field name="planned_qty"/>
+                            <field name="actual_qty"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- SFP Distribution Search View -->
+    <record id="view_mrp_production_sfp_distribution_search" model="ir.ui.view">
+        <field name="name">mrp.production.sfp.distribution.search</field>
+        <field name="model">mrp.production.sfp.distribution</field>
+        <field name="arch" type="xml">
+            <search string="SFP Distribution Plan">
+                <field name="production_id" string="MO"/>
+                <field name="sale_work_order_line_id" string="SWO Line"/>
+                <field name="customer_id" string="Customer"/>
+                <field name="location_dest_id" string="Destination"/>
+                <field name="product_id"/>
+                <field name="picking_id" string="Transfer"/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Ready" name="ready" domain="[('state', '=', 'ready')]"/>
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
+                <filter string="SWO Line Specific" name="swo_line" domain="[('distribution_type', '=', 'swo_line')]"/>
+                <filter string="Excess Production" name="excess" domain="[('distribution_type', '=', 'excess')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Manufacturing Order" name="group_production" context="{'group_by': 'production_id'}"/>
+                    <filter string="Distribution Type" name="group_type" context="{'group_by': 'distribution_type'}"/>
+                    <filter string="Destination Location" name="group_location" context="{'group_by': 'location_dest_id'}"/>
+                    <filter string="Customer" name="group_customer" context="{'group_by': 'customer_id'}"/>
+                    <filter string="Status" name="group_state" context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- SFP Distribution Action -->
+    <record id="action_mrp_production_sfp_distribution" model="ir.actions.act_window">
+        <field name="name">SFP Distribution Plan</field>
+        <field name="res_model">mrp.production.sfp.distribution</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_mrp_production_sfp_distribution_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No SFP distribution plans found
+            </p>
+            <p>
+                SFP distribution plans are automatically created when manufacturing orders
+                with custom destination locations are confirmed.
+            </p>
+        </field>
+    </record>
+
+<!--    &lt;!&ndash; Menu Item &ndash;&gt;-->
+<!--    <menuitem id="menu_mrp_production_sfp_distribution"-->
+<!--              name="SFP Distribution Plan"-->
+<!--              parent="mrp.menu_mrp_production"-->
+<!--              action="action_mrp_production_sfp_distribution"-->
+<!--              sequence="20"/>-->
+
+</odoo>

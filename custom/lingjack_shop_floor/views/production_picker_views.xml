@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Production Component Picker Form View -->
+    <record id="view_shop_floor_production_component_picker_form" model="ir.ui.view">
+        <field name="name">shop.floor.production.component.picker.form</field>
+        <field name="model">shop.floor.production.component.picker</field>
+        <field name="arch" type="xml">
+            <form string="Pick Components">
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Pick Components for Production Order</h1>
+                        <h2><field name="production_id" readonly="1"/></h2>
+                    </div>
+                    
+                    <group>
+                        <field name="component_line_ids" nolabel="1">
+                            <list string="Components to Pick" editable="bottom" delete="1">
+                                <field name="product_id" readonly="0"/>
+                                <field name="workorder_id" readonly="1"/>
+                                <field name="available_quantity" readonly="1"/>
+                                <field name="quantity_to_pick" 
+                                       decoration-warning="quantity_to_pick == 0"
+                                       decoration-success="quantity_to_pick > 0 and quantity_to_pick &lt;= available_quantity"/>
+                                <field name="uom_id" readonly="0"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_pick_components"
+                            string="PICK COMPONENTS"
+                            type="object"
+                            class="btn-primary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                    <button string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Production Finish Picker Form View -->
+    <record id="view_shop_floor_production_finish_picker_form" model="ir.ui.view">
+        <field name="name">shop.floor.production.finish.picker.form</field>
+        <field name="model">shop.floor.production.finish.picker</field>
+        <field name="arch" type="xml">
+            <form string="Pick Finished Products">
+                <header>
+                    <button name="action_pick_finished_products" 
+                            string="PICK FINISHED PRODUCTS" 
+                            type="object" 
+                            class="btn-primary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                    <button string="Cancel" 
+                            special="cancel" 
+                            class="btn-secondary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                </header>
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Pick Finished Products for Production Order</h1>
+                        <h2><field name="production_id" readonly="1"/></h2>
+                    </div>
+                    
+                    <group>
+                        <field name="finish_line_ids" nolabel="1">
+                            <list string="Finished Products to Pick" editable="bottom">
+                                <field name="product_id" readonly="1"/>
+                                <field name="workorder_id" readonly="1"/>
+                                <field name="available_quantity" readonly="1"/>
+                                <field name="quantity_to_pick" 
+                                       decoration-warning="quantity_to_pick == 0"
+                                       decoration-success="quantity_to_pick > 0 and quantity_to_pick &lt;= available_quantity"/>
+                                <field name="uom_id" readonly="1"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Production Component Line Form View (for inline editing) -->
+    <record id="view_shop_floor_production_component_line_form" model="ir.ui.view">
+        <field name="name">shop.floor.production.component.line.form</field>
+        <field name="model">shop.floor.production.component.line</field>
+        <field name="arch" type="xml">
+            <form string="Production Component Line">
+                <group>
+                    <field name="product_id" readonly="1"/>
+                    <field name="workorder_id" readonly="1"/>
+                    <field name="available_quantity" readonly="1"/>
+                    <field name="quantity_to_pick"/>
+                    <field name="uom_id" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Production Finish Line Form View (for inline editing) -->
+    <record id="view_shop_floor_production_finish_line_form" model="ir.ui.view">
+        <field name="name">shop.floor.production.finish.line.form</field>
+        <field name="model">shop.floor.production.finish.line</field>
+        <field name="arch" type="xml">
+            <form string="Production Finish Line">
+                <group>
+                    <field name="product_id" readonly="1"/>
+                    <field name="workorder_id" readonly="1"/>
+                    <field name="available_quantity" readonly="1"/>
+                    <field name="quantity_to_pick"/>
+                    <field name="uom_id" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo> 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Security Groups for Setsco Serial Number Module -->
+    
+    <!-- Group for users who can reverse internal company transfers -->
+    <record id="group_setsco_reverse_transfer" model="res.groups">
+        <field name="name">Reverse Internal Company Transfer</field>
+        <!-- <field name="category_id" ref="base.module_category_operations"/> -->
+        <field name="comment">Users in this group can reverse internal company transfer operations for SETSCO serial numbers.</field>
+    </record>
+
+    <!-- Group for users who can scrap SETSCO serial numbers -->
+    <record id="group_setsco_scrap" model="res.groups">
+        <field name="name">Scrap SETSCO Serial Numbers</field>
+        <!-- <field name="category_id" ref="base.module_category_operations"/> -->
+        <field name="comment">Users in this group can scrap SETSCO serial numbers.</field>
+    </record>
+</odoo>

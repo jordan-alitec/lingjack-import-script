@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- Actions for Shop Floor -->
+    <record id="action_mrp_productivity_shop_floor" model="ir.actions.act_window">
+        <field name="name">Shop Floor Productivity</field>
+        <field name="res_model">mrp.workcenter.productivity</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('quantity_produced', '>', 0)]</field>
+        <field name="context">{
+            'search_default_today': 1,
+            'search_default_group_by_workcenter': 1
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No productivity records with quantities found.
+            </p>
+            <p>
+                Productivity records with quantities are automatically created when employees
+                log production quantities during work sessions.
+            </p>
+        </field>
+    </record>
+
+    <!-- Action for Current Active Productivity -->
+    <record id="action_current_productivity" model="ir.actions.act_window">
+        <field name="name">Current Active Sessions</field>
+        <field name="res_model">mrp.workcenter.productivity</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('date_end', '=', False)]</field>
+        <field name="context">{
+            'search_default_group_by_workcenter': 1
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No active work sessions found.
+            </p>
+            <p>
+                Active sessions appear here when employees start work on manufacturing orders.
+            </p>
+        </field>
+    </record>
+
+    <!-- Shop Floor Dashboard Action -->
+    <record id="action_shop_floor_dashboard" model="ir.actions.act_window">
+        <field name="name">Shop Floor Dashboard</field>
+        <field name="res_model">mrp.production</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="domain">[('state', 'in', ['confirmed', 'progress', 'to_close'])]</field>
+        <field name="context">{
+            'search_default_progress': 1,
+            'search_default_confirmed': 1,
+            'shop_floor_view': True
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No manufacturing orders in progress.
+            </p>
+            <p>
+                Manufacturing orders in progress will appear here for shop floor tracking.
+            </p>
+        </field>
+    </record>
+
+    <!-- Shop Floor Menu Items -->
+    <menuitem id="menu_shop_floor_root"
+              name="Shop Floor"
+              parent="mrp.menu_mrp_manufacturing"
+              sequence="50"
+              groups="lingjack_shop_floor.group_shop_floor_employee"/>
+
+    <menuitem id="menu_shop_floor_dashboard"
+              name="Dashboard"
+              parent="menu_shop_floor_root"
+              action="action_shop_floor_dashboard"
+              sequence="10"/>
+
+    <menuitem id="menu_shop_floor_current_sessions"
+              name="Active Sessions"
+              parent="menu_shop_floor_root"
+              action="action_current_productivity"
+              sequence="20"/>
+
+    <menuitem id="menu_shop_floor_productivity"
+              name="Production History"
+              parent="menu_shop_floor_root"
+              action="action_mrp_productivity_shop_floor"
+              sequence="30"/>
+
+    <menuitem id="menu_shop_floor_transfer_notes"
+              name="Component Transfer Notes"
+              parent="menu_shop_floor_root"
+              action="lingjack_shop_floor.action_shop_floor_component_transfer_note"
+              sequence="40"/>
+
+    <!-- Quick Actions for Shop Floor -->
+    <record id="action_quick_start_session" model="ir.actions.server">
+        <field name="name">Quick Start Session</field>
+        <field name="model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_model_id" ref="mrp.model_mrp_workorder"/>
+        <field name="binding_view_types">list,form</field>
+        <field name="state">code</field>
+        <field name="code">
+            for record in records:
+                action = record.button_start()
+        </field>
+        <field name="groups_id" eval="[(4, ref('lingjack_shop_floor.group_shop_floor_employee'))]"/>
+    </record>
+
+</odoo> 

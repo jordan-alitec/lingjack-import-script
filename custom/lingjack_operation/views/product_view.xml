@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_product_form_inherit_restricted_item" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.restricted.item</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <span class="d-inline-flex">
+                    <field name="is_restricted_item"/>
+                    <label for="is_restricted_item"/>
+                </span>
+            </div>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Projected Cost">
+                    <group>
+                        <group>
+                            <field name="product_currency_id" />
+                            <field name="currency_rate" />
+                        </group>
+                        <group>
+                            <field name="projected_cost" />
+                            <field name="project_cost_home" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//page[@name='purchase']" position="inside">
+                <group>
+                    <group string="INTERNAL REMARKS FOR PURCHASE">
+                        <field name="internal_purchase_remarks" placeholder="Internal Purchase Remarks" nolabel="1"/>
+                    </group>
+                </group>
+            </xpath>
+
+            <xpath expr="//group[@name='group_standard_price']//div" position="after">
+                    <field name="min_selling_price"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_tag_tree_inherit_category" model="ir.ui.view">
+        <field name="name">product.tag.tree.inherit.category</field>
+        <field name="model">product.tag</field>
+        <field name="inherit_id" ref="product.product_tag_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="product_template_ids" position="after" editable="bottom">
+                <field name="tag_category_id"/>
+                <field name="tag_category_sequence" string="Sequence"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_tag_list" model="ir.ui.view">
+        <field name="name">product.tag.list</field>
+        <field name="model">tag.category</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="sequence"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_product_tag_form_inherit_category" model="ir.ui.view">
+        <field name="name">product.tag.form.inherit.category</field>
+        <field name="model">product.tag</field>
+        <field name="inherit_id" ref="product.product_tag_form_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="tag_category_id"/>
+                <field name="tag_category_sequence" string="Sequence"/>
+
+            </field>
+        </field>
+    </record>
+
+    <record id="product_template_form_general_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.general.refdoc.brand</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']//field[@name='product_tooltip']" position="after">
+                <field name="ref_doc" widget="url"/>
+                <field name="brand_id"/>
+                <field name="product_model_id"/>
+                <field name="version_id"/>
+                <field name="dwg_no"/>
+                <field name="is_master_bom"/>
+                <field name="is_export_control"/>
+            </xpath>
+            <xpath expr="//page[@name='general_information']//field[@name='company_id']" position="after">
+                <div name="options" position="inside">
+                    <span class="d-inline-flex">
+                        <field name="is_share_product"/>
+                        <label for="is_share_product"/>
+                    </span>
+                </div>
+            </xpath>
+
+
+            <xpath expr="//page[@name='general_information']//field[@name='create_repair']" position="after">
+                <field name="sales_supplier_warranty"/>
+            </xpath>
+
+            <xpath expr="//page[@name='general_information']//group[@name='internal_notes']" position="before">
+                <group name="extra_info" position="move"/>
+                <group>
+                    <group string="PRODUCT DESCRIPTION">
+                        <field name="product_description" placeholder="Product Description" nolabel="1"/>
+                    </group>
+                    <group string="SPECIAL REMARKS">
+                        <field name="special_remarks" placeholder="Special Remarks" nolabel="1"/>
+                    </group>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_pricelist_form_custom" model="ir.ui.view">
+        <field name="name">product.pricelist.form.inherit.custom</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='item_ids']/list/field[@name='name']" position="after">
+                <field name="cost_price"/>
+            </xpath>
+            <xpath expr="//field[@name='item_ids']/list/field[@name='price']" position="after">
+                <field name="end_user_price"/>
+            </xpath>
+            <xpath expr="//field[@name='item_ids']/list/field[@name='date_end']" position="after">
+                <field name="remarks"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pricelist_item_form_inherit" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form.inherit</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='pricelist_rule_limits']/field[@name='date_start']" position="after">
+                <field name="cost_price"/>
+                <field name="end_user_price"/>
+                <field name="remarks"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_template_property_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.stock.property.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description_pickingout']" position="after">
+                <group string="PRODUCTION REMARKS" colspan="2">
+                    <field name="production_remarks" nolabel="1" placeholder="Production Remarks"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_product_brand_list" model="ir.ui.view">
+        <field name="name">product.brand.list</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <list string="Brands" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_product_brand" model="ir.actions.act_window">
+        <field name="name">Product Brand</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Product Brand here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_product_brand"
+              name="Brand"
+              parent="stock.menu_product_in_config_stock"
+              action="action_product_brand"/>
+
+    <record id="view_product_model_list" model="ir.ui.view">
+        <field name="name">product.model.list</field>
+        <field name="model">product.model</field>
+        <field name="arch" type="xml">
+            <list string="Models" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_product_models" model="ir.actions.act_window">
+        <field name="name">Product model</field>
+        <field name="res_model">product.model</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Product Models here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_product_model"
+              name="Model"
+              parent="stock.menu_product_in_config_stock"
+              action="action_product_models"/>
+
+    <record id="view_product_version_list" model="ir.ui.view">
+        <field name="name">product.version.list</field>
+        <field name="model">product.version</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_product_version" model="ir.actions.act_window">
+        <field name="name">Product Version</field>
+        <field name="res_model">product.version</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Product Version here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_product_version"
+              name="Version"
+              parent="stock.menu_product_in_config_stock"
+              action="action_product_version"/>
+
+
+</odoo>

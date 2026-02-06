@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="yc_code_scanner_mobile.Many2OneBarcodeScannerField" owl="1">
+        <div class="d-flex align-items-center gap-1" t-att-data-tooltip="props.record.data[props.name][1]">
+            <t t-call="web.Many2OneField"/>
+        </div>
+        <div>
+            <button t-if="!props.readonly"
+                class="fa fa-qrcode btn btn-secondary qr_scan_button" 
+                t-on-click="onConfigButtonClick" 
+                title="Scan Code"
+                style="color: #B76BAA; background-color:white; margin-top:5px;"
+                aria-label="Scan Code" 
+                name="o_start_qr_scan">
+                    <span style="margin-left: 5px; margin-bottom:2px;">scan</span>
+            </button>
+        </div>
+    </t>
+
+</templates>
+

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Stock Picking Form View Extension -->
+    <record id="view_stock_picking_form_setsco" model="ir.ui.view">
+        <field name="name">stock.picking.form.setsco</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <field name="has_setsco_serials" invisible="1"/>
+                <button name="action_view_setsco_serials" type="object"
+                        class="oe_stat_button" icon="fa-barcode"
+                        invisible="not has_setsco_serials">
+                    <field name="setsco_serial_count" widget="statinfo" string="Setsco Serials"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+    <!-- Stock Move Line Form View Extension -->
+    <record id="view_stock_move_line_form_setsco" model="ir.ui.view">
+        <field name="name">stock.move.line.form.setsco</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <field name="lot_id" position="after">
+                <!-- Needed for safe view modifiers -->
+                <field name="picking_code" invisible="1"/>
+                <field name="picking_state" invisible="1"/>
+
+                <!-- Editable selection during picking -->
+                <field name="setsco_serial_ids" widget="many2many_tags"
+                       domain="[('product_id', '=', product_id), ('state', '=', 'warehouse')]"
+                       column_invisible="picking_code == 'outgoing' and picking_state == 'done'"/>
+                <!-- Historical display after delivery (kept even if returns re-link move_line_id) -->
+                <field name="display_setsco_serial_ids" widget="many2many_tags" readonly="1"
+                       column_invisible="not (picking_code == 'outgoing' and picking_state == 'done')"/>
+                <field name="setsco_serial_count" string="Serial Count"/>
+                <field name="requires_setsco_serial" invisible="1"/>
+                <button name="action_select_setsco_serials_range" string="Select Serials"
+                        type="object" class="btn-secondary"
+                        invisible="not requires_setsco_serial"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Stock Picking Operations Extension -->
+    <record id="view_stock_picking_operations_setsco" model="ir.ui.view">
+        <field name="name">stock.picking.operations.setsco</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <!-- Add to detailed operations list view -->
+            <xpath expr="//field[@name='move_ids_without_package']//list//field[@name='lot_ids']" position="after">
+                <field name="requires_setsco_serial" column_invisible="1"/>
+                <field name="setsco_serial_ids" widget="many2many_tags" optional="hide"/>
+                <button name="action_select_setsco_serials_range" string="Select Range"
+                        type="object" class="btn-secondary btn-sm"
+                        invisible="not requires_setsco_serial or setsco_serial_ids"/>
+            </xpath>
+
+        </field>
+    </record>
+
+<!--    &lt;!&ndash; Stock Quant list View Extension &ndash;&gt;-->
+<!--    <record id="view_stock_quant_list_setsco" model="ir.ui.view">-->
+<!--        <field name="name">stock.quant.list.setsco</field>-->
+<!--        <field name="model">stock.quant</field>-->
+<!--        <field name="inherit_id" ref="stock.view_stock_quant_list"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="lot_id" position="after">-->
+<!--                <field name="setsco_serial_id"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Stock Quant Form View Extension &ndash;&gt;-->
+<!--    <record id="view_stock_quant_form_setsco" model="ir.ui.view">-->
+<!--        <field name="name">stock.quant.form.setsco</field>-->
+<!--        <field name="model">stock.quant</field>-->
+<!--        <field name="inherit_id" ref="stock.view_stock_quant_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="lot_id" position="after">-->
+<!--                <field name="setsco_serial_id" -->
+<!--                       domain="[('product_id', '=', product_id)]"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <!-- Stock Move Line Operation Tree View Extension -->
+    <record id="view_stock_move_line_operation_tree_setsco" model="ir.ui.view">
+        <field name="name">stock.move.line.operation.tree.setsco</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="arch" type="xml">
+            <!-- Add setsco_serial_ids field after lot_id -->
+            <field name="lot_id" position="after">
+                <field name="picking_code" column_invisible="1"/>
+                <field name="picking_state" column_invisible="1"/>
+                <field name="setsco_serial_ids"
+                       widget="many2many_tags" 
+                       string="Setsco Serials"
+                       optional="hide"
+                       domain="[('product_id', '=', parent.product_id), ('state', '=', 'warehouse'), ('production_id', '!=', False)]"
+                       context="{'default_product_id': parent.product_id}"
+                       readonly="1"
+                       column_invisible="1"/>
+                <field name="display_setsco_serial_ids"
+                       widget="many2many_tags"
+                       string="Setsco Serials"
+                       optional="hide"
+                       readonly="1"/>
+                       
+            </field>
+        </field>
+    </record>
+
+    <!-- Stock Move Line Detailed Operation Tree View Extension -->
+    <record id="view_stock_move_line_detailed_operation_tree_setsco" model="ir.ui.view">
+        <field name="name">stock.move.line.detailed.operation.tree.setsco</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_detailed_operation_tree"/>
+        <field name="arch" type="xml">
+            <!-- Add setsco_serial_ids field after lot_name -->
+            <field name="lot_name" position="after">
+                <field name="picking_code" column_invisible="1"/>
+                <field name="picking_state" column_invisible="1"/>
+                <field name="setsco_serial_ids"
+                       widget="many2many_tags" 
+                       string="Setsco Serials"
+                       optional="hide"
+                       domain="[('product_id', '=', product_id), ('state', '=', 'warehouse'), ('production_id', '!=', False)]"
+                       context="{'default_product_id': product_id}"
+                       readonly="state in ('done', 'cancel') and is_locked"
+                       invisible="picking_code == 'outgoing' and picking_state == 'done'"/>
+                <field name="display_setsco_serial_ids"
+                       widget="many2many_tags"
+                       string="Setsco Serials"
+                       optional="hide"
+                       readonly="1"
+                       invisible="not (picking_code == 'outgoing' and picking_state == 'done')"/>
+            </field>
+        </field>
+    </record>
+
+<!--    &lt;!&ndash; Stock Move Form View Extension &ndash;&gt;-->
+<!--    <record id="view_stock_move_form_setsco" model="ir.ui.view">-->
+<!--        <field name="name">stock.move.form.setsco</field>-->
+<!--        <field name="model">stock.move</field>-->
+<!--        <field name="inherit_id" ref="stock.view_move_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <div name="button_box" position="inside">-->
+<!--                <button name="action_view_setsco_serials" type="object"-->
+<!--                        class="oe_stat_button" icon="fa-barcode"-->
+<!--                        invisible="not setsco_serial_ids">-->
+<!--                    <field name="setsco_serial_ids" widget="statinfo" string="Setsco Serials"/>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            -->
+<!--            <field name="product_id" position="after">-->
+<!--                <field name="requires_setsco_serial" readonly="1"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash; Stock Move List View Extension &ndash;&gt;-->
+<!--    <record id="view_stock_move_list_setsco" model="ir.ui.view">-->
+<!--        <field name="name">stock.move.list.setsco</field>-->
+<!--        <field name="model">stock.move</field>-->
+<!--        <field name="inherit_id" ref="stock.view_move_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="product_id" position="after">-->
+<!--                <field name="requires_setsco_serial" optional="hide"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo> 

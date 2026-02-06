@@ -1,0 +1,19 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_shop_floor_quantity_popup_user,shop.floor.quantity.popup user,model_shop_floor_quantity_popup,mrp.group_mrp_user,1,1,1,1
+access_shop_floor_quantity_popup_manager,shop.floor.quantity.popup manager,model_shop_floor_quantity_popup,mrp.group_mrp_manager,1,1,1,1
+lingjack_shop_floor.access_shop_floor_production_component_picker,access_shop_floor_production_component_picker,lingjack_shop_floor.model_shop_floor_production_component_picker,base.group_user,1,1,1,1
+lingjack_shop_floor.access_shop_floor_production_component_line,access_shop_floor_production_component_line,lingjack_shop_floor.model_shop_floor_production_component_line,base.group_user,1,1,1,1
+access_mrp_operation_template_user,access.mrp.operation.template,model_mrp_operation_template,base.group_user,1,1,1,1
+access_mrp_bom_extension,mrp.bom.extension,mrp.model_mrp_bom,base.group_user,1,1,1,1
+access_hr_employee,hr_employee,hr.model_hr_employee,base.group_user,1,0,0,0
+access_mrp_routing_workcenter_internal_user,mrp.routing.workcenter internal user,model_mrp_routing_workcenter,base.group_user,1,0,0,0
+access_mrp_workcenter_productivity_internal_user,mrp.workcenter.productivity internal user,model_mrp_workcenter_productivity,base.group_user,1,0,0,0
+access_mrp_production_internal_user,mrp.production internal user,mrp.model_mrp_production,base.group_user,1,0,0,0
+access_mrp_routing_workcenter_internal_user_2,mrp.routing.workcenter internal user 2,mrp.model_mrp_routing_workcenter,base.group_user,1,0,0,0
+access_mrp_unbuild_internal_user,mrp.unbuild internal user,mrp.model_mrp_unbuild,base.group_user,1,0,0,0
+access_mrp_workcenter_productivity_loss_internal_user,mrp.workcenter.productivity.loss internal user,mrp.model_mrp_workcenter_productivity_loss,base.group_user,1,0,0,0
+sale_mrp.access_mrp_production_salesman,mrp.production salesman,mrp.model_mrp_production,sales_team.group_sale_salesman,1,0,0,0
+access_mrp_purchase_request_wizard,mrp.purchase.request.wizard,lingjack_shop_floor.model_mrp_purchase_request_wizard,mrp.group_mrp_user,1,1,1,1
+access_mrp_purchase_request_wizard_line,mrp.purchase.request.wizard.line,lingjack_shop_floor.model_mrp_purchase_request_wizard_line,mrp.group_mrp_user,1,1,1,1
+access_lot_selection_wizard,lot.selection.wizard,lingjack_shop_floor.model_lot_selection_wizard,mrp.group_mrp_user,1,1,1,1
+access_lot_selection_wizard_line,lot.selection.wizard.line,lingjack_shop_floor.model_lot_selection_wizard_line,mrp.group_mrp_user,1,1,1,1

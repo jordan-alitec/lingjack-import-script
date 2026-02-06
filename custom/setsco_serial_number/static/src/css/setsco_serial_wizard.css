@@ -1,0 +1,675 @@
+/* Minimal Setsco Serial Wizard Styles */
+
+.o_setsco_serial_wizard {
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Simple Header */
+.o_setsco_serial_wizard .oe_title {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.o_setsco_serial_wizard .oe_title h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+.o_field_widget.o_inline {
+    display: inline-flex !important;
+    align-items: baseline; /* keeps numbers aligned with text */
+}
+
+.o_setsco_serial_wizard .o_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.o_setsco_serial_wizard .oe_inline {
+    margin: 0.5rem;
+}
+
+/* Individual Scanning Mode */
+.o_individual_mode {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.o_scan_section {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.o_scan_btn {
+    min-height: 48px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+}
+
+.o_scan_btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Selection List */
+.o_selection_list {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_list_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.o_list_header h4 {
+    margin: 0;
+    color: #495057;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.o_serial_list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+}
+
+.o_mobile_friendly {
+    font-size: 0.9rem;
+}
+
+.o_mobile_friendly .o_sequence {
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    color: #6c757d;
+}
+
+.o_mobile_friendly .o_serial_field {
+    min-width: 150px;
+}
+
+.o_mobile_friendly .o_serial_name {
+    font-weight: 600;
+    color: #495057;
+}
+
+.o_mobile_friendly .o_serial_state {
+    width: 100px;
+    text-align: center;
+}
+
+.o_mobile_friendly .o_location {
+    width: 120px;
+}
+
+.o_remove_btn {
+    min-width: 80px;
+    height: 32px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: none;
+    cursor: pointer;
+    background: #dc3545;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.o_remove_btn:hover {
+    background: #c82333;
+}
+
+/* Manual Input Section Styles */
+.o_manual_input_section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #dee2e6;
+}
+
+.o_manual_input_section .o_row {
+    margin-bottom: 0.5rem;
+}
+
+.o_manual_input_field {
+    margin-top: 0.5rem;
+}
+
+.o_manual_input_field .o_input_lg {
+    min-height: 48px;
+    font-size: 1.1rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.o_manual_input_field .o_input_lg:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+    outline: none;
+}
+
+.o_manual_input_field .o_input_lg::placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Selection Preview Styles */
+.o_selection_preview {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #dee2e6;
+}
+
+.o_selection_preview .o_row {
+    margin-bottom: 0.5rem;
+}
+
+.o_selection_preview h5 {
+    margin: 0;
+    color: #495057;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Range Input Styles */
+.o_range_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.o_range_start,
+.o_range_end {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.o_range_start label,
+.o_range_end label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.25rem;
+}
+
+/* Individual Mode Specific Styles */
+.o_individual_mode {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.o_individual_mode .o_manual_input_section {
+    background: white;
+    border: 1px solid #dee2e6;
+}
+
+/* Range Mode Specific Styles */
+.o_range_mode {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.o_range_mode .o_manual_input_section {
+    background: white;
+    border: 1px solid #dee2e6;
+}
+
+/* Button Styles for Manual Input */
+.o_manual_input_section .btn {
+    min-height: 40px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.o_manual_input_section .btn-primary {
+    background: #007bff;
+    color: white;
+}
+
+.o_manual_input_section .btn-primary:hover {
+    background: #0056b3;
+    transform: translateY(-1px);
+}
+
+.o_manual_input_section .btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.o_manual_input_section .btn-success:hover {
+    background: #1e7e34;
+    transform: translateY(-1px);
+}
+
+.o_manual_input_section .btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.o_manual_input_section .btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+}
+
+.o_range_section {
+    margin-bottom: 1.5rem;
+}
+
+.o_range_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.o_range_start,
+.o_range_end {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.o_scan_input {
+    min-height: 48px;
+    font-size: 1.1rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0.75rem;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.o_scan_input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+    outline: none;
+}
+
+.o_range_actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.o_range_actions .btn {
+    min-height: 40px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.o_range_preview {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_preview_header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.o_preview_header h4 {
+    margin: 0;
+    color: #495057;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.o_preview_list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+}
+
+/* Footer */
+.o_setsco_serial_wizard footer {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    flex-wrap: wrap;
+}
+
+.o_setsco_serial_wizard footer .btn {
+    min-height: 48px;
+    min-width: 120px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    padding: 12px 24px;
+}
+
+.o_setsco_serial_wizard footer .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Mobile Responsive Breakpoints */
+@media (max-width: 768px) {
+    .o_setsco_serial_wizard {
+        padding: 0.5rem;
+    }
+    
+    .o_setsco_serial_wizard .oe_title {
+        padding: 0.75rem;
+    }
+    
+    .o_setsco_serial_wizard .oe_title h1 {
+        font-size: 1.25rem;
+    }
+    
+    .o_row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .o_scan_btn {
+        min-height: 44px;
+        font-size: 1rem;
+        width: 100%;
+    }
+    
+    .o_scan_input {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+    
+    .o_list_header {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .o_list_header h4 {
+        font-size: 1rem;
+    }
+    
+    .o_range_inputs {
+        gap: 0.75rem;
+    }
+    
+    .o_range_actions {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .o_range_actions .btn {
+        min-height: 44px;
+        width: 100%;
+    }
+    
+    .o_setsco_serial_wizard footer {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .o_setsco_serial_wizard footer .btn {
+        min-height: 44px;
+        min-width: 100%;
+    }
+    
+    .o_mobile_friendly {
+        font-size: 0.8rem;
+    }
+    
+    .o_mobile_friendly .o_sequence {
+        width: 50px;
+    }
+    
+    .o_mobile_friendly .o_serial_field {
+        min-width: 120px;
+    }
+    
+    .o_mobile_friendly .o_serial_state {
+        width: 80px;
+    }
+    
+    .o_mobile_friendly .o_location {
+        width: 100px;
+    }
+    
+    .o_remove_btn {
+        min-width: 70px;
+        font-size: 0.75rem;
+    }
+    
+    /* Manual Input Mobile Styles */
+    .o_manual_input_section {
+        padding: 0.75rem;
+    }
+    
+    .o_manual_input_section .btn {
+        min-height: 44px;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    
+    .o_manual_input_field .o_input_lg {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+    
+    .o_range_inputs {
+        gap: 0.75rem;
+    }
+    
+    .o_selection_preview {
+        padding: 0.75rem;
+    }
+    
+    .o_selection_preview h5 {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .o_setsco_serial_wizard {
+        padding: 0.25rem;
+    }
+    
+    .o_setsco_serial_wizard .oe_title {
+        padding: 0.5rem;
+    }
+    
+    .o_setsco_serial_wizard .oe_title h1 {
+        font-size: 1.1rem;
+    }
+    
+    .o_scan_btn {
+        min-height: 40px;
+        font-size: 0.9rem;
+    }
+    
+    .o_scan_input {
+        min-height: 40px;
+        font-size: 0.9rem;
+    }
+    
+    .o_mobile_friendly {
+        font-size: 0.75rem;
+    }
+    
+    .o_mobile_friendly .o_sequence {
+        width: 40px;
+    }
+    
+    .o_mobile_friendly .o_serial_field {
+        min-width: 100px;
+    }
+    
+    .o_mobile_friendly .o_serial_state {
+        width: 70px;
+    }
+    
+    .o_mobile_friendly .o_location {
+        width: 80px;
+    }
+    
+    .o_remove_btn {
+        min-width: 60px;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .o_list_header h4,
+    .o_preview_header h4 {
+        font-size: 0.95rem;
+    }
+}
+
+/* Tablet and Desktop Enhancements */
+@media (min-width: 769px) {
+    .o_setsco_serial_wizard {
+        max-width: 800px;
+    }
+    
+    .o_range_inputs {
+        flex-direction: row;
+        gap: 2rem;
+    }
+    
+    .o_range_start,
+    .o_range_end {
+        flex: 1;
+    }
+    
+    .o_list_header {
+        flex-direction: row;
+    }
+    
+    .o_setsco_serial_wizard footer {
+        flex-direction: row;
+    }
+    
+    /* Manual Input Desktop Styles */
+    .o_manual_input_section .o_row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .o_manual_input_section .d-flex.gap-2 {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    
+    .o_manual_input_section .btn {
+        min-height: 40px;
+        width: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+    .o_scan_btn,
+    .o_remove_btn,
+    .o_setsco_serial_wizard footer .btn {
+        min-height: 44px;
+        padding: 0.75rem 1rem;
+    }
+    
+    .o_scan_input {
+        min-height: 44px;
+        padding: 0.75rem;
+    }
+    
+    .o_list_header .btn {
+        min-height: 40px;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .o_setsco_serial_wizard .oe_title {
+        background: #000;
+        color: #fff;
+    }
+    
+    .o_scan_btn,
+    .o_remove_btn,
+    .o_setsco_serial_wizard footer .btn {
+        border: 2px solid currentColor;
+    }
+    
+    .o_scan_input {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .o_scan_btn,
+    .o_scan_input,
+    .o_serial_list,
+    .o_preview_list,
+    .o_setsco_serial_wizard footer .btn {
+        transition: none;
+    }
+    
+    .o_scan_btn:hover,
+    .o_setsco_serial_wizard footer .btn:hover {
+        transform: none;
+    }
+} 

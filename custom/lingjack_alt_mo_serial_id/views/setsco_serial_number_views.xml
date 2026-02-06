@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_setsco_serial_number_form_production_serial" model="ir.ui.view">
+        <field name="name">setsco.serial.number.form.production.serial</field>
+        <field name="model">setsco.serial.number</field>
+        <field name="inherit_id" ref="setsco_serial_number.view_setsco_serial_number_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='production_id']" position="after">
+                <field name="production_serial_id" readonly="1" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

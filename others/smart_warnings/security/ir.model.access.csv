@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_smart_warning,access_smart_warning,model_smart_warning,base.group_user,1,0,0,0
+access_smart_warning_admin,access_smart_warning_admin,model_smart_warning,base.group_erp_manager,1,1,1,1
+access_smart_warning_warnadmin,access_smart_warning_warnadmin,model_smart_warning,smart_warnings.group_smart_warnings_manager,1,1,1,1
+access_ir_model_smart_warnings,ir_model_smart_warnings,base.model_ir_model,smart_warnings.group_smart_warnings_manager,1,0,0,0
+access_ir_model_access_smart_warnings,access_ir_model_access_smart_warnings,base.model_ir_model_access,smart_warnings.group_smart_warnings_manager,1,0,0,0

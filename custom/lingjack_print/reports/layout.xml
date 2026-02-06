@@ -1,0 +1,7 @@
+<odoo>
+    <template id="external_layout_standard_inherit" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@class='col-6']" position="attributes">
+            <attribute name="class" remove="col-6" add="col-12 justify-center" separator=" "/>
+        </xpath>
+    </template>
+</odoo>

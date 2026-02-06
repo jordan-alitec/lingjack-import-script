@@ -1,0 +1,277 @@
+<odoo>
+    <template id="report_export_invoice_do_document"  inherit_id="lingjack_print.report_export_invoice_document" primary="True">
+        <xpath expr="//h2" position="replace">
+            <h2 class="text-left" style="text-align: center; color: #1f4e79; margin-top:50px;">
+                <span style="font-size: 28px;">
+                   DELIVERY ORDER
+                </span>
+            </h2>
+        </xpath>
+
+        <xpath expr="//td[@name='invoice_number']" position="replace">
+            <td name="invoice_number" style="padding: 2px 4px;">Delivery Order No</td>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']//t[@t-set='lines']" position="replace">
+            <t t-set="lines"
+               t-value="o.invoice_line_ids.filtered(lambda l: l.product_id.product_tmpl_id.type == 'consu').sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']" position="after">
+            <div style="page-break-before: always;"></div>
+        </xpath>
+
+        <xpath expr="//th[@name='th_sn']" position="after">
+            <th name="th_com"><span>Com</span></th>
+        </xpath>
+        <xpath expr="//td[@name='td_sn']" position="after">
+            <td name="td_com">
+                <span t-field="line.product_id.default_code"/>
+            </td>
+        </xpath>
+        <xpath expr="//th[@name='th_priceunit']" position="replace"/>
+        <xpath expr="//th[@name='th_subtotal']" position="replace"/>
+        <xpath expr="//td[@name='td_price_unit']" position="replace"/>
+        <xpath expr="//td[@name='td_subtotal']" position="replace"/>
+        <xpath expr="//table[@name='bank_details_table']" position="replace"/>
+        <xpath expr="//div[@id='right-elements']" position="replace"/>
+        <xpath expr="//table[@name='table_info']" position="replace">
+            <table class="table" style="width:100%; border: 1px solid black;">
+                <tr>
+                    <td>
+                        <table style="width:100%;" class="table-borderless invoice_delivery">
+                            <tr>
+                                <!-- Left column -->
+                                <td style="vertical-align: top; width: 45%;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td style="padding: 2px 4px;">
+                                                <strong>Vessel/ Flight Name</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;">:</td>
+                                            <td style="padding: 2px 4px;">
+                                                <span t-field="o.vessel_name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 2px 4px; white-space: nowrap;">
+                                                <strong>Port/ Airport Of Discharge</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;">:</td>
+                                            <td style="padding: 2px 4px;">
+                                                <span t-field="o.port_discharge_id"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 2px 4px;">
+                                                <strong>No. Of Package</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;">:</td>
+                                            <td style="padding: 2px 4px;">
+                                                <span t-field="o.no_of_package"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="o.invoice_incoterm_id.name or o.incoterm_location">
+                                            <td style="padding: 2px 4px;">
+                                                <strong>Shipping Terms</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;">:</td>
+                                            <td style="padding: 2px 4px;">
+                                                <t t-if="o.invoice_incoterm_id.name">
+                                                    <span t-field="o.invoice_incoterm_id.name"/>
+                                                </t>
+                                                <t t-if="o.invoice_incoterm_id.name and o.incoterm_location">,</t>
+                                                <t t-if="o.incoterm_location">
+                                                    <span t-field="o.incoterm_location"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 2px 4px; white-space: nowrap;">
+                                                <strong>Packing Details</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;">:</td>
+                                            <td style="padding: 2px 4px;">
+                                                <span t-field="o.packing_details"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="vertical-align: top; width: 1%;">
+                                    <table style="width: 100%;">
+                                    </table>
+                                </td>
+
+                                <!-- Right column -->
+                                <td style="vertical-align: top; width: 45%;">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td style="padding: 2px 20%;">
+                                                <strong>Seal No</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">:</td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">
+                                                <span t-field="o.seal_no"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 2px 20%;">
+                                                <strong>Container No</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">:</td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">
+                                                <span t-field="o.container_no"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 2px 20%;">
+                                                <strong>L/C No</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">:</td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">
+                                                <span t-field="o.lc_no"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 2px 20%;">
+                                                <strong>ETD Origin</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">:</td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">
+                                                <span t-field="o.etd_origin"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 2px 20%; white-space: nowrap;">
+                                                <strong>ETA Destination</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">:</td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">
+                                                <span t-field="o.eta_destination"/>
+                                            </td>
+                                        </tr>
+                                        <tr t-if="o.country_of_origin_id">
+                                            <td style="padding: 2px 20%; white-space: nowrap;">
+                                                <strong>Country of Origin</strong>
+                                            </td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">:</td>
+                                            <td style="padding: 2px 4px;position: relative;left: -50px;">
+                                                <span t-field="o.country_of_origin_id"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr name="information_tr" style="border: 1px solid black;">
+                    <td style="border: 1px solid black;">
+                        <table style="width: 74%;" class="table-borderless">
+                            <tr>
+                                <td style="padding: 2px 4px;">
+                                    <strong>Remarks</strong>
+                                </td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.invoice_remarks" widget="html"/>
+                                </td>
+                            </tr>
+
+                            <tr t-if="o.forwarder">
+                                <td style="padding: 2px 4px;">
+                                    <strong>Forwarder</strong>
+                                </td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-esc="o.forwarder.name"/>
+                                    <br/>
+                                    <span t-field="o.forwarder"
+                                          t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true } "/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px 4px;">
+                                    <strong>Contact</strong>
+                                </td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.forwarder.phone"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style="padding: 2px 4px;">
+                                    <strong>Email</strong>
+                                </td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.forwarder.email"/>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+
+                <tr style="border: 1px solid black;">
+                    <td style="padding:0px !important;">
+                        <table style="width: 100%;margin-bottom:0px !important;border-right:1px solid !important;"
+                               class=" table-borderless">
+                            <tr>
+                                <td width="50%;" style="height:80px;border-right: 1px solid black;">
+                                </td>
+                                <td style="height:20px;text-align: center;">
+                                    <span>Received the above stated quantity of goods in good conditions</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border-right: 1px solid black; vertical-align: bottom; height: 60px;"
+                                    width="50%;">
+                                    <div style="margin-left: 80px; margin-top: 20px;">
+                                        For
+                                        <span t-field="o.company_id.name"/>
+                                    </div>
+                                </td>
+                                <td style="text-align: center; vertical-align: bottom; height: 60px;">
+                                    <div style="border-top: 1px solid black; width: 80%; margin: 0 auto;"/>
+                                    <div style="margin-top: 5px;">
+                                        Customer's Signature &amp; Official Stamp &amp; Date
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </xpath>
+        <xpath expr="//table[@name='note_for_bank']" position="replace"/>
+        <xpath expr="//div[@class='clearfix mt-3']" position="attributes">
+            <attribute name="class"></attribute>
+        </xpath>
+        <xpath expr="//div[@class='mb-3']" position="attributes">
+            <attribute name="t-if">o.invoice_payment_term_id.display_on_invoice and payment_term_details</attribute>
+        </xpath>
+        <xpath expr="//t[@name='t_line_spacing']" position="replace"/>
+    </template>
+
+    <template id="export_invoice_do">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="lingjack_print.report_export_invoice_do_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_export_invoice_do" model="ir.actions.report">
+        <field name="name">Export DO</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.export_invoice_do</field>
+        <field name="report_file">lingjack_print.export_invoice_do</field>
+        <field name="print_report_name">'Export DO - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

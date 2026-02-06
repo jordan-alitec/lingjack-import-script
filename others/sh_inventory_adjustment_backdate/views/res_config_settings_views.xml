@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sh_stock_backdate_res_config_settings" model="ir.ui.view">
+        <field name="name">Stock Backdate Settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//app[@data-string='Inventory']/block[1]" position="after">
+                <block title="Stock Backdate Inventory Adjustment"
+                    name="stock_backdate_inventory_adjustment_setting_container">
+
+                    <setting id="backdate_for_inventory_adj_setting">
+                        <field name="backdate_for_inventory_adj" />
+                    </setting>
+
+
+                    <setting id="remark_for_inventory_adj_setting"
+                        invisible="backdate_for_inventory_adj == False">
+                        <field name="remark_for_inventory_adj" />
+                    </setting>
+
+
+                    <setting id="remark_mandatory_for_inventory_adj_setting"
+                        invisible="remark_for_inventory_adj == False ">
+                        <field name="remark_mandatory_for_inventory_adj"></field>
+                    </setting>
+                </block>
+
+            </xpath>
+
+             
+
+        </field>
+    </record>
+
+</odoo>

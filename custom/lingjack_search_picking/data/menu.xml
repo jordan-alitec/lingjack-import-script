@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Action to open picking search wizard -->
+        <record id="action_picking_search_wizard" model="ir.actions.act_window">
+            <field name="name">Search Picking</field>
+            <field name="res_model">picking.search.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- Action to open previous transfer search wizard -->
+        <record id="action_previous_transfer_search_wizard" model="ir.actions.act_window">
+            <field name="name">Search by Previous Transfer</field>
+            <field name="res_model">previous.transfer.search.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <!-- Menu item - Search Picking (under Inventory menu) -->
+        <menuitem
+            id="menu_picking_search"
+            name="Search Picking"
+            parent="stock.menu_stock_root"
+            action="action_picking_search_wizard"
+            sequence="100"/>
+        
+        <!-- Menu item - Search by Previous Transfer (under Inventory menu) -->
+        <menuitem
+            id="menu_previous_transfer_search"
+            name="Search by Previous Transfer"
+            parent="stock.menu_stock_root"
+            action="action_previous_transfer_search_wizard"
+            sequence="101"/>
+    </data>
+</odoo>
+

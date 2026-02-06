@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_invoice_deliveryslip_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <br/>
+                    <table style="width: 100%;" class="table table-borderless">
+                        <tr>
+                            <td style="width: 80%;text-align: center;">
+                                <h2 style="color: #1f4e79; padding-left: 40%;">DELIVERY ORDER</h2>
+                            </td>
+                            <td style="width: 20%; padding-left:10%">
+                                <div t-field="o.name"
+                                     t-options="{'widget': 'barcode', 'width': 200, 'height': 100, 'img_style': 'width:220px;height:30px;'}"
+                                     style="margin: 0;">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div class="row mt8">
+                        <div class="col-4" style="padding-right: 10px;">
+                            <p t-if="o.partner_id and o.partner_id.name">
+                                <span t-field="o.partner_id.name"/>
+                                <span t-field="o.partner_id"
+                                      t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true}"/>
+                            </p>
+                            <p t-elif="o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name">
+                                <span t-field="o.partner_id.parent_id.name"/>
+                                <span t-field="o.partner_id"
+                                      t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true}"/>
+                            </p>
+                            <t t-set="sale_id" t-value="o.line_ids.mapped('sale_line_ids').order_id"/>
+                        </div>
+                        <div class="col-4" style="margin-bottom: 4px; margin-left:5px;padding: 10px;">
+                            <strong>Delivery To:</strong>
+                            <br/>
+                            <t t-if="o.partner_id">
+                                <span t-field="o.partner_id"
+                                      t-options="{'widget': 'contact', 'fields': ['name', 'address'], 'no_marker': True}"/>
+                            </t>
+                            <table style="width: 50%;  margin-top: 1px;" class="table table-borderless">
+                                <tr>
+                                    <td style="padding: 2px 4px;">Attn</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;white-space: nowrap;">
+                                        <span t-field="o.attention_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px;">Tel</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="o.attention_id.phone"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <t t-set="sale_id" t-value="o.line_ids.mapped('sale_line_ids').order_id"/>
+                                    <td style="padding: 2px 4px;">Project</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="sale_id.project"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-4" style="padding-left: 10px;">
+                            <t t-set="sale_id" t-value="o.line_ids.mapped('sale_line_ids').order_id"/>
+                            <table style="width: 70%;" class="table table-borderless">
+                                <tr>
+                                    <td style=" padding: 2px 4px;">D/O No.</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="o.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style=" padding: 2px 4px;">Date</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px;">Sales Order</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">
+                                        <span t-esc="sale_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">Your Order No.</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="sale_id.client_order_ref"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">Delivery Ref</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="o.invoice_origin"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px;">Terms</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="o.invoice_payment_term_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">Sales Person</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">
+                                        <span t-field="sale_id.user_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">Delivery To</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px;">
+                                        <span t-field="o.partner_shipping_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">CS-In Charge</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">
+                                        <span t-field="o.cs_in_charge_id"/>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <br/>
+                    <t t-set="has_lots" t-value="any(move.fsm_lot_id for move in o.invoice_line_ids.sale_line_ids)"/>
+
+                    <table class="table table-borderless" name="stock_move_table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: center;">S/N</th>
+                                <th>Com</th>
+                                <th>Product</th>
+                                <th>Lot/Serial Numbers</th>
+                                <th class="text-end">Delivered</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="sn" t-value="1"/>
+                            <t t-foreach="o.invoice_line_ids" t-as="move">
+                                <tr>
+                                    <td style="text-align: center;">
+                                         <span t-esc="sn"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="move.product_id.default_code"/>
+                                    </td>
+                                    <td>
+                                        <p t-if="move.name">
+                                            <span t-field="move.name"/>
+                                        </p>
+                                    </td>
+                                    <t t-set="sale" t-value="move.mapped('sale_line_ids').order_id"/>
+                                    <td>
+                                        <span t-field="move.mapped('sale_line_ids').fsm_lot_id"/>
+                                    </td>
+                                    <td class="o_td_quantity text-end">
+                                        <span t-field="move.quantity"/>
+                                    </td>
+                                </tr>
+                                <t t-set="sn" t-value="sn + 1"/>
+                            </t>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <table style="width: 100%;" class="table table-borderless">
+                        <tr>
+                            <td style="text-align: right;">Received the above stated quantity of goods in good
+                                condition
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <t t-if="o.signature">
+                        <div style="margin-bottom: 5px; margin-left:69%;">
+                            <span t-field="o.signature" t-options="{'widget': 'image'}"
+                                  style="max-height: 30px; max-width: 150px; display: inline-block;"/>
+                        </div>
+                    </t>
+                    <t t-else="">
+                        <div style="margin-bottom: 5px; margin-left:69%; height:57px; width:150px;"/>
+                    </t>
+                    <div style="margin-top: 10px; margin-left:60%; white-space: nowrap;">
+                        <span t-field="o.signing_user" style="margin-right: 25px;"/>
+                    </div>
+                    <div style="width:45%; height:2px;background-color:black; margin-left:55%"/>
+                    <div style="margin-left:62%">Customer's Signature &amp; Official Stamp &amp; Date</div>
+                    <br/>
+                    <br/>
+                    <div t-field="o.company_id.delivery_note_text"/>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_invoice_deliveryslip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_invoice_deliveryslip_document"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_invoice_delivery" model="ir.actions.report">
+        <field name="name">Lingjack Delivery Order</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_invoice_deliveryslip</field>
+        <field name="report_file">lingjack_print.report_invoice_deliveryslip</field>
+        <field name="print_report_name">'Lingjack Delivery Order - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

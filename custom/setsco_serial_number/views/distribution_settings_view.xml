@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Distribution Settings Form View -->
+    <record id="view_distribution_settings_form" model="ir.ui.view">
+        <field name="name">distribution.settings.form</field>
+        <field name="model">distribution.settings</field>
+        <field name="arch" type="xml">
+            <form string="Distribution Settings">
+                <sheet>
+                    <group>
+                        <group string="Basic Information">
+                            <field name="sequence"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="CoC Holder Information">
+                            <field name="coc_holder_name"/>
+                            <field name="coc_holder_acra_uen"/>
+                            <field name="coc_reference_number"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Local Representative Information">
+                            <field name="local_representative_name"/>
+                            <field name="local_representative_acra_uen"/>
+                            <field name="certificate_no"/>
+                        </group>
+                        <group string="Certificate Information">
+                            <field name="coc_issue_date"/>
+                            <field name="coc_expired_date"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <group string="Additional Information">
+                            <field name="notes"/>
+                        </group>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Distribution Settings Tree View -->
+    <record id="view_distribution_settings_tree" model="ir.ui.view">
+        <field name="name">distribution.settings.tree</field>
+        <field name="model">distribution.settings</field>
+        <field name="arch" type="xml">
+            <list string="Distribution Settings">
+                <field name="sequence" widget="handle"/>
+                <field name="company_id"/>
+                <field name="coc_holder_name"/>
+                <field name="coc_holder_acra_uen"/>
+                <field name="local_representative_name"/>
+                <field name="certificate_no"/>
+                <field name="coc_expired_date"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Distribution Settings Search View -->
+    <record id="view_distribution_settings_search" model="ir.ui.view">
+        <field name="name">distribution.settings.search</field>
+        <field name="model">distribution.settings</field>
+        <field name="arch" type="xml">
+            <search string="Distribution Settings">
+                <field name="coc_holder_name"/>
+                <field name="local_representative_name"/>
+                <field name="certificate_no"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]"/>
+                <filter string="Inactive" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Company" name="company" context="{'group_by': 'company_id'}"/>
+                    <filter string="Sequence" name="sequence" context="{'group_by': 'sequence'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Distribution Settings Action -->
+    <record id="action_distribution_settings" model="ir.actions.act_window">
+        <field name="name">Distribution Settings</field>
+        <field name="res_model">distribution.settings</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first distribution settings
+            </p>
+            <p>
+                Configure the CoC holder and local representative information for distribution records.
+                Multiple settings can be created per company. The system will use the setting with the lowest sequence number.
+            </p>
+        </field>
+    </record>
+</odoo> 

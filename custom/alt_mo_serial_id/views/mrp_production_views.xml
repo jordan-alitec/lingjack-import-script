@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_mrp_production_form_production_serial" model="ir.ui.view">
+        <field name="name">mrp.production.form.production.serial</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="action_view_production_serials" type="object" icon="fa-barcode" invisible="production_serial_count == 0">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value"><field name="production_serial_count"/></span>
+                        <span class="o_stat_text">Production Serials</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

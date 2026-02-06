@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_commercial_invoice_document" inherit_id="lingjack_print.report_export_invoice_document"
+              primary="True">
+        <xpath expr="//h2" position="replace">
+            <h2 class="text-left" style="text-align: center; color: #1f4e79; margin-top:50px;">
+                <span style="font-size: 28px;">
+                    COMMERCIAL INVOICE
+                </span>
+            </h2>
+        </xpath>
+        <xpath expr="//table[@class=' table-borderless table-sm']/tr/td[@class='text-start']/table[@class='table-borderless']/tr[1]"
+               position="replace">
+            <tr>
+                <td style="padding: 2px 4px;">Invoice No</td>
+                <td style="padding: 2px 4px;">:</td>
+                <td style="padding: 2px 4px;">
+                    <span t-esc="o.name"/>
+                </td>
+            </tr>
+        </xpath>
+
+    </template>
+
+    <template id="commercial_invoice">
+        <t t-call="web.html_container">
+            <t t-set="is_commercial_invoice" t-value="true"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="lingjack_print.report_commercial_invoice_document" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_commercial_invoice" model="ir.actions.report">
+        <field name="name">Commercial Invoice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.commercial_invoice</field>
+        <field name="report_file">lingjack_print.commercial_invoice</field>
+        <field name="print_report_name">'Commercial Invoice - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

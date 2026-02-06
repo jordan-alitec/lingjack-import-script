@@ -1,0 +1,53 @@
+<odoo>
+    <!--    For Payment Voucher default page Formate  -->
+    <record id="action_report_payment_receipt" model="ir.actions.report">
+        <field name="name">Payment Voucher</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_payment_receipt_inherit</field>
+        <field name="report_file">lingjack_print.report_payment_receipt_inherit</field>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!--    For Payment Voucher A5 page Formate  -->
+    <record id="action_report_payment_receipt_a5" model="ir.actions.report">
+        <field name="name">Payment Voucher (A5)</field>
+        <field name="model">account.payment</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_payment_receipt_inherit_a5</field>
+        <field name="report_file">lingjack_print.report_payment_receipt_inherit_a5</field>
+        <field name="paperformat_id" ref="lingjack_print.paperformat_journal_voucher_a5_landscape"/>
+        <field name="print_report_name">'Payment Voucher A5 - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_payment"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!--    For Journal Voucher default page Formate  -->
+
+    <record id="action_print_journal_voucher_invoice" model="ir.actions.report">
+        <field name="name">Journal Voucher</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.journal_voucher_invoice</field>
+        <field name="report_file">lingjack_print.journal_voucher_invoice</field>
+        <field name="print_report_name">'Journal Voucher - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!--    For Journal Voucher A5 page Formate  -->
+
+    <record id="action_print_journal_voucher_invoice_a5" model="ir.actions.report">
+        <field name="name">Journal Voucher A5</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.journal_voucher_invoice_a5</field>
+        <field name="report_file">lingjack_print.journal_voucher_invoice_a5</field>
+        <field name="paperformat_id" ref="lingjack_print.paperformat_journal_voucher_a5_landscape"/>
+        <field name="print_report_name">'Journal Voucher A5 - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+
+</odoo>

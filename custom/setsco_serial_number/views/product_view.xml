@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Product Template Form View -->
+        <record id="product_template_form_view_setsco" model="ir.ui.view">
+            <field name="name">product.template.form.setsco</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="lingjack_shop_floor.view_product_template_form_setsco_serial"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='production']" position="inside">
+
+                    <group name="setsco" string="Setsco / Tuv Configuration">
+                        <field name="setsco_category_id" invisible="not requires_setsco_serial"/>
+                        <field name="requires_setsco_serial"/>
+                        <field name="is_setsco_label"/>
+                    </group>
+                </xpath>
+
+
+            </field>
+        </record>
+    </data>
+</odoo> 

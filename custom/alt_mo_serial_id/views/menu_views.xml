@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_production_serial" model="ir.actions.act_window">
+        <field name="name">Production Serials</field>
+        <field name="res_model">production.serial</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_production_serial_search"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No production serials yet.
+            </p>
+            <p>
+                Production serials (Service IDs) are created automatically when you mark a Manufacturing Order as Done.
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_production_serial_root"
+        name="Production Serials"
+        action="action_production_serial"
+        parent="mrp.menu_mrp_manufacturing"
+        sequence="50"/>
+</odoo>

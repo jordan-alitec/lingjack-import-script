@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Service QR Report -->
+    <record id="action_service_qr_report" model="ir.actions.report">
+        <field name="name">Service QR Codes</field>
+        <field name="model">qr.generation.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_service.service_qr_report_template</field>
+        <field name="report_file">lingjack_service.service_qr_report_template</field>
+        <field name="print_report_name">'Service_QR_Codes_%s_to_%s' % (object.start_sequence, object.end_sequence)</field>
+        <field name="binding_model_id" ref="model_qr_generation_wizard"/>
+        <field name="paperformat_id" ref="setsco_serial_number.paperformat_a4"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <!-- Service QR Report Template -->
+    <template id="service_qr_report_template">
+      
+<t t-call="web.basic_layout">
+
+    <!-- Grid dims -->
+    <t t-set="nRows" t-value="11"/>
+    <t t-set="nCols" t-value="4"/>
+
+    <!-- Label size in mm (A4 width minus L/R margins, divided by 4 columns) -->
+    <t t-set="label_w_mm" t-value="48"/>  <!-- (210 - 10.39 - 10.70) / 4 -->
+    <t t-set="label_h_mm" t-value="24.91"/>
+
+    <!-- Load QR codes data from the wizard/model -->
+    <t t-set="qr_codes_data" t-value="docs.qr_codes"/>
+    <t t-set="qr_codes" t-value="json.loads(qr_codes_data) if qr_codes_data else []"/>
+    <t t-set="total_codes" t-value="len(qr_codes)"/>
+
+    <!-- Pagination -->
+    <t t-set="per_page" t-value="nRows * nCols"/>
+    <t t-set="num_pages" t-value="total_codes // per_page + (1 if total_codes % per_page else 0)"/>
+
+    <!-- Print-safe CSS -->
+              <style>
+                    .o_label_sheet { page-break-after: always; }
+                    .o_label_tbl   { width: 100%; border-collapse: collapse; table-layout: fixed; }
+                    .o_label_row   { }
+                    .o_label_cell  { padding: 0; vertical-align: middle; }
+                    .txt-7px       { font-size: 7px; line-height: 1.5; }
+                    .qrwrap        { padding-left:2mm;vertical-align: middle; }
+                    .meta          { vertical-align: top; padding-left: 2mm; padding-top:3mm }
+                    /* Avoid any accidental spacing */
+                    .o_label_tbl td, .o_label_tbl th { border: 0px solid white }
+                </style>
+
+    <!-- Pages -->
+    <div t-foreach="range(num_pages)" t-as="page" class="o_label_sheets">
+        <table class="o_label_tbl" style="height:322.6mm;width:228.2mm">
+
+            <t t-foreach="range(nRows)" t-as="row">
+                <tr class="o_label_row">
+                    <t t-foreach="range(nCols)" t-as="column">
+                        <t t-set="qr_index" t-value="page * per_page + row * nCols + column"/>
+                        <t t-set="make_invisible" t-value="qr_index &gt;= total_codes"/>
+
+                        <td class="o_label_cell"
+                            t-attf-style="width: 47.8mm; height: 25.1mm; #{ 'visibility: hidden;' if make_invisible else '' }">
+
+                            <div t-if="not make_invisible" style="width:100%; height:100%;">
+                                <t t-set="qr_code" t-value="qr_codes[qr_index]"/>
+
+                                <table style="width:100%; height:100%; border-collapse: collapse; table-layout: fixed;">
+                                    <tr>
+                                        <!-- QR Code -->
+                                        <td class="qrwrap" style="width:53%;">
+                                            <div style="margin-left:0;margin-top:2mm;margin-bottom:3mm"
+                                                 t-if="qr_code.get('service_id')"
+                                                 t-out="qr_code['service_id']"
+                                                 t-options="{'widget': 'barcode', 'symbology': 'QR', 'img_style': 'width:22mm; height:22mm;'}">
+                                            </div>
+                                        </td>
+
+                                        <!-- Text meta -->
+                                        <td class="meta" style="width:47%;">
+                                            <div class="txt-7px">
+                                                <div t-if="qr_code.get('service_id')" style="margin-bottom:1px;">
+                                                    <strong>SID:</strong>
+                                                    <span t-out="qr_code['service_id']"/>
+                                                </div>
+                                                <div t-if="qr_code.get('production_name')" style="margin-bottom:1px;">
+                                                    <span t-out="qr_code['production_name']"/>
+                                                </div>
+                                                <div t-if="qr_code.get('product_code')" style="margin-bottom:1px;">
+                                                    <span t-out="qr_code['product_code']"/>
+                                                </div>
+                                                <div t-if="qr_code.get('serial_name')" style="margin-bottom:1px;">
+                                                    <span t-out="qr_code['serial_name']"/>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </t>
+                </tr>
+            </t>
+
+        </table>
+    </div>
+</t>
+
+
+
+        
+    </template>
+
+</odoo>

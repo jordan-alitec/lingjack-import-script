@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<!-- Paper Format for QC report -->
+	<record id="qc_report_paperformat" model="report.paperformat">
+		<field name="name">Paper Format for Quality Control report</field>
+		<field name="format">A4</field>
+		<field name="orientation">Portrait</field>
+		<field name="margin_top">31</field>
+		<field name="header_spacing">32</field>
+		<field name="dpi">0</field>
+	</record>
+	
+	<!-- Action for Mo QC report -->
+	 <record id="action_mo_quality_control_report" model="ir.actions.report">
+            <field name="name">Quality Control</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">mo_qc_report.mo_quality_control_pdf</field>
+            <field name="report_file">mo_qc_report.mo_quality_control_pdf</field>
+            <field name="print_report_name">'QC For Continuous Hose Reel (Production)'</field>
+            <field name="paperformat_id" ref="mo_qc_report.qc_report_paperformat"/>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_type">report</field>
+        </record>
+	
+</odoo>

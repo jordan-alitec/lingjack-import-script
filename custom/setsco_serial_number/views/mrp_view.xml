@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- MRP Production Form View Extension -->
+    <record id="view_mrp_production_form_setsco" model="ir.ui.view">
+        <field name="name">mrp.production.form.setsco</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <!-- Add fields to header for computed values -->
+            <field name="state" position="after">
+                <field name="can_assign_more_serials" invisible="1"/>
+            </field>
+
+            <!-- Add Assign Serials button to header -->
+            <button name="do_unreserve" position="after">
+            </button>
+
+            <div name="button_box" position="inside">
+                <button name="action_view_setsco_serials" type="object"
+                        class="oe_stat_button" icon="fa-barcode"
+                        invisible="setsco_serial_count == 0">
+                    <field name="setsco_serial_count" widget="statinfo" string="Serial Numbers"/>
+                </button>
+            </div>
+
+            <xpath expr="//group[@name='group_extra_info']" position="after">
+                <group string="Setsco Serial Management" name="setsco_serial_group" invisible ="not requires_setsco_serials">
+                    <field name="requires_setsco_serials" invisible="1"/>
+                    <label for="setsco_serial_count" string="Assigned Serials"/>
+                    <div>
+                        <field name="setsco_serial_count" class="oe_inline"/>
+                        <span class="oe_inline"> / </span>
+                        <field name="product_qty" class="oe_inline" readonly="1"/>
+                        <span class="oe_inline"> required</span>
+
+                        <button name="action_assign_setsco_serials" string="Assign" class="btn-secondary ms-3" type="object" invisible="not can_assign_more_serials or setsco_serial_count >= product_qty or state in ['done', 'merge', 'close']"/>
+                    </div>
+                
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Stock Lot Form View Extension -->
+    <record id="view_stock_lot_form_setsco" model="ir.ui.view">
+        <field name="name">stock.lot.form.setsco</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button name="action_view_setsco_serials" type="object"
+                        class="oe_stat_button" icon="fa-barcode"
+                        invisible="setsco_serial_count == 0">
+                    <field name="setsco_serial_count" widget="statinfo" string="Setsco Serials"/>
+                </button>
+            </div>
+        </field>
+    </record>
+
+</odoo> 

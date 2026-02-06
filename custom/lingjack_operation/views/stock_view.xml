@@ -1,0 +1,184 @@
+<odoo>
+    <record id="view_picking_form_inherit_attn" model="ir.ui.view">
+        <field name="name">stock.picking.form.attn</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                <field name="attention_ids" widget="many2many_tags"/>
+                <field name="remarks_do"/>
+                <field name="do_remarks"/>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="picking_id" readonly="1" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='products_availability']" position="after">
+                                <field name="delivery_ref"/>
+                <field name="cs_in_charge_id"/>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+
+                <!-- DO PICKED -->
+                <button name="action_picked"
+                        type="object"
+                        string="DO Picked"
+                        class="btn-primary"
+                        invisible="driver_status in ['picked', 'in_progress', 'delivered_complete']"/>
+
+                <!-- VALIDATE -->
+                <button name="ac_button_validate"
+                        type="object"
+                        string="Validate"
+                        class="btn-success"
+                />
+
+                <!-- SIGNATURE DETAILS -->
+                <button name="action_signature_update"
+                        type="object"
+                        string="Signature Details"
+                        class="btn-warning"/>
+
+                <!--Attachment-->
+                <button name="action_open_attachment_wizard"
+                        type="object"
+                        string="Attachment"
+                        class="btn-secondary"/>
+
+                <!-- Delivered (Incomplete) -->
+                <button name="action_delivered_incomplete"
+                        type="object"
+                        string="Incomplete"
+                        class="btn-danger"
+                        invisible="driver_status in ['picked', 'in_progress', 'delivered_incomplete']"
+                />
+
+
+                <button name="action_approve" type="object" string="Approval"
+                        class="btn-primary" modifiers="{'invisible': [('approve', '=', True)]}"/>
+            </xpath>
+
+            <xpath expr="//notebook//page[2]//group[@name='other_infos']/field[@name='user_id']"
+                   position="before">
+                    <field name="supplier_do_number"/>
+            </xpath>
+
+
+            <xpath expr="//notebook//page[2]//group[@name='other_infos']" position="inside">
+                    <field name="approve"/>
+                    <field name="approved_by" options="{'no_create': True}" readonly="1"/>
+                    <field name="approved_on" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Driver">
+                    <group>
+                        <div class="o_row">
+                            <label for="driver_status" string="Driver Status"/>
+                            <field name="driver_status" nolabel="1" widget="statusbar" options="{'clickable': '1'}" statusbar_visible="unassign,picked,in_progress,delivered_complete,delivered_incomplete"/>
+                        </div>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="delivered_by"/>
+                            <field name="driver_picking_date"/>
+                            <field name="remarks"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Signature Details">
+                    <group>
+                        <group>
+                            <field name="customer_signature" widget="signature"/>
+                            <field name="signature_name"/>
+                            <field name="signature_date"/>
+                        </group>
+                        <group>
+                            <field name="total_time_hhmmss" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="before">
+                <field name="purchase_requisition_id" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="previous_transfer" readonly="1"/>
+            </xpath>
+
+            <!--            <xpath expr="//field[@name='partner_id']" position="after">-->
+<!--                <field name="grn_id" string="GRN Number"/>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+
+    <record id="view_picking_type_form_inherit_custom_name" model="ir.ui.view">
+        <field name="name">stock.picking.type.form.custom.name</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <group>
+                    <field name="is_on_site_transfer"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_scrap_form_inherit_analytic" model="ir.ui.view">
+        <field name="name">stock.scrap.form.inherit.analytic</field>
+        <field name="model">stock.scrap</field>
+        <field name="inherit_id" ref="stock.stock_scrap_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='scrap_reason_tag_ids']" position="after">
+                <field name="analytic_account_id"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="product_list_view_id" model="ir.ui.view">
+        <field name="name">product.product.stock.list.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header/button[@name='%(stock.action_inventory_at_date)d']" position="after">
+                <button name="open_at_forecasted"
+                        string="4 month feature forecast"
+                        type="object"
+                        class="btn-primary ms-1"
+                        display="always"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="stock.stock_picking_type_action" model="ir.actions.act_window">
+           <field name="domain">[('code','!=', 'mrp_operation')]</field>
+    </record>
+
+    <record id="view_picking_list_custom_validate" model="ir.ui.view">
+        <field name="name">stock.picking.list.custom.validate</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="ac_button_validate"
+                        type="object"
+                        string="Validate"
+                        class="btn-success"/>
+                <button name="action_picked"
+                        type="object"
+                        string="Validate"
+                        class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Distribution Record Wizard Form View -->
+    <record id="view_distribution_record_wizard_form" model="ir.ui.view">
+        <field name="name">distribution.record.wizard.form</field>
+        <field name="model">distribution.record.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Distribution Record">
+                <group>
+                    <group string="Report Parameters">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="category_id"/>
+                        <field name="serial_type"/>
+                    </group>
+                    <group string="Settings Selection">
+                        <field name="company_id"/>
+                        <field name="settings_id"/>
+                    </group>
+                </group>
+                
+                <group string="Selected Settings Information" invisible="not settings_id">
+                    <group string="CoC Holder Information">
+                        <field name="coc_holder_name"/>
+                        <field name="coc_holder_acra_uen"/>
+                        <field name="coc_reference_number"/>
+                    </group>
+                    <group string="Local Representative Information">
+                        <field name="local_representative_name"/>
+                        <field name="local_representative_acra_uen"/>
+                        <field name="certificate_no"/>
+                    </group>
+                    <group string="Certificate Information">
+                        <field name="coc_issue_date"/>
+                        <field name="coc_expired_date"/>
+                    </group>
+                </group>
+                
+                <group string="Generated File" invisible="not excel_file">
+                    <field name="excel_file" filename="file_name" readonly="1"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+                
+                <footer>
+                    <button name="action_generate_excel" string="Generate Excel" 
+                            type="object" class="btn-primary" 
+                            invisible="excel_file"/>
+                    <button name="action_download_excel" string="Download Excel" 
+                            type="object" class="btn-primary" 
+                            invisible="not excel_file"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Distribution Record Wizard Action -->
+    <record id="action_distribution_record_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Distribution Record</field>
+        <field name="res_model">distribution.record.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate distribution record for fire extinguishers
+            </p>
+            <p>
+                Select an invoice date range, optionally filter by product category, and choose distribution settings to generate a distribution record based on setsco serial numbers.
+            </p>
+        </field>
+    </record>
+</odoo> 

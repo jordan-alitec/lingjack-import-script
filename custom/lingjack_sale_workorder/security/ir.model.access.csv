@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_work_order_manager,sale.work.order.manager,model_sale_work_order,lingjack_sale_workorder.group_manage_swo,1,1,1,1
+access_sale_work_order_line_manager,sale.work.order.line.manager,model_sale_work_order_line,lingjack_sale_workorder.group_manage_swo,1,1,1,1
+access_sale_work_order_mrp_user,sale.work.order.mrp.user,model_sale_work_order,base.group_user,1,1,0,0
+access_sale_work_order_line_mrp_user,sale.work.order.line.mrp.user,model_sale_work_order_line,base.group_user,1,1,0,0
+access_mrp_production_sfp_distribution_manager,mrp.production.sfp.distribution.manager,model_mrp_production_sfp_distribution,lingjack_sale_workorder.group_manage_swo,1,1,1,1
+access_mrp_production_sfp_distribution_mrp_user,mrp.production.sfp.distribution.mrp.user,model_mrp_production_sfp_distribution,mrp.group_mrp_user,1,1,1,1

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<!-- Design for Quality Control Report -->
+	<template id="mo_quality_control_pdf">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.external_layout">
+					<!-- <page> -->
+					<table class="table-borderless" style="width: 100%;">
+						<tr>
+							<td style="width:35%;">Sale Order No:</td>
+							<td style="width:20%"></td>
+							<td style="text-align: center;width:45%;padding-left: 9%;">PRODUCTION, ASSEMBLY, STORE</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td style="text-align: end;">
+								<b>
+									Due date:
+									<t t-esc="o.date_finished.strftime('%d.%m.%y')" />
+								</b>
+							</td>
+							<td style="text-align: center;padding-right:8%">Issue By:<t t-esc="o.issue_by.name"/></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td style="text-align: center;padding-right:14%">Customer Name:</td>
+						</tr>
+
+					</table>
+					<table class="table-borderless" style="width:100%;">
+
+						<tr>
+							<td style="width: 10%;">
+								<span style="font-size: 115%;">
+									<strong>Production
+										Order No:
+									</strong>
+								</span>
+							</td>
+							<td style="width: 45%;padding-left:7%;font-size: 115%;">
+								<strong><t t-esc="o.name"/></strong>
+							</td>
+							<td style="width: 40%; padding-left:2%;">
+								<strong>COM NO:<t t-esc="o.com_no"/></strong> 
+							</td>
+						</tr>
+					</table>
+					<div style="width: 100%;">
+						<table class="table-borderless"
+							style="float: left;width:60%;">
+
+							<tr>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.5em;width: 20%;">
+									Item Details:
+								</td>
+								<td style="width:80%">
+									<b>
+										QTY TO PRODUCE:
+										<t t-esc="o.product_qty" />
+									</b>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<b>IN-STOCK STATUS:</b>
+								</td>
+
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<b>COMMITTED QTY:<t t-esc="o.committed_qty"/></b>
+								</td>
+							</tr>
+						</table>
+						<table class="table-borderless"
+							style="float:left;width: 40%;">
+
+							<tr>
+								<td style="font-size:80%;padding-left:7%">
+									MIN STOCK LEVEL (STOCK ITEM):
+								</td>
+
+							</tr>
+							<tr>
+								<td style="font-size:80%;padding-left:5%">
+									MIN ORDER QTY FOR STOCK ITEM:
+								</td>
+							</tr>
+						</table>
+					</div>
+					<table class="table-borderless" style="width: 100%;">
+						<tr>
+							<td>Item Description:</td>
+						</tr>
+					</table>
+
+					<div style="border:1px solid black; padding:5px 0px 5px 0px;">
+
+						<div style="margin-bottom:5px;">
+							1-1/2" Continuous Hose Reel Drum Only CW FM
+							Approval - Left Inlet CW
+							1-1/2" BSP Elbow LG2 Waterway,
+							Red Colour,
+							WP 20Bar, Removable Hand Crank, Adjustable Brake,
+							Material: Carbon
+							Steel
+						</div>
+
+						<div
+							style="text-align:center;border-bottom:1px solid black; border-top:1px solid black; padding-bottom:5px; margin-bottom:5px;">
+							INSPECTION AND TEST RECORD FOR CONTINUOUS HOSE REEL
+						</div>
+
+						<!-- Section 1 -->
+						<table class="table-borderless"
+							style="width:100%; border-collapse:collapse; margin-bottom:10px;border-bottom:1px solid black;">
+							<tr>
+								<td style="width:30%">
+									INSPECTION POINT
+									<span style="font-family:SimSun"> 检查站</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: QC1</td>
+							</tr>
+							<tr>
+								<td>
+									ITEM CONTROLLED
+									<span style="font-family:SimSun">控制范围</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: FM2141 (3.5) Marking Plate (标示牌检查)</td>
+							</tr>
+							<tr>
+								<td>
+									PART DESCRIPTION
+									<span style="font-family:SimSun">检查物品</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: Hose Reel Marking Plate</td>
+							</tr>
+							<tr>
+								<td>
+									SAMPLE SIZE
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY INSPECTED
+									<span style="font-family:SimSun"> 检查数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY PASSED
+									<span style="font-family:SimSun"> 合格数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY FAILED
+									<span style="font-family:SimSun"> 不合格数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%; margin-bottom: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+						</table>
+						<table class="table-borderless"
+							style="width:100%; border-collapse:collapse; margin-bottom:10px; border-bottom:1px solid black;">
+							<tr>
+								<td>
+									CHECKED BY
+									<span style="font-family:SimSun"> 检查人</span>
+									<span style="padding-left:14%">
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 49%;">
+										</div>
+									</span>
+								</td>
+								<td>
+									VERIFIED BY
+									<span style="font-family:SimSun"> 核证人</span>
+									<span style="padding-left:14%">
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 49%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<!-- <tr> <td style="padding-left: 26%;">Operator Name / Date</td> 
+								<td style="padding-left: 26%;">Quality Inspector / Date</td> </tr> -->
+						</table>
+
+						<!-- Section 2 -->
+						<table class="table-borderless"
+							style="width:100%; border-collapse:collapse; margin-bottom:10px;border-bottom:1px solid black;">
+							<tr>
+								<td style="width:30%">
+									INSPECTION POINT
+									<span style="font-family:SimSun"> 检查站</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: QC1</td>
+							</tr>
+							<tr>
+								<td>
+									ITEM CONTROLLED
+									<span style="font-family:SimSun">控制范围</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: FM2141 (3.5) Marking Plate (标示牌检查)</td>
+							</tr>
+							<tr>
+								<td>
+									PART DESCRIPTION
+									<span style="font-family:SimSun">检查物品</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: Hose Reel Marking Plate</td>
+							</tr>
+							<tr>
+								<td>
+									SAMPLE SIZE
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY INSPECTED
+									<span style="font-family:SimSun"> 检查数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY PASSED
+									<span style="font-family:SimSun"> 合格数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY FAILED
+									<span style="font-family:SimSun"> 不合格数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%; margin-bottom: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+						</table>
+						<table class="table-borderless"
+							style="width:100%; border-collapse:collapse; margin-bottom:10px;border-bottom:1px solid black;">
+							<tr>
+								<td>
+									CHECKED BY
+									<span style="font-family:SimSun"> 检查人</span>
+									<span style="padding-left:14%">
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 49%;">
+										</div>
+									</span>
+								</td>
+
+							</tr>
+							<!-- <tr> <td style="padding-left: 26%;">Quality Inspector / Date</td> 
+								</tr> -->
+						</table>
+
+						<!-- Section 3 -->
+						<table class="table-borderless"
+							style="width:100%; border-collapse:collapse; margin-bottom:10px;border-bottom:1px solid black;">
+							<tr>
+								<td style="width:30%">
+									INSPECTION POINT
+									<span style="font-family:SimSun"> 检查站</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: QC1</td>
+							</tr>
+							<tr>
+								<td>
+									ITEM CONTROLLED
+									<span style="font-family:SimSun">控制范围</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: FM2141 (3.5) Marking Plate (标示牌检查)</td>
+							</tr>
+							<tr>
+								<td>
+									PART DESCRIPTION
+									<span style="font-family:SimSun">检查物品</span>
+								</td>
+								<td
+									style="text-decoration: underline; text-underline-offset: 1.7em;">: Hose Reel Marking Plate</td>
+							</tr>
+							<tr>
+								<td>
+									SAMPLE SIZE
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY INSPECTED
+									<span style="font-family:SimSun"> 检查数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY PASSED
+									<span style="font-family:SimSun"> 合格数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									QUANTITY FAILED
+									<span style="font-family:SimSun"> 不合格数量</span>
+								</td>
+								<td>
+									<span>
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 1%; margin-bottom: 1%;">
+										</div>
+									</span>
+								</td>
+							</tr>
+						</table>
+						<table class="table-borderless"
+							style="width:100%; border-collapse:collapse;">
+							<tr>
+								<td>
+									CHECKED BY
+									<span style="font-family:SimSun"> 检查人</span>
+									<span style="padding-left:14%">
+										:
+										<div
+											style="border-bottom: 1px solid #000; width: 35%;margin-left: 49%;">
+										</div>
+									</span>
+								</td>
+
+							</tr>
+							<!-- <tr> <td style="padding-left: 26%;">Quality Inspector / Date</td> 
+								</tr> -->
+						</table>
+						<!-- <p style="page-break-before: always;"/> -->
+					</div>
+
+					<!-- </page> -->
+
+				</t>
+			</t>
+		</t>
+	</template>
+</odoo>

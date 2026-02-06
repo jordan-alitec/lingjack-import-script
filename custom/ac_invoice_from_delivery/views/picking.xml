@@ -1,0 +1,76 @@
+<odoo>
+
+    <record id="view_picking_inherit" model="ir.ui.view">
+        <field name="name">view.picking.inherit.bi</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//header" position="inside">
+                <button name="action_create_invoice" string="Create Invoice"
+                        invisible="picking_type_code != 'outgoing' or invoice_state != '2binvoiced' or state != 'done'"
+                        type="object" class="oe_highlight" groups="account.group_account_invoice"/>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="invoice_state" readonly="1" invisible="picking_type_code != 'outgoing'"/>
+                <field name="invoice_id" readonly="1" invisible="picking_type_code != 'outgoing'"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="vpicktree_inherit_add_field_invoice_state" model="ir.ui.view">
+        <field name="name">vpicktree.inherit.add.field.invoice.state</field>
+        <field name="model">stock.picking</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="stock.vpicktree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_create_invoice" string="Create invoice" type="object"/>
+            </xpath>
+
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="invoice_state" optional="show"/>
+                <field name="invoice_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="action_invoice_from_picking_add_menu_delivery_invoice" model="ir.actions.act_window">
+        <field name="name">Deliveries to Invoice</field>
+        <field name="res_model">stock.picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">list,form,calendar</field>
+        <field name="domain">[('picking_type_id.code','=','outgoing'),('invoice_state','=','2binvoiced'), ('state', 'not in', ['draft', 'cancel'])]</field>
+        <field name="context">{'default_type': 'out', 'contact_display': 'partner_address',
+            'search_default_to_invoice': 1}
+        </field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+    </record>
+
+    <record id="picking_action_delivery_to_be_invoiced_list" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">list</field>
+        <field name="view_id" ref="vpicktree_inherit_add_field_invoice_state"/>
+        <field name="act_window_id" ref="action_invoice_from_picking_add_menu_delivery_invoice"/>
+    </record>
+
+    <record id="picking_action_delivery_to_be_invoiced_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="act_window_id" ref="action_invoice_from_picking_add_menu_delivery_invoice"/>
+    </record>
+
+    <record id="picking_action_delivery_to_be_invoiced_calendar" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">calendar</field>
+        <field name="act_window_id" ref="action_invoice_from_picking_add_menu_delivery_invoice"/>
+    </record>
+
+    <menuitem action="action_invoice_from_picking_add_menu_delivery_invoice"
+              id="menu_invoice_from_picking_add_menu_delivery_invoice" parent="sale.menu_sale_invoicing"/>
+
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_sale_work_orders_main"
+              name="Work Orders"
+              parent="sale.sale_menu_root"
+              sequence="20"/>
+
+    <menuitem id="menu_sale_work_orders"
+              name="Sale Work Orders"
+              parent="menu_sale_work_orders_main"
+              action="action_sale_work_order"
+              sequence="10"/>
+
+    <!-- Main Menu for Manufacturing -->
+    <menuitem id="menu_manufacturing_demands_main"
+              name="Sale Work Order"
+              parent="mrp.menu_mrp_manufacturing"
+              sequence="15"/>
+
+    <menuitem id="menu_manufacturing_demands"
+              name="Sale Work Order"
+              parent="menu_manufacturing_demands_main"
+              action="action_sale_work_order_production"
+              sequence="100"/>
+
+</odoo> 

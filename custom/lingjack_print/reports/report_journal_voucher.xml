@@ -1,0 +1,193 @@
+<odoo>
+
+    <template id="report_journal_voucher_invoice_document_lingjack">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <t t-set="forced_vat"
+                   t-value="o.fiscal_position_id.foreign_vat"/> <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
+                <!-- A simple header for sale quotation -->
+                <t t-set="company" t-value="o.company_id"/>
+
+                <br></br>
+                <table width="100%" cellspacing="0" cellpadding="0" name="table_header" class="table-borderless">
+                    <tr>
+                        <td width="25%"></td>
+                        <td style="width:42%;">
+                            <h2 class="text-left">
+                                <span style="font-size: 28px;">
+                                    <b>JOURNAL VOUCHER</b>
+                                </span>
+                            </h2>
+                        </td>
+                    </tr>
+                </table>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <table width="100%" cellspacing="0" cellpadding="0" class="table-borderless"
+                           style="border-spacing: 0; border-collapse: collapse; table-layout: fixed;border:0">
+                        <tr width="100%">
+                            <td width="10%">
+                                <b>Journal</b>
+                            </td>
+                            <td width="2%">
+                                <b>:</b>
+                            </td>
+                            <td width="46%">
+                                <span t-field="o.journal_id"/>
+                            </td>
+                            <td width="25%">
+                                <b>Journal Voucher Number</b>
+                            </td>
+                            <td width="2%">
+                                <b>:</b>
+                            </td>
+                            <td width="20%">
+                                <span t-field="o.name"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="10%">
+                                <b>Reference</b>
+                            </td>
+                            <td width="2%">
+                                <b>:</b>
+                            </td>
+                            <td width="46%">
+                                <span t-field="o.ref"/>
+                            </td>
+                            <td width="20%">
+                                <b>Accounting Date</b>
+                            </td>
+                            <td width="2%">
+                                <b>:</b>
+                            </td>
+                            <td width="20%">
+                                <span t-field="o.date"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <br/>
+                    <br/>
+                    <t t-set="display_discount" t-value="any(l.discount for l in o.invoice_line_ids)"/>
+                    <t t-set="analytic_distribution" t-value="any(l.analytic_distribution for l in o.line_ids)"/>
+                    <table class="table table-sm o_main_table table-borderless" name="invoice_line_table"
+                   style="table-layout: fixed;display: initial;">
+                <thead style="border-top: 1px solid;border-right: 1px solid;border-left: 1px solid;">
+                    <tr>
+                        <th style="border-right: 1px solid;" name="th_account" class="text-center" width="17%">
+                            <span>Account</span>
+                        </th>
+                        <th style="border-right: 1px solid;" name="th_description" class="text-center" width="30%">
+                            <span>Description</span>
+                        </th>
+                        <th t-if="analytic_distribution" style="border-right: 1px solid;" name="th_analytic_account"
+                            class="text-center" width="17%">
+                            <span>Cost Center</span>
+                        </th>
+                        <th style="border-right: 1px solid;" name="th_aic" class="text-center" width="17%">
+                            <span>Amount in Currency</span>
+                        </th>
+                        <th style="border-right: 1px solid;" name="th_debit" class="text-center" width="12%">
+                            <span>Debit</span>
+                        </th>
+                        <th name="th_credit" class="text-center" width="12%">
+                            <span>Credit</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody"
+                       style="border-top: 1px solid;border-bottom: 1px solid;border-right: 1px solid;border-left: 1px solid;">
+                    <t t-set="lines" t-value="o.line_ids"/>
+                    <t t-foreach="lines" t-as="line">
+                        <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                            <td style="border-right: 1px solid;" class="text-start" name="th_account">
+                                <span t-field="line.account_id"/>
+                            </td>
+                            <td style="border-right: 1px solid;" name="th_description">
+                                <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                            </td>
+                            <td t-if="analytic_distribution" style="border-right: 1px solid;"
+                                class="text-start"
+                                name="th_analytic_account">
+                                <t t-if="line.analytic_distribution">
+                                    <t t-foreach="list(line.analytic_distribution.keys())" t-as="key">
+                                        <span t-esc="env['account.analytic.account'].browse(int(key)).name"/>
+                                        :
+                                        <span t-esc="line.analytic_distribution[key]"/><sapn>%</sapn>
+                                        <br/>
+                                    </t>
+                                </t>
+                            </td>
+                            <td style="border-right: 1px solid;" class="text-end" name="td_aic">
+                                <t t-if="line.amount_currency">
+                                    <span t-esc="line.format_amount()"/>
+                                </t>
+                            </td>
+                            <td style="border-right: 1px solid;" class="text-end" name="th_debit">
+                                <span t-field="line.debit"/>
+                            </td>
+                            <td style="border-right: 1px solid;" class="text-end" name="th_credit">
+                                <span t-field="line.credit"/>
+                            </td>
+                        </tr>
+                    </t>
+                    <tr style="border-top: 1px solid !important;">
+                        <t t-if="analytic_distribution">
+                            <td class="text-end" colspan="4" style="border-right: 1px solid;">
+                                <strong>Grand Total</strong>
+                            </td>
+                        </t>
+                        <t t-else="">
+                            <td class="text-end" colspan="3" style="border-right: 1px solid;">
+                                <strong>Grand Total</strong>
+                            </td>
+                        </t>
+                        <td style="border-right: 1px solid;border-bottom: 1px solid;" class="text-end">
+                            <span t-field="o.total_debit"></span>
+                        </td>
+                        <td style="border-right: 1px solid;border-bottom: 1px solid;" class="text-end">
+                            <span t-field="o.total_credit"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+                    <div class="clearfix">
+                        <div id="total" style="height: 2cm;" class="row justify-content-end">
+                            <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-4 col-md-6'} ml-auto">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <table class="table-borderless" width="100%">
+                            <tr width="100%">
+                                <td width="2%"></td>
+                                <td width="35%"><sapn>Prepared By : </sapn><span style="margin-left:5px;" t-field="o.create_uid"/></td>
+                                <td width="35%"><sapn>Reviewed By : </sapn><span style="margin-left:5px;" t-field="o.verified_by"/></td>
+                                <td><sapn>Approved By : </sapn><span style="margin-left:5px;" t-field="o.approved_by"/></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </t>
+    </template>
+
+    <template id="journal_voucher_invoice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="lingjack_print.report_journal_voucher_invoice_document_lingjack" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="journal_voucher_invoice_a5">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="lingjack_print.report_journal_voucher_invoice_document_lingjack" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_production_serial_list_setsco" model="ir.ui.view">
+        <field name="name">production.serial.list.setsco</field>
+        <field name="model">production.serial</field>
+        <field name="inherit_id" ref="alt_mo_serial_id.view_production_serial_list"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list/field[@name='location_id']" position="after">
+                <field name="setsco_serial_id"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_production_serial_form_setsco" model="ir.ui.view">
+        <field name="name">production.serial.form.setsco</field>
+        <field name="model">production.serial</field>
+        <field name="inherit_id" ref="alt_mo_serial_id.view_production_serial_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='mfg_period']" position="after">
+                <field name="setsco_serial_id" options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

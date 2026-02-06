@@ -1,0 +1,9 @@
+<templates xml:space="preserve">
+    <t t-name="lj_barcode_qty_demand.LocationScanner">
+        <div class="o_barcode_scanner_action p-2">
+            <div>
+                <BarcodeVideoScanner t-props="barcodeProps"/>
+            </div>
+        </div>
+    </t>
+</templates>

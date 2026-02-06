@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shop Floor Quantity Popup Form -->
+    <record id="view_shop_floor_quantity_popup_form" model="ir.ui.view">
+        <field name="name">shop.floor.quantity.popup.form</field>
+        <field name="model">shop.floor.quantity.popup</field>
+        <field name="arch" type="xml">
+            <form string="Add Quantity Produced">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="workorder_id" readonly="1" class="oe_inline"/>
+                        </h1>
+                        <h2>
+                            <field name="product_id" readonly="1" class="oe_inline"/>
+                        </h2>
+                        <!-- Session action indicator -->
+                        <div class="alert alert-info" role="alert">
+                            <i class="fa fa-clipboard"/> Log quantities produced this session
+                        </div>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="productivity_id" invisible="1"/>
+                            <field name="continue_to_pending" invisible="1"/>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="quantity_produced" class="o_input_lg" widget="float"/>
+                            <field name="qty_defects" class="o_input_lg" widget="float"/>
+                            <field name="qty_qualified" readonly="1" class="o_input_lg" widget="float"/>
+                            <field name="uom_id" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <group string="Additional Information">
+                        <field name="notes" placeholder="Any production notes..."/>
+                    </group>
+                    <group string="Quality Control" class="border border-warning p-3 mb-3">
+                        <div class="d-flex align-items-center">
+                            <field name="quality_check" widget="boolean" class="me-2"/>
+                            <label for="quality_check" string="Item checked and passed" class="fw-bold"/>
+                        </div>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <!-- Only 2 buttons: Save & Stop Session, and Cancel -->
+                    <button name="action_save_quantity"
+                            string="Save &amp; Stop Session"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

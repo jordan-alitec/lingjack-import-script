@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_chamber_invoice_document">
+        <t t-call="web.external_layout">
+            <t t-set="is_chamber" t-value="True"/>
+            <div style="margin-left:3%;" class="page">
+                <table class="o_has_total_table table o_main_table table-borderless mb-0"
+                       style="width: 100%;font-size: 14px;border: none; border-collapse: collapse;">
+                    <tr style="border: none;">
+<!--                        <td style="width:2%; border: none;"/>-->
+                        <td style="width:40%;border: none;">
+                            <strong>Cargo Type :</strong>
+                            <span t-field="o.no_of_package"/>
+                        </td>
+                        <!--                                <td style="width:6%; "></td>-->
+                        <td style="width:17%;">
+                            <strong>Containing</strong>
+                        </td>
+                        <!--                                <td style="width:6%; "></td>-->
+                        <td style="width:30%;">
+                            <t t-if="o.lc_no">
+                                <strong>LC No :</strong>
+                                <span t-field="o.lc_no" style="margin-left:5px;"/>
+                            </t>
+                        </td>
+                        <td style="width:2%; border: none;"/>
+
+                    </tr>
+                </table>
+
+                <table class="o_has_total_table table o_main_table table-borderless mb-0"
+                       style="width: 100%;font-size: 14px;border: none; border-collapse: collapse;">
+                    <tr style="border: none;">
+                        <td style="width:64%;border: none;">
+                            <span t-field="o.remarks"/>
+                        </td>
+                        <td style="border: none;">
+                            <span t-field="o.packing_details"/>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <table class="table o_has_total_table o_main_table table-borderless mb-0" name="invoice_line_table"
+                       style="border: none; border-collapse: collapse;font-size: 14px;">
+                    <tbody class="invoice_tbody">
+                        <t t-set="sn" t-value="1"/>
+                        <t t-foreach="o.invoice_line_ids" t-as="line">
+                            <tr t-att-class="'fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''"
+                                style="border: none;">
+                                <t t-if="line.display_type == 'product' and line.product_id.type == 'consu'" name="account_invoice_line_accountable">
+                                    <td width="18%;" style="text-align:start; border: none;">
+                                        <span style="margin-left:20px;" t-out="sn"/>
+                                    </td>
+                                    <td width="60%;" name="account_invoice_line_name" style="border: none;">
+                                        <span t-if="line.name" t-field="line.name" t-options="{'widget': 'text'}"/>
+                                        <t t-if="line.product_id.country_of_origin">
+                                            <span>,COO :</span>
+                                            <span t-field="line.product_id.country_of_origin"/>
+                                        </t>
+                                    </td>
+                                    <td name="td_quantity" class="o_td_quantity text-end" style="border: none;">
+                                        <span t-field="line.quantity" class="text-nowrap"/>
+                                        <span t-field="line.product_uom_id" groups="uom.group_uom"/>
+                                    </td>
+                                    <t t-set="sn" t-value="sn + 1"/>
+                                </t>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <table class="o_has_total_table table o_main_table table-borderless mb-0"
+                       style="width: 100%;font-size: 14px;border: none; border-collapse: collapse;">
+                    <tr style="border: none;">
+                        <td style="width:2%; border: none;"/>
+                        <td style="width:30%;border: none;">
+                            <strong>Container No :</strong>
+                            <span t-field="o.container_no" style="margin-left:5px;"/>
+                        </td>
+                        <td style="width:6%; border: none;"/>
+                        <td style="width:30%; border: none;">
+                            <strong>Seal No :</strong>
+                            <span t-field="o.seal_no" style="margin-left:5px;"/>
+                        </td>
+                        <td style="width:6%; border: none;"/>
+                        <td style="width:30%; border: none;">
+                            <strong>Gross Weight (kgs) :</strong>
+                            <span t-field="o.net_total"
+                                  t-options="{&quot;widget&quot;: &quot;float&quot;, &quot;decimal_precision&quot;: &quot;2&quot;}"
+                                  style="margin-left:5px;"/>
+                        </td>
+                        <td style="width:2%; border: none;"/>
+
+                    </tr>
+                </table>
+            </div>
+
+        </t>
+    </template>
+
+
+    <template id="report_chamber_invoice">
+        <t t-call="web.html_container">
+            <t t-set="is_chamber_invoice" t-value="true"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_chamber_invoice_document"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_chamber_invoice" model="ir.actions.report">
+        <field name="name">Chamber COO</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_chamber_invoice</field>
+        <field name="report_file">lingjack_print.report_chamber_invoice</field>
+        <field name="paperformat_id" ref="lingjack_print.chamber_slip_paperformat"/>
+        <field name="print_report_name">'Chamber COO - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+
+    </record>
+</odoo>
+

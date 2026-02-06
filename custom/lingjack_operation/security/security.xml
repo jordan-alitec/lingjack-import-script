@@ -1,0 +1,16 @@
+<odoo>
+    <data noupdate="0">
+
+        <record id="group_control_restricted_item" model="res.groups">
+            <field name="name">Control Restricted Item</field>
+            <field name="category_id" ref="base.module_category_inventory"/>
+        </record>
+
+        <record id="lingjack_operation.group_edit_bom" model="res.groups">
+            <field name="name">Edit BoM</field>
+            <field name="category_id" ref="base.module_category_manufacturing"/>
+        </record>
+
+
+    </data>
+</odoo>

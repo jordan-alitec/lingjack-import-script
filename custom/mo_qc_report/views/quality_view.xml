@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Quality Control Point Form View -->
+    <record id="quality_point_form_inherit_show_in_quality" model="ir.ui.view">
+        <field name="name">quality.point.form.inherit.show.in.quality</field>
+        <field name="model">quality.point</field>
+        <field name="inherit_id" ref="quality.quality_point_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='measure_frequency_type']" position="after">
+                <field name="show_in_quality_module" 
+                       invisible="operation_id == False"
+                       options="{'no_create': True}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quality Control Point Tree View -->
+    <record id="quality_point_tree_inherit_show_in_quality" model="ir.ui.view">
+        <field name="name">quality.point.tree.inherit.show.in.quality</field>
+        <field name="model">quality.point</field>
+        <field name="inherit_id" ref="quality.quality_point_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='measure_frequency_type']" position="after">
+                <field name="show_in_quality_module" 
+                       invisible="operation_id == False"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quality Check Form View -->
+    <record id="quality_check_form_inherit_show_in_quality" model="ir.ui.view">
+        <field name="name">quality.check.form.inherit.show.in.quality</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_control.quality_check_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='point_id']" position="before">
+                <field name="show_in_quality_module" 
+                       invisible="operation_id == False"
+                       readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quality Check Tree View -->
+    <record id="quality_check_tree_inherit_show_in_quality" model="ir.ui.view">
+        <field name="name">quality.check.tree.inherit.show.in.quality</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_control.quality_check_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='point_id']" position="after">
+                <field name="show_in_quality_module" 
+                       invisible="operation_id == False"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Quality Check Search View - Modified to prioritize show_in_quality_module -->
+    <record id="quality_check_view_search_inherit_show_in_quality" model="ir.ui.view">
+        <field name="name">quality.check.view.search.inherit.show.in.quality</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_mrp_workorder.quality_check_view_search_inherit_mrp_workorder"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='quality_checks']" position="replace">
+                <filter string="Quality Checks" name="quality_checks"
+                    domain='["|", ("show_in_quality_module", "=", True), "&amp;", "|", ("point_id", "=", False), ("point_id.operation_id", "=", False), ("test_type", "not in", ["register_consumed_materials", "register_byproducts", "print_label"])]'/>
+            </xpath>
+        </field>
+    </record>
+</odoo> 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_category_form_production_serial_prefix" model="ir.ui.view">
+        <field name="name">product.category.form.production.serial.prefix</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='first']" position="inside">
+                <field name="production_serial_prefix" placeholder="e.g. CHAIR"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_production_serial_list" model="ir.ui.view">
+        <field name="name">production.serial.list</field>
+        <field name="model">production.serial</field>
+        <field name="arch" type="xml">
+            <list string="Production Serials" create="0" delete="0">
+                <field name="name"/>
+                <field name="production_id"/>
+                <field name="product_id"/>
+                <field name="default_code"/>
+                <field name="mfg_period"/>
+                <field name="location_id"/>
+                <field name="state"/>
+                <field name="company_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_production_serial_form" model="ir.ui.view">
+        <field name="name">production.serial.form</field>
+        <field name="model">production.serial</field>
+        <field name="arch" type="xml">
+            <form string="Production Serial">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="production_id"/>
+                            <field name="product_id"/>
+                            <field name="default_code"/>
+                            <field name="mfg_period"/>
+                        </group>
+                        <group>
+                            <field name="location_id"/>
+                            <field name="state"/>
+                            <field name="company_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_production_serial_search" model="ir.ui.view">
+        <field name="name">production.serial.search</field>
+        <field name="model">production.serial</field>
+        <field name="arch" type="xml">
+            <search string="Production Serials">
+                <field name="name"/>
+                <field name="production_id"/>
+                <field name="product_id"/>
+                <field name="default_code"/>
+                <field name="mfg_period"/>
+                <filter string="Active" name="active" domain="[('state', '=', 'active')]"/>
+                <filter string="Cancelled" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="MO" name="group_production" context="{'group_by': 'production_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>

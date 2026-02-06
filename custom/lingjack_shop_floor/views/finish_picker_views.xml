@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Finish Product Picker Form View -->
+    <record id="view_shop_floor_finish_picker_form" model="ir.ui.view">
+        <field name="name">shop.floor.finish.picker.form</field>
+        <field name="model">shop.floor.finish.picker</field>
+        <field name="arch" type="xml">
+            <form string="Pick Finished Products">
+                <header>
+                    <button name="action_pick_finished_products" 
+                            string="PICK FINISHED PRODUCTS" 
+                            type="object" 
+                            class="btn-primary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+<!--                    <button string="Cancel" -->
+<!--                            class="btn-secondary" -->
+<!--                            special="cancel"/>-->
+                </header>
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="font-size: 24px;">Pick Finished Products</h1>
+                        <h2 style="font-size: 18px; color: #666;">
+                            Work Order: <field name="workorder_id" readonly="1" nolabel="1"/>
+                        </h2>
+                    </div>
+                    
+                    <group>
+                        <field name="finish_line_ids" nolabel="1">
+                            <list string="Finished Products to Pick" editable="bottom">
+                                <field name="product_id" readonly="1"/>
+                                <field name="available_quantity" readonly="1"/>
+                                <field name="quantity_to_pick" 
+                                       decoration-warning="quantity_to_pick > available_quantity"
+                                       decoration-success="quantity_to_pick > 0 and quantity_to_pick &lt;= available_quantity"/>
+                                <field name="uom_id" readonly="1"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Finish Line Form View (for inline editing) -->
+    <record id="view_shop_floor_finish_line_form" model="ir.ui.view">
+        <field name="name">shop.floor.finish.line.form</field>
+        <field name="model">shop.floor.finish.line</field>
+        <field name="arch" type="xml">
+            <form string="Finish Line">
+                <group>
+                    <field name="product_id" readonly="1"/>
+                    <field name="available_quantity" readonly="1"/>
+                    <field name="quantity_to_pick"/>
+                    <field name="uom_id" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo> 

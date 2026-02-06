@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="smart_warning_view_search" model="ir.ui.view">
+        <field name="name">smart.warning.search</field>
+        <field name="model">smart.warning</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="model"/>
+                <field name="css_class"/>
+                <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Model" name="group_model" context="{'group_by':'model'}"/>
+                    <filter string="Type" name="group_css_class" context="{'group_by':'css_class'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <record id="smart_warning_view_form" model="ir.ui.view">
+        <field name="name">smart.warning.form</field>
+        <field name="model">smart.warning</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Alert Title"/></h1>
+                    </div>
+                    <field name="description" colspan="2" placeholder="Add here alert body. HTML tags are possible"/>
+                    <group>
+                        <group>
+                            <field name="ir_model_id"
+                                   options="{'no_create_edit': 1, 'no_quick_create': 1, 'no_open': 1}"
+                                   domain="[('transient', '=', False), '|', ('access_ids.group_id.users', '=', uid), ('access_ids.group_id', '=', False)]"
+                                   required="1"
+                            />
+                            <field name="model" invisible="1"/>
+                            <field name="css_class"/>
+                        </group>
+                        <group>
+                            <field name="user_group_ids" widget="many2many_tags" options="{'no_create_edit': 1, 'no_quick_create': 1}"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create_edit': 1, 'no_quick_create': 1}"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook invisible="not model">
+                        <page string="Filters">
+                            <field name="domain" widget="domain" options="{'model': 'model'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="smart_warning_view_tree" model="ir.ui.view">
+        <field name="name">smart.warning.tree</field>
+        <field name="model">smart.warning</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model"/>
+                <field name="css_class"/>
+            </list>
+        </field>
+    </record>
+    <record id="smart_warning_action" model="ir.actions.act_window">
+        <field name="name">Smart Alerts</field>
+        <field name="path">smart-alerts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">smart.warning</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" eval="smart_warning_view_search"/>
+        <field name="groups_id" eval="[(4, ref('smart_warnings.group_smart_warnings_manager')), (4, ref('base.group_erp_manager'))]"/>
+    </record>
+    <menuitem name="Smart Alerts" id="smart_warnings_main" sequence="1000" groups="smart_warnings.group_smart_warnings_manager,base.group_erp_manager" web_icon="smart_warnings,static/description/icon.png"/>
+    <menuitem name="Smart Alerts" id="menu_smart_warnings" parent="smart_warnings_main" sequence="10" action="smart_warning_action" groups="smart_warnings.group_smart_warnings_manager,base.group_erp_manager"/>
+
+</odoo>

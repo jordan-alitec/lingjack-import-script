@@ -1,0 +1,12 @@
+<odoo>
+    <record id="product_uom_categ_form_view_inherit_pdf_printing" model="ir.ui.view">
+        <field name="name">uom.category.form.inherit.pdf.printing</field>
+        <field name="model">uom.category</field>
+        <field name="inherit_id" ref="uom.product_uom_categ_form_view"/>  <!-- original form view -->
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='uom_lines']/field[@name='uom_ids']/list/field[@name='name']" position="after">
+                <field name="pdf_printing"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,265 @@
+<odoo>
+    <template id="report_purchase_certificate_origin_content">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <br/>
+                <h2 style="text-align: center; color: #1f4e79;">PURCHASE ORDER</h2>
+
+                <div class="row mt8">
+                    <div class="col-4">
+                        <p t-if="o.partner_id">
+                            <span t-field="o.partner_id.name"/>
+                            <span t-field="o.partner_id"
+                                  t-options="{'widget': 'contact', 'fields': [ 'address'], 'no_marker': true }"/>
+                        </p>
+                        <table class="table table-borderless" style="width: 30%; margin-top: 1px;">
+                            <tr>
+                                <td style="padding: 2px 4px;">Attn</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px; white-space: nowrap;">
+                                    <span t-field="o.attention_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px;">Email</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.attention_id.email"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-4">
+                        <table class="table table-borderless" style="width: 100%;">
+                            <tr>
+                                <td style="padding: 2px 4px;">
+                                    <span>Delivery To :</span>
+                                    <br/>
+                                    <address t-field="o.picking_type_id.default_location_dest_id.company_id.partner_id"
+                                             t-options='{"widget": "contact", "fields": ["name", "address"], "no_marker": True}'/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="col-4">
+                        <table class="table table-borderless" style="width: 50%;">
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">PO Number</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.name"/>
+                                    <t t-if="o.revision_id" style="white-space: nowrap;">
+                                        [<span t-field="o.revision_id.name"/>]
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Date of Order</td>
+                                <td style="padding: 2px 4px;">: </td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.date_order" t-options='{"widget": "date"}'/>
+                                </td>
+                            </tr>
+                            <t t-if="o.incoterm_id">
+                                <tr>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">Incoterms</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">:</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">
+                                        <span t-field="o.incoterm_id.name"/>
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Payment Terms</td>
+                                <td style="padding: 2px 4px; white-space: nowrap;">:</td>
+                                <td style="padding: 2px 4px; white-space: nowrap;">
+                                    <span t-field="o.payment_term_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Ordered By</td>
+                                <td style="padding: 2px 4px; white-space: nowrap;">: </td>
+                                <td style="padding: 2px 4px; white-space: nowrap;">
+                                    <span t-field="o.user_id.name" style="padding: 2px 4px; white-space: nowrap;"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Supplier Reference</td>
+                                <td style="padding: 2px 4px; white-space: nowrap;">:</td>
+                                <td style="padding: 2px 4px; white-space: nowrap;">
+                                    <span t-field="o.partner_ref"/>
+                                </td>
+                            </tr>
+                            <t t-if="o.project_ref">
+                                <tr>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">Project Reference</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">:</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">
+                                        <span t-field="o.project_ref"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+
+                <br/>
+
+                <t t-set="has_discount" t-value="any([line.discount and line.discount > 0 for line in o.order_line])"/>
+                <table class="o_has_total_table table o_main_table table-borderless">
+                    <thead>
+                        <tr>
+                            <th name="th_sn" class="text-center">S/N</th>
+                            <th name="th_description" class="text-start">
+                                <strong>Description</strong>
+                            </th>
+                            <th name="th_expected_arrival" class="text-center">
+                                <strong style="white-space: nowrap;">Expected Arrival</strong>
+                            </th>
+                            <th name="th_quantity" class="text-end">
+                                <strong>Qty</strong>
+                            </th>
+                            <th name="th_price_unit" class="text-end" style="white-space: nowrap;">
+                                <strong>Unit Price</strong>
+                            </th>
+                            <t t-if="has_discount">
+                                <th class="text-end">
+                                    <strong>Disc.</strong>
+                                </th>
+                            </t>
+<!--                            <th name="th_taxes" class="text-end">-->
+<!--                                <strong>Taxes</strong>-->
+<!--                            </th>-->
+                            <th name="th_subtotal" class="text-end">
+                                <strong>Amount</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="current_subtotal" t-value="0"/>
+                        <t t-foreach="o.order_line" t-as="line">
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
+
+                            <tr t-att-class="'fw-bold o_line_section' if line.display_type == 'line_section' else 'fst-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                <t t-if="not line.display_type">
+                                    <td style="text-align: center;">
+                                        <span t-field="line.sequence_number"/>
+                                    </td>
+
+                                    <td id="product" class="text-start">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td id="expected_date" class="text-center">
+                                        <span t-field="line.date_planned" t-options='{"widget": "date"}'/>
+                                    </td>
+                                    <td class="text-end" style="white-space: nowrap;">
+                                        <span t-esc="'%g' % line.product_qty"/>
+                                        <t t-if="line.product_uom.pdf_printing">
+                                            <span t-esc="line.product_uom.pdf_printing"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span t-field="line.product_uom.name" groups="uom.group_uom"/>
+                                        </t>
+                                        <span t-if="line.product_packaging_id">
+                                            (
+                                            <span t-field="line.product_packaging_qty"
+                                                  t-options='{"widget": "integer"}'/>
+                                            <span t-field="line.product_packaging_id"/>)
+                                        </span>
+                                    </td>
+                                    <td class="text-end">
+                                        <span t-field="line.price_unit"/>
+                                    </td>
+                                    <t t-if="has_discount">
+                                        <td class="text-end">
+                                            <span t-field="line.discount"/>%
+                                        </td>
+                                    </t>
+
+<!--                                    <td class="text-end">-->
+<!--                                        <span t-out="', '.join([(tax.invoice_label or tax.name) for tax in line.taxes_id])"/>-->
+<!--                                    </td>-->
+                                    <td class="text-end">
+                                        <span t-field="line.price_subtotal"
+                                              t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </t>
+                                <t t-if="line.display_type == 'line_section'">
+                                    <td colspan="99" id="section">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <t t-set="current_section" t-value="line"/>
+                                    <t t-set="current_subtotal" t-value="0"/>
+                                </t>
+                                <t t-if="line.display_type == 'line_note'">
+                                    <td colspan="99" id="note">
+                                        <span t-field="line.name"/>
+                                    </td>
+                                </t>
+                            </tr>
+                            <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
+                                <tr class="is-subtotal text-end">
+                                    <td colspan="99" id="subtotal">
+                                        <strong class="mr16">Subtotal</strong>
+                                        <span
+                                                t-out="current_subtotal"
+                                                t-options='{"widget": "monetary", "display_currency": o.currency_id}'
+                                        />
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+
+                <div id="total" class="row justify-content-end mt-n3">
+                    <div class="col-4">
+                        <table class="o_total_table table table-borderless">
+                            <t t-call="purchase.document_tax_totals">
+                                <t t-set="tax_totals" t-value="o.tax_totals"/>
+                                <t t-set="currency" t-value="o.currency_id"/>
+                            </t>
+                        </table>
+                    </div>
+                </div>
+
+                <span t-field="o.notes"/>
+                <br/>
+                <div>This is a computer generated document. No signature is required.</div>
+
+                <div style="text-align: right; margin-top: 20px;">
+                    <strong>Acknowledgement of Acceptance of Order</strong>
+                </div>
+
+                <br/> <br/> <br/>
+
+                <hr style="border: 1px solid black; width: 50%; margin-left: 70%;"/>
+
+                <div style="text-align: left; margin-left: 70%">
+                    <span>Supplier's Signature &amp; Official Stamp</span>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_purchase_certificate_origin">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_purchase_certificate_origin_content"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_purchase_certificate_origin" model="ir.actions.report">
+        <field name="name">Lingjack Purchase Order</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_purchase_certificate_origin</field>
+        <field name="report_file">lingjack_print.report_purchase_certificate_origin</field>
+        <field name="print_report_name">'Lingjack PO - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

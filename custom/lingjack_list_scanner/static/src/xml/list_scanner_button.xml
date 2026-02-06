@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Add button in control panel for non-editable lists -->
+    <t t-inherit="web.ListView" t-inherit-mode="extension">
+        <xpath expr="//t[@t-set-slot='control-panel-create-button']" position="inside">
+            <t t-if="!editedRecord and activeActions.create and props.showButtons and hasScanQRButton">
+                <a href="#" role="button" class="btn btn-secondary o_list_button_scan_qr" t-on-click="onClickScanQR">
+                    <i class="fa fa-qrcode"/> Scan QR
+                </a>
+            </t>
+        </xpath>
+    </t>
+    
+    <!-- Extend ViewButton to pass tag from create object -->
+    <t t-inherit="web.ListRenderer.Rows" t-inherit-mode="extension">
+        <xpath expr="//ViewButton" position="attributes">
+            <attribute name="tag" t-if="create.tag">create.tag</attribute>
+        </xpath>
+    </t>
+</templates>
+
+

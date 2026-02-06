@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Shop Floor Production Kanban View -->
+    <record id="view_mrp_production_kanban_shop_floor" model="ir.ui.view">
+        <field name="name">mrp.production.kanban.shop.floor</field>
+        <field name="model">mrp.production</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" class="o_kanban_small_column">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="product_qty"/>
+                <field name="state"/>
+                <field name="date_start"/>
+                <field name="total_shop_floor_qty"/>
+                <field name="total_shop_floor_defects"/>
+                <field name="qty_sent_to_warehouse"/>
+                <field name="workorder_ids"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click" style="padding: 15px;">
+                            <div class="o_kanban_record_top">
+                                <div class="o_kanban_record_headings">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div class="o_kanban_record_subtitle text-muted">
+                                        <field name="product_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="o_kanban_record_body" style="margin-top: 10px;">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>Planned: </strong><field name="product_qty"/> units
+                                    </div>
+                                    <div class="col-6">
+                                        <strong>Produced: </strong><field name="total_shop_floor_qty"/> units
+                                    </div>
+                                </div>
+                                
+                                <div class="row" style="margin-top: 5px;">
+                                    <div class="col-6">
+                                        <strong>Start: </strong><field name="date_start"/>
+                                    </div>
+                                    <div class="col-6" t-if="record.total_shop_floor_defects.raw_value > 0">
+                                        <span class="text-danger">
+                                            <strong>Defects: </strong><field name="total_shop_floor_defects"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="o_kanban_record_bottom" style="margin-top: 15px;">
+                                <div class="oe_kanban_bottom_left">
+                                    <div class="o_kanban_inline_block">
+                                        <field name="state" widget="label_selection" 
+                                               options="{'classes': {'draft': 'info', 'confirmed': 'success', 'progress': 'warning', 'done': 'success', 'cancel': 'danger'}}"/>
+                                    </div>
+                                </div>
+                                
+                                <!-- Shop Floor Action Buttons -->
+                                <div class="oe_kanban_bottom_right" style="margin-top: 10px;">
+                                    <button name="action_pick_component" 
+                                            string="Pick Component" 
+                                            type="object" 
+                                            class="btn btn-warning btn-sm oe_kanban_action oe_kanban_action_button"
+                                            style="margin-right: 5px;"
+                                            t-if="record.state.raw_value in ['confirmed', 'progress', 'to_close']">
+                                        <i class="fa fa-cube"/> Pick Components
+                                    </button>
+                                    
+                                    <button name="action_pick_finish_component" 
+                                            string="Pick Finish Component" 
+                                            type="object" 
+                                            class="btn btn-success btn-sm oe_kanban_action oe_kanban_action_button"
+                                            t-if="record.qty_sent_to_warehouse.raw_value &lt; record.product_qty.raw_value">
+                                        <i class="fa fa-check"/> Pick Finished
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Shop Floor Work Order List View -->
+    <record id="view_mrp_workorder_list_shop_floor" model="ir.ui.view">
+        <field name="name">mrp.workorder.list.shop.floor</field>
+        <field name="model">mrp.workorder</field>
+        <field name="arch" type="xml">
+            <list string="Work Orders" create="false" delete="false">
+                <field name="name"/>
+                <field name="production_id"/>
+                <field name="product_id"/>
+                <field name="workcenter_id"/>
+                <field name="qty_production"/>
+                <field name="total_quantity_produced" sum="Total Produced"/>
+                <field name="total_defect_quantity" sum="Total Defects"/>
+                <field name="production_efficiency" widget="percentage" avg="Avg Efficiency"/>
+                <field name="state" widget="badge" 
+                       decoration-info="state == 'pending'"
+                       decoration-warning="state == 'progress'"
+                       decoration-success="state == 'done'"/>
+                <field name="duration" widget="float_time" sum="Total Time"/>
+
+                
+                <button name="button_start" 
+                        string="Start" 
+                        type="object" 
+                        class="btn-success"
+                        invisible="state not in ('pending', 'waiting')"/>
+                        
+                <button name="button_pending" 
+                        string="Pause" 
+                        type="object" 
+                        class="btn-warning"
+                        invisible="state != 'progress'"/>
+                        
+                <button name="button_finish" 
+                        string="Finish" 
+                        type="object" 
+                        class="btn-primary"
+                        invisible="state != 'progress'"/>
+                        
+                <button name="action_pick_component" 
+                        string="Pick Component" 
+                        type="object" 
+                        class="btn-success"
+                        invisible="state not in ('progress', 'ready')"/>
+
+                <button name="action_view_productivity_with_quantity" 
+                        string="Productivity" 
+                        type="object" 
+                        class="btn-info"
+                        invisible="state == 'pending'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Shop Floor Productivity Dashboard -->
+    <record id="view_productivity_dashboard" model="ir.ui.view">
+        <field name="name">productivity.dashboard</field>
+        <field name="model">mrp.workcenter.productivity</field>
+        <field name="arch" type="xml">
+            <list string="Active Work Sessions" create="false" delete="false" edit="false">
+                <field name="workorder_id"/>
+                <field name="workcenter_id"/>
+                <field name="user_id"/>
+                <field name="date_start"/>
+                <field name="duration" widget="float_time"/>
+                <field name="quantity_produced"/>
+                <field name="defect_quantity"/>
+                
+                <button name="action_add_quantity_popup" 
+                        string="Add Quantity" 
+                        type="object" 
+                        class="btn-primary"
+                        invisible="date_end != False"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Touch-Friendly Form for Shop Floor -->
+    <record id="view_shop_floor_workorder_form" model="ir.ui.view">
+        <field name="name">mrp.workorder.form.shop.floor</field>
+        <field name="model">mrp.workorder</field>
+        <field name="priority">20</field>
+        <field name="arch" type="xml">
+            <form string="Work Order - Shop Floor">
+                <header>
+                    <button name="button_start" 
+                            string="START WORK" 
+                            type="object" 
+                            class="btn-success btn-lg"
+                            style="font-size: 18px; padding: 15px 30px; margin: 10px;"
+                            invisible="state not in ('pending', 'waiting')"/>
+                            
+                    <button name="button_pending" 
+                            string="PAUSE WORK" 
+                            type="object" 
+                            class="btn-warning btn-lg"
+                            style="font-size: 18px; padding: 15px 30px; margin: 10px;"
+                            invisible="state != 'progress'"/>
+                            
+                    <button name="button_finish" 
+                            string="FINISH WORK" 
+                            type="object" 
+                            class="btn-primary btn-lg"
+                            style="font-size: 18px; padding: 15px 30px; margin: 10px;"
+                            invisible="state != 'progress'"/>
+                            
+                    <button name="action_pick_component" 
+                            string="PICK COMPONENT" 
+                            type="object" 
+                            class="btn-success btn-lg"
+                            style="font-size: 18px; padding: 15px 30px; margin: 10px;"
+                            invisible="state not in ('progress', 'ready')"/>
+
+                            
+                    <field name="state" widget="statusbar" statusbar_visible="pending,progress,done"/>
+                </header>
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="font-size: 28px;">
+                            <field name="name" readonly="1"/>
+                        </h1>
+                        <h2 style="font-size: 22px; color: #666;">
+                            <field name="product_id" readonly="1"/>
+                        </h2>
+                    </div>
+                    
+                    <group>
+                        <group string="Production Info" style="font-size: 16px;">
+                            <field name="production_id" readonly="1" style="font-size: 16px;"/>
+                            <field name="workcenter_id" readonly="1" style="font-size: 16px;"/>
+                            <field name="qty_production" readonly="1" style="font-size: 16px;"/>
+                            <field name="qty_remaining" readonly="1" style="font-size: 16px;"/>
+
+                        </group>
+                        
+                        <group string="Shop Floor Tracking" style="font-size: 16px;">
+                            <field name="total_quantity_produced" readonly="1" style="font-size: 18px; font-weight: bold; color: green;"/>
+                            <field name="total_defect_quantity" readonly="1" style="font-size: 16px; color: red;"/>
+                            <field name="production_efficiency" widget="percentage" readonly="1" style="font-size: 16px;"/>
+                            <field name="duration" widget="float_time" readonly="1" style="font-size: 16px;"/>
+                        </group>
+                    </group>
+                    
+                    <div class="text-center" style="margin: 30px 0;" invisible="state != 'progress'">
+                        <button name="action_view_productivity_with_quantity" 
+                                string="ADD QUANTITY PRODUCED" 
+                                type="object" 
+                                class="btn-warning btn-lg"
+                                style="font-size: 20px; padding: 20px 40px; background-color: #ff8800; border: none;"/>
+                    </div>
+                    
+                    <notebook>
+                        <page string="Productivity Records">
+                            <field name="time_ids" readonly="1">
+                                <list>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="duration" widget="float_time"/>
+                                    <field name="quantity_produced"/>
+                                    <field name="defect_quantity"/>
+                                    <field name="user_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Shop Floor Action Override for Work Orders -->
+    <record id="action_mrp_workorder_shop_floor" model="ir.actions.act_window">
+        <field name="name">Shop Floor Work Orders</field>
+        <field name="res_model">mrp.workorder</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                                      (0, 0, {'view_mode': 'list', 'view_id': ref('view_mrp_workorder_list_shop_floor')}),
+                                      (0, 0, {'view_mode': 'form', 'view_id': ref('view_shop_floor_workorder_form')})]"/>
+        <field name="domain">[('state', 'in', ['pending', 'waiting', 'progress'])]</field>
+        <field name="context">{'shop_floor_mode': True}</field>
+    </record>
+
+</odoo> 

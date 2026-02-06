@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="paperformat_a4" model="report.paperformat">
+            <field name="name">Setsco Label 289x210 Portrait</field>
+            <field name="default" eval="True" />
+            <field name="orientation">Portrait</field>
+            <field name="format">custom</field>
+            <field name="page_height">290</field>
+            <field name="page_width">210</field>
+            <field name="margin_top">9</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">1</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+            <field name="css_margins" eval="True" />
+        </record>
+
+    </data>
+</odoo>

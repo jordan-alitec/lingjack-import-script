@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherited Routings Workcenter's form view to add new field' -->
+        <record id="mrp_routing_workcenter_form_view_inherit" model="ir.ui.view">
+            <field name="name">mrp.routing.workcenter.form.inherit</field>
+            <field name="model">mrp.routing.workcenter</field>
+            <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//field[@name='bom_id']" position="after">
+	             	<field name="mrp_operation_temp_id"/>
+	            </xpath>
+            </field>
+       </record>
+    </data>
+</odoo>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Wizard Form View -->
+        <record id="view_sale_order_line_service_edit_wizard_form" model="ir.ui.view">
+            <field name="name">sale.order.line.service.edit.wizard.form</field>
+            <field name="model">sale.order.line.service.edit.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Edit Service Line Details">
+                    <!-- <div class="alert alert-info" role="alert">
+                        <strong>Service Product Editing</strong><br/>
+                        You can edit the description, quantity delivered, and unit price for this service line.
+                    </div> -->
+                    <group>
+                        <group>
+                            <field name="sale_order_line_id" invisible="1"/>
+                            <field name="name" 
+                                   string="Description"
+                                   placeholder="Enter detailed service description..."
+                                   class="o_field_text"/>
+                        </group>
+                        <group>
+                            <field name="qty_delivered" string="Quantity Delivered" invisible="deliver_method != 'manual'" readonly="deliver_method != 'manual'"/>
+                            <field name="deliver_method" invisible="1"/>
+                            <field name="price_unit" 
+                                   string="Unit Price"
+                                   class="o_field_monetary" invisible="1"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_save_changes" 
+                                string="Save Changes" 
+                                type="object" 
+                                class="btn-primary"/>
+                        <button string="Cancel" 
+                                class="btn-secondary" 
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!-- Server Action -->
+        <record id="action_edit_service_line_details" model="ir.actions.server">
+            <field name="name">Edit Service Line Details</field>
+            <field name="model_id" ref="sale.model_sale_order_line"/>
+            <field name="binding_model_id" ref="sale.model_sale_order_line"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records.action_edit_service_line_details()
+            </field>
+        </record>
+
+    <record id="view_sale_order_line_form" model="ir.ui.view">
+          <field name="name">sale.order.view.form.inherit.line</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]" position="inside">
+                <field name="is_service_type" invisible="1"/>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/list[1]/field[@name='price_subtotal'][2]" position="after">
+               <button name="change_unit_price" type="object" class="btn" string="Change Unit Price" invisible="not parent.is_service_type or state != 'sale'"/>
+            </xpath>
+        </field>
+    </record>
+
+    </data>
+</odoo>

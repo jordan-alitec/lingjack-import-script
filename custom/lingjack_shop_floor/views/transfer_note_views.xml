@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Component Picker Wizard Form View -->
+    <record id="view_shop_floor_component_picker_wizard_form" model="ir.ui.view">
+        <field name="name">shop.floor.component.picker.wizard.form</field>
+        <field name="model">shop.floor.component.picker.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pick Components">
+                <header>
+                    <button name="action_pick_components" 
+                            string="CREATE TRANSFER NOTE" 
+                            type="object" 
+                            class="btn-primary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                    <button string="Cancel" 
+                            class="btn-secondary" 
+                            special="cancel"/>
+                </header>
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="font-size: 24px;">Pick Components</h1>
+                        <h2 style="font-size: 18px; color: #666;">
+                            Work Order: <field name="workorder_id" readonly="1" nolabel="1"/>
+                        </h2>
+                        <h3 style="font-size: 16px; color: #888;">
+                            Production: <field name="production_id" readonly="1" nolabel="1"/>
+                        </h3>
+                    </div>
+                    
+                    <div class="alert alert-info" role="alert">
+                        <strong>Note:</strong> This will create a Component Transfer Note in confirmed state. 
+                        No stock moves will be updated until the transfer note is marked as done.
+                    </div>
+                    
+                    <group>
+                        <field name="picker_line_ids" nolabel="1">
+                            <list string="Components to Pick" editable="bottom">
+                                <field name="product_id"/>
+                                <field name="available_quantity" readonly="1"/>
+                                <field name="quantity_to_pick" 
+                                       decoration-warning="quantity_to_pick > available_quantity"
+                                       decoration-success="quantity_to_pick > 0 and quantity_to_pick &lt;= available_quantity"/>
+                                <field name="uom_id" readonly="1"/>
+                                <field name="location_src_id" readonly="1"/>
+                                <field name="location_dest_id" readonly="1"/>
+                                <field name="source_move_id" column_invisible="1"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Component Transfer Note Form View -->
+    <record id="view_shop_floor_component_transfer_note_form" model="ir.ui.view">
+        <field name="name">shop.floor.component.transfer.note.form</field>
+        <field name="model">shop.floor.component.transfer.note</field>
+        <field name="arch" type="xml">
+            <form string="Component Transfer Note">
+                <header>
+                    <button name="action_confirm" 
+                            string="Confirm" 
+                            type="object" 
+                            class="btn-primary"
+                            invisible="state != 'draft'"/>
+                    <button name="action_done" 
+                            string="Mark as Done" 
+                            type="object" 
+                            class="btn-success"
+                            invisible="state != 'confirmed'"/>
+                    <button name="action_cancel" 
+                            string="Cancel" 
+                            type="object" 
+                            class="btn-secondary"
+                            invisible="state in ['done', 'cancel']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                </header>
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1"/></h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="workorder_id"/>
+                            <field name="production_id"/>
+                            <field name="transfer_date"/>
+                        </group>
+                        <group>
+                            <field name="user_id"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Transfer Lines">
+                            <field name="line_ids">
+                                <list string="Transfer Lines" editable="bottom">
+                                    <field name="product_id" readonly="1"/>
+                                    <field name="workorder_id" readonly="1"/>
+                                    <field name="quantity_requested" readonly="1"/>
+                                    <field name="quantity_transferred"/>
+                                    <field name="uom_id" readonly="1"/>
+                                    <field name="location_src_id" readonly="1"/>
+                                    <field name="location_dest_id" readonly="1"/>
+                                    <field name="notes"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="notes" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Component Transfer Note Tree View -->
+    <record id="view_shop_floor_component_transfer_note_tree" model="ir.ui.view">
+        <field name="name">shop.floor.component.transfer.note.tree</field>
+        <field name="model">shop.floor.component.transfer.note</field>
+        <field name="arch" type="xml">
+            <list string="Component Transfer Notes" decoration-info="state == 'draft'"
+                  decoration-warning="state == 'confirmed'" decoration-success="state == 'done'">
+                <field name="name"/>
+                <field name="workorder_id"/>
+                <field name="production_id"/>
+                <field name="transfer_date"/>
+                <field name="user_id"/>
+                <field name="state" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Component Transfer Note Search View -->
+    <record id="view_shop_floor_component_transfer_note_search" model="ir.ui.view">
+        <field name="name">shop.floor.component.transfer.note.search</field>
+        <field name="model">shop.floor.component.transfer.note</field>
+        <field name="arch" type="xml">
+            <search string="Search Transfer Notes">
+                <field name="name"/>
+                <field name="workorder_id"/>
+                <field name="production_id"/>
+                <field name="user_id"/>
+                <separator/>
+                <filter string="Draft" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Confirmed" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                <filter string="Done" name="done" domain="[('state', '=', 'done')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="State" name="group_state" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter string="Work Order" name="group_workorder" domain="[]" context="{'group_by': 'workorder_id'}"/>
+                    <filter string="Production" name="group_production" domain="[]" context="{'group_by': 'production_id'}"/>
+                    <filter string="Date" name="group_date" domain="[]" context="{'group_by': 'transfer_date'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Component Transfer Line Form View (for inline editing) -->
+    <record id="view_shop_floor_component_transfer_line_form" model="ir.ui.view">
+        <field name="name">shop.floor.component.transfer.line.form</field>
+        <field name="model">shop.floor.component.transfer.line</field>
+        <field name="arch" type="xml">
+            <form string="Transfer Line">
+                <group>
+                    <group>
+                        <field name="product_id"/>
+                        <field name="workorder_id"/>
+                        <field name="quantity_requested"/>
+                        <field name="quantity_transferred"/>
+                        <field name="uom_id"/>
+                    </group>
+                    <group>
+                        <field name="location_src_id"/>
+                        <field name="location_dest_id"/>
+                        <field name="move_id"/>
+                    </group>
+                </group>
+                <field name="notes"/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Component Picker Line Form View (for inline editing) -->
+    <record id="view_shop_floor_component_picker_line_form" model="ir.ui.view">
+        <field name="name">shop.floor.component.picker.line.form</field>
+        <field name="model">shop.floor.component.picker.line</field>
+        <field name="arch" type="xml">
+            <form string="Component Picker Line">
+                <group>
+                    <field name="product_id" readonly="1"/>
+                    <field name="available_quantity" readonly="1"/>
+                    <field name="quantity_to_pick"/>
+                    <field name="uom_id" readonly="1"/>
+                    <field name="location_src_id" readonly="1"/>
+                    <field name="location_dest_id" readonly="1"/>
+                    <field name="source_move_id" invisible="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Component Transfer Note Action -->
+    <record id="action_shop_floor_component_transfer_note" model="ir.actions.act_window">
+        <field name="name">Component Transfer Notes</field>
+        <field name="res_model">shop.floor.component.transfer.note</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_shop_floor_component_transfer_note_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Component Transfer Note!
+            </p>
+            <p>
+                Component Transfer Notes track component picking operations without directly updating stock moves.
+                They provide a formal record of what components were requested and transferred.
+            </p>
+        </field>
+    </record>
+
+</odoo> 

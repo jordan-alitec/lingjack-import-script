@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_picking_list_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <br/>
+                <table style="width: 100%;" class="table table-borderless">
+                    <tr>
+                        <td style="width: 80%;text-align: center;">
+                            <h2 style="color: #1f4e79; padding-left: 40%;">PICKING LIST</h2>
+                        </td>
+
+                        <td style="width: 20%; padding-left: 17%">
+                            <div t-field="o.name"
+                                 t-options="{'widget': 'barcode','symbology': 'QR', 'width': 50, 'height': 50, 'img_style': 'width:100px;height:100px;'}"
+                                 style="margin: 0;">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="row mt8">
+                    <div class="col-6">
+                        <p t-if="o.partner_id and o.partner_id.name">
+                            <span t-field="o.partner_id.name"/>
+                            <span t-field="o.partner_id"
+                                  t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true}"/>
+                        </p>
+                        <p t-elif="o.partner_id and o.partner_id.parent_id and o.partner_id.parent_id.name">
+                            <span t-field="o.partner_id.parent_id.name"/>
+                            <span t-field="o.partner_id"
+                                  t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true}"/>
+                        </p>
+                        <table style="width: 100%;  margin-top: 1px;" class="table table-borderless">
+                            <tr>
+                                <td style="width:1%;padding: 2px 4px;">Project</td>
+                                <td style="width:5%;padding: 2px 4px;">:</td>
+
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.sale_id.project"/>
+                                </td>
+                            </tr>
+                            <tr t-if="o.sale_id.delivery_to_id">
+                                <td style="width:1%;padding: 2px 4px;white-space: nowrap;">Delivery To </td>
+                                <td style="width:5%;padding: 2px 4px;">:</td>
+
+                                <td style="padding: 2px 4px; white-space: nowrap;">
+                                    <span t-field="o.sale_id.delivery_to_id"/>
+                                </td>
+                            </tr>
+
+                        </table>
+
+                    </div>
+                    <div class="col-2"/>
+                    <div class="col-4">
+                        <table style="width: 70%;" class="table table-borderless">
+                            <p>For Store Use Only</p>
+                            <tr>
+                                <td style="padding: 2px 4px;">D/O No.</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px;"> Date Of Order</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <t t-if="o.origin">
+                                        <t t-set="sale_order"
+                                           t-value="o.env['sale.order'].search([('name', '=', o.origin)], limit=1)"/>
+                                        <span>
+                                            <span t-field="sale_order.date_order" t-options='{"widget": "date"}'/>
+                                        </span>
+                                    </t>
+                                    <br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style=" padding: 2px 4px; white-space: nowrap;">Date Of Delivery</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.scheduled_date"  t-options='{"widget": "date"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Your Order No.</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.sale_id"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+                <table class="table table-borderless mt16" t-if="o.move_line_ids and o.move_ids_without_package">
+                    <t t-set="has_barcode" t-value="any(move_line.product_id and move_line.product_id.sudo().barcode or move_line.package_id for move_line in o.move_line_ids)"/>
+                    <t t-set="has_serial_number" t-value="any(move_line.lot_id or move_line.lot_name for move_line in o.move_line_ids)" groups="stock.group_production_lot"/>
+                    <thead>
+                        <tr>
+                            <th name="th_product">
+                                <div align="left"><strong>Product</strong></div>
+                            </th>
+                            <th class="text-end">
+                                <strong>Quantity</strong>
+                            </th>
+                            <th name="th_from" t-if="o.picking_type_id.code != 'incoming'" align="left" groups="stock.group_stock_multi_locations" class="text-center">
+                                <strong>From</strong>
+                            </th>
+                            <th name="th_to" t-if="o.picking_type_id.code != 'outgoing'" groups="stock.group_stock_multi_locations" class="text-start">
+                                <strong>To</strong>
+                            </th>
+                            <th name="th_serial_number" class="text-center" t-if="has_serial_number" style="white-space: nowrap;">
+                                <strong>Lot/Serial Number</strong>
+                            </th>
+                            <th name="th_barcode" class="text-center" t-if="has_barcode" style="white-space: nowrap;">
+                                <strong>Product Barcode</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- In case you come across duplicated lines, ask NIM or LAP -->
+                        <tr t-foreach="o.move_line_ids_without_package.sorted(lambda ml: (ml.location_id.complete_name, ml.location_dest_id.complete_name))" t-as="ml">
+                            <td>
+                                <t t-if="ml.move_id and ml.move_id">
+                                    <span t-field="ml.move_id.description_picking"/>
+                                </t>
+                            </td>
+                            <td class="o_td_quantity text-end">
+                                <span t-field="ml.quantity" class="text-nowrap">3.00</span>
+                                <span t-field="ml.product_uom_id" groups="uom.group_uom">units</span>
+                                <span t-if="ml.move_id.product_packaging_id">
+                                    <span t-if="o.state != 'done'">
+                                        (<span t-field="ml.product_packaging_qty" t-options='{"widget": "integer"}'/> <span t-field="ml.move_id.product_packaging_id.name"/>)
+                                    </span>
+                                    <span t-if="o.state == 'done'">
+                                        (<span t-field="ml.product_packaging_qty" t-options='{"widget": "integer"}'/> <span t-field="ml.move_id.product_packaging_id.name"/>)
+                                    </span>
+                                </span>
+                            </td>
+                            <td t-if="o.picking_type_id.code != 'incoming'" groups="stock.group_stock_multi_locations" class="text-center">
+                                <span t-esc="ml.location_id.display_name">WH/Stock</span>
+                                <t t-if="ml.package_id">
+                                    <span t-field="ml.package_id">Package A</span>
+                                </t>
+                            </td>
+                            <td t-if="o.picking_type_id.code != 'outgoing'" groups="stock.group_stock_multi_locations" class="text-end">
+                                <div>
+                                    <span t-field="ml.location_dest_id">WH/Outgoing</span>
+                                    <t t-if="ml.result_package_id">
+                                        <span t-field="ml.result_package_id">Package B</span>
+                                    </t>
+                                </div>
+                            </td>
+                            <td class=" text-center h6" t-if="has_serial_number">
+                                <span t-if="has_serial_number and (ml.lot_id or ml.lot_name)" t-esc="ml.lot_id.name or ml.lot_name" t-options="{'widget': 'barcode', 'symbology': 'QR', 'width': 400, 'height': 100, 'quiet': 0, 'img_style': 'width:80px;height:80px;'}">
+                                    <div class="bg-light border-1 rounded d-flex flex-column align-items-center justify-content-center px-1 py-2 opacity-75 text-muted text-center">
+                                        (serial barcode)
+                                    </div>
+                                </span>
+                            </td>
+                            <td class="text-center" t-if="has_barcode">
+                                <t t-if="product_barcode != ml.product_id.barcode">
+                                    <span t-if="ml.product_id and ml.product_id.barcode">
+                                        <div t-field="ml.product_id.barcode" t-options="{'widget': 'barcode', 'symbology': 'QR', 'width': 400, 'height': 100, 'quiet': 0, 'img_style': 'width:80px;height:80px;'}">
+                                            <div class="bg-light border-1 rounded d-flex flex-column align-items-center justify-content-center px-1 py-2 opacity-75 text-muted text-center">
+                                                (product barcode)
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <t t-set="product_barcode" t-value="ml.product_id.barcode"/>
+                                </t>
+                            </td>
+                            <tr style="height: 25px;"></tr>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <br/>
+                <table class="table table-borderless" width="100%;">
+                    <tr>
+                        <td style="font-weight: bold;" width="16%;">Remarks</td>
+                        <td width="2%;">:</td>
+                        <td>
+                            <span t-field="o.remarks_do"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;" width="16%;">Remarks (Store)</td>
+                        <td width="2%;">:</td>
+                        <td>
+                            <span t-field="o.note"/>
+                        </td>
+                    </tr>
+                </table>
+
+                <br/>
+                <table class="table table-borderless" style="width: 40%; margin-left:60%; ">
+                    <tr>
+                        <td style="font-weight: bold;">Storeman</td>
+                        <td>:</td>
+                        <td>_______________________</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Sign</td>
+                        <td>:</td>
+                        <td>_______________________</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold;">Time</td>
+                        <td>:</td>
+                        <td>_______________________</td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_picking_list">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_picking_list_document" t-lang="o._get_report_lang()"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_picking_list" model="ir.actions.report">
+        <field name="name">Lingjack Picking List</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_picking_list</field>
+        <field name="report_file">lingjack_print.report_picking_list</field>
+        <field name="print_report_name">'Picking List - %s - %s' % (object.partner_id.name or '',
+            object.name)
+        </field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

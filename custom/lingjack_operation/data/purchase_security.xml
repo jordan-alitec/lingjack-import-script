@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="group_purchaser_procurement" model="res.groups">
+            <field name="name">Procurement</field>
+            <field name="category_id" ref="base.module_category_inventory_purchase"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+    </data>
+</odoo>

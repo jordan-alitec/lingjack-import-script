@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="lingjack_shop_floor.MrpDisplayMenuDialog" t-inherit="mrp_workorder.MrpDisplayMenuDialog"
+       t-inherit-mode="extension">
+        <xpath expr="//button[@name='addComponent']" position="attributes">
+            <attribute name="t-on-click">() => this.callAction('action_pick_component')</attribute>
+            <attribute name="t-on-click">() => this.callAction('action_pick_component')</attribute>
+        </xpath>
+
+        <xpath expr="//div[@class='o_mrp_menu_dialog p-3']" position="inside">
+            <button t-if="props.record.resModel == 'mrp.workorder' and props.record.data.is_last_station_for_production and props.record.data.can_user_mark_done"
+                    class="btn btn-primary p-3 fs-3 w-100 mt-1"
+                    t-on-click="markMoDone"
+                    name="lj_mark_done">
+                Store Finish Goods
+            </button>
+        </xpath>
+
+
+        <!--        Hide all the button from operator, these function only allow the production manager to do so and -->
+        <!--        production manager will be doing it in the production form view   -->
+        <xpath expr="//button[@name='openMO']" position="attributes">
+              <attribute name="style" add="display:none !important;" separator=" "/>
+        </xpath>
+
+        <xpath expr="//button[@name='action_scrap']" position="attributes">
+              <attribute name="style" add="display:none !important;" separator=" "/>
+        </xpath>
+
+        <xpath expr="//button[@name='addByProduct']" position="attributes">
+              <attribute name="style" add="display:none !important;" separator=" "/>
+        </xpath>
+
+        <xpath expr="//button[@name='moveToWorkCenter']" position="attributes">
+              <attribute name="style" add="display:none !important;" separator=" "/>
+        </xpath>
+        <xpath expr="//button[@name='displayInstructionsMenu']" position="attributes">
+              <attribute name="style" add="display:none !important;" separator=" "/>
+        </xpath>
+
+    </t>
+
+     <t t-inherit="mrp_workorder.StockMove" t-inherit-mode="extension">
+        <xpath expr="//li" position="attributes">
+              <attribute name="style" add="display:none !important;" separator=" "/>
+        </xpath>
+    </t>
+</templates> 

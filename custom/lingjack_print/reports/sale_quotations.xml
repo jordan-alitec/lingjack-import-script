@@ -1,0 +1,333 @@
+<odoo>
+    <template id="report_sale_quotation_lingjack_content">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <br/>
+                <h2 style="text-align: center; color: #1f4e79;">SALES QUOTATION</h2>
+
+                <div class="row mt8">
+                    <div class="col-6">
+                        <p t-if="o.partner_id">
+                            <span>To :</span>
+                            <br/>
+                            <span t-field="o.partner_id.name"/>
+                            <span t-field="o.partner_id" t-options="{'widget': 'contact', 'fields': ['address'], 'no_marker': true } "/>
+                        </p>
+                        <p t-else="">
+                            <span t-field="res_company.name"/>
+                        </p>
+
+                        <table class="table table-borderless" style="width: 100%; margin-top: 1px;">
+                            <tr>
+                                <td style="padding: 2px 4px;">Attn</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.attention_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px;">Email</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.attention_id.email"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px;">Subject</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="white-space: nowrap;">
+                                    <span t-field="o.project"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-1"/>
+                    <div class="col-5">
+                        <table class="table table-borderless" style="width: 100%;">
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Quotation No</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;  white-space: nowrap;">
+                                    <span t-field="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Date</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;  white-space: nowrap;">
+                                    <span t-field="o.date_order" t-options='{"widget": "date"}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px; white-space: nowrap;">Terms</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px; white-space: normal; word-wrap: break-word;">
+                                    <t t-if="o.apply_manual_payment_terms and o.manual_payment_terms">
+                                        <t t-esc="o.manual_payment_terms"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-field="o.payment_term_id.name"/>
+                                    </t>
+                                </td>
+                            </tr>
+                            <t t-if="o.incoterm or o.incoterm_location">
+                                <tr>
+                                    <td style="padding: 2px 4px;">Incoterm</td>
+                                    <td style="padding: 2px 4px;">:</td>
+                                    <td style="padding: 2px 4px; white-space: nowrap;">
+                                        <t t-if="o.incoterm">
+                                            <span t-field="o.incoterm.name"/>
+                                        </t>
+                                        <t t-if="o.incoterm and o.incoterm_location">
+                                            ,
+                                        </t>
+                                        <t t-if="o.incoterm_location">
+                                            <span t-field="o.incoterm_location"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td style="padding: 2px 4px;">From</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;white-space: nowrap;">
+                                    <span t-field="o.user_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px 4px;">Delivery</td>
+                                <td style="padding: 2px 4px;">:</td>
+                                <td style="padding: 2px 4px;">
+                                    <span t-field="o.delivery"/>
+                                </td>
+                            </tr>
+
+
+                        </table>
+                    </div>
+                </div>
+
+                <br/>
+                <div>
+                    <p style="margin: 0;">Dear Sir / Mdm,</p>
+                    <p style="margin: 0;">
+                        Thank you for your inquiry. We are pleased to offer our quotation as follows :
+                    </p>
+                </div>
+                <br/>
+
+                <!-- Is there a discount on at least one line? -->
+                <t t-set="lines_to_report" t-value="o._get_order_lines_to_report()"/>
+                <t t-set="display_discount" t-value="any(l.discount for l in lines_to_report)"/>
+
+                <div class="oe_structure"></div>
+                <table class="o_has_total_table table o_main_table table-borderless">
+                    <!-- In case we want to repeat the header, remove "display: table-row-group" -->
+                    <thead style="display: table-row-group">
+                        <tr>
+                            <th style="text-align: center;">S/N</th>
+                            <th name="th_description" class="text-start">Description</th>
+                            <th name="th_quantity" class="text-end text-nowrap">Quantity</th>
+                            <th name="th_priceunit" class="text-end text-nowrap">Unit Price</th>
+                            <th name="th_discount" t-if="display_discount" class="text-end">
+                                <span>Disc.%</span>
+                            </th>
+<!--                            <th name="th_taxes" class="text-end">Taxes</th>-->
+                            <th name="th_subtotal" class="text-end">
+                                <span>Amount</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="sale_tbody">
+
+                        <t t-set="current_subtotal" t-value="0"/>
+
+                        <t t-foreach="lines_to_report" t-as="line">
+
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal"/>
+
+                            <tr
+                                    t-att-class="'fw-bold o_line_section' if (
+                                line.display_type == 'line_section'
+                                or line.product_type == 'combo'
+                            )
+                            else 'fst-italic o_line_note' if line.display_type == 'line_note'
+                            else ''"
+                            >
+                                <td style="text-align: center;">
+                                    <span t-field="line.sequence_number"/>
+                                </td>
+                                <t t-if="not line.display_type and line.product_type != 'combo'">
+                                    <td name="td_name">
+                                        <span t-field="line.name">Bacon Burger</span><br/>
+                                        <t t-if="line.delivery">
+                                            Delivery : <span t-field="line.delivery"/>
+                                        </t>
+                                    </td>
+                                    <td name="td_quantity" class="o_td_quantity text-end" style="white-space: nowrap;">
+                                        <span t-field="line.product_uom_qty" class="text-nowrap">3</span>
+                                        <span t-field="line.product_uom">units</span>
+                                        <span t-if="line.product_packaging_id">
+                                            (
+                                            <span t-field="line.product_packaging_qty"
+                                                  t-options='{"widget": "integer"}'/>
+                                            <span t-field="line.product_packaging_id"/>)
+                                        </span>
+                                    </td>
+                                    <td name="td_priceunit" class="text-end text-nowrap">
+                                        <span t-field="line.price_unit">3</span>
+                                    </td>
+                                    <td t-if="display_discount" class="text-end">
+                                        <span t-field="line.discount">-</span>
+                                    </td>
+<!--                                    <t t-set="taxes"-->
+<!--                                       t-value="', '.join([(tax.invoice_label or tax.name) for tax in line.tax_id])"/>-->
+<!--                                    <td name="td_taxes"-->
+<!--                                        t-attf-class="text-end {{ 'text-nowrap' if len(taxes) &lt; 10 else '' }}">-->
+<!--                                        <span t-out="taxes">Tax 15%</span>-->
+<!--                                    </td>-->
+                                    <td t-if="not line.is_downpayment" name="td_subtotal"
+                                        class="text-end o_price_total">
+                                        <span t-field="line.price_subtotal">27.00</span>
+                                    </td>
+                                </t>
+                                <t t-elif="line.display_type == 'line_section' or line.product_type == 'combo'">
+                                    <td name="td_section_line" colspan="99">
+                                        <span t-field="line.name">A section title</span>
+                                    </td>
+                                    <t t-set="current_section" t-value="line"/>
+                                    <t t-set="current_subtotal" t-value="0"/>
+                                </t>
+                                <t t-elif="line.display_type == 'line_note'">
+                                    <td name="td_note_line" colspan="99">
+                                        <span t-field="line.name">A note, whose content usually applies to the section
+                                            or product above.
+                                        </span>
+                                    </td>
+                                </t>
+                            </tr>
+
+                            <t
+                                    t-if="current_section and (
+                                line_last
+                                or lines_to_report[line_index+1].display_type == 'line_section'
+                                or lines_to_report[line_index+1].product_type == 'combo'
+                                or (
+                                    line.combo_item_id
+                                    and not lines_to_report[line_index+1].combo_item_id
+                                )
+                            ) and not line.is_downpayment"
+                            >
+                                <t t-set="current_section" t-value="None"/>
+                                <tr class="is-subtotal text-end">
+                                    <td name="td_section_subtotal" colspan="99">
+                                        <strong class="mr16">Subtotal</strong>
+                                        <span
+                                                t-out="current_subtotal"
+                                                t-options='{"widget": "monetary", "display_currency": doc.currency_id}'
+                                        >31.05
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+                <div class="clearfix" name="so_total_summary">
+                    <div id="total" class="row mt-n3" name="total">
+                        <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                            <table class="o_total_table table table-borderless">
+                                <!-- Tax totals -->
+                                <t t-call="sale.document_tax_totals">
+                                    <t t-set="tax_totals" t-value="o.tax_totals"/>
+                                    <t t-set="currency" t-value="o.currency_id"/>
+                                </t>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure"></div>
+
+                <div>
+                    <table class="table table-borderless">
+                        <tbody>
+                            <br/>
+                            <tr>
+                                <td style="padding: 2px;white-space: nowrap;">Note :</td>
+                                <td style="padding: 2px;">1) THE ABOVE QUOTE IS FOR SUPPLY ONLY UNLESS OTHERWISE
+                                    SPECIFIED.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;"></td>
+                                <td style="padding: 2px;">2) PRICE QUOTED IS VALID FOR THE ABOVE MENTIONED ORDER AND
+                                    QTY AS A TOTAL PACKAGE ONLY.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;"></td>
+                                <td style="padding: 2px;">3) ITEM WILL BE SUPPLIED WITH OUR STANDARD PACKAGING,
+                                    ADDITIONAL COST WILL BE INCURRED FOR ANY SPECIAL PACKING REQUIRED. PLEASE CHECK
+                                    WITH OUR SALES PERSONNEL FOR CLARIFICATION.
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;"></td>
+                                <td style="padding: 2px;">4) PLEASE NOTE THAT NO CANCELLATION IS ALLOWED.</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 2px;"></td>
+                                <td style="padding: 2px;">5) FOR STANDARD ITEM, WE WILL CHARGE SGD 50 FOR
+                                    ADMINISTRATION WORK AND GOODS MUST BE RETURNED IN ORIGINAL CONDITION. FOR
+                                    CUSTOMIZED ITEM, STRICTLY NO RETURN ALLOWED.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br/>
+                <span t-field="o.note"/>
+                <br/>
+<!--                <div>This is a computer generated document. No signature is required</div>-->
+                <table style="width: 100%;" class="table table-borderless">
+                    <tr>
+                        <td style="vertical-align: bottom; padding-bottom: 2px;">
+                            <span>This is a computer generated document. No signature is required.</span>
+                            <br/>
+                        </td>
+
+                        <td style="vertical-align: bottom; padding-bottom: 2px;">
+                            <strong>Buyer</strong>
+                            <br/><br/>
+                            <br/><br/>
+                            <hr style="margin: 2px 0;border-top: 2px solid black;"/>
+                            <span t-field="o.partner_id.name"/><br/>
+                            Name :
+                            <br/>
+                            Date :
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_sale_quotation_lingjack">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_sale_quotation_lingjack_content"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_sale_quotation_lingjack" model="ir.actions.report">
+        <field name="name">Lingjack Sale Quotation</field>
+        <field name="model">sale.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_sale_quotation_lingjack</field>
+        <field name="report_file">lingjack_print.report_sale_quotation_lingjack</field>
+        <field name="print_report_name">'Lingjack Quotation - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

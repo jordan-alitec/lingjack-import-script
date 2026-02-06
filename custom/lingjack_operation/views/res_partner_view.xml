@@ -1,0 +1,129 @@
+<odoo>
+    <record id="app_view_partner_form" model="ir.ui.view">
+        <field name="name">app.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='function']" position="after">
+                <field name="fax"/>
+            </xpath>
+
+            <xpath expr="//group[2]/field[@name='category_id']" position="after">
+                <div name="options" position="inside">
+                    <span class="d-inline-flex">
+                        <field name="is_share_contact"/>
+                        <label for="is_share_contact"/>
+                    </span>
+                </div>
+            </xpath>
+
+            <xpath expr="//page[@name='sales_purchases']/group/group/field[@name='property_product_pricelist']"
+                   position="after">
+                <field name="customer_category_id"/>
+            </xpath>
+
+            <xpath expr="//page[@name='accounting']//group[@name='credit_limits']" position="inside">
+                <field name="credit_limit_access" invisible="1" />
+            </xpath>
+
+            <xpath expr="//page[@name='accounting']//group[@name='credit_limits']/div[@class='o_row']" position="after">
+                <field name="limit_balance" readonly="1"/>
+                <field name="project_limit"/>
+                <field name="account_limit"/>
+            </xpath>
+
+            <xpath expr="//field[@name='credit_limit']" position="attributes">
+                <attribute name="invisible">credit_limit_access == False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='use_partner_credit_limit']" position="attributes">
+                <attribute name="invisible">credit_limit_access == False</attribute>
+            </xpath>
+            <xpath expr="//field[@name='limit_balance']" position="attributes">
+                <attribute name="invisible">credit_limit_access == False</attribute>
+            </xpath>
+            <xpath expr="//page[@name='accounting']//group[@name='accounting_entries']" position="inside">
+                <span class="d-inline-flex">
+                    <field name="bad_debt"/>
+                    <label for="bad_debt"/>
+                </span>
+            </xpath>
+
+
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page name="follow-up" string="Follow Up Remarks">
+                    <group>
+                        <group string="Sales Remarks">
+                            <field name="sales_remark"  placeholder="Sales Remarks..." nolabel="1"/>
+                        </group>
+                        <group string="Account Remarks">
+                            <field name="account_remark" placeholder="Account Remarks..." nolabel="1"/>
+                        </group>
+                    </group>
+                </page>
+                <page name="vendor_rating" string="Vendor Rating">
+                    <field name="vendor_rating" placeholder="Vendor Rating..."/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_customer_category_list" model="ir.ui.view">
+        <field name="name">customer.category.list</field>
+        <field name="model">customer.category</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+                <field name="company_ids" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_customer_category" model="ir.actions.act_window">
+        <field name="name">Customer Category</field>
+        <field name="res_model">customer.category</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Customer Category here.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_partner_sale_purchase_form" model="ir.ui.view">
+        <field name="name">res.partner.sale.purchase.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <group name="sale" position="inside">
+                <field name="supplies_sticker"/>
+                <field name="hose_reel_sticker"/>
+            </group>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_customer_category"
+              name="Customer Category"
+              parent="contacts.res_partner_menu_config"
+              action="action_customer_category"
+              sequence="2"/>
+
+    <record id="customer_statements_tree_view_inherit" model="ir.ui.view">
+        <field name="name">customer.statements.list.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="account_followup.customer_statements_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='total_overdue']" position="after">
+                <field name="not_due" widget="monetary"
+                       optional="hide"/>
+                <field name="currency_id"/>
+            </xpath>
+            <xpath expr="//field[@name='followup_line_id']" position="after">
+                <field name="credit_limit" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

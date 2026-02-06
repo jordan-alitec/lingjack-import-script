@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Shop Floor Settings in Manufacturing Configuration -->
+        <record id="res_config_settings_view_form_inherit_lingjack_shop_floor" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.lingjack.shop.floor</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="mrp.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//app[@name='mrp']" position="inside">
+                        <block title="Notification Settings" name="shop_floor_notification_container">
+                              <setting id="shop_floor_component_pick_notifications"
+                                     string="Component Pick Notifications"
+                                     title="Configure employee to notify when component picking is created"
+                                     help="Select employee who will receive notifications when component picking is created for manufacturing orders">
+                                <field name="shop_floor_component_pick_notify_user_ids"
+                                       widget="many2many_tags"
+                                       placeholder="Select employee to notify..."/>
+                            </setting>
+
+
+                            <setting id="shop_floor_component_pick_operation_Type"
+                                     string="Component Transfer Operation Type"
+                                     title="Default operation type used when creating component transfer notes from products.">
+                                   <field name="component_transfer_picking_type_id"
+                                       placeholder="Select operation type..."/>
+                            </setting>
+                            
+                            <setting id="cs_mo_confirm_notifications" 
+                                     string="CS Notifications: MO Confirmation"
+                                     title="Send notifications to CS in-charge when Manufacturing Orders are confirmed"
+                                     help="When enabled, CS in-charge users from related sale orders will be notified when MO is confirmed">
+                                <field name="enable_cs_mo_confirm_notifications"/>
+                            </setting>
+                            
+                            <setting id="cs_mo_done_notifications" 
+                                     string="CS Notifications: MO Completion"
+                                     title="Send notifications to CS in-charge when Manufacturing Orders are completed"
+                                     help="When enabled, CS in-charge users from related sale orders will be notified when MO is completed">
+                                <field name="enable_cs_mo_done_notifications"/>
+                            </setting>
+                            
+                            <setting id="auto_generate_mo_lot_numbers" 
+                                     string="Auto-Generate MO Lot Numbers"
+                                     title="Automatically generate lot/serial numbers for manufactured products"
+                                     help="When enabled, lot/serial numbers will be automatically generated when MO is confirmed for products requiring tracking">
+                                <field name="auto_generate_mo_lot_numbers"/>
+                            </setting>
+                        </block>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

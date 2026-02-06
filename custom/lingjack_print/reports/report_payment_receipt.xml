@@ -1,0 +1,219 @@
+<odoo>
+    <template id="report_payment_receipt_document_inherited" inherit_id="account.report_payment_receipt_document"
+              primary="True">
+        <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)"/>
+                <!-- A simple header for sale quotation -->
+                <t t-set="company" t-value="o.company_id"/>
+
+                <br/>
+                <table width="100%" cellspacing="0" cellpadding="0" class="table-borderless">
+                    <tr>
+                        <td width="20%"/>
+                        <td style="width:36%;">
+                            <h2 class="text-left">
+                                <span style="font-size: 28px;">
+                                    <b t-if="o.payment_type == 'inbound'">OFFICIAL RECEIPT</b>
+                                    <b t-else="">PAYMENT VOUCHER</b>
+                                </span>
+                            </h2>
+                        </td>
+                    </tr>
+                </table>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <table width="100%" cellspacing="0" cellpadding="0" class="table-borderless"
+                           style="border-spacing: 0; border-collapse: collapse; table-layout: fixed;border:0">
+                        <tr>
+                            <td style="width:50%;padding:15px">
+                                <t t-if="o.partner_id.name">
+                                    <span t-field="o.partner_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="o.partner_id.parent_id"
+                                          t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                </t>
+                            </td>
+                            <td style="width:36%;padding:15px">
+                                <table width="100%" style="border:0px solid black">
+                                    <tr>
+                                        <td width="58%"
+                                            style="border:0px solid white;padding:0px;margin:0px">
+                                            <strong t-if="o.payment_type == 'inbound'">Receipt Number</strong>
+                                            <strong t-else="o.payment_type == 'outbound'">Voucher No.</strong>
+                                        </td>
+                                        <td width="3%"
+                                            style="border:0px solid white;padding:0px;margin:0px">:
+                                        </td>
+                                        <td width=""
+                                            style="border:0px solid white;padding:0px;margin:0px">
+                                            <span t-field="o.name"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">
+                                            <strong>Date</strong>
+                                        </td>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">:</td>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">
+                                            <t t-if="o.date">
+                                                <span t-esc="o.date.strftime('%d/%m/%Y')"/>
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">
+                                            <strong>Bank</strong>
+                                        </td>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">:</td>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">
+                                            <span t-field="o.journal_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">
+                                            <strong>Mode of Payment</strong>
+                                        </td>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">:</td>
+                                        <td style="border:0px solid white;padding:0px;margin:0px">
+                                            <span t-esc="o.receipt_category_id.name"/> <span t-esc="o.cheque_number"/>
+                                        </td>
+                                    </tr>
+                                    <!--                                    <tr>-->
+                                    <!--                                        <td style="border:0px solid white;padding:0px;margin:0px">-->
+                                    <!--                                            <strong>Currency</strong>-->
+                                    <!--                                        </td>-->
+                                    <!--                                        <td style="border:0px solid white;padding:0px;margin:0px">:</td>-->
+                                    <!--                                        <td style="border:0px solid white;padding:0px;margin:0px">-->
+                                    <!--                                            <span t-field="o.currency_id"/>-->
+                                    <!--                                        </td>-->
+                                    <!--                                    </tr>-->
+                                    <t t-set="crate" t-value="o.currency_id.with_context(date= o.move_id.invoice_date).rate"/>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <t t-set="partials" t-value="o.move_id._get_reconciled_invoices_partials()[0]"/>
+                    <t t-set="invoices" t-value="{partial[2].move_id for partial in partials}"/>
+                    <!-- Check if invoices include different currencies -->
+                    <t t-foreach="invoices" t-as="inv">
+                        <t t-if="any(inv.currency_id != par[2].currency_id for par in inv._get_reconciled_invoices_partials()[0])"
+                           t-set="otherCurrency" t-value="True"/>
+                    </t>
+                    <table class="table" style="width: 100%; border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <th style="border: 1px solid black; text-align: left; padding: 5px;">Invoice Date</th>
+                                <th style="border: 1px solid black; text-align: left; padding: 5px;">Invoice Number</th>
+                                <th style="border: 1px solid black; text-align: right; padding: 5px;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-set="total_par" t-value="0"/>
+                            <t t-foreach="invoices" t-as="inv">
+                                <t t-if="inv.move_type != 'entry'">
+                                    <t t-foreach="inv._get_reconciled_invoices_partials()[0]" t-as="par">
+                                        <tr t-if="par[2].payment_id.id == o.id">
+                                            <td style="border: 1px solid black; text-align: left; padding: 5px;">
+                                                <span t-field="inv.invoice_date"/>
+                                            </td>
+                                            <td style="border: 1px solid black; text-align: left; padding: 5px;">
+                                                <span t-if="o.payment_type == 'outbound'" t-field="inv.ref"/>
+                                                <span t-else="" t-field="inv.name"/>
+                                            </td>
+                                            <t t-set="payment" t-value="par[2].move_id"/>
+                                            <t t-set="currencyInvoice" t-value="inv.currency_id"/>
+                                            <t t-set="total_par" t-value="total_par + par[1]"/>
+                                            <td style="border: 1px solid black; text-align: right; padding: 5px;">
+                                                <span t-esc="par[1]"
+                                                      t-options="{'widget': 'monetary', 'display_currency': currencyInvoice}"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2" style="border: 1px solid black; text-align: left; padding: 5px;">
+                                    <strong>Memo :</strong>
+                                    <span t-field="o.memo"/>
+                                </td>
+                                <td style="border: 1px solid black; text-align: right; padding: 5px;">
+                                    <strong>
+                                        <span t-field="o.amount"/>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+
+                    <br/>
+                    <div t-if="o.payment_type == 'inbound'">
+                        This is computer generated receipt. No signature required.
+                    </div>
+
+                    <t t-if="o.payment_type == 'outbound'">
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-3">
+                                <strong>Prepared By :</strong>
+                                <div style="margin-top: 20px;">
+                                    <span t-field="o.create_uid"/>
+                                </div>
+                            </div>
+                            <div class="col-3" style="margin-left: 50px;">
+                                <strong>Checked By :</strong>
+                                <div style="margin-top: 20px;">
+                                    <span t-field="o.verified_by_1"/>
+                                </div>
+                                <div style="margin-top: 10;">
+                                    <span t-field="o.verified_by_2"/>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <strong>Approved By :</strong>
+                                <div style="margin-top: 20px;">
+                                    <span t-field="o.approved_by_1"/>
+                                </div>
+                                <div style="margin-top: 10;">
+                                    <span t-field="o.approved_by_2"/>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <strong>Received By :</strong>
+                                <div style="margin-top: 60px;">
+                                    <span>_________________________</span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+
+
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="report_payment_receipt_inherit">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang or o.company_id.partner_id.lang"/>
+                <t t-call="lingjack_print.report_payment_receipt_document_inherited" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="report_payment_receipt_inherit_a5">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang or o.company_id.partner_id.lang"/>
+                <t t-call="lingjack_print.report_payment_receipt_document_inherited" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

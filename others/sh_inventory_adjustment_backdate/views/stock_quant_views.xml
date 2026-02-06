@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- stock.quant inherit list view -->
+    <record id="view_stock_quant_tree_inventory_editable" model="ir.ui.view">
+        <field name="name">stock.quant.inherit.view.list</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable" />
+        <field name="arch" type="xml">
+            <field name="inventory_diff_quantity" position="after">
+                <field name="sh_backdate" />
+                <field name="is_remark_mandatory" column_invisible="1" />
+                <field name="remarks_for_inventory_adj"
+                    required="is_remark_mandatory == True and sh_backdate != False" />
+            </field>
+        </field>
+    </record>
+</odoo>

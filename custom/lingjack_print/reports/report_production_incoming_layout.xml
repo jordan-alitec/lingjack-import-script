@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- A4 paper with 5mm margins for Production Incoming Label -->
+    <record id="paperformat_a4_5mm" model="report.paperformat">
+        <field name="name">A4 5mm Margins</field>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">5</field>
+        <field name="margin_right">5</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="css_margins" eval="True"/>
+    </record>
+    <template id="report_production_incoming_label_template" name="Production Incoming Label">
+         <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="mt-1" style="font-size:10pt; margin-bottom:5px;">
+                     <table class="table table-borderless" style="width:100%; border-collapse:collapse;">
+                        <tr>
+                            <td style="width:70%; text-align:right;">
+                                <div style="font-size:16pt; font-weight:700;">Production Incoming Label</div>
+                            </td>
+                            <td style="width:5%;"/>
+                            <td style="width:25%; text-align:left; vertical-align:top; padding-left:5px;">
+                                <div>Print Date : <span t-esc="time.strftime('%Y-%m-%d')"/></div>
+                                <div>Print Time : <span t-esc="time.strftime('%H:%M:%S')"/></div>
+                            </td>
+
+                        </tr>
+                    </table>
+                    <table class="table table-borderless" style="width:100%; font-size:14px !important; margin-top:6px;">
+                        <tbody>
+                            <tr>
+                                <!-- LEFT: Com No QR -->
+                                <td width="25%" style="text-align:left;">
+                                    <div style="margin-bottom:2px; vertical-align:top;">
+                                        Com No :
+                                        <img t-if="o.get('product_code_qr')" t-out="o.get('product_code_qr')" t-options="{'widget': 'barcode', 'symbology': 'QR',                                      'width': 100, 'height': 100,                                      'img_style': 'width: 100px; height: 100px;'}"/>
+                                    </div>
+                                </td>
+
+                                <td width="50%" style="text-align:center;">
+                                    <div style="display:inline-block; text-align:left;">
+                                    <table class="table table-borderless" style="font-size:14px !important;">
+                                        <tr>
+                                            <td width="45%">Sales Order Number</td>
+                                            <td width="5%">:</td>
+                                            <td width="50%">
+                                                <span t-esc="o.get('sale_order_number')"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PWO Number</td>
+                                            <td>:</td>
+                                            <td>
+                                                <span t-esc="o.get('pwo_number')"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customer Name</td>
+                                            <td>:</td>
+                                            <td>
+                                                <span t-esc="o.get('customer_name')"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Project Name</td>
+                                            <td>:</td>
+                                            <td>
+                                                <span t-esc="o.get('project_name')"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+
+                            <td width="25%" style="text-align:right;">
+                                <div style="margin-bottom:2px; vertical-align:top;">
+                                    PWO No :
+                                    <img t-if="o.get('pwo_number_qr')" t-out="o.get('pwo_number_qr')" t-options="{'widget': 'barcode', 'symbology': 'QR',                                      'width': 100, 'height': 100,                                      'img_style': 'width: 100px; height: 100px;'}"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                    <div name="product_code" style="margin:6px 0 2px 0;">
+                        <span style="font-size:26pt; font-weight:700;" t-esc="o.get('product_default_code')"/>
+                    </div>
+                    <table style="width:100%; border-collapse:collapse;font-size:14px !important;" border="1">
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">#</th>
+                                <th style="text-align:center;">Com No.</th>
+                                <th style="text-align:center;">Description</th>
+                                <th style="text-align:center;">Planned Qty</th>
+                                <th style="text-align:center;">QC Checked &amp; Passed Qty</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align:center;">1</td>
+                                <td style="padding-left: 3px; text-align:center;"><span t-esc="o.get('product_default_code')"/></td>
+                                <td style="padding-left: 3px; text-align:center;"><span t-esc="o.get('product_name')"/></td>
+                                <td style="padding-left: 3px; text-align:center;"><span t-esc="o.get('planned_qty')"/></td>
+                                <td style="padding-left: 3px; text-align:center;"/>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+
+                    <div id="notes" style="font-size:10pt;">
+                        <div>Remarks : <span t-esc="o.get('remark')"/></div>
+                        <div>Special Instruction : <span t-esc="o.get('remark')"/></div>
+                    </div>
+                     <br/>
+                        <br/>
+                    <div name="mo_name" t-if="o.get('pwo_number')" style="margin-top:14px !important;">
+                        <span style="font-size:26pt; font-weight:700;" t-esc="o.get('pwo_number')"/>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_production_incoming_label" model="ir.actions.report">
+        <field name="name">Production In Stock Label</field>
+        <field name="model">mrp.production</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_production_incoming_label_template</field>
+        <field name="report_file">lingjack_print.report_production_incoming_label_template</field>
+        <field name="print_report_name">'Production Incoming Labels - %s' % (object.name)</field>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="lingjack_print.paperformat_a4_5mm"/>
+    </record>
+</odoo>

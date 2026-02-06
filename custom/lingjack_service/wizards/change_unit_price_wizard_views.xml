@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Change Unit Price Wizard Form View -->
+        <record id="view_sale_order_line_change_unit_price_wizard_form" model="ir.ui.view">
+            <field name="name">sale.order.line.change.unit.price.wizard.form</field>
+            <field name="model">sale.order.line.change.unit.price.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Change Unit Price">
+                    <group>
+                        <group>
+                            <field name="sale_order_line_id" invisible="1"/>
+                            <field name="price_unit" 
+                                   string="Unit Price"
+                                   class="o_field_monetary"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="action_save_price" 
+                                string="Save" 
+                                type="object" 
+                                class="btn-primary"/>
+                        <button string="Cancel" 
+                                class="btn-secondary" 
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

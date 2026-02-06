@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- QR Generation Wizard Form View -->
+    <record id="view_qr_generation_wizard_form" model="ir.ui.view">
+        <field name="name">qr.generation.wizard.form</field>
+        <field name="model">qr.generation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generate Service QR Codes">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Generate Service QR Codes</h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="generation_type" widget="radio" options="{'horizontal': true}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="start_sequence_input" required="1"/>
+                        </group>
+                        <group>
+                            <field name="end_sequence_input" 
+                                   invisible="generation_type != 'range'"
+                                   required="generation_type == 'range'"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="quantity" 
+                                   invisible="generation_type != 'quantity'"
+                                   required="generation_type == 'quantity'"/>
+                        </group>
+                    </group>
+                    
+                    <div class="alert alert-info" role="alert">
+                        <strong>Instructions:</strong>
+                        <ul>
+                            <li><strong>By Range:</strong> Specify start and end sequence numbers</li>
+                            <li><strong>By Quantity:</strong> Specify start sequence and quantity to generate</li>
+                        </ul>
+                    </div>
+                </sheet>
+                <footer>
+                    <button name="action_generate_qr_codes" 
+                            string="Generate QR Codes" 
+                            type="object" 
+                            class="btn-primary"/>
+                    <button string="Cancel" 
+                            class="btn-secondary" 
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- QR Generation Wizard Action -->
+    <record id="action_qr_generation_wizard" model="ir.actions.act_window">
+        <field name="name">Generate Service QR</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">qr.generation.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+</odoo>

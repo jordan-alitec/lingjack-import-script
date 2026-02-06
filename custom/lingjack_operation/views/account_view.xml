@@ -1,0 +1,394 @@
+<odoo>
+    <record id="view_move_form_inherit_shipping_details" model="ir.ui.view">
+        <field name="name">account.move.form.shipping.details</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_verify" type="object" string="Verify" class="btn-primary" invisible="is_verified"/>
+                <button name="action_approve" type="object" string="Approve" class="btn-primary" invisible="approve"/>
+            </xpath>
+
+            <xpath expr="//group[@name='sale_info_group']/field[@name='delivery_date']" position="after">
+                <field name="approve"/>
+                <field name="approved_by" options="{'no_create': True}" readonly="1"/>
+                <field name="approved_on" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//page[@id='other_tab_entry']//field[@name='checked']" position="after">
+                    <field name="is_verified" readonly="1"/>
+                    <field name="verified_by" options="{'no_create': True}" readonly="1"/>
+                    <field name="verified_on" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='delivery_date']" position="after">
+                <field name="manual_payment_terms"/>
+                <field name="cs_in_charge_id"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="cn_reason_id"/>
+            </xpath>
+            <xpath expr="//page[@name='other_info']/group[@id='other_tab_group']/group[@name='sale_info_group']/field[@name='partner_bank_id']" position="attributes">
+                <attribute name="domain">
+                    [('partner_id.ref_company_ids', 'parent_of', company_id), ('currency_id', '=', currency_id)]
+                </attribute>
+            </xpath>
+
+
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <div name="options" position="inside">
+                    <span class="d-inline-flex">
+                        <field name="paid"/>
+                        <label for="paid"/>
+                    </span>
+                </div>
+                <field name="paid_by_id"/>
+            </xpath>
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="purchaser_type"/>
+                <field name="purchase_type_id"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']//field[@name='quantity']" position="before">
+                <field name="sale_order_ids"  widget="many2many_tags"/>
+                <field name="purchase_order_ids"  widget="many2many_tags"/>
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']//field[@name='product_id']" position="after">
+                <field name="product_id_domain" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='invoice_line_ids']//field[@name='product_id']" position="attributes">
+                <attribute name="domain">product_id_domain</attribute>
+            </xpath>
+
+
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Shipping Details">
+                    <group>
+                        <group>
+                            <field name="person_incharge_id"/>
+                            <field name="consignee_id"/>
+                            <field name="consignee_contacts_id"/>
+                            <field name="hr_employee_job_id" invisible="1"/>
+                            <field name="shipment_date"/>
+                            <field name="forwarder"/>
+                            <field name="forwarder_contact" invisible="1"/>
+                            <field name="attention_id"/>
+                           <field name="port_loading_id"/>
+                            <field name="port_discharge_id"/>
+                            <field name="etd_origin"/>
+                            <field name="eta_destination"/>
+                            <field name="container"/>
+                            <field name="country_of_origin_id" widget="many2many_tags"/>
+                            <field name="project"/>
+                        </group>
+                        <group>
+                            <field name="vessel_name"/>
+                            <field name="lc_no"/>
+                            <field name="no_of_package"/>
+                            <field name="seal_no"/>
+                            <field name="container_no"/>
+                            <label for="packaging_gross_weight"/>
+                            <div class="o_row" name="packaging_gross_weight">
+                                <field name="packaging_gross_weight" class="oe_inline"/>
+                                <div style="width: 10%;">
+                                    <span>kg</span>
+                                </div>
+                            </div>
+                            <label for="sub_total_net_weight"/>
+                            <div class="o_row" name="sub_total_net_weight">
+                                <field name="sub_total_net_weight" class="oe_inline"/>
+                                <div style="width: 10%;">
+                                    <span>kg</span>
+                                </div>
+                            </div>
+                            <label for="net_total"/>
+                            <div class="o_row" name="net_total">
+                                <field name="net_total" class="oe_inline"/>
+                                <div style="width: 10%;">
+                                    <span>kg</span>
+                                </div>
+                            </div>
+                            <field name="manufacture_year_id"/>
+                            <field name="remarks" widget="html" placeholder="Write Help in remarks"/>
+                            <field name="packing_details" widget="html" placeholder="Write Packing Details"/>
+                            <field name="packing_list_title" widget="html" placeholder="Write Packing Details"/>
+                            <field name="invoice_remarks" placeholder="Write Invoice Remarks Details"/>
+                            <field name="shipper_id"/>
+                            <field name="bill_of_lading_no"/>
+                            <field name="our_ref_no"/>
+                            <field name="coo_chamber_id"/>
+                        </group>
+                        <group>
+                            <field name="certificate_no"/>
+                            <button name="do_generate_certificate_no"
+                                    string="Generate Certificate No"
+                                    type="object"
+                                    class="btn-primary"
+                                    modifire="{'readonly': [('partner_id','=',False)]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description_of_goods"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_move_form_inherit_add_fields_after_tax" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.after.tax</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@id='aml_tab']//field[@name='line_ids']//list//field[@name='debit']" position="before">
+                <field name="revenue_amount" optional="show"
+                       column_invisible="context.get('default_move_type') != 'out_invoice'"/>
+                <field name="cost_amount" optional="show"
+                       column_invisible="context.get('default_move_type') != 'out_invoice'"/>
+                <field name="gross_profit" optional="show"
+                       column_invisible="context.get('default_move_type') != 'out_invoice'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_manufacture_year_list" model="ir.ui.view">
+        <field name="name">manufacture.year.list</field>
+        <field name="model">manufacture.year</field>
+        <field name="arch" type="xml">
+            <list string="Years" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_manufacture_year" model="ir.actions.act_window">
+        <field name="name">Years of Manufacture</field>
+        <field name="res_model">manufacture.year</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available years of manufacture here.
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_account_config" name="Year" parent="account.menu_finance_configuration" sequence="1"/>
+
+    <menuitem id="menu_shipment_year"
+              name="Years of Manufacture"
+              parent="menu_account_config"
+              action="action_manufacture_year"/>
+
+
+    <record id="view_port_port_list" model="ir.ui.view">
+        <field name="name">port.port.list</field>
+        <field name="model">port.port</field>
+        <field name="arch" type="xml">
+            <list string="Port Name" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="view_cn_reason_list" model="ir.ui.view">
+        <field name="name">cn.reason.list</field>
+        <field name="model">cn.reason</field>
+        <field name="arch" type="xml">
+            <list string="CN Reason" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_cn_reason" model="ir.actions.act_window">
+        <field name="name">CN Reason</field>
+        <field name="res_model">cn.reason</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available CN Reason here.
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="cn_reason_menu_account_config" name="CN Reason" parent="account.menu_finance_configuration"
+              sequence="1"/>
+
+    <menuitem id="menu_cn_reason"
+              name="CN Reason"
+              parent="cn_reason_menu_account_config"
+              action="action_cn_reason"/>
+
+
+
+    <record id="action_port_port" model="ir.actions.act_window">
+        <field name="name">Port Name</field>
+        <field name="res_model">port.port</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add Port here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_port"
+              name="Port List"
+              parent="account.account_invoicing_menu"
+              action="action_port_port"/>
+
+
+    <record id="view_account_asset_form_inherit_custom" model="ir.ui.view">
+        <field name="name">account.asset.form.inherit.custom</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_verify" type="object" string="Verify" class="btn-primary" invisible="is_verified"/>
+                <button name="action_approve" type="object" string="Approve" class="btn-primary" invisible="approve"/>
+            </xpath>
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Asset Information">
+                    <group>
+                        <group>
+                            <field name="asset_code"/>
+                            <field name="location_id"/>
+                            <field name="models_id"/>
+                            <field name="user_id"/>
+                            <field name="remarks"/>
+                        </group>
+                    </group>
+                </page>
+
+                <page string="Acknowledgement">
+                    <group>
+                        <group>
+                            <field name="approve"/>
+                            <field name="approved_by" options="{'no_create': True}" readonly="1"/>
+                            <field name="approved_on" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="is_verified" readonly="1"/>
+                            <field name="verified_by" options="{'no_create': True}" readonly="1"/>
+                            <field name="verified_on" readonly="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_payment_form_inherit_approval_verify" model="ir.ui.view">
+        <field name="name">account.payment.form.inherit.approve.verify</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_verify_1" string="Verify 1" type="object"
+                        class="btn-primary" invisible="is_verified_1"/>
+                <button name="action_verify_2" string="Verify 2" type="object"
+                        class="btn-primary" invisible="is_verified_2"/>
+                <button name="action_approve_1" string="Approval 1" type="object"
+                        class="btn-secondary"  invisible="is_approved_1"/>
+                <button name="action_approve_2" string="Approval 2" type="object"
+                        class="btn-secondary" invisible="is_approved_2"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <group>
+                    <group string="VERIFICATION">
+                        <field name="is_verified_1"/>
+                        <field name="verified_by_1"/>
+                        <field name="verified_on_1"/>
+
+                        <field name="is_verified_2"/>
+                        <field name="verified_by_2"/>
+                        <field name="verified_on_2"/>
+                    </group>
+
+                    <group string="APPROVAL">
+                        <field name="is_approved_1"/>
+                        <field name="approved_by_1"/>
+                        <field name="approved_on_1"/>
+
+                        <field name="is_approved_2"/>
+                        <field name="approved_by_2"/>
+                        <field name="approved_on_2"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_asset_location_list" model="ir.ui.view">
+        <field name="name">asset.location.list</field>
+        <field name="model">asset.location</field>
+        <field name="arch" type="xml">
+            <list string="Location" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_location" model="ir.actions.act_window">
+        <field name="name">Location</field>
+        <field name="res_model">asset.location</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Location here.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_asset_model_list" model="ir.ui.view">
+        <field name="name">asset.model.list</field>
+        <field name="model">asset.model</field>
+        <field name="arch" type="xml">
+            <list string="Model" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="action_asset_model" model="ir.actions.act_window">
+        <field name="name">Model</field>
+        <field name="res_model">asset.model</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Models here.
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_account_asset_config" name="Assets Code" parent="account.menu_finance_configuration" sequence="1"/>
+
+    <menuitem id="menu_action_location"
+              name="Location"
+              parent="menu_account_asset_config"
+              action="action_location"/>
+    <menuitem id="menu_action_asset_model"
+              name="Model"
+              parent="menu_account_asset_config"
+              action="action_asset_model"/>
+
+
+
+
+</odoo>
+
+
+
+
+
+

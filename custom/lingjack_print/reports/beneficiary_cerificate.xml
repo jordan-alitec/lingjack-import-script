@@ -1,0 +1,114 @@
+<odoo>
+    <template id="report_certificate_beneficiary_content">
+        <t t-call="web.external_layout">
+            <br/><br/>
+            <div class="page">
+                <div>
+                    <strong>
+                        <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
+                    </strong>
+                </div>
+
+                 <h2 style="text-align: center; color: #1f4e79; margin-top: 20px;">
+                    BENEFICIARY'S CERTIFICATE
+                </h2>
+
+                <table class="table table-borderless"
+                       style="width: 100%; margin-top: 20px; margin-bottom: 20px; border-collapse: collapse;">
+                    <tr>
+                        <td style="width: 25%; font-weight: bold; white-space: nowrap;">To whom it may concern</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; font-weight: bold; white-space: nowrap;">Name Of Vessel/Voyage</td>
+                        <td style="width: 2%;">:</td>
+                        <td style="white-space: nowrap;">
+                            <span t-field="o.vessel_name"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; font-weight: bold; white-space: nowrap;">Date Of Shipment</td>
+                        <td style="width: 2%;">:</td>
+                        <td style="white-space: nowrap;">
+                            <span t-field="o.shipment_date"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; font-weight: bold; white-space: nowrap;">Port Of Loading</td>
+                        <td style="width: 2%;">:</td>
+                        <td style="white-space: nowrap;">
+                            <span t-field="o.port_loading_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; font-weight: bold; white-space: nowrap;">Port Of Discharge</td>
+                        <td style="width: 2%;">:</td>
+                        <td style="white-space: nowrap;">
+                            <span t-field="o.port_discharge_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; font-weight: bold; white-space: nowrap;">Bill Of Lading No</td>
+                        <td style="width: 2%;">:</td>
+                        <td style="white-space: nowrap;">
+                            <span t-field="o.bill_of_lading_no"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 25%; font-weight: bold; white-space: nowrap;">Contract No</td>
+                        <td style="width: 2%;">:</td>
+                        <td style="white-space: nowrap;">
+                            <span t-field="o.ref"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight: bold; white-space: nowrap;">L/C No</td>
+                        <td>:</td>
+                        <td>
+                            <span t-field="o.lc_no"/>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <div style="width:100%; height:2px; background-color:black;"/>
+                <br/><br/>
+                <p>We hearby certify that 1/3 original Bill Of Landing has been send to the applicant. (Courier receipt
+                    attached)
+                </p>
+
+                <br/><br/>
+                <p>Yours faithfully,</p>
+                <br/><br/>
+                <br/><br/>
+                <div style="width:30%; height:2px; background-color:black;"/>
+                <div>
+                    <span t-field="o.person_incharge_id"/>
+                </div>
+                <p t-if="o.person_incharge_id and o.person_incharge_id.job_id">
+                    <t t-esc="o.person_incharge_id.job_id.name"/>
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_certificate_beneficiary">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_certificate_beneficiary_content"
+                   t-lang="o._get_report_lang()"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_certificate_beneficiary" model="ir.actions.report">
+        <field name="name">Beneficiary's Certificate</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_certificate_beneficiary</field>
+        <field name="report_file">lingjack_print.report_certificate_beneficiary</field>
+        <field name="print_report_name">'Beneficiary Certificate - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

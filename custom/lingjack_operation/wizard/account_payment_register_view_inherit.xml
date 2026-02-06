@@ -1,0 +1,26 @@
+<odoo>
+    <record id="view_account_payment_register_form_lingjack" model="ir.ui.view">
+        <field name="name">account.payment.register.lingjack.form</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group/field[@name='payment_method_line_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@class='o_wrap_field d-flex d-sm-contents flex-column mb-3 mb-sm-0']" position="after">
+                <div class="o_wrap_field d-flex d-sm-contents flex-column mb-3 mb-sm-0">
+                    <div class="o_cell o_wrap_label text-break text-900">
+                        <label for="analytic_account_id" string="Cost Center" class="oe_edit_only"/>
+                    </div>
+                    <div class="o_cell o_wrap_input text-break">
+                        <field name="analytic_account_id" string="Cost Center"/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='group2']" position="inside">
+                <field name="receipt_category_id"/>
+                <field name="cheque_number"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

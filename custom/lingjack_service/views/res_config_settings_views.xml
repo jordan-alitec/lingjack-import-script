@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- FSM Material Settings in Field Service Configuration -->
+        <record id="res_config_settings_view_form_inherit_lingjack_service" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.lingjack.service</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="industry_fsm.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//app[@name='industry_fsm']" position="inside">
+                    <block title="Material Settings" name="fsm_material_settings_container">
+                        <setting id="fsm_material_location_settings"
+                                 string="FSM Material Locations"
+                                 title="Configure locations for FSM material filtering"
+                                 help="Select locations to filter products with quantity on hand for FSM material selection. Only products with stock in these locations will be shown in the FSM material view.">
+                            <field name="fsm_control_tag_product_id" string="FSM Control Tag Product"
+                                   placeholder="Select Control Tag Product"/>
+                        </setting>
+                        <setting id="fsm_bus_servicing_product_settings"
+                                 string="FSM Bus Servicing Product"
+                                 title="Configure product for FSM bus servicing"
+                                 help="Select product for FSM bus servicing">
+                            <field name="fsm_bus_servicing_product" string="FSM Bus Servicing Product"
+                                   placeholder="Select Bus Servicing Product"/>
+                        </setting>
+                    </block>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

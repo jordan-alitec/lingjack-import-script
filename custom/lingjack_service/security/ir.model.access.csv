@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_qr_generation_wizard_user,access.qr.generation.wizard.user,model_qr_generation_wizard,base.group_user,1,1,1,1
+access_service_condition_fsm_user,access.service.condition.fsm.user,model_service_condition,industry_fsm.group_fsm_user,1,1,1,1
+access_sale_order_fsm_user,access.sale.order.fsm.user,model_sale_order,industry_fsm.group_fsm_user,1,1,1,0
+access_sale_order_line_fsm_user,access.sale.order.line.fsm.user,model_sale_order_line,industry_fsm.group_fsm_user,1,1,1,1
+access_sale_order_line_change_unit_price_wizard_salesman,access.sale.order.line.change.unit.price.wizard.salesman,model_sale_order_line_change_unit_price_wizard,sales_team.group_sale_salesman,1,1,1,1
+access_sale_order_line_change_unit_price_wizard_manager,access.sale.order.line.change.unit.price.wizard.manager,model_sale_order_line_change_unit_price_wizard,sales_team.group_sale_manager,1,1,1,1
+access_sale_order_line_change_unit_price_wizard_fsm_user,access.sale.order.line.change.unit.price.wizard.fsm.user,model_sale_order_line_change_unit_price_wizard,industry_fsm.group_fsm_user,1,1,1,1
+access_sale_order_line_change_unit_price_wizard_fsm_manager,access.sale.order.line.change.unit.price.wizard.fsm.manager,model_sale_order_line_change_unit_price_wizard,industry_fsm.group_fsm_manager,1,1,1,1
+access_control_tag_user,access.control.tag.user,model_control_tag,lingjack_service.group_control_tag,1,1,1,1
+access_control_tag_report_wizard_user,access.control.tag.report.wizard.user,model_control_tag_report_wizard,lingjack_service.group_control_tag,1,1,1,1

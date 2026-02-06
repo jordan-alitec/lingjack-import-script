@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="AgedPartnerBalanceFilterExtraOptionsInherit"
+       t-inherit="account_reports.AgedPartnerBalanceFilterExtraOptions" t-inherit-mode="extension">
+        <xpath expr="//DropdownItem[@t-if='controller.options.multi_currency']" position="after">
+
+            <t t-if="controller.filters.show_payment_terms">
+                <DropdownItem
+                        class="{ 'selected': controller.options.show_payment_terms }"
+                        onSelected="() => this.toggleShowPaymentTerms()"
+                >
+                    Show Payment Terms
+                </DropdownItem>
+            </t>
+            <t t-if="controller.filters.show_sales_team">
+                <DropdownItem
+                        class="{ 'selected': controller.options.show_sales_team }"
+                        onSelected="() => this.toggleShowSalesTeam()"
+                >
+                    Show Sales Team
+                </DropdownItem>
+            </t>
+            <t t-if="controller.filters.show_sales_person">
+                <DropdownItem
+                        class="{ 'selected': controller.options.show_sales_person }"
+                        onSelected="() => this.toggleShowSalesPerson()"
+                >
+                    Show Salesperson
+                </DropdownItem>
+            </t>
+        </xpath>
+    </t>
+</templates>

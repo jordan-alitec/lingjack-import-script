@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Change BoM Component Wizard Form View -->
+    <record id="view_change_bom_component_wizard_form" model="ir.ui.view">
+        <field name="name">change.bom.component.wizard.form</field>
+        <field name="model">change.bom.component.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Change BoM Component">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Change BoM Component</h1>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="current_product_id" readonly="1"/>
+                            <field name="new_product_id" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="bom_count" readonly="1"/>
+                            <field name="line_count" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Affected BoM Lines" name="bom_lines">
+                            <field name="bom_line_ids" readonly="1">
+                                <list>
+                                    <field name="bom_id"/>
+                                    <field name="product_id"/>
+                                    <field name="product_qty"/>
+                                    <field name="product_uom_id"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+                <footer>
+                    <button name="action_change_component"
+                            string="Change Component"
+                            type="object"
+                            class="btn-primary"
+                            invisible="line_count == 0"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Change BoM Component Wizard Action -->
+    <record id="action_change_bom_component_wizard" model="ir.actions.act_window">
+        <field name="name">Change BoM Component</field>
+        <field name="res_model">change.bom.component.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="view_change_bom_component_wizard_form"/>
+    </record>
+</odoo>

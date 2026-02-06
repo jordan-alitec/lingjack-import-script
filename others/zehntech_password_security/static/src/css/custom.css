@@ -1,0 +1,21 @@
+.oe_login_form, .oe_signup_form, .oe_reset_password_form{
+  .field-password, .field-confirm_password{
+      position: relative;
+  }
+  #b2b_toggle_password, #b2b_toggle_confirm_password{
+      position: absolute;
+      right: 13px;
+      bottom: 10px;
+      cursor: pointer;
+  }
+}
+
+.field-password, .field-confirm_password{
+      position: relative;
+}
+#b2b_toggle_password{
+      position: absolute;
+      right: 13px;
+      bottom: 10px;
+      cursor: pointer;
+}

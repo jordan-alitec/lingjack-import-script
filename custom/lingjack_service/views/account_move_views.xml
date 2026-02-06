@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Account Move (Invoice) form: Control Tag smart button -->
+    <record id="view_move_form_inherit_lingjack_control_tag" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.lingjack.control.tag</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <field name="control_tag_count" invisible="1"/>
+            </xpath>
+            <xpath expr="//div[@name='button_box']/button[@name='open_payments']" position="after">
+                <button name="action_view_control_tag" type="object"
+                    class="oe_stat_button" icon="fa-tag"
+                    groups="lingjack_service.group_control_tag"
+                    invisible="control_tag_count == 0">
+                    <field string="Control Tags" name="control_tag_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

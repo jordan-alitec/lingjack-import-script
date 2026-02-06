@@ -1,0 +1,45 @@
+{
+    'name': "All in one: Mobile Barcode/Qrcode Scanner widget",
+    'version': '18.0.0.1',
+    'depends': ['base'],
+    'author': "Yatrik Chauhan",
+    'category': "Sales/Sales",
+    'summary': 'All in one: Barcode and QR code scanner widget | Scan barcode and QR code using mobile camera and webcam. odoo product barcode scan, odoo product qrcode scan, odoo scan barcode, odoo scan qrcode, odoo scan, odoo scanner, odoo code scanner, odoo barcode scanner, odoo qrcode scanner, odoo mobile scanner, odoo record scanner, odoo sales scanner, odoo purchase scanner , All in One Mobile Barcode/QRCode Scanner| Sale Order Mobile Barcode Scanner | Purchase Order Mobile Barcode Scanner | Invoice Mobile Barcode Scanner | Inventory Mobile Barcode Scanner | Bill Of Material Mobile Barcode Scanner , Scan barcode and QR code using mobile camera and webcam | Barcode and QR code scanner widget for many2one and character field | Search any document by barcode and QR code globally using search view, Odoo mobile barcode scanner module, Odoo QR code scanner mobile, Barcode scanning in Odoo sales module, Odoo inventory QR code integration, Odoo purchase barcode scanner, Odoo manufacturing barcode QR integration, Mobile camera barcode scanner Odoo, Odoo document search by barcode, Scan barcode in Odoo Many2One field, QR code for Many2Many field Odoo, Odoo barcode character field scanner, Odoo QR code Boolean field widget, Mobile scanning for Odoo documents, Odoo webcam barcode scanner module, Odoo QR code automation tool, Barcode search across Odoo modules, Odoo accounting barcode scanning, Event management barcode scanner Odoo, Odoo scanner widget for mobile, Odoo no hardware barcode solution, Integrated barcode scanner for Odoo, Odoo workflow automation barcode QR, Odoo scanner for sales purchase inventory, Real-time barcode scanning Odoo, Barcode enabled data entry Odoo, Odoo camera-based barcode scanner.',
+    'description': """
+        All in one: Barcode and QR code scanner widget | Scan barcode and QR code using mobile camera and webcam.
+        Odoo mobile barcode scanner module, Odoo QR code scanner mobile, Barcode scanning in Odoo sales module, Odoo inventory QR code integration, Odoo purchase barcode scanner, Odoo manufacturing barcode QR integration, Mobile camera barcode scanner Odoo, Odoo document search by barcode, Scan barcode in Odoo Many2One field, QR code for Many2Many field Odoo, Odoo barcode character field scanner, Odoo QR code Boolean field widget, Mobile scanning for Odoo documents, Odoo webcam barcode scanner module, Odoo QR code automation tool, Barcode search across Odoo modules, Odoo accounting barcode scanning, Event management barcode scanner Odoo, Odoo scanner widget for mobile, Odoo no hardware barcode solution, Integrated barcode scanner for Odoo, Odoo workflow automation barcode QR, Odoo scanner for sales purchase inventory, Real-time barcode scanning Odoo, Barcode enabled data entry Odoo, Odoo camera-based barcode scanner.
+    """,
+    'depends': ['web'],
+    'price': 35,
+    'currency': 'USD',
+    "license": "LGPL-3",
+    'live_test_url': 'https://youtu.be/DPPHqo23ZGs?si=tOn7fO-dxfv5fzEu',
+    'assets': {
+        'web.assets_backend': [
+            "yc_code_scanner_mobile/static/src/css/webcam_qrcode_scan_styles.css",
+            "yc_code_scanner_mobile/static/src/libs/html5-qrcode.min.js",
+            "yc_code_scanner_mobile/static/src/libs/quagga.min.js",
+            ('include', 'web._assets_core'),
+            "yc_code_scanner_mobile/static/src/js/barcode_scanner_search_bar.js",
+            "yc_code_scanner_mobile/static/src/js/boolean_scanner_field_widget.js",
+            "yc_code_scanner_mobile/static/src/js/many2many_tags_code_scanner.js",
+            "yc_code_scanner_mobile/static/src/xml/barcode_scanner_search_bar.xml",
+            "yc_code_scanner_mobile/static/src/js/many2one_barcode_scanner.js",
+            "yc_code_scanner_mobile/static/src/js/barcode_scanner_widget.js",
+            "yc_code_scanner_mobile/static/src/xml/boolean_scanner_widget.xml",
+            "yc_code_scanner_mobile/static/src/xml/many2many_tags_code_field.xml",
+            "yc_code_scanner_mobile/static/src/xml/many2one_barcode_scanner.xml",
+            "yc_code_scanner_mobile/static/src/xml/webcam_qrcode_scan_template.xml",
+        ],
+        'web._assets_core': [
+            "yc_code_scanner_mobile/static/src/core/qrcode/code_configurator.js",
+            "yc_code_scanner_mobile/static/src/core/qrcode/code_configurator.xml",
+            "yc_code_scanner_mobile/static/src/core/qrcode/code_dialog.js",
+            "yc_code_scanner_mobile/static/src/core/qrcode/code_dialog.xml",
+        ],
+    },
+    'images': ['static/description/banner.gif'],
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+}

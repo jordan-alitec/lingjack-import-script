@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shop Floor Work Order Form View -->
+    <record id="view_mrp_workorder_form_shop_floor" model="ir.ui.view">
+        <field name="name">mrp.workorder.form.shop.floor</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+                <group>
+                    <group string="Quantity">
+                        <field name="total_produced" readonly="1"/>
+                        <field name="qty_produced" readonly="1"/>
+                        <field name="qty_defects" readonly="1"/>
+                        <field name="qty_remaining" string="Quantity Remaining" readonly="1"/>
+                    </group>
+                </group>
+            </xpath>
+
+                        <xpath expr="//field[@name='time_ids']/list/field[@name='date_end']" position="after">
+                <field name="quantity_produced" string="Quantity Produced"/>
+                <field name="qty_defects" string="Defects"/>
+                <field name="qty_qualified" string="Qualified"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="mrp_hide_start_stop_button">
+        <field name="name">mrp.production.work.order.list.editable.inherit.quality</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='button_start']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_pending']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='button_finish']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

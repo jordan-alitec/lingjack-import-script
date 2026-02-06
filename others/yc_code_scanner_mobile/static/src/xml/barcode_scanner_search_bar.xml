@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="web.SearchBar" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('o_searchview_input_container')]" position="after">
+            <div>
+                <button t-if="!props.readonly"
+                    class="fa fa-qrcode btn btn-secondary qr_scan_button" 
+                    t-on-click="onConfigButtonClick" 
+                    title="Scan Code"
+                    style="color: #B76BAA; background-color:white; margin-top:5px;"
+                    aria-label="Scan Code" 
+                    name="o_start_qr_scan">
+                </button>
+            </div>
+        </xpath>
+    </t>
+</templates>

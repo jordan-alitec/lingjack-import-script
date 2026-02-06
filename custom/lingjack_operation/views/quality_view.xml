@@ -1,0 +1,19 @@
+<odoo>
+    <record id="view_quality_check_form_inherit_po" model="ir.ui.view">
+        <field name="name">quality.check.form.po.number</field>
+        <field name="model">quality.check</field>
+        <field name="inherit_id" ref="quality_control.quality_check_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='point_id']" position="before">
+                <field name="po_number" readonly="1"/>
+                <field name="previous_transfer" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="description"/>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="description"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

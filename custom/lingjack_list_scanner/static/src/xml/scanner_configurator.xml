@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="lingjack_list_scanner.ScannerConfigurator" owl="1">
+        <div class="container-fluid my-2">
+            <label for="camera_id">Select Camera</label>
+            <div class="select-dropdown">
+                <select class="custom-select custom-select-lg mb-3 o_camera_selector" name="camera_id" t-on-change="_updateSelectedDevice">
+                    <t t-foreach="props.devices" t-as="dev" t-key="dev_index">
+                        <option t-att-value="dev.id" t-att-selected="this.state.deviceUid == dev.id">
+                            <t t-out="dev.label or dev.kind" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <label for="camera_id" style="display: none;">Barcode Type:</label>
+            <div style="display: none;" class="select-dropdown" t-if="this.state.codeType == 1">
+                <select class="custom-select custom-select-lg mb-3 o_barcode_type_selector" name="barcode_id" t-on-change="_updateSelectedBarcodeReader">
+                    <t t-foreach="props.supportedCodes" t-as="code" t-key="code_index">
+                        <option t-att-value="code.label" t-att-selected="this.state.barcodeReader == code.label">
+                            <t t-out="code.value" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div style="display: none;">
+                <ul class="list-unstyled flex-grow-1 m-0">
+                    <li class="mb-2">
+                        <div class="form-check">
+                            <label class="form-check-label d-inline-flex align-items-center">Barcode</label>
+                            <input class="form-check-input" type="radio" name='scan_code_type' value='1' t-att-checked="this.state.codeType == 1" t-on-change="_updateSelectedScanType"/>
+                        </div>
+                    </li>
+                    <li class="mb-2">
+                        <div class="form-check">
+                            <label class="form-check-label d-inline-flex align-items-center">QR Code &amp; Barcode</label>
+                            <input class="form-check-input" type="radio" name='scan_code_type' value='0' t-att-checked="this.state.codeType == 0" t-on-change="_updateSelectedScanType" />
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="webcam_viewport" class="o_live_scan_result"></div>
+    </t>
+</templates>
+
+

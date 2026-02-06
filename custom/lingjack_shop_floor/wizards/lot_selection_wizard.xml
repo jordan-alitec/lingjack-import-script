@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Lot Selection Wizard Form View -->
+    <record id="view_lot_selection_wizard_form" model="ir.ui.view">
+        <field name="name">lot.selection.wizard.form</field>
+        <field name="model">lot.selection.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select Lots for Components">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Manual Lot Selection Required</h1>
+                        <h2><field name="production_id" readonly="1"/></h2>
+                    </div>
+
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa fa-exclamation-triangle"/> 
+                        The following components require manual lot selection before proceeding with production.
+                    </div>
+
+                    <group>
+                        <field name="component_line_ids" nolabel="1" readonly="1">
+                            <list string="Components Requiring Lot Selection" editable="top" readonly="1" delete="0">
+                                <field name="product_id" readonly="1"/>
+                                <field name="product_qty" readonly="1"/>
+                                <field name="uom_id" readonly="1"/>
+                                <field name="selected_lots_display" readonly="1" column_invisible="1"/>
+                                <button name="action_view_stock_move"
+                                        string="Select Lot"
+                                        type="object"
+                                        class="btn-primary"
+                                        icon="fa-search"
+                                        help="Open stock move to select lot numbers"/>
+                                <field name="move_id" column_invisible="1"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name="action_confirm_lot_selection"
+                            string="Confirm Lot Selection"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Lot Selection Wizard Action -->
+    <record id="action_lot_selection_wizard" model="ir.actions.act_window">
+        <field name="name">Lot Selection</field>
+        <field name="res_model">lot.selection.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_production_id': active_id}</field>
+    </record>
+</odoo>

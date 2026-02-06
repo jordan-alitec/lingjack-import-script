@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_tax_invoice_with_delivery">
+        <t t-call="web.html_container">
+            <t t-set="is_combined_invoice_delivery" t-value="true"/>
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_tax_invoice_document"/>
+
+                <t t-set="delivery_orders"
+                   t-value="o.ac_picking_ids"/>
+                <t t-foreach="delivery_orders" t-as="delivery">
+                    <t t-call="lingjack_print.report_deliveryslip_document" t-lang="delivery._get_report_lang()">
+                        <t t-set="o" t-value="delivery"/>
+                    </t>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_tax_invoice_with_delivery" model="ir.actions.report">
+        <field name="name">Invoice &amp; Delivery Order</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_tax_invoice_with_delivery</field>
+        <field name="report_file">lingjack_print.report_tax_invoice_with_delivery</field>
+        <field name="print_report_name">'Tax Invoice with DO - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form view extension -->
+    <record id="mrp_bom_form_view_extension" model="ir.ui.view">
+        <field name="name">mrp.bom.form.extension</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+           <xpath expr="//form" position="attributes">
+                <attribute name="duplicate">0</attribute>
+           </xpath>
+
+           <xpath expr="//div[hasclass('o_row')]" position="after">
+                    <field name="area_id"/>
+                    <field name="sid_prefix"/>
+                    <field name="node_type_id"/>
+            </xpath>
+
+             <xpath expr="//field[@name='bom_line_ids']//list//field[@name='product_id']" position="after">
+                <field name="com_no" optional="hide"/>
+                <field name="route" optional="hide"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Work Sheet" name="worksheet">
+                    <group>
+                        <field name="worksheet_type" widget="radio"/>
+                        <field name="worksheet" help="Upload your PDF file." widget="pdf_viewer" invisible="worksheet_type != 'pdf'" required="worksheet_type == 'pdf'"/>
+                        <field name="worksheet_google_slide" placeholder="Google Slide Link" widget="embed_viewer" invisible="worksheet_type != 'google_slide'" required="worksheet_type == 'google_slide'"/>
+                        <field name="note" invisible="worksheet_type != 'text'"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Add custom duplicate button to BoM form -->
+    <record id="mrp_bom_form_view_extension_dup" model="ir.ui.view">
+        <field name="name">mrp.bom.form.extension.duplicate</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_duplicate" type="object" class="oe_stat_button" icon="fa-copy">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Duplicate<br/>BoM</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+        <!-- BoM List View - Add Change New Com Button -->
+    <record id="view_mrp_bom_list_change_component" model="ir.ui.view">
+        <field name="name">mrp.bom.list.change.component</field>
+        <field name="model">mrp.bom</field>
+        <field name="inherit_id" ref="mrp.mrp_bom_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='active']" position="before">
+                <header>
+                     <button name="action_change_bom_component"
+                        string="Change New Com"
+                        type="object"
+                        class="btn-secondary"
+                        help="Change the component in this BoM"
+                        invisible="not context.get('change_component_mode')"/>
+                </header>
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo> 

@@ -1,0 +1,25 @@
+<odoo>
+     <record id="view_stock_signature_wizard_form" model="ir.ui.view">
+        <field name="name">stock.signature.wizard.form</field>
+        <field name="model">stock.signature.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Signature Details">
+                <group>
+                    <field name="picking_id" readonly="1"/>
+                    <field name="customer_signature" widget="signature"/>
+                    <field name="signature_name"/>
+                    <field name="signature_date"/>
+                </group>
+                <footer>
+                    <button name="action_confirm"
+                            type="object"
+                            string="Update"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

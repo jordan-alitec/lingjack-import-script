@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Extend BoM form to add qc_template_id -->
+        <record id="view_mrp_bom_form_inherit_qc" model="ir.ui.view">
+            <field name="name">mrp.bom.form.inherit.qc</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='code']" position="after">
+                    <field name="qc_template_id" options="{'no_create_edit': False}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Extend MO form: show procurement group and QC spreadsheet smartbutton -->
+        <record id="view_mrp_production_form_inherit_qc" model="ir.ui.view">
+            <field name="name">mrp.production.form.inherit.qc</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_open_qc_spreadsheet" string="QC Sheet" type="object" class="oe_stat_button" icon="fa-check" invisible="not qc_spreadsheet_id"/>
+                </xpath>
+                <xpath expr="//sheet/group" position="inside">
+                    <field name="procurement_group_id" readonly="1" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

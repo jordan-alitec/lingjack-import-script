@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Component Picker Wizard Form View -->
+    <!-- Production Component Picker Form View -->
+    <record id="view_shop_floor_production_component_picker_form" model="ir.ui.view">
+        <field name="name">shop.floor.production.component.picker.form</field>
+        <field name="model">shop.floor.production.component.picker</field>
+        <field name="arch" type="xml">
+            <form string="Pick Components">
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>Pick Components for Production Order</h1>
+                        <h2><field name="production_id" readonly="1"/></h2>
+                    </div>
+
+                    <!-- Production Planning Section -->
+                    <group string="Production Planning">
+                        <group>
+                            <field name="production_uom_id" invisible="1"/>
+                            <label for="planned_production_qty" string="Planned Quantity"/>
+                            <div class="o_row">
+                                <field name="planned_production_qty" class="oe_inline"/>
+                                <button name="action_maximize_production"
+                                        string="Maximize"
+                                        type="object"
+                                        class="btn-secondary oe_inline"
+                                        help="Set to maximum remaining production quantity considering both available stock and remaining needs"
+                                        context="{'from_maximize_button': True}"/>
+                            </div>
+                            <field name="max_possible_qty" string="Max Available" readonly="1"/>
+                             <field name="production_remaining_qty" string="Remaining to Produce" readonly="1" invisible="1"/>
+<!--                            <field name="max_remaining_qty" string="Max Remaining" readonly="1"/>-->
+                        </group>
+                    </group>
+
+                    <!-- Component Lines -->
+                    <group>
+                        <field name="component_line_ids" nolabel="1">
+                            <list string="Components to Pick" editable="bottom" delete="1" create="0">
+                                <field name="product_id"  readonly="0" column_invisible="1"/>
+                                <field name="available_quantity"  readonly="0" column_invisible="1"/>
+                                <field name="forecast_quantity" readonly="0" column_invisible="1"/>
+                                <field name="uom_id"  readonly="0" column_invisible="1"/>
+                                <field name="quantity_required"  readonly="0" column_invisible="1"/>
+                                <field name="bom_line_product_qty" column_invisible="1" string="Per Unit"/>
+
+                                <field name="product_id" readonly="1"/>
+                                <field name="bom_line_product_qty" readonly="1" string="Per Unit"/>
+                                <field name="available_quantity" readonly="1"/>
+                                <field name="forecast_quantity" readonly="1"/>
+                                <field name="quantity_required" readonly="1"/>
+                                <field name="has_shortage" column_invisible="1"/>
+                                <field name="quantity_to_pick"
+                                       decoration-warning="quantity_to_pick == 0"
+                                       decoration-success="quantity_to_pick > 0 and not has_shortage"
+                                       decoration-danger="has_shortage"/>
+
+                                <field name="uom_id" readonly="1"/>
+                                <field name="move_raw_id" column_invisible="1"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name="action_pick_components"
+                            string="PICK COMPONENTS"
+                            type="object"
+                            class="btn-primary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                    <button string="Cancel"
+                            special="cancel"
+                            class="btn-secondary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

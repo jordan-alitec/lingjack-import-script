@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Custom Report Template for SETSCO Serial Labels -->
+        <template id="setsco_serial_label_template">
+    <t t-call="web.basic_layout">
+
+        <!-- Grid dimensions (A4 sheet: 4 cols × 11 rows) -->
+        <t t-set="nRows" t-value="11"/>
+        <t t-set="nCols" t-value="4"/>
+        <t t-set="label_w_mm" t-value="48"/>
+        <t t-set="label_h_mm" t-value="24.91"/>
+
+        <!-- Compute serials and label count -->
+        <t t-set="setsco_serials" t-value="docs.setsco_serial_ids.filtered(lambda s: s.state in ['warehouse', 'manufacturing'])"/>
+        <t t-set="requires_setsco" t-value="docs.requires_setsco_serials"/>
+
+        <!-- Determine total label count -->
+        <t t-if="requires_setsco">
+            <t t-set="total_labels" t-value="len(setsco_serials)"/>
+        </t>
+        <t t-else="">
+            <t t-set="lot_number" t-value="docs.lot_producing_id.name if docs.lot_producing_id else (docs.name or 'NO-LOT')"/>
+            <t t-set="qty_to_produce" t-value="int(docs.product_uom_qty) if docs.product_uom_qty &gt; 0 else 1"/>
+            <t t-set="total_labels" t-value="qty_to_produce"/>
+        </t>
+
+        <!-- Pagination -->
+        <t t-set="per_page" t-value="nRows * nCols"/>
+        <t t-set="num_pages" t-value="total_labels // per_page + (1 if total_labels % per_page else 0)"/>
+
+        <!-- CSS -->
+        <style>
+            .o_label_sheet { page-break-after: always; }
+            .o_label_tbl   { width: 100%; border-collapse: collapse; table-layout: fixed; }
+            .o_label_cell  { padding: 0; vertical-align: middle; }
+            .txt-7px       { font-size: 7px; line-height: 1.5; }
+            .qrwrap        { padding-left: 2mm; vertical-align: middle; }
+            .meta          { vertical-align: top; padding-left: 2mm; padding-top: 3mm; }
+            .o_label_tbl td, .o_label_tbl th { border: 0px solid white; }
+        </style>
+
+        <!-- Render pages -->
+        <div t-foreach="range(num_pages)" t-as="page" class="o_label_sheets">
+            <table class="o_label_tbl" style="height: 322.6mm; width: 228.2mm;">
+                <t t-foreach="range(nRows)" t-as="row">
+                    <tr>
+                        <t t-foreach="range(nCols)" t-as="column">
+                            <t t-set="label_index" t-value="page * per_page + row * nCols + column"/>
+                            <t t-set="make_invisible" t-value="label_index &gt;= total_labels"/>
+
+                            <!-- Prepare variables -->
+                            <t t-if="requires_setsco and label_index &lt; len(setsco_serials)">
+                                <t t-set="serial" t-value="setsco_serials[label_index]"/>
+                                <t t-set="label_text" t-value="serial.name"/>
+                                <t t-set="qr_value" t-value="'SETSCO(%s)' % serial.name"/>
+                                <t t-set="product_code" t-value="serial.product_id.default_code"/>
+                                <t t-set="production_name" t-value="serial.production_id.name"/>
+                                <t t-set="mfg_date" t-value="(serial.production_id.date_start or '').strftime('%B%y') if serial.production_id.date_start else ''"/>
+                            </t>
+                            <t t-elif="not requires_setsco and not make_invisible">
+                                <t t-set="label_text" t-value="'%s-%s' % (lot_number, label_index + 1)"/>
+                                <t t-set="qr_value" t-value="'%s' % (lot_number)"/>
+                                <t t-set="product_code" t-value="docs.product_id.default_code"/>
+                                <t t-set="production_name" t-value="docs.name"/>
+                                <t t-set="mfg_date" t-value="(docs.date_start or '').strftime('%B%y') if docs.date_start else ''"/>
+                            </t>
+                            <t t-else="">
+                                <t t-set="label_text" t-value="''"/>
+                                <t t-set="qr_value" t-value="''"/>
+                            </t>
+
+                            <!-- Label Cell -->
+                            <td class="o_label_cell" t-attf-style="width: 47.8mm; height: 25.1mm;">
+                                <div t-if="not make_invisible" style="width:100%; height:100%;">
+                                    <table style="width:100%; height:100%; border-collapse: collapse; table-layout: fixed;">
+                                        <tr>
+                                            <!-- QR code -->
+                                            <td class="qrwrap" style="width:53%;">
+                                                <div t-if="qr_value" 
+                                                     style="margin-left:0;margin-top:2mm;margin-bottom:3mm"
+                                                     t-out="qr_value"
+                                                     t-options="{'widget': 'barcode', 'symbology': 'QR','img_style': 'width:22mm; height:22mm;'}"/>
+                                            </td>
+
+                                            <!-- Label text -->
+                                            <td class="meta" style="width:47%;">
+                                                <div class="txt-7px">
+                                                    <div t-if="mfg_date"><strong>MFG:</strong> <span t-out="mfg_date"/></div>
+                                                    <div t-if="product_code"><span t-out="product_code"/></div>
+                                                    <div t-if="production_name"><span t-out="production_name"/></div>
+                                                    <div t-if="label_text"><span t-out="label_text"/></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+
+                        </t>
+                    </tr>
+                </t>
+            </table>
+        </div>
+
+    </t>
+
+
+        
+
+        </template>
+
+        <!-- Report Action for SETSCO Serial Labels -->
+        <record id="action_report_setsco_serial_labels" model="ir.actions.report">
+            <field name="name">SETSCO Serial Labels</field>
+            <field name="model">mrp.production</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">setsco_serial_number.setsco_serial_label_template</field>
+            <field name="report_file">setsco_serial_number.setsco_serial_label_template</field>
+            <field name="print_report_name">'SETSCO Serial Labels - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="setsco_serial_number.paperformat_a4"/>
+        </record>
+
+        <!-- Single Serial Label Template for setsco.serial.number -->
+        <template id="setsco_serial_single_label_template">
+            <t t-call="web.basic_layout">
+
+                <!-- Grid dims -->
+                <t t-set="nRows" t-value="11"/>
+                <t t-set="nCols" t-value="4"/>
+
+                <!-- Label size in mm (A4 width minus L/R margins, divided by 4 columns) -->
+                <t t-set="label_w_mm" t-value="48"/>  <!-- (210 - 10.39 - 10.70) / 4 -->
+                <t t-set="label_h_mm" t-value="24.91"/>
+
+                <!-- Pagination -->
+                <t t-set="total_labels" t-value="len(docs)"/>
+                <t t-set="per_page" t-value="nRows * nCols"/>
+                <t t-set="num_pages" t-value="total_labels // per_page + (1 if total_labels % per_page else 0)"/>
+
+                <!-- Print-safe CSS (scoped) -->
+                <style>
+                    .o_label_sheet { page-break-after: always; }
+                    .o_label_tbl   { width: 100%; border-collapse: collapse; table-layout: fixed; }
+                    .o_label_row   { }
+                    .o_label_cell  { padding: 0; vertical-align: middle; }
+                    .txt-7px       { font-size: 7px; line-height: 1.5; }
+                    .qrwrap        { padding-left:2mm;vertical-align: middle; }
+                    .meta          { vertical-align: top; padding-left: 2mm; padding-top:3mm }
+                    /* Avoid any accidental spacing */
+                    .o_label_tbl td, .o_label_tbl th { border: 0px solid white }
+                </style>
+
+                <div t-foreach="range(num_pages)" t-as="page" class="o_label_sheets">
+                    <table class="o_label_tbl" style="height:322.6mm;width:228.2mm">
+                        
+                        <t t-foreach="range(nRows)" t-as="row">
+                            <tr class="o_label_row">
+                                <t t-foreach="range(nCols)" t-as="column">
+                                    <t t-set="label_index" t-value="page * per_page + row * nCols + column"/>
+                                    <t t-set="make_invisible" t-value="label_index &gt;= total_labels"/>
+
+                                    <td class="o_label_cell" t-attf-style="width: 47.8mm; height: 25.1mm; ">
+                    
+                                        <div t-if="not make_invisible" style="width:100%; height:100%;">
+                                            <t t-set="doc" t-value="docs[label_index]"/>
+                                            <table style="width:100%; height:100%; border-collapse: collapse; table-layout: fixed;">
+                                                <tr>
+                                                    <td class="qrwrap" style="width:53%;">
+                                                        <!-- Use mm for the final image size to respect 25mm height -->
+                                                        <div style="margin-left:0;margin-top:2mm;margin-bottom:3mm" t-out="'SETSCO(%s)' % (doc.name)" t-options="{'widget': 'barcode', 'symbology': 'QR','img_style': 'width:22mm; height:22mm;'}"/>
+                                                    </td>
+                                                    <td class="meta" style="width:47%;">
+                                                        <div class="txt-7px">
+                                                            <div t-if="doc.production_id and doc.production_id.date_start" style="margin-bottom:1px;">
+                                                                <strong>MFG:</strong>
+                                                                <span t-out="doc.production_id.date_start.strftime('%B%y')"/>
+                                                            </div>
+                                                            <div t-if="doc.product_id and doc.product_id.default_code" style="margin-bottom:1px;">
+                                                                <span t-out="doc.product_id.default_code"/>
+                                                            </div>
+                                                            <div t-if="doc.production_id and doc.production_id.name" style="margin-bottom:1px;">
+                                                                <span t-out="doc.production_id.name"/>
+                                                            </div>
+                                                            <div t-if="doc.name" style="margin-bottom:1px;">
+                                                                <span t-out="doc.name"/>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </t>
+                            </tr>
+                        </t>
+            
+                    </table>
+                </div>
+            </t>
+
+        </template>
+
+
+        <!-- Report Action for Single Serial Label on setsco.serial.number -->
+        <record id="action_report_setsco_serial_single_label" model="ir.actions.report">
+            <field name="name">SETSCO Serial Label</field>
+            <field name="model">setsco.serial.number</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">setsco_serial_number.setsco_serial_single_label_template</field>
+            <field name="report_file">setsco_serial_number.setsco_serial_single_label_template</field>
+            <field name="print_report_name">'SETSCO Serial Label - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="setsco_serial_number.model_setsco_serial_number"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="setsco_serial_number.paperformat_a4"/>
+        </record>
+
+    </data>
+</odoo> 

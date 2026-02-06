@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mrp_bom_extension,mrp.bom.extension,mrp.model_mrp_bom,base.group_user,1,1,1,1
+access_change_bom_component_wizard_user,change.bom.component.wizard user,model_change_bom_component_wizard,mrp.group_mrp_user,1,1,1,1
+access_change_bom_component_wizard_manager,change.bom.component.wizard manager,model_change_bom_component_wizard,mrp.group_mrp_manager,1,1,1,1
+access_change_bom_component_wizard_user,change.bom.component.wizard user,model_change_bom_component_wizard,mrp.group_mrp_user,1,1,1,1
+access_change_bom_component_wizard_manager,change.bom.component.wizard manager,model_change_bom_component_wizard,mrp.group_mrp_manager,1,1,1,1
+access_mrp_bom_duplicate_wizard,access.mrp.bom.duplicate.wizard,model_mrp_bom_duplicate_wizard,,1,1,1,1

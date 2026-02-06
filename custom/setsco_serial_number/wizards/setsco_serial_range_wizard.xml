@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Setsco Serial Range Creation Wizard -->
+    <record id="view_setsco_serial_range_wizard_form" model="ir.ui.view">
+        <field name="name">setsco.serial.range.wizard.form</field>
+        <field name="model">setsco.serial.range.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Serial Number Range">
+                <group>
+                    <group>
+                        <field name="start_serial"/>
+                        <field name="end_serial"/>
+                        <field name="serial_type"/>
+                        <field name="purchase_order" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="setsco_category_id" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="product_id" invisible="1"/>
+                    </group>
+                </group>
+                
+                <group string="Preview" invisible="preview_count == 0">
+                    <field name="preview_count" readonly="1"/>
+                </group>
+                
+                <group string="Serial Numbers to Create" invisible="not preview_line_ids">
+                    <field name="preview_line_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="sequence" readonly="1"/>
+                            <field name="serial_name"/>
+                            <field name="exists" readonly="1" decoration-warning="exists"/>
+                        </list>
+                    </field>
+                </group>
+                
+                <footer>
+                    <button name="action_create_serials" string="Create Serial Numbers" 
+                            type="object" class="btn-primary"
+                            invisible="not preview_line_ids"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Setsco Serial Range Migration Wizard -->
+    <record id="view_setsco_serial_range_migration_wizard_form" model="ir.ui.view">
+        <field name="name">setsco.serial.range.migration.wizard.form</field>
+        <field name="model">setsco.serial.range.migration.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create Serial Number Range (Migration)">
+                <group>
+                    <group>
+                        <field name="start_serial"/>
+                        <field name="end_serial"/>
+                        <field name="serial_type"/>
+                        <field name="setsco_category_id" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="state"/>
+                        <field name="purchase_order" options="{'no_open': True, 'no_create': True}"/>
+                    </group>
+                    <group>
+                        <field name="product_id" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="location_id" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="remarks" placeholder="Optional remarks for all created serial numbers"/>
+                    </group>
+                </group>
+                <group string="Preview" invisible="preview_count == 0">
+                    <field name="preview_count" readonly="1"/>
+                </group>
+                <group string="Serial Numbers to Create" invisible="not preview_line_ids">
+                    <field name="preview_line_ids" nolabel="1">
+                        <list editable="bottom" create="false" delete="false">
+                            <field name="sequence" readonly="1"/>
+                            <field name="serial_name"/>
+                            <field name="exists" readonly="1" decoration-warning="exists"/>
+                        </list>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_create_serials" string="Create Serial Numbers"
+                            type="object" class="btn-primary"
+                            invisible="not preview_line_ids"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Setsco Serial Product Assignment Wizard -->
+    <record id="view_setsco_serial_product_assignment_wizard_form" model="ir.ui.view">
+        <field name="name">setsco.serial.product.assignment.wizard.form</field>
+        <field name="model">setsco.serial.product.assignment.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Assign Product to Serial Number">
+                <group>
+                    <field name="setsco_serial_id" readonly="1"/>
+                    <field name="current_product_id" readonly="1"/>
+                    <field name="new_product_id"/>
+                </group>
+                
+                <footer>
+                    <button name="action_assign_product" string="Assign Product" 
+                            type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+</odoo> 

@@ -1,0 +1,185 @@
+/* Shop Floor Touch-Friendly Styles */
+
+/* Large buttons for touch interaction */
+.o_shop_floor_btn {
+    font-size: 18px !important;
+    padding: 15px 30px !important;
+    margin: 10px !important;
+    min-height: 60px !important;
+    border-radius: 8px !important;
+}
+
+/* Quantity input styling for easy touch input */
+.o_shop_floor_quantity_input {
+    font-size: 24px !important;
+    text-align: center !important;
+    padding: 15px !important;
+    border: 3px solid #007cba !important;
+    border-radius: 8px !important;
+    background-color: #f8f9fa !important;
+}
+
+/* Shop floor form styling */
+.o_shop_floor_form {
+    font-size: 16px !important;
+}
+
+.o_shop_floor_form .o_field_widget {
+    min-height: 40px !important;
+    font-size: 16px !important;
+}
+
+.o_shop_floor_form .o_form_label {
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+
+/* Status indicators */
+.o_shop_floor_status_good {
+    background-color: #28a745 !important;
+    color: white !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+}
+
+.o_shop_floor_status_warning {
+    background-color: #ffc107 !important;
+    color: black !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+}
+
+.o_shop_floor_status_danger {
+    background-color: #dc3545 !important;
+    color: white !important;
+    padding: 5px 10px !important;
+    border-radius: 4px !important;
+}
+
+/* Kanban card improvements for shop floor */
+.o_kanban_view.o_shop_floor_kanban .oe_kanban_card {
+    padding: 20px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1) !important;
+    border: 2px solid #e9ecef !important;
+}
+
+.o_kanban_view.o_shop_floor_kanban .oe_kanban_card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+    border-color: #007cba !important;
+    transform: translateY(-2px) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* List view row highlighting */
+.o_list_view.o_shop_floor_list tbody tr {
+    font-size: 16px !important;
+    min-height: 50px !important;
+}
+
+.o_list_view.o_shop_floor_list tbody tr:hover {
+    background-color: #e3f2fd !important;
+}
+
+/* Progress indicators */
+.o_shop_floor_progress {
+    background: linear-gradient(90deg, #28a745 0%, #20c997 100%) !important;
+    color: white !important;
+    padding: 8px 16px !important;
+    border-radius: 20px !important;
+    font-weight: bold !important;
+}
+
+/* Quantity display styling */
+.o_shop_floor_quantity_display {
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #28a745 !important;
+    text-align: center !important;
+    padding: 15px !important;
+    background-color: #f8f9fa !important;
+    border: 2px solid #28a745 !important;
+    border-radius: 8px !important;
+}
+
+/* Defect display styling */
+.o_shop_floor_defect_display {
+    font-size: 18px !important;
+    font-weight: bold !important;
+    color: #dc3545 !important;
+    text-align: center !important;
+    padding: 10px !important;
+    background-color: #fff5f5 !important;
+    border: 2px solid #dc3545 !important;
+    border-radius: 8px !important;
+}
+
+/* Modal/popup improvements for shop floor */
+.o_shop_floor_popup .modal-dialog {
+    max-width: 600px !important;
+    margin: 50px auto !important;
+}
+
+.o_shop_floor_popup .modal-content {
+    border-radius: 12px !important;
+    border: none !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+.o_shop_floor_popup .modal-header {
+    background-color: #007cba !important;
+    color: white !important;
+    border-radius: 12px 12px 0 0 !important;
+    padding: 20px !important;
+}
+
+.o_shop_floor_popup .modal-body {
+    padding: 30px !important;
+}
+
+.o_shop_floor_popup .modal-footer {
+    padding: 20px 30px !important;
+    border-radius: 0 0 12px 12px !important;
+}
+
+/* Touch-friendly radio buttons */
+.o_shop_floor_radio .o_radio_item {
+    margin: 10px !important;
+    padding: 15px !important;
+    border: 2px solid #dee2e6 !important;
+    border-radius: 8px !important;
+    background-color: #f8f9fa !important;
+}
+
+.o_shop_floor_radio .o_radio_item input[type="radio"]:checked + label {
+    background-color: #007cba !important;
+    color: white !important;
+    font-weight: bold !important;
+}
+
+/* Responsive design for tablets */
+@media (max-width: 768px) {
+    .o_shop_floor_btn {
+        width: 100% !important;
+        margin: 5px 0 !important;
+        font-size: 20px !important;
+        padding: 20px !important;
+    }
+    
+    .o_shop_floor_quantity_input {
+        font-size: 28px !important;
+        width: 100% !important;
+    }
+    
+    .o_kanban_view.o_shop_floor_kanban .oe_kanban_card {
+        margin: 10px 5px !important;
+    }
+}
+
+/* Print-friendly styles */
+@media print {
+    .o_shop_floor_btn,
+    .o_shop_floor_popup {
+        display: none !important;
+    }
+} 

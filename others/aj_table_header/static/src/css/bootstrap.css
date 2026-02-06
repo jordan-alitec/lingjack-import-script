@@ -1,0 +1,6 @@
+
+.text-truncate {
+  overflow: visible;
+  text-overflow: initial;
+  white-space: collapse;
+}

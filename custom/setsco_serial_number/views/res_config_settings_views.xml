@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Safety Stock Notification Settings in Manufacturing Configuration -->
+    <record id="res_config_settings_view_form_setsco" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.setsco.serial.number</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='stock']" position="inside">
+                <block title="Setsco Serial Number Safety Stock" name="setsco_safety_stock_notification_container">
+                    <setting id="setsco_safety_stock_notification_users"
+                             string="Safety Stock Notification Users"
+                             title="Configure users to notify when setsco serial numbers fall below safety stock levels"
+                             help="Select users who will receive notifications when setsco serial numbers in any category fall below their configured safety stock levels during manufacturing order assignment">
+                        <field name="safety_stock_notification_users"
+                               widget="many2many_tags"
+                               placeholder="Select users to notify..."/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo> 

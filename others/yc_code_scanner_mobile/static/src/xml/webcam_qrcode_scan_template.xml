@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="yc_code_scanner_mobile.widget_qrcode_scanner" owl="1">
+        <div class="o_field_widget o_field_char">
+            <span t-if="props.readonly" t-esc="props.record.data[props.name] || ''" />
+            <input t-else="" t-att-id="props.id" t-att-value="props.record.data[props.name] || ''" type="text" t-ref="barcodeChar" t-att-placeholder="props.placeholder" class="o_input" autocomplete="on"/>
+            <div>
+                <button t-if="!props.readonly"
+                    class="fa fa-qrcode btn btn-secondary qr_scan_button" 
+                    t-on-click="onConfigButtonClick" 
+                    title="Scan Code"
+                    style="color: #B76BAA; background-color:white; margin-top:5px;"
+                    aria-label="Scan Code" 
+                    name="o_start_qr_scan">
+                        <span style="margin-left: 5px; margin-bottom:2px;">scan</span>
+                </button>
+            </div>
+        </div>
+    </t>
+    <div t-name="yc_code_scanner_mobile.device_selector" id="WebCamSelector" owl="1">
+        <div class="container-fluid my-2">
+            <div>
+                <label for="camera_id">Select A Camera</label>
+                <select class="custom-select custom-select-lg mb-3 o_camera_selector" name="camera_id">
+                    <t t-foreach="devices" t-as="dev" t-key="dev_index">
+                        <option t-att-value="dev.id">
+                            <t t-raw="dev.label or dev.kind" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div>
+                <select class="custom-select custom-select-lg mb-3 o_barcode_type_selector" name="barcode_id">
+                    <t t-foreach="supportedCodes" t-as="code" t-key="code_index">
+                        <option t-att-value="code.label">
+                            <t t-raw="code.label" />
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div>
+                <label>Barcode</label>
+                <input type="radio" name='scan_code_type' value='1' />
+                <label>QR Code</label>
+                <input type="radio" name='scan_code_type' value='0' checked="checked" />
+            </div>
+        </div>
+    </div>
+
+</templates>

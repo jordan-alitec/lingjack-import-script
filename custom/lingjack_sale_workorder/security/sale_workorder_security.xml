@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="lingjack_sale_workorder.sale_work_order">
+        <field name="name">Sale Work Order</field>
+    </record>
+
+    <record id="lingjack_sale_workorder.group_manage_swo" model="res.groups">
+        <field name="name">Manage SWO</field>
+        <field name="category_id" ref="lingjack_sale_workorder.sale_work_order"/>
+    </record>
+</odoo>
+
+

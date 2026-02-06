@@ -1,0 +1,330 @@
+<odoo>
+    <record id="view_order_form_inherit_custom_ref" model="ir.ui.view">
+        <field name="name">sale.order.form.custom.ref</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[.//field[@name='partner_id']]" position="after">
+                <group>
+                    <group>
+                        <field name="sale_type_id"/>
+                         <field name="quotation_type"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+                <field name="quote_type_id"/>
+                <field name="delivery_to_id"/>
+                <field name="project"/>
+                <field name="purchase_requisition_ids" widget="many2many_tags" domain="[('state', '=', 'draft')]"/>
+            </xpath>
+
+            <xpath expr="//header" position="inside">
+                <button name="action_approve" type="object" string="Approval"
+                        class="btn-primary" modifire="{'invisible': [('approve', '=', True)]}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="approve"/>
+                <field name="approved_by" options="{'no_create': True}" readonly="1"/>
+                <field name="approved_on" readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="partner_bank_id"/>
+            </xpath>
+            <xpath expr="//field[@name='validity_date']" position="before">
+                <field name="so_status"/>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="before">
+                <field name="so_price_category"/>
+                <field name="please_indicate"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="ship_to_attention_ids" widget="many2many_tags" domain="[('parent_id', '=', partner_id),('type', '=', 'contact')]"/>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+                <attribute name="domain">['|','&amp;',('id', '=', partner_id),('type', 'in', ('contact', 'invoice')),'&amp;',('parent_id', '=', partner_id),('type', '=', 'invoice')]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="attributes">
+                <attribute name="domain"> ['|','&amp;',('id', '=', partner_id),('type', 'in', ('contact', 'invoice')),'&amp;',('parent_id', '=', partner_id),('type', '=', 'delivery')] </attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="apply_manual_payment_terms"/>
+                <field name="manual_payment_terms" invisible="not apply_manual_payment_terms"/>
+                <field name="cs_in_charge_id"/>
+                <field name="cs_note"/>
+                <field name="attention_id" domain="[('parent_id', '=', partner_id),('type', '=', 'contact')]"/>
+                <field name="third_party_quot_id"/>
+<!--                <field name="customer_part_id"/>-->
+
+                <div class="o_horizontal" style="display: flex; align-items: center;">
+                    <label for="customer_part_id" style="margin-right: 10px; min-width: 150px;" class='o_form_label'>
+                        Customer Part Number Template
+                    </label>
+                    <field name="customer_part_id" style="width: 50%; margin-right: 10px;"/>
+                    <button name="action_apply_customer_part"
+                            string="APPLY"
+                            type="object"
+                            class="oe_highlight"
+                            style="height: 28px;"/>
+                </div>
+
+
+                <field name="amount_home_currency"/>
+                <field name="delivery"/>
+                <div class="o_horizontal" >
+                    <label for="order_warranty_period" style="margin-right: 10px; min-width: 150px;" class='o_form_label'>Warranty Period
+                    </label>
+                    <field name="order_warranty_period" style="width: 50%; margin-right: 10px;"/>
+                    <button name="action_apply_warranty"
+                            string="APPLY"
+                            type="object"
+                            class="oe_highlight"
+                            style="height: 28px;"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page string="Follow Up">
+                    <group>
+                        <group>
+                            <field name="sale_date"/>
+                            <field name="person_incharge_id"/>
+                            <field name="remarks"/>
+                        </group>
+                    </group>
+                </page>
+                <page string="Project Risk Assessment">
+                    <group>
+                        <group>
+                            <field name="sales_comment" placeholder="Enter Sales Comment"/>
+                            <field name="finance_comment" placeholder="Enter Finance Comment"/>
+                            <field name="management_comment" placeholder="Enter Management Comment"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="type_order_id"/>
+            </xpath>
+
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="revision_id"/>
+            </xpath>
+        <xpath expr="//page/field[@name='order_line']/list/field[@name='price_unit']" position="after">
+            <field name="delivery"/>
+        </xpath>
+        </field>
+    </record>
+
+    <record id="view_sale_type_list" model="ir.ui.view">
+        <field name="name">sale.type.list</field>
+        <field name="model">sale.type</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+                <field name="is_service"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_sale_type" model="ir.actions.act_window">
+        <field name="name">Sales Type</field>
+        <field name="res_model">sale.type</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Sales Type here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sale_type"
+              name="Sale Type"
+              parent="sale.menu_sale_config"
+              action="action_sale_type"/>
+
+
+
+    <record id="view_type_code_list" model="ir.ui.view">
+        <field name="name">type.code.list</field>
+        <field name="model">type.code</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_type_code" model="ir.actions.act_window">
+        <field name="name">Type of Code</field>
+        <field name="res_model">type.code</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Type of Code here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_type_code"
+              name="Type Of Code"
+              parent="sale.menu_sale_config"
+              action="action_type_code"/>
+
+
+    <record id="view_type_order_list" model="ir.ui.view">
+        <field name="name">type.order.list</field>
+        <field name="model">type.order</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+ 
+            </list>
+        </field>
+    </record>
+
+    <record id="action_type_order" model="ir.actions.act_window">
+        <field name="name">Type of Order</field>
+        <field name="res_model">type.order</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Type of Order here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_type_orderS"
+              name="Type Of Order"
+              parent="sale.menu_sale_config"
+              action="action_type_order"/>
+
+
+
+    <record id="view_type_revision_list" model="ir.ui.view">
+        <field name="name">revision.list.list</field>
+        <field name="model">revision.list</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_revision_list" model="ir.actions.act_window">
+        <field name="name">Revision List</field>
+        <field name="res_model">revision.list</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Revision List here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_revision_list"
+              name="Revision List"
+              parent="sale.menu_sale_config"
+              action="action_revision_list"/>
+
+
+    <record id="view_delivery_to_list" model="ir.ui.view">
+        <field name="name">delivery.to.list</field>
+        <field name="model">delivery.to</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_delivery_to_list" model="ir.actions.act_window">
+        <field name="name">Delivery To</field>
+        <field name="res_model">delivery.to</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Delivery To here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_delivery_to"
+              name="Delivery To"
+              parent="sale.menu_sale_config"
+              action="action_delivery_to_list"/>
+
+    <record id="view_so_status_list" model="ir.ui.view">
+        <field name="name">so.status.list</field>
+        <field name="model">so.status</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_so_status_list" model="ir.actions.act_window">
+        <field name="name">SO Status</field>
+        <field name="res_model">so.status</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available SO Status here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_so_status"
+              name="SO Status"
+              parent="sale.menu_sale_config"
+              action="action_so_status_list"/>
+
+
+
+    <record id="view_so_price_category_list" model="ir.ui.view">
+        <field name="name">so.price.category.list</field>
+        <field name="model">so.price.category</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_so_price_category_list" model="ir.actions.act_window">
+        <field name="name">SO Price Category</field>
+        <field name="res_model">so.price.category</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available SO Price Category here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_so_price_category"
+              name="SO Price Category"
+              parent="sale.menu_sale_config"
+              action="action_so_price_category_list"/>
+
+
+    <record id="view_sale_order_line_form" model="ir.ui.view">
+        <field name="name">sale.order.view.form.inherit.line
+        </field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']//list//field[@name='analytic_distribution']"
+                   position="before">
+                <field name="remarks"/>
+                <field name="warranty_period"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

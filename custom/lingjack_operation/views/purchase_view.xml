@@ -1,0 +1,129 @@
+<odoo>
+    <record id="view_purchase_order_form_custom_attn" model="ir.ui.view">
+        <field name="name">purchase.order.form.attn</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//h1/field[@name='name']" position="after">
+                <span invisible="not revision_id" style="margin-right: 80%; white-space: nowrap;">
+                    <field name="revision_id" readonly="1"/>
+                </span>
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position="after">
+                <field name="attention_id"/>
+                <field name="total_in_home_currency"  readonly="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field name="purchase_type_id"/>
+            </xpath>
+            <xpath expr="//field[@name='project_id']" position="after">
+                <field name="project_ref"/>
+                <field name="purchaser_type"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="revision_id"/>
+            </xpath>
+            <xpath expr="//field[@name='product_qty']" position="before">
+                <field name="sale_order_ids" domain="[('state', '!=', 'cancel')]" widget="many2many_tags"/>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="product_id_domain" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='product_id']" position="attributes">
+               <attribute name="domain">product_id_domain</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purpose_purpose" model="ir.ui.view">
+        <field name="name">purpose.purpose.list</field>
+        <field name="model">purpose.purpose</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_purpose_purpose_list" model="ir.actions.act_window">
+        <field name="name">Purpose</field>
+        <field name="res_model">purpose.purpose</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Purpose here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_purpose_purpose"
+              name="Purpose"
+              parent="purchase.menu_purchase_config"
+              action="action_purpose_purpose_list"/>
+
+
+    <record id="view_purchase_requisition_line_form_inherit_sale" model="ir.ui.view">
+        <field name="name">purchase.requisition.line.form.inherit.sale</field>
+        <field name="model">purchase.requisition</field>
+        <field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form"/>
+        <field name="arch" type="xml">
+            <field name="reference" position="after">
+                <field name="purpose_id"/>
+            </field>
+            <xpath expr="//group/field[@name='user_id']" position="after">
+                <field name="purchase_type_id"/>
+            </xpath>
+            <xpath expr="//group/field[@name='company_id']" position="after">
+                <field name="purchaser_type"/>
+            </xpath>
+            <xpath expr="//group/field[@name='currency_id']" position="after">
+                <field name="total_in_currency" readonly="1"/>
+                <field name="total_in_home_currency" readonly="1"/>
+            </xpath>
+            <xpath expr="//notebook//page[@name='products']//field[@name='product_id']" position="after">
+                <field name="sale_order_id"/>
+                <field name="purpose"/>
+                <field name="expected_date"/>
+            </xpath>
+            <xpath expr="//notebook//page[@name='products']//field[@name='price_unit']" position="after">
+                <field name="discount"/>
+                <field name="subtotal"/>
+            </xpath>
+            <xpath expr="//notebook//page[@name='products']//field[@name='qty_ordered']" position="after">
+                <field name="rfq_po_qty"/>
+                <field name="qty_to_order"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_purchase_type" model="ir.ui.view">
+        <field name="name">purchase.type.list</field>
+        <field name="model">purchase.type</field>
+        <field name="arch" type="xml">
+            <list string="Versions" editable="bottom">
+                <field name="name"/>
+                <field name="company_ids" widget="many2many_tags"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_purchase_type_list" model="ir.actions.act_window">
+        <field name="name">Purchase Type</field>
+        <field name="res_model">purchase.type</field>
+        <field name="view_mode">list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add available Purchase Type here.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_purchase_type_menu"
+              name="Purchase Type"
+              parent="purchase.menu_purchase_config"
+              action="action_purchase_type_list"/>
+
+
+
+</odoo>
+

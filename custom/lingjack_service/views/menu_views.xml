@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Generate Service QR Menu Item -->
+    <menuitem id="menu_generate_service_qr"
+              name="Generate Service QR"
+              parent="industry_fsm.fsm_menu_root"
+              action="action_qr_generation_wizard"
+              sequence="41"/>
+</odoo>
+
+

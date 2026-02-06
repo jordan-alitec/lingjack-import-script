@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Template wizard view and action -->
+  <record id="view_lingjack_edit_product_template_wizard_form" model="ir.ui.view">
+    <field name="name">lingjack.edit.product.template.wizard.form</field>
+    <field name="model">lingjack.edit.product.template.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Edit Shipping Info">
+        <group>
+          <field name="product_tmpl_id" invisible="product_id"/>
+          <field name="product_id" invisible="product_tmpl_id and not product_id"/>
+          <field name="hs_code"/>
+          <field name="country_of_origin"/>
+          <field name="weight"/>
+        </group>
+        <footer>
+          <button string="Apply" type="object" name="action_apply" class="btn-primary"/>
+          <button string="Cancel" class="btn-secondary" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_lingjack_edit_product_template_wizard" model="ir.actions.act_window">
+    <field name="name">Edit Shipping Info</field>
+    <field name="res_model">lingjack.edit.product.template.wizard</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+    <field name="view_id" ref="view_lingjack_edit_product_template_wizard_form"/>
+    <field name="context">{'default_product_tmpl_id': active_id}</field>
+  </record>
+
+  <!-- Button on product template form -->
+  <record id="view_product_template_add_wizard_button" model="ir.ui.view">
+    <field name="name">product.template.form.add.wizard.button</field>
+    <field name="model">product.template</field>
+    <field name="inherit_id" ref="product.product_template_form_view"/>
+    <field name="arch" type="xml">
+      <xpath expr="/form/header" position="inside">
+        <button name="action_open_edit_hs_origin_weight" type="object" string="Edit Shipping Info" class="btn-primary"/>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>

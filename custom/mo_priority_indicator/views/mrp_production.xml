@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<!-- Inherited mrp production form view to add new fields -->
+    <record id="mrp_production_form_view_inherits" model="ir.ui.view">
+        <field name="name">mrp.production.form.view.inherits</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="urgency"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

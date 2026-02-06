@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Setsco Category Tree View -->
+    <record id="view_setsco_category_tree" model="ir.ui.view">
+        <field name="name">setsco.category.tree</field>
+        <field name="model">setsco.category</field>
+        <field name="arch" type="xml">
+            <list string="Setsco Categories">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="safety_stock_level"/>
+                <field name="available_serials_count"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Setsco Category Form View -->
+    <record id="view_setsco_category_form" model="ir.ui.view">
+        <field name="name">setsco.category.form</field>
+        <field name="model">setsco.category</field>
+        <field name="arch" type="xml">
+            <form string="Setsco Category">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+<!--                        <button name="toggle_active" type="object" -->
+<!--                                class="oe_stat_button" icon="fa-archive">-->
+<!--                            <field name="active" widget="boolean_button"-->
+<!--                                   options='{"terminology": "archive"}'/>-->
+<!--                        </button>-->
+                        <button name="action_view_available_serials" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-barcode"
+                                help="View available setsco serial numbers for this category">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="available_serials_count" widget="statinfo" string="Available Serials"/>
+                                </span>
+<!--                                <span class="o_stat_text">Available</span>-->
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Category Name"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <field name="safety_stock_level"/>
+                        <field name="description" placeholder="Optional description..."/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Setsco Category Search View -->
+    <record id="view_setsco_category_search" model="ir.ui.view">
+        <field name="name">setsco.category.search</field>
+        <field name="model">setsco.category</field>
+        <field name="arch" type="xml">
+            <search string="Search Setsco Categories">
+                <field name="name" string="Name"/>
+                <field name="description" string="Description"/>
+                <filter string="Active" name="active" domain="[('active', '=', True)]" />
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]" />
+                <group expand="0" string="Group By">
+                    <filter string="Active Status" name="group_active" context="{'group_by': 'active'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Setsco Category Action -->
+    <record id="action_setsco_category" model="ir.actions.act_window">
+        <field name="name">Setsco Categories</field>
+        <field name="res_model">setsco.category</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_setsco_category_search"/>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Setsco Category
+            </p>
+            <p>
+                Setsco categories are used to organize and categorize serial numbers.
+                They can be linked to product categories and used in the serial range wizard.
+            </p>
+        </field>
+    </record>
+</odoo> 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Stock Move Form View for Lot Selection -->
+    <record id="view_stock_move_lot_selection_form" model="ir.ui.view">
+        <field name="name">stock.move.lot.selection.form</field>
+        <field name="model">stock.move</field>
+        <field name="inherit_id" ref="mrp.view_mrp_stock_move_operations"/>
+        <field name="arch" type="xml">
+            <!-- Add custom footer for lot selection mode -->
+            <xpath expr="//form" position="inside">
+                <footer>
+                    <button name="action_save_and_return_to_wizard"
+                            string="Save and Return"
+                            type="object"
+                            class="btn-primary"
+                            invisible="not context.get('return_to_wizard')"
+                            context="{'lot_selection_wizard_id': context.get('lot_selection_wizard_id')}"/>
+                    <button string="Save" special="save" class="btn-primary" invisible="context.get('return_to_wizard')"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        
+        <!-- Shop Floor Employee Group -->
+        <record id="group_shop_floor_employee" model="res.groups">
+            <field name="name">Shop Floor Employee</field>
+            <field name="category_id" ref="base.module_category_manufacturing"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="comment">Employees working on the shop floor with access to quantity logging</field>
+        </record>
+
+        <!-- Shop Floor Supervisor Group -->
+        <record id="group_shop_floor_supervisor" model="res.groups">
+            <field name="name">Shop Floor Supervisor</field>
+            <field name="category_id" ref="base.module_category_manufacturing"/>
+            <field name="implied_ids" eval="[(4, ref('group_shop_floor_employee')), (4, ref('mrp.group_mrp_user'))]"/>
+            <field name="comment">Shop floor supervisors with access to all shop floor functionality and reports</field>
+        </record>
+
+    </data>
+</odoo> 

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<!--list view for mrp operation template-->
+    <record id="mrp_operation_temlate_view_list" model="ir.ui.view">
+        <field name="name">mrp.operation.template.list</field>
+        <field name="model">mrp.operation.template</field>
+        <field name="arch" type="xml">
+            <list string="MRP Operation Template">
+				<field name="name" />
+            </list>
+        </field>
+    </record>
+
+	<!--Form view for mrp operation template-->
+    <record id="mrp_operation_temlate_view_form" model="ir.ui.view">
+        <field name="name">mrp.operation.template.form</field>
+        <field name="model">mrp.operation.template</field>
+        <field name="arch" type="xml">
+            <form string="Mrp Operation Template">
+                <sheet>
+                    <group>
+	                    <field name="name" required="1"/>
+	                    <field name="work_center_id" required="1"/>
+	                    <field name="reference"/>
+                    </group>
+                    <notebook>
+                            <page string="Work Sheet" name="worksheet">
+                                <group>
+                                    <field name="work_sheet_type" widget="radio"/>
+                                    <field name="worksheet" help="Upload your PDF file." widget="pdf_viewer" invisible="work_sheet_type != 'pdf'" required="work_sheet_type == 'pdf'"/>
+			                        <field name="worksheet_google_slide" placeholder="Google Slide Link" widget="embed_viewer" invisible="work_sheet_type != 'google_slide'" required="work_sheet_type == 'google_slide'"/>
+			                        <field name="note" invisible="work_sheet_type != 'text'"/>
+                                </group>
+                            </page>
+                        </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!--Action for mrp operation template menu-->
+ 	<record id="mrp_operation_template_action" model="ir.actions.act_window">
+        <field name="name">Operation Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.operation.template</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    
+	<!-- Mrp operation template menu-->
+	<menuitem id="menu_mrp_operation_template" parent="mrp.menu_mrp_configuration"
+		action="mrp_operation_template_action" sequence="80" />
+
+</odoo>

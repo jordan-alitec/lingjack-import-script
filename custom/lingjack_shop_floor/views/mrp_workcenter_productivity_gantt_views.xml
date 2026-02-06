@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Time Tracking Gantt View for MRP Workcenter Productivity -->
+    <record id="view_mrp_workcenter_productivity_gantt_time_tracking" model="ir.ui.view">
+        <field name="name">mrp.workcenter.productivity.gantt.time.tracking</field>
+        <field name="model">mrp.workcenter.productivity</field>
+        <field name="arch" type="xml">
+            <gantt 
+                date_start="date_start" 
+                date_stop="date_end" 
+                default_group_by="procurement_group_id,workorder_id"
+                default_scale="day" 
+                scales="hour,day,week,month"
+                string="Time Tracking">
+                
+                <!-- Fields available in Gantt -->
+                <field name="workcenter_id"/>
+                <field name="workorder_id"/>
+                <field name="production_id"/>
+                <field name="user_id"/>
+                <field name="employee_id"/>
+                <field name="duration"/>
+                <field name="quantity_produced" optional="True"/>
+                <field name="qty_defects" optional="True"/>
+                <field name="qty_qualified" optional="True"/>
+                <field name="loss_id"/>
+                <field name="description"/>
+                <field name="workorder_operation_name"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="has_time_tracking"/>
+                
+                <!-- Templates for Gantt display -->
+                <templates>
+                    <!-- Custom record display template -->
+                    <div t-name="gantt-pill" class="o_gantt_pill_display" 
+                         t-attf-class="o_gantt_pill_display #{qty_qualified and qty_qualified > 0 ? 'o_gantt_pill_has_production' : ''} #{qty_defects and qty_defects > 0 ? 'o_gantt_pill_has_defects' : ''} #{date_end == False ? 'o_gantt_pill_active_session' : ''} #{not has_time_tracking ? 'o_gantt_pill_no_tracking' : ''}">
+                        <span class="o_gantt_pill_title">
+                            <t t-if="workorder_operation_name">
+                                <t t-esc="workorder_operation_name"/>
+                                <t t-if="qty_qualified and qty_qualified > 0">
+                                    - Qty: <strong><t t-esc="qty_qualified"/></strong>
+                                </t>
+                                <t t-elif="not has_time_tracking">
+                                    - No Tracking
+                                </t>
+                            </t>
+                            <t t-elif="qty_qualified and qty_qualified > 0">
+                                <strong>Qty: <t t-esc="qty_qualified"/></strong>
+                            </t>
+                            <t t-else="">
+                                <t t-esc="employee_id ? employee_id[1] : 'Session'"/>
+                            </t>
+                        </span>
+                        <span class="o_gantt_pill_subtitle" t-if="duration">
+                            <t t-esc="Math.round(duration * 100) / 100"/>h
+                        </span>
+                        <span class="o_gantt_pill_subtitle" t-elif="not has_time_tracking">
+                            Scheduled
+                        </span>
+                    </div>
+                    
+                    <div t-name="gantt-popover">
+                        <div class="o_gantt_popover_content">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Work Order:</strong>
+                                </div>
+                                <div class="col-6">
+                                    <t t-esc="workorder_id[1]"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Workcenter:</strong>
+                                </div>
+                                <div class="col-6">
+                                    <t t-esc="workcenter_id[1]"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Employee:</strong>
+                                </div>
+                                <div class="col-6">
+                                    <t t-esc="employee_id ? employee_id[1] : 'N/A'"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Duration:</strong>
+                                </div>
+                                <div class="col-6">
+                                    <t t-esc="duration"/> hours
+                                </div>
+                            </div>
+                            <div class="row" t-if="quantity_produced and quantity_produced > 0">
+                                <div class="col-6">
+                                    <strong>Produced:</strong>
+                                </div>
+                                <div class="col-6">
+                                    <t t-esc="quantity_produced"/> units
+                                </div>
+                            </div>
+                            <div class="row" t-if="qty_defects and qty_defects > 0">
+                                <div class="col-6">
+                                    <strong>Defects:</strong>
+                                </div>
+                                <div class="col-6 text-danger">
+                                    <t t-esc="qty_defects"/> units
+                                </div>
+                            </div>
+                            <div class="row" t-if="qty_qualified and qty_qualified > 0">
+                                <div class="col-6">
+                                    <strong>Qualified:</strong>
+                                </div>
+                                <div class="col-6 text-success">
+                                    <strong><t t-esc="qty_qualified"/> units</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </templates>
+            </gantt>
+        </field>
+    </record>
+
+    <!-- Search View for Time Tracking Gantt -->
+    <record id="view_mrp_workcenter_productivity_search_time_tracking" model="ir.ui.view">
+        <field name="name">mrp.workcenter.productivity.search.time.tracking</field>
+        <field name="model">mrp.workcenter.productivity</field>
+        <field name="arch" type="xml">
+            <search string="Time Tracking Search">
+                <field name="workorder_id"/>
+                <field name="workcenter_id"/>
+                <field name="employee_id"/>
+                <field name="user_id"/>
+                
+                <filter string="Today" name="today" domain="[('date_start', '>=', datetime.datetime.combine(context_today(), datetime.time(0,0,0))), ('date_start', '&lt;=', datetime.datetime.combine(context_today(), datetime.time(23,59,59)))]"/>
+                <filter string="This Week" name="this_week" domain="[('date_start', '>=', (context_today() - datetime.timedelta(days=context_today().weekday())).strftime('%Y-%m-%d'))]"/>
+                <filter string="This Month" name="this_month" domain="[('date_start', '>=', context_today().strftime('%Y-%m-01'))]"/>
+                
+                <filter string="Has Production" name="has_production" domain="[('quantity_produced', '>', 0)]"/>
+                <filter string="Has Defects" name="has_defects" domain="[('qty_defects', '>', 0)]"/>
+                <filter string="Include Work Orders Without Tracking" name="include_workorders_without_tracking" context="{'search_default_include_workorders_without_tracking': True}"/>
+                
+                <group expand="0" string="Group By">
+                    <filter string="Work Order" name="group_by_workorder" context="{'group_by': 'workorder_id'}"/>
+                    <filter string="Workcenter" name="group_by_workcenter" context="{'group_by': 'workcenter_id'}"/>
+                    <filter string="Employee" name="group_by_employee" context="{'group_by': 'employee_id'}"/>
+                    <filter string="Date" name="group_by_date" context="{'group_by': 'date_start:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action for Time Tracking Gantt -->
+    <record id="action_mrp_workcenter_productivity_gantt_time_tracking" model="ir.actions.act_window">
+        <field name="name">Time Tracking Gantt</field>
+        <field name="res_model">mrp.workcenter.productivity</field>
+        <field name="view_mode">gantt,list,form</field>
+        <field name="view_id" ref="view_mrp_workcenter_productivity_gantt_time_tracking"/>
+        <field name="search_view_id" ref="view_mrp_workcenter_productivity_search_time_tracking"/>
+        <field name="context">{
+            'search_default_today': 1,
+            'search_default_include_workorders_without_tracking': 1
+        }</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No time tracking records found
+            </p>
+            <p>
+                This view shows time tracking sessions for work orders.
+                Work orders without time tracking are also displayed.
+            </p>
+        </field>
+    </record>
+
+</odoo> 

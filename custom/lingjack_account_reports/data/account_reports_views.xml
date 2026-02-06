@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_reports.aged_receivable_report" model="account.report">
+        <field name="show_payment_terms" eval="True"/>
+        <field name="show_sales_team" eval="True"/>
+        <field name="show_sales_person" eval="True"/>
+        <field name="column_ids">
+            <record id="aged_receivable_report_receivable_show_credit_limit" model="account.report.column">
+                <field name="name">Credit Limit</field>
+                <field name="expression_label">credit_limit</field>
+                <field name="figure_type">float</field>
+                <field name="sortable" eval="False"/>
+                <field name="sequence">1</field>
+            </record>
+            <record id="aged_receivable_report_receivable_payment_terms" model="account.report.column">
+                <field name="name">Payment Terms</field>
+                <field name="expression_label">show_payment_terms</field>
+                <field name="figure_type">string</field>
+                <field name="sortable" eval="False"/>
+                <field name="sequence">2</field>
+            </record>
+            <record id="aged_receivable_report_receivable_sales_team" model="account.report.column">
+                <field name="name">Sales Team</field>
+                <field name="expression_label">show_sales_team</field>
+                <field name="figure_type">string</field>
+                <field name="sortable" eval="False"/>
+                <field name="sequence">3</field>
+            </record>
+            <record id="aged_receivable_report_receivable_sales_person" model="account.report.column">
+                <field name="name">Salesperson</field>
+                <field name="expression_label">show_sales_person</field>
+                <field name="figure_type">string</field>
+                <field name="sortable" eval="False"/>
+                <field name="sequence">4</field>
+            </record>
+        </field>
+
+        <field name="line_ids">
+            <record id="account_reports.aged_receivable_line" model="account.report.line">
+                <field name="expression_ids">
+                    <record id="aged_receivable_line_invoice_credit_limit" model="account.report.expression">
+                        <field name="label">credit_limit</field>
+                        <field name="engine">custom</field>
+                        <field name="formula">_report_custom_engine_aged_receivable</field>
+                        <field name="subformula">credit_limit</field>
+                        <field name="auditable" eval="True"/>
+                    </record>
+                    <record id="aged_receivable_line_show_payment_terms" model="account.report.expression">
+                        <field name="label">show_payment_terms</field>
+                        <field name="engine">custom</field>
+                        <field name="formula">_report_custom_engine_aged_receivable</field>
+                        <field name="subformula">show_payment_terms</field>
+                        <field name="auditable" eval="False"/>
+                    </record>
+                    <record id="aged_receivable_line_invoice_team_id" model="account.report.expression">
+                        <field name="label">show_sales_team</field>
+                        <field name="engine">custom</field>
+                        <field name="formula">_report_custom_engine_aged_receivable</field>
+                        <field name="subformula">show_sales_team</field>
+                        <field name="auditable" eval="False"/>
+                    </record>
+                    <record id="aged_receivable_line_invoice_payment_show_sales_person" model="account.report.expression">
+                        <field name="label">show_sales_person</field>
+                        <field name="engine">custom</field>
+                        <field name="formula">_report_custom_engine_aged_receivable</field>
+                        <field name="subformula">show_sales_person</field>
+                        <field name="auditable" eval="False"/>
+                    </record>
+                </field>
+            </record>
+        </field>
+    </record>
+
+    <record id="account_reports.aged_payable_report" model="account.report">
+        <field name="show_payment_terms" eval="True"/>
+        <field name="column_ids">
+            <record id="aged_receivable_report_payable_payment_terms" model="account.report.column">
+                <field name="name">Payment Terms</field>
+                <field name="expression_label">show_payment_terms</field>
+                <field name="figure_type">string</field>
+                <field name="sortable" eval="False"/>
+                <field name="sequence">1</field>
+            </record>
+        </field>
+        <field name="line_ids">
+            <record id="account_reports.aged_payable_line" model="account.report.line">
+                <field name="expression_ids">
+                    <record id="aged_payable_line_show_payment_terms" model="account.report.expression">
+                        <field name="label">show_payment_terms</field>
+                        <field name="engine">custom</field>
+                        <field name="formula">_report_custom_engine_aged_payable</field>
+                        <field name="subformula">show_payment_terms</field>
+                        <field name="auditable" eval="False"/>
+                    </record>
+                </field>
+            </record>
+        </field>
+    </record>
+
+
+</odoo>

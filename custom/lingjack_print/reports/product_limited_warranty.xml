@@ -1,0 +1,78 @@
+<odoo>
+    <template id="report_invoice_limited_warranty_content">
+        <div class="page">
+            <br/>
+            <div style="text-align: left; margin-bottom: 20px;">
+                <strong>
+                     <span t-field="o.invoice_date"/>
+                </strong>
+            </div>
+            <p>
+                <p t-if="o.partner_id">
+                    <span t-field="o.partner_id"
+                          t-options="{'widget': 'contact', 'fields': ['name', 'address'], 'no_marker': true } "/>
+                </p>
+                <br/>
+                <t t-set="sale_order"
+                   t-value="o.invoice_origin and env['sale.order'].search([('name', '=', o.invoice_origin)], limit=1)"/>
+                <t t-set="delivery"
+                   t-value="sale_order and env['stock.picking'].search([('sale_id', '=', sale_order.id), ('state', '!=', 'cancel')], limit=1)"/>
+                <strong>Under Document No.</strong>
+                <span t-esc="delivery.name if delivery else ''"/>
+                <br/>
+                <strong>L/C No. </strong>
+                <span t-field="o.lc_no"/>
+            </p>
+
+            <h2 style="text-align: center; color: #1f4e79; margin-top: 20px;">
+                PRODUCT LIMITED WARRANTY
+            </h2>
+            <p>
+                Seller warrants that this product will, under normal use and service, be free from defects in material
+                and workmanship for a period of twelve (12) months from the date of original sale. Seller agrees, upon
+                written notice from End User, given no later than thirty (30) days after the defect is discovered to repair or replace,
+                at the Seller's option, any part, which after examination by Seller is disclosed to have been defective, provided that
+                such product is returned to seller, transportation charge prepaid, during the warranty period. This warranty does not
+                apply to any damage resulting from accident, improper installation alteration, misuse or abuse. The full extents of
+                Seller's warranty obligations are to repair or replace any defective part.
+            </p>
+            <p>THERE ARE NO OTHER WARRANTY OBLIGATIONS OF SELLER, INCLUDING ANY WARRANTY OF MERCHANT, ABILITY OR FINESS FOR A PARTICULAR PURPOSE, EITHER EXPRESSED OR IMPLIED.</p>
+            <p>The warranty for items not manufactured by Seller is limited to the warranty obligations of Seller's suppliers and shall be subject to performance of such warranty obligations by the suppliers.</p>
+            <p>SELLER IS NOT LIABLE FOR ANY OTHER COST, LABOUR CHARGES, DELAYS OR CLAIMS NOR FOR ANY CONSEQUENTIAL, CONTINGENT OR INCIDENTAL, DAMAGES WITH RESPECT TO THE PRODUCT OF ITS USE.</p>
+            <p>Seller neither assumes nor authorizes any person to assume for it any other obligation or liability in connection with this product.</p>
+            <p><t t-esc="o.remarks"/></p>
+
+            <br/>
+            <p>Yours truly,</p>
+            <br/><br/><br/>
+            <div style="width:30%; height:1px; background-color:black;"/>
+            <p><b>Inspector/Authorised Person</b></p>
+        </div>
+    </template>
+
+    <template id="report_invoice_limited_warranty">
+        <t t-call="web.external_layout">
+            <t t-call="lingjack_print.report_invoice_limited_warranty_content"/>
+        </t>
+    </template>
+
+    <template id="report_inv_limited_warranty_wrapper">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_invoice_limited_warranty"
+                   t-lang="o._get_report_lang()"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_invoice_limited_warranty" model="ir.actions.report">
+        <field name="name">Product Limited Warranty</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_inv_limited_warranty_wrapper</field>
+        <field name="report_file">lingjack_print.report_inv_limited_warranty_wrapper</field>
+        <field name="print_report_name">'Limited Warranty - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

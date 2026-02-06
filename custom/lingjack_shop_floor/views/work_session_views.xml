@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shop Floor Quantity Popup Form -->
+    <record id="view_shop_floor_quantity_popup_form" model="ir.ui.view">
+        <field name="name">shop.floor.quantity.popup.form</field>
+        <field name="model">shop.floor.quantity.popup</field>
+        <field name="arch" type="xml">
+            <form string="Add Quantity Produced">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="workorder_id" readonly="1" class="oe_inline"/>
+                        </h1>
+                        <h2>
+                            <field name="product_id" readonly="1" class="oe_inline"/>
+                        </h2>
+                        <!-- Session action indicator -->
+                        <div class="alert alert-info">
+                            <i class="fa fa-clipboard"/> Log quantities produced this session
+                        </div>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="productivity_id" invisible="1"/>
+                            <field name="continue_to_pending" invisible="1"/>
+                            <field name="employee_id" readonly="1"/>
+                            <field name="quantity_produced" class="o_input_lg" widget="float"/>
+                            <field name="uom_id" readonly="1"/>
+                        </group>
+
+                    </group>
+                    
+                    <group string="Additional Information">
+                        <field name="notes" placeholder="Any production notes..."/>
+                    </group>
+                </sheet>
+                
+                <footer>
+                    <!-- Only 2 buttons: Save & Stop Session, and Cancel -->
+                    <button name="action_save_quantity" 
+                            string="Save &amp; Stop Session" 
+                            type="object" 
+                            class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Enhanced MRP Workcenter Productivity List View -->
+    <record id="view_mrp_workcenter_productivity_list_enhanced" model="ir.ui.view">
+        <field name="name">mrp.workcenter.productivity.list.enhanced</field>
+        <field name="model">mrp.workcenter.productivity</field>
+        <field name="inherit_id" ref="mrp.oee_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='duration']" position="after">
+                <field name="quantity_produced" sum="Total Quantity"/>
+                <field name="defect_quantity" sum="Total Defects"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- Enhanced MRP Workcenter Productivity Form View -->
+    <record id="view_mrp_workcenter_productivity_form_enhanced" model="ir.ui.view">
+        <field name="name">mrp.workcenter.productivity.form.enhanced</field>
+        <field name="model">mrp.workcenter.productivity</field>
+        <field name="inherit_id" ref="mrp.oee_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description']" position="after">
+                <group string="Production Information" col="4">
+                    <field name="quantity_produced"/>
+                    <field name="defect_quantity"/>
+                    <button name="action_add_quantity_popup" 
+                            string="Add/Edit Quantity" 
+                            type="object" 
+                            class="btn-primary"
+                            invisible="date_end != False"/>
+                </group>
+                <group string="Production Notes" invisible="notes == False">
+                    <field name="notes" invisible="notes == False"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Enhanced MRP Work Order Form View -->
+    <record id="view_mrp_workorder_form_enhanced" model="ir.ui.view">
+        <field name="name">mrp.workorder.form.enhanced</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_form_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_remaining']" position="before">
+                <field name="qty_produced" string="Quantity Produced"/>
+            </xpath>
+            <xpath expr="//field[@name='qty_remaining']" position="attributes">
+                <attribute name="string">Quantity Remaining</attribute>
+            </xpath>
+            <xpath expr="//field[@name='time_ids']/list/field[@name='date_end']" position="after">
+                <field name="quantity_produced" string="Quantity Produced"/>
+            </xpath>
+            
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_productivity_with_quantity"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-clock-o">
+                    <field name="duration" string="Duration" widget="float_time"/>
+                </button>
+                <button name="debug_quantity_calculation"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-bug"
+                        groups="base.group_no_one">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_text">Debug Qty</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Enhanced MRP Production Form View -->
+    <record id="view_mrp_production_form_enhanced" model="ir.ui.view">
+        <field name="name">mrp.production.form.enhanced</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_produced']" position="after">
+                <field name="qty_produced_shopfloor" string="Shop Floor Qty Produced (Bottleneck)" invisible="1"/>
+                <field name="total_shop_floor_qty" string="Shop Floor Total"  invisible="1"/>
+                <field name="total_shop_floor_defects" string="Total Defects"  invisible="1"/>
+                <field name="qty_sent_to_warehouse" string="Qty Sent to Warehouse" invisible="1"/>
+            </xpath>
+            
+            <!-- Add Pick Component and Pick Finish Component buttons -->
+            <xpath expr="//header/button[@name='button_mark_done']" position="replace">
+                <button name="action_pick_component" 
+                        string="Pick Component" 
+                        type="object" 
+                        class="btn-primary"
+                        invisible="state not in ['confirmed', 'progress', 'to_close']"/>
+                        
+                <button name="action_pick_finish_component" 
+                        string="Pick Finish Goods"
+                        type="object" 
+                        class="btn-primary"
+                        invisible="qty_sent_to_warehouse >= qty_producing"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <!-- Shop Floor Production Summary Form -->
+    <record id="view_shop_floor_production_summary_form" model="ir.ui.view">
+        <field name="name">shop.floor.production.summary.form</field>
+        <field name="model">shop.floor.production.summary</field>
+        <field name="arch" type="xml">
+            <form string="Shop Floor Production Summary">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="production_id" readonly="1"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="total_quantity" widget="float"/>
+                            <field name="total_defects" widget="float"/>
+                            <field name="summary_date" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Work Orders">
+                            <field name="workorder_ids" readonly="1">
+                                <list>
+                                    <field name="name"/>
+                                    <field name="workcenter_id"/>
+                                    <field name="state"/>
+                                    <field name="total_quantity_produced" sum="Total"/>
+                                    <field name="total_defect_quantity" sum="Total Defects"/>
+                                    <field name="production_efficiency" widget="percentage"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                
+                <footer>
+                    <button string="Close" special="cancel" class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<!--    &lt;!&ndash; Enhanced Employee Form View &ndash;&gt;-->
+<!--    <record id="view_hr_employee_form_enhanced" model="ir.ui.view">-->
+<!--        <field name="name">hr.employee.form.enhanced</field>-->
+<!--        <field name="model">hr.employee</field>-->
+<!--        <field name="inherit_id" ref="hr.view_employee_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//div[@name='button_box']" position="inside">-->
+<!--                <button name="action_view_current_session"-->
+<!--                        type="object"-->
+<!--                        class="oe_stat_button"-->
+<!--                        icon="fa-play"-->
+<!--                        groups="mrp.group_mrp_user"-->
+<!--                        invisible="current_productivity_id == False">-->
+<!--                    <div class="o_field_widget o_stat_info">-->
+<!--                        <span class="o_stat_text">Active Session</span>-->
+<!--                    </div>-->
+<!--                </button>-->
+<!--                -->
+<!--                <button name="%(mrp.mrp_workcenter_productivity_action)d"-->
+<!--                        type="action"-->
+<!--                        class="oe_stat_button"-->
+<!--                        icon="fa-clock-o"-->
+<!--                        context="{'search_default_user_id': user_id}"-->
+<!--                        groups="mrp.group_mrp_user">-->
+<!--                    <div class="o_field_widget o_stat_info">-->
+<!--                        <span class="o_stat_value">-->
+<!--                            <field name="total_quantity_today"/>-->
+<!--                        </span>-->
+<!--                        <span class="o_stat_text">Today's Qty</span>-->
+<!--                    </div>-->
+<!--                </button>-->
+<!--            </xpath>-->
+<!--            -->
+<!--            <xpath expr="//page[@name='hr_settings']" position="after">-->
+<!--                <page string="Shop Floor" groups="mrp.group_mrp_user">-->
+<!--                    <group>-->
+<!--                        <field name="current_productivity_id" readonly="1"/>-->
+<!--                        <field name="total_quantity_today" readonly="1"/>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo> 

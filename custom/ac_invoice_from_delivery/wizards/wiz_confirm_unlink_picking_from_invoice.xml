@@ -1,0 +1,23 @@
+<odoo>
+
+    <record id="wiz_confirm_unlink_picking_from_invoice_form" model="ir.ui.view">
+        <field name="name">wiz.confirm_unlink_picking_invoice.form</field>
+        <field name="model">wiz.confirm.unlink.picking.from.invoice</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <P>
+                        Unlink the delivery orders from the invoice? This cannot be undone
+                    </P>
+
+                    <footer>
+                        <button name="action_confirm" type="object" string="Unlink" class="btn-danger"/>
+                        <button special="cancel" string="Keep" style="margin-left: 5px"/>
+                    </footer>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

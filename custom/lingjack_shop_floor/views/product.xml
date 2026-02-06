@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Product Template Form View -->
+    <record id="view_product_template_form_setsco_serial" model="ir.ui.view">
+        <field name="name">product.template.form.setsco.serial</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_tooltip']" position="before">
+                <field name="fire_rating" placeholder="e.g., Class A, Class B, Class C"/>
+                <field name="capacity" placeholder="e.g., 9kg, 6L, 2kg"/>
+
+            </xpath>
+
+            <xpath expr="//page[@name='inventory']" position="after">
+                <page string="Production" name="production" invisible="type in ['service', 'combo']">
+                    <group name="item_conf" string="Item Configuration">
+                        <field name="stock_item"/>
+                        <field name="take_in_pale"/>
+                        <field name="manual_lot_reservation" string="Manual Lot Reservation"/>
+                    </group>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <record model="ir.ui.view" id="product_product_pick_component_button">
+        <field name="name">product_product_pick_component_button</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock.product_product_stock_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_create_component_transfer" type="object" string="Pick Component" groups="mrp.group_mrp_manager"/>
+            </xpath>
+            <xpath expr="//field[@name='outgoing_qty']" position="after">
+                <field name="reordering_min_qty" string="Min"/>
+                <field name="reordering_max_qty" string="Max"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

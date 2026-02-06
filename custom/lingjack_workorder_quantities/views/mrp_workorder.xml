@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shop Floor Work Order Form View -->
+    <record id="view_mrp_workorder_form_shop_floor" model="ir.ui.view">
+        <field name="name">mrp.workorder.form.shop.floor</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="lingjack_shop_floor.view_mrp_workorder_form_shop_floor"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_produced']" position="before">
+
+                <field name="residual_qty_produced" readonly="1"/>
+
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Shop Floor Work Order Form View -->
+    <record id="view_mrp_workorder_qty_produced" model="ir.ui.view">
+        <field name="name">mrp.workorder.form.shop.floor</field>
+        <field name="model">mrp.workorder</field>
+        <field name="inherit_id" ref="mrp.mrp_production_workorder_tree_editable_view_mo_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_produced']" position="after">
+                   <field name="qty_qualified_current_session" optional="show" string="Quantity Produced" column_invisible="parent.state != 'done'"/>
+
+            </xpath>
+            <xpath expr="//field[@name='qty_produced']" position="attributes">
+                  <attribute name="column_invisible">1</attribute>
+
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

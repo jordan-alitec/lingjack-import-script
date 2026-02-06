@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Enhanced MRP Production Form View -->
+    <record id="view_mrp_production_form_enhanced" model="ir.ui.view">
+        <field name="name">mrp.production.form.enhanced</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+
+            <!-- Add Pick Component and Pick Finish Component buttons -->
+            <xpath expr="//header/button[@name='button_mark_done']" position="replace">
+                <button name="action_pick_component"
+                        string="Pick Component"
+                        type="object"
+                        class="btn-primary"
+                        invisible="state not in ['confirmed', 'progress', 'to_close']"/>
+                <field name="has_non_stock_components" invisible="1"/>
+                <button name="action_create_purchase_request"
+                        type="object"
+                        string="Create Purchase Request"
+                        invisible="not has_non_stock_components or state in ['done', 'cancel']"/>
+
+
+            </xpath>
+
+
+            <!--            &lt;!&ndash; Add Reference Fields &ndash;&gt;-->
+            <xpath expr="//group[@name='group_extra_info']//field[@name='date_finished']" position="attributes">
+                <attribute name="invisible">state in ['done', 'cancel']</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='group_extra_info']//field[@name='date_finished']" position="attributes">
+                <attribute name="string">End Date</attribute>
+                <attribute name="readonly">state in ['done', 'cancel']</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='move_raw_ids']//list//field[@name='product_id']" position="after">
+                <field name="stock_item"/>
+            </xpath>
+
+            <xpath expr="//field[@name='move_raw_ids']//list//field[@name='product_id']" position="attributes">
+                <attribute name="domain">[('type', '=', 'consu')]</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='move_raw_ids']//list//field[@name='location_id']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//button[@name='644']" position="attributes">
+                <attribute name="groups">mrp.group_mrp_manager</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='move_raw_ids']" position="before">
+                <field name="is_mrp_manager" invisible="1"/>
+                <field name="has_non_stock_components" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']" position="attributes">
+                <attribute name="readonly">state == 'cancel' or (state == 'done' and is_locked) or not is_mrp_manager
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='move_raw_ids']//list//field[@name='product_qty']" position="after">
+                <field name="on_hand_qty" optional="hide"/>
+                <field name="forecast_qty" optional="hide"/>
+                <field name="committed_qty"
+                       optional="show"
+                       sum="Total Committed"
+                       column_invisible="parent.state == 'done'"/>
+            </xpath>
+
+            <xpath expr="//button[@name='action_open_shop_floor']" position="after">
+                <button name="action_open_work_orders" type="object" icon="fa-calendar-check-o" string="Work Orders"/>
+                <button name="action_open_time_tracking_gantt" type="object" icon="fa-clock-o" string="Time Tracking"/>
+            </xpath>
+
+            <!--            Mainly for hiding button from user other than mrp-->
+            <xpath expr="//header" position="attributes">
+                <attribute name="groups">mrp.group_mrp_user</attribute>
+            </xpath>
+            <xpath expr="//header" position="after">
+                <header groups="!mrp.group_mrp_user">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,done"/>
+                </header>
+
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="attributes">
+                <attribute name="groups">mrp.group_mrp_user</attribute>
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <!-- Extend MRP Production Form View -->
+    <record id="mrp_production_form_view_pick_finish_goods" model="ir.ui.view">
+        <field name="name">mrp.production.form.pick_finish</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="after">
+                <field name="is_rework" string="Modification" readonly="state in ('merge','close','cancel','done')"/>
+            </xpath>
+            <xpath expr="//form/header/button[@name='button_mark_done'][1]" position="attributes">
+                <attribute name="string">Pick Finish Goods</attribute>
+                <attribute name="invisible">qty_producing &lt;= 0 or state in ['done', 'cancel']</attribute>
+            </xpath>
+            <xpath expr="//form/header/button[@name='button_mark_done'][2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//form/header/button[@name='button_mark_done'][3]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='qty_producing']" position="attributes">
+                <attribute name="readonly">(state == 'done' and is_locked) or state in ('merge','close','cancel')</attribute>
+            </xpath>
+
+            <xpath expr="//button[@name='613']" position="attributes">
+                <attribute name="invisible">state in ('draft', 'done', 'cancel', 'merge', 'close')</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- MRP Production Tree View Inheritance - Add is_rework field -->
+    <record id="view_mrp_production_tree_inherit_is_rework" model="ir.ui.view">
+        <field name="name">mrp.production.tree.inherit.is_rework</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state']" position="after">
+                <field name="is_rework" string="Modification" optional="show"/>
+            </xpath>
+            <xpath expr="//field[@name='state']" position="attributes">
+                <attribute name="decoration-danger">state in ('cancel','merge','close')</attribute>
+            </xpath>
+        </field>
+    </record>
+
+
+        <!-- Lingjack Merge Action -->
+        <record id="action_production_order_lingjack_close" model="ir.actions.server">
+            <field name="name">Close</field>
+            <field name="model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+            <field name="binding_view_types">list,form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_close()</field>
+        </record>
+
+
+
+    <record id="mrp_workorder.action_mrp_display" model="ir.actions.client">
+        <field name="context">{'search_default_filter_ready':0}</field>
+    </record>
+
+</odoo>

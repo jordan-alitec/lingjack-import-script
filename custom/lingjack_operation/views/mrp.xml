@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_mrp_production_form_custom" model="ir.ui.view">
+        <field name="name">mrp.production.form.remark</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Remark">
+                    <group>
+                        <group>
+                            <field name="remark" placeholder="Enter remarks here" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pdfForm.Template" xml:space="preserve">
+        <div class="o_form_view_container d-flex flex-column w-100 h-100"  t-ref="root">
+            <Layout display="display" className="props.className">
+                <t t-set-slot="control-panel-create-button">
+                    <t t-if="canCreate">
+                        <button type="button" class="btn btn-secondary o_form_button_create" data-hotkey="c" t-on-click.stop="create">New</button>
+                    </t>
+                </t>
+                <t t-set-slot="layout-buttons">
+                    <t t-if="env.inDialog">
+                        <t t-if="footerArchInfo">
+                            <t t-component="props.Renderer" record="model.root" Compiler="props.Compiler" archInfo="footerArchInfo"/>
+                            </t>
+                        <t t-else="">
+                            <t t-call="{{ props.buttonTemplate }}"/>
+                            </t>
+                    </t>
+                </t>
+                <t t-set-slot="layout-actions">
+                    <t t-if="buttonBoxTemplate">
+                        <t t-call="{{ buttonBoxTemplate }}" t-call-context="{ __comp__: Object.assign(Object.create(this), { this, props: { ...this.props, record: this.model.root } }) }"/>
+                        </t>
+                </t>
+                <t t-set-slot="control-panel-additional-actions">
+                    <CogMenu
+                            getActiveIds="() => model.root.isNew ? [] : [model.root.resId]"
+                            context="props.context"
+                            items="props.info.actionMenus ? this.actionMenuItems : {}"
+                            isDomainSelected="model.root.isDomainSelected"
+                            resModel="model.root.resModel"
+                            domain="props.domain"
+                            onActionExecuted="() => model.load({ resId: model.root.resId, resIds: model.root.resIds })"
+                            shouldExecuteAction.bind="shouldExecuteAction"
+                        />
+                </t>
+                <t t-set-slot="control-panel-status-indicator">
+                    <t t-if="canEdit">
+                        <FormStatusIndicator model="model" discard.bind="discard" save.bind="saveButtonClicked" />
+                    </t>
+                </t>
+                <t t-set-slot="control-panel-create-button">
+                    <t t-if="canCreate">
+                        <button type="button" class="btn btn-outline-primary o_form_button_create" data-hotkey="c" t-on-click.stop="create">New</button>
+                    </t>
+                </t>
+                <PdfFormTemplateBody attachmentLocation="attachmentLocation" childEnv="childEnv" PdfFormTemplate="pdfTemplate" pdfFields="pdfFields" fields="fields" />
+            </Layout>
+        </div>
+    </t>
+    <t t-name="pdfForm.TemplateBody" xml:space="preserve">
+        <PdfFormTemplateTopBar t-if="defView" PdfFormTemplate="props.PdfFormTemplate" onTemplateNameChange="(e) => this.onTemplateNameChange(e)"/>
+        <iframe class="o_iframe o_sign_pdf_iframe w-100 h-100" t-ref="PDFIframe"  childEnv="props.childEnv" t-att-src="PDFViewerURL" t-att-disabled="props.hasSignRequests"/>
+    </t>
+    <t t-name="pdfForm.TemplateTopBar" xml:space="preserve">
+        <div class="o_sign_template_header_wrapper px-4 py-2 align-items-center d-md-flex">
+            <div class="o_sign_template_header_document_name align-items-center d-flex me-auto">
+                <input type="file" multiple="false" accept="application/pdf, application/x-pdf, application/vnd.cups-pdf" class="o_input_file o_hidden" t-ref="fileInput" t-on-change="onFileChange" />
+                <span t-on-click="editDisplayName" class="fa fa-pencil me-2" title="Edit template name" role="img" aria-label="Edit template name"/>
+                <input type="text" t-ref="display-name" class="o_sign_template_name_input o_input" t-att-value="props.PdfFormTemplate.name"  t-att-size="displayNameSize" t-on-change="this.props.onTemplateNameChange" t-on-input="changeInputSize" t-on-keydown="onKeyDown"/>
+            </div>
+            <div class="o_sign_template_tags_and_save align-items-center d-flex me-5 gap-2">
+                <label for="o_sign_template_is_readonly" style="width: 100%;display: inline-flex;align-items: center;">
+                    <input type="checkbox" id="o_sign_template_is_readonly" t-att-checked="!props.PdfFormTemplate.activeActions.edit" t-on-change="(e) => this.onChange('edit', e.target.checked)" class="form-check-input"/>Report_Mode
+                </label>
+                <label for="o_sign_template_positionedprint" style="width: 100%;display: inline-flex;align-items: center;">
+                    <input type="checkbox" id="o_sign_template_positionedprint" t-att-checked="!props.PdfFormTemplate.activeActions.template" t-on-change="(e) => this.onChange('template', e.target.checked)" class="form-check-input"/>Print_Without_Template
+                </label>
+            </div>
+            <button class="btn btn-secondary float-end o_sign_template_edit_form" t-on-click="onTemplatePropertiesClick">Template Properties</button>
+        </div>
+    </t>
+    <t t-name="pdfForm.fieldsTypesSidebar" xml:space="preserve">
+        <div t-attf-class="o_sign_field_type_toolbar d-flex flex-column bg-white {{ sidebarHidden ? 'd-none' : ''}}">
+            <h3 class="my-3">Fields</h3>
+            <div class="o_sign_field_type_toolbar_items">
+                <t t-foreach="fields" t-as="field" t-key="field.name">
+                    <button type="button" t-attf-class="o_sign_field_type_button btn btn-secondary w-100 mb-1 bg-light rounded-1 shadow text-nowrap overflow-hidden text-truncate o_sign_{{fields[field].type}} " t-att-data-item-type-id="fields[field].type" t-att-data-item-name="fields[field].name" title="Drag &amp; Drop a field in the PDF">
+                        <t t-esc="fields[field].name"/>
+                    </button>
+                </t>
+            </div>
+        </div>
+    </t>
+    <t t-name="pdfForm.fieldCustomPopover" xml:space="preserve">
+        <div class="d-flex flex-column" style="max-width: 25rem;">
+            <div class="d-flex bg-opacity-25 bg-secondary justify-content-between align-items-center">
+                <span class="fs-3 fw-bold ps-2" t-esc="props.placeholder"/>
+                <button type="button" title="Close" class="btn btn-default oi oi-close" t-on-click="props.onClose"/>
+            </div>
+            <div class="d-flex p-2 flex-column" t-if="props.selection.length == 1">
+                <div class="mb-1 clearfix o_popover_placeholder">
+                    <label for="o_sign_name" class="form-label fw-bold">Field Name</label>
+                    <span class="form-control o_input" id="o_sign_name" >
+                        <t t-esc="props.name"/>
+                    </span>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label fw-bold">Modifies</label>
+                    <div class="checkbox">
+                        <label for="o_sign_invisible_field" style="width: 35%;display: inline-flex;align-items: center;">
+                            <input type="checkbox" id="o_sign_invisible_field" t-att-checked="state.invisible" t-on-change="(e) => this.onChange('invisible', e.target.checked)"/> Invisiable
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="o_sign_required_field" style="width: 35%;display: inline-flex;align-items: center;">
+                            <input type="checkbox" id="o_sign_required_field" t-att-checked="state.required" t-on-change="(e) => this.onChange('required', e.target.checked)"/> Required
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label for="o_sign_readonly_field" style="width: 35%;display: inline-flex;align-items: center;">
+                            <input type="checkbox" id="o_sign_readonly_field" t-att-checked="state.readonly" t-on-change="(e) => this.onChange('readonly', e.target.checked)"/> Readonly
+                        </label>
+                    </div>
+                </div>
+                <div class="o_sign_field_align_group">
+                    <label class="w-100 fw-bold">Alignment</label>
+                    <div class="btn-group mb-2" role="group">
+                        <button t-foreach="alignmentOptions" t-as="alignment" t-key="alignment.key" type="button" t-att-title="alignment.title" t-on-click="(e) =&gt; this.onChange('alignment', alignment.key)" t-attf-class="fa-align-{{alignment.key}} {{alignment.key === state.alignment ? 'active': ''}} btn btn-secondary fa"/>
+                    </div>
+                </div>
+                <div class="o_sign_field_options">
+                    <label class="w-100 fw-bold">Position</label>
+                    <div class="mb-2" >
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th colspan="3">page</th>
+                                    <th colspan="3">
+                                        <t t-esc="props.position.page"/>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>posX</th>
+                                    <th>
+                                        <t t-esc="props.position.posX"/>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>posY</th>
+                                    <th>
+                                        <t t-esc="props.position.posY"/>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>Width</th>
+                                    <th>
+                                        <t t-esc="props.position.width"/>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Height</th>
+                                    <th>
+                                        <t t-esc="props.position.height"/>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="o_web_studio_property o_web_studio_sidebar_select mt-2 mb-2 o_web_studio_property_widget" name="widget">
+                    <label for="widget" class="form-label fw-bold">Widget </label>
+                    <select class="o_import_create_option form-select w-auto bg-light" t-model="state.widget" t-on-change="(e) => this.onChange('widget', e.target.value)">
+                        <option value=""/>
+                        <option t-foreach="state.widgets" t-as="option" t-key="option" t-att-value="option[0]">
+                            <t t-esc="option[0]"/>
+                        </option>
+                    </select>
+                </div>
+                <!-- <div class="mb-1 clearfix o_popover_domain">
+                    <label for="o_sign_domain" class="form-label fw-bold">Options</label>
+                    <input type="text" class="form-control o_input" id="o_sign_domain" t-att-value="state.options" t-on-change="(e) => this.onChange('options', e.target.value)"/>
+                </div> -->
+                <div class="mb-1 clearfix o_popover_domain">
+                    <label for="o_sign_domain" class="form-label fw-bold">Domain</label>
+                    <input type="text" class="form-control o_input" id="o_sign_domain" t-att-value="state.domain" t-on-change="(e) => this.onChange('domain', e.target.value)"/>
+                </div>
+                <div class="mb-1 clearfix o_popover_context">
+                    <label for="o_sign_context" class="form-label fw-bold">context</label>
+                    <input type="text" class="form-control o_input" id="o_sign_contexgt" t-att-value="state.context" t-on-change="(e) => this.onChange('context', e.target.value)"/>
+                </div>
+                <div class="mb-1 d-flex align-items-center justify-content-between">
+                    <button class="btn o_sign_validate_field_button btn-primary" t-on-click="onValidate">Applay</button>
+                    <button class="btn btn-secondary fa fa-trash" t-on-click="props.onDelete"/>
+                </div>
+            </div>
+            <div class="d-flex p-2 flex-column" t-if="props.selection.length > 1">
+               <div class="o_sign_field_align_group">
+                    <label class="w-100 fw-bold">Alignment</label>
+                    <div class="btn-group mb-2" role="group">
+                        <button t-foreach="alignmentOptions" t-as="alignment" t-key="alignment.key" type="button" t-att-title="alignment.title" t-on-click="(e) =&gt; this.groupChange('alignment', alignment.key)" t-attf-class="fa-align-{{alignment.key}} btn btn-secondary fa"/>
+                    </div>
+                </div>
+                <div class="o_sign_field_align_group">
+                    <label class="w-100 fw-bold">Adjustment</label>
+                    <div class="btn-group mb-2" role="group">
+                        <button t-foreach="alignsOptions" t-as="alignment" t-key="alignment.key" type="button" t-att-title="alignment.title" t-on-click="(e) =&gt; this.groupChange('Adjustment', alignment.key)" t-attf-class="fa-arrow-{{alignment.key}} btn btn-secondary fa"/>
+                    </div>
+                </div>
+                <div class="o_sign_field_align_group">
+                    <label class="w-100 fw-bold">Size</label>
+                    <div class="btn-group mb-2" role="group">
+                        <button t-foreach="sizeOptions" t-as="size" t-key="size.key" type="button" t-att-title="size.title" t-on-click="(e) =&gt; this.groupChange('size', size.key)" t-attf-class="fa-arrows-{{size.key}} btn btn-secondary fa"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    <t t-name="pdfForm.newField" xml:space="preserve">
+        <div t-attf-class="{{classes}} o_sign_sign_item" type="text" t-att-data-id="id" t-att-style="style" xml:space="preserve">
+            <p class="o_placeholder o_sign_field_alignment">
+                <t t-esc="placeholder"/>
+            </p>
+            <div t-attf-class="o_sign_config_area" xml:space="preserve">
+                <div class="o_sign_config_handle" aria-label="configuration" title="configuration">
+                    <span class="fa fa-arrows" role="img"/>
+                </div>
+                <!-- <span class="fa fa-times" role="img" aria-label="Delete sign item" title="Delete sign"/> -->
+                <div class="o_sign_item_display">
+                </div>
+                <div class="o_resize_handler resize_height"/>
+                <div class="o_resize_handler resize_width"/>
+                <div class="o_resize_handler resize_both"/>
+            </div>
+        </div>
+    </t>
+</templates>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Setsco Category Menu -->
+    <menuitem id="menu_setsco_category"
+              name="Serial Categories"
+              parent="stock.menu_stock_config_settings"
+              action="action_setsco_category"
+              sequence="90"/>
+
+    <!-- Distribution Settings Menu -->
+    <menuitem id="menu_distribution_settings"
+              name="Distribution Settings"
+              parent="stock.menu_stock_config_settings"
+              action="action_distribution_settings"
+              sequence="100"/>
+
+    <!-- Distribution Record Menu -->
+    <menuitem id="menu_distribution_record"
+              name="Distribution Record"
+              parent="stock.menu_warehouse_report"
+              sequence="50"/>
+
+    <!-- Generate Distribution Record Menu -->
+    <menuitem id="menu_generate_distribution_record"
+              name="Generate Distribution Record"
+              parent="menu_distribution_record"
+              action="action_distribution_record_wizard"
+              sequence="10"/>
+</odoo> 

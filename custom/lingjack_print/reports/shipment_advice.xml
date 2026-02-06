@@ -1,0 +1,142 @@
+<odoo>
+    <template id="report_certificate_shipment_advice">
+        <t t-call="web.external_layout">
+            <br/><br/>
+            <div class="page">
+                <div>
+                    <strong>
+                        <span t-field="o.invoice_date" t-options='{"widget": "date"}'/>
+                    </strong>
+                </div>
+                <p t-if="o.partner_id">
+                    <span t-field="o.partner_id"
+                          t-options="{'widget': 'contact', 'fields': ['name', 'address'], 'no_marker': true } "/>
+                </p>
+
+                <h2 style="text-align: center; color: #1f4e79; margin-top: 20px;">
+                    SHIPMENT ADVICE
+                </h2>
+                <p>Dear Sir,</p>
+                <p>RE :<t t-if="o.invoice_line_ids and o.invoice_line_ids[0].sale_line_ids">  <t t-esc="o.invoice_line_ids[0].sale_line_ids[0].order_id.client_order_ref or ''"/> </t>     Contract No.:<span t-field="o.ref"/></p>
+                <p>We would like to advise you that we have arranged shipment under L/C No.:
+                    <span t-field="o.lc_no"/>. The details of shipment as below :
+                </p>
+
+
+                <table class="table table-borderless"
+                       style="width: 30%; margin-top: 20px; margin-bottom: 20px; border-collapse: collapse;">
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px; white-space: nowrap;">Name Of Vessel/Voyage</td>
+                        <td style="padding: 2px 4px; ">:</td>
+                        <td style="padding: 2px 4px; white-space: nowrap;">
+                            <span t-field="o.vessel_name"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px; white-space: nowrap;">Port Of Loading</td>
+                        <td style="padding: 2px 4px; ">:</td>
+                        <td style="width: 2%;padding: 2px 4px; padding: 2px 4px; white-space: nowrap;">
+                            <span t-field="o.port_loading_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px;white-space: nowrap;">Port Of Discharge</td>
+                        <td style="padding: 2px 4px; ">:</td>
+                        <td style="padding: 2px 4px; white-space: nowrap;">
+                            <span t-field="o.port_discharge_id"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px; white-space: nowrap;">ETD</td>
+                        <td style="padding: 2px 4px; ">:</td>
+                        <td style="padding: 2px 4px; white-space: nowrap;">
+                            <span t-field="o.etd_origin"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px; white-space: nowrap;">ETA</td>
+                        <td style="padding: 2px 4px; ">:</td>
+                        <td style="padding: 2px 4px; white-space: nowrap;">
+                            <span t-field="o.eta_destination"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px;white-space: nowrap;">Description of Goods</td>
+                        <td style="padding: 2px 4px; ">:</td>
+                        <td style="padding: 2px 4px; white-space: nowrap;">
+                            <span t-field="o.description_of_goods"/>
+                        </td>
+                    </tr>
+                    <t t-set="consu_lines"
+                       t-value="[line for line in o.invoice_line_ids if line.product_id.product_tmpl_id.type == 'consu']"/>
+                    <t t-set="total_qty" t-value="sum(line.quantity for line in consu_lines)"/>
+                    <t t-set="uom"
+                       t-value="(consu_lines[0].product_uom_id.name if consu_lines and consu_lines[0].product_uom_id else '')"/>
+
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px; white-space: nowrap;">Quantity/Weight</td>
+                        <td style="padding: 2px 4px;">:</td>
+                        <td style="padding: 2px 4px; white-space: nowrap;">
+                            <t t-esc="total_qty" t-options="{'widget': 'float', 'precision': 2}"/>
+                            <t t-esc="uom"/>
+                            /
+                            <t t-esc="o.net_total" t-options="{'widget': 'float', 'precision': 2}"/>
+                            kg
+                        </td>
+                    </tr>
+                    <t t-set="goods_lines"
+                       t-value="[line for line in o.invoice_line_ids if line.product_id.product_tmpl_id.type == 'consu' or 'Discount' in (line.product_id.name or '')]"/>
+                     <t t-set="goods_total" t-value="sum(line.price_subtotal for line in goods_lines)"/>
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px; white-space: nowrap;">Invoice Value</td>
+                        <td style="padding: 2px 4px;">:</td>
+                        <td style="padding: 2px 4px; white-space: nowrap;">
+                            <t t-esc="goods_total"
+                               t-options="{'widget': 'monetary', 'display_currency': o.currency_id}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; padding: 2px 4px; white-space: nowrap;">Bill Of Lading No</td>
+                        <td style="padding: 2px 4px;">:</td>
+                        <td style=" padding: 2px 4px; white-space: nowrap;">
+                            <span t-field="o.bill_of_lading_no"/>
+                        </td>
+                    </tr>
+                </table>
+
+                <br/>
+
+                <p>Yours faithfully,</p>
+                <br/><br/>
+                <br/><br/>
+                <div style="width:30%; height:2px; background-color:black;"/>
+                <div>
+                    <span t-field="o.person_incharge_id"/>
+                </div>
+                <p t-if="o.person_incharge_id and o.person_incharge_id.job_id">
+                    <t t-esc="o.person_incharge_id.job_id.name"/>
+                </p>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_shipment_advice">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_certificate_shipment_advice"
+                   t-lang="o._get_report_lang()"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_shipment_advice" model="ir.actions.report">
+        <field name="name">Shipment Advice</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_shipment_advice</field>
+        <field name="report_file">lingjack_print.report_shipment_advice</field>
+        <field name="print_report_name">'Shipment Advice - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="account.model_account_move"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_reports.aged_receivable_report" model="account.report">
+        <field name="column_ids">
+            <field name="column_ids">
+                <record id="aged_receivable_report_receivable_credit_limit" model="account.report.column">
+                    <field name="name">credit_limit</field>
+                    <field name="expression_label">credit_limit</field>
+                    <field name="figure_type">string</field>
+                    <field name="sortable" eval="True"/>
+                    <field name="sequence">1</field>
+                </record>
+<!--                            <record id="aged_receivable_report_receivable_payment_terms" model="account.report.column">-->
+<!--                <field name="name">Payment Terms</field>-->
+<!--                <field name="expression_label">payment_terms</field>-->
+<!--                <field name="figure_type">string</field>-->
+<!--                <field name="sortable" eval="True"/>-->
+<!--                <field name="sequence">2</field>-->
+<!--            </record>-->
+
+            </field>
+        </field>
+
+    </record>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_picking_search_wizard,access.picking.search.wizard,model_picking_search_wizard,base.group_user,1,1,1,1
+access_previous_transfer_search_wizard,access.previous.transfer.search.wizard,model_previous_transfer_search_wizard,base.group_user,1,1,1,1
+

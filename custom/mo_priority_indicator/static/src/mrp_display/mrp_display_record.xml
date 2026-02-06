@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+	<!-- Extend MrpDisplayRecord template to add priority indicater --> 
+    <t t-inherit="mrp_workorder.MrpDisplayRecord" t-inherit-mode="extension">
+        <xpath expr="//div[contains(@class, 'o_mrp_display_record')]" position="attributes">
+            <attribute name="t-attf-class">urgency-{{ props.record.data.urgency }}</attribute>
+        </xpath>
+    </t>
+</templates>

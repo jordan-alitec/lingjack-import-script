@@ -1,0 +1,45 @@
+ODOO PDF Form and Report Widget add a new view for model, It defines a model view with PDF as the background, which can be used for WYSIWYG standard form input, various reports with PDF Template, and printed tickets, certificates, invoice etc. without backgroup template,
+[2취]
+It inherits from form view, support fields of all kind widget same as the field in form view, for it's free positioned on PDF backgroup, so can't using layout tags such as sheet, page, group. 
+[2취]
+Standard form input, with PDF as the background, accurately locates the input position, flexibly matches font-size, supports almost all widgets, and supports Xxxx2Many, Many2Xxxx type field input defined by tree and form. ?
+[2취]
+Existing reports and statements can be used as PDF template backgrounds to generate the required reports and statements, supporting preview and printing. 
+[2취]
+Through the PDF contract template, you can perform online electronic signatures and electronic contracts.
+[2취]
+By setting print without template, you can print tickets without pdf template
+[2취]
+Below, we use several scenario cases to demonstrate its use.
+
+First Application scenarios - HR fill form
+We define a tree view and a form view for this Application scenarios, and the form view type is pdfForm, [15취]and define the tree record click use the pdfform view to show.[5취]
+
+You can define the pdfform view on code editor, also you can define it on pdfForm form. Now we show how to define pdfform on the pdfform view.[5취]
+
+We add a pdfform demo menu in sale menu,  and list all pdfform type view. Go to the hr.employee.pdfform, [2취]and click pdfform edit button,[2취] 
+
+The left of the view is all field of the view model.[2취] And right is the pdf template and hold field on it.[2취]
+
+You can drop a field to pdf template, and change the postion and the size of it, the font-size will auto changed to matches the size. [2취] click the field can change properties of the field. If complex properties, you can edit it in the view define. Click Template Properties button can edit the view define.
+[2취]
+
+Now let’s see the effect of the HR fill form.[5취]
+
+Select a record, and open the fill form, edit and save.[5취]
+
+Then the second Application scenarios - Sale order Report, there we delete the define, Demonstrate a slightly complete PDFFROM definition process [25취]
+Of course, you need to give a PDF template file first[5취]
+Our Drop some fields are on PDF FROM, and Adjust their size, position and attributes[20취]
+
+It’s report, no needs edit, so we set it to report model, and Click Template Properties button can edit the view define, Of course, it is more convenient to edit in the editor, [3취]copy it and parse into editor.Make some more detailed descriptions[10취], The more important thing is the definition of Order-Line, it’s a subtable define with tree.[10취], then we update the module, and see result.[20취]
+
+The third Application scenarios - Sale order Contrct, we check the define of it.[5취], we add two signaturee and a Annex Sale Order. [2취], and part B can only sign by salesman of the order, partA can set readonly condition to cursomer. So we show the sign process.[30취]partA can also signed on portal online.  Now we see the contract, and the print result.[5취]
+
+The last Application scenarios - PDF Invoice Print Without Template
+In some cases, we need to print tickets, invoices, etc., but we do not want to print background. We can set the Print with Template. In this way, when displayed, you can see the full content, but when you print it, you will not print the background. In this case, we can use these tickets to scan the PDF as the background, make accurate positioning and size adjustment so that we can printed more conveniently on these model templates.
+[2취]
+Thank you for listening, if you have any questions, you can contact me directly.
+
+
+

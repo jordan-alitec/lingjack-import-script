@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Action for Range Creation Wizard -->
+    <record id="action_setsco_serial_range_wizard" model="ir.actions.act_window">
+        <field name="name">Create Serial Number Range</field>
+        <field name="res_model">setsco.serial.range.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Setsco Serial Number Form View -->
+    <record id="view_setsco_serial_number_form" model="ir.ui.view">
+        <field name="name">setsco.serial.number.form</field>
+        <field name="model">setsco.serial.number</field>
+        <field name="arch" type="xml">
+            <form string="Setsco Serial Number">
+                <header>
+                     <button name="action_void_from_production" string="Void from Production" type="object" class="btn-warning" confirm="Are you sure you want to void this SETSCO serial number " invisible="state not in ['manufacturing','new']"/>
+                     <button name="action_set_scrapped" string="Scrap" type="object" class="btn-danger" confirm="Are you sure you want to scrap this SETSCO serial number " groups="setsco_serial_number.group_setsco_scrap" />
+                     <button name="%(setsco_serial_number.action_report_setsco_serial_single_label)d" type="action" string="Print SETSCO Label" class="btn-primary"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,manufacturing,warehouse,delivered"/>
+                    <button name="%(setsco_serial_number.action_internal_company_transfer_wizard)d" string="Assign to Internal Company"
+                            type="action" class="btn-secondary"
+                            help="Assign this serial to an internal company"
+                            groups="base.group_multi_company"
+                            invisible="state != 'new'"/>
+                    <button name="%(setsco_serial_number.action_internal_company_receive_wizard)d" string="Receive from Internal Company"
+                            type="action" class="btn-secondary"
+                            help="Mark received from internal company to Finished Goods"
+                            groups="base.group_multi_company"
+                            invisible="not tranfered_to_internal_company "/>
+                    <button name="action_reverse_transfer" string="Reverse Transfer" type="object" class="btn-warning"
+                            help="Reverse the last transfer operation"
+                            groups="setsco_serial_number.group_setsco_reverse_transfer"
+                            invisible="not can_reverse"/>
+                   
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_setsco_serials" type="object"
+                                class="oe_stat_button" icon="fa-history"
+                                invisible="not move_line_id">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="stock_move_count" readonly="1"/>
+                                </span>
+                                <span class="o_stat_text">Move Line</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="name" readonly="name"/>
+                            <field name="product_id" readonly="product_id"/>
+                            <field name="sequence" readonly="1" invisible="1"/>
+                            <field name="serial_type" readonly="serial_type"/>
+                            <field name="category_id" invisible="1" readonly="category_id"/>
+                            <field name="setsco_category_id" readonly="setsco_category_id"/>
+                            <field name="production_id" invisible="1" readonly="1"/>
+
+                        </group>
+                        <group>
+                            <field name="location_id" invisible="tranfered_to_internal_company" readonly="location_id"/>
+                             <field name="purchase_order_id" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="internal_company_id" groups="base.group_multi_company" invisible="not tranfered_to_internal_company" readonly="1"/>
+                            <field name="tranfered_to_internal_company" groups="base.group_multi_company" invisible="1"/>
+                            <field name="internal_delivery_order_date" groups="base.group_multi_company" reaodnly="1" invisible="not tranfered_to_internal_company"/>
+                            <field name="current_owner" readonly="1" invisible="not current_owner"/>
+                            <field name="invoice_id" readonly="1" invisible="not invoice_id"/>
+                            <field name="invoice_number" readonly="1" invisible="not invoice_number"/>
+                            <field name="company_id" groups="base.group_multi_company" invisible="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Purchase Information" invisible="1">
+                            <group>
+                                <group>
+                                    <field name="purchase_order_id" readonly="1"/>
+                                    <field name="purchase_order_line_id" readonly="1"/>
+                                    <field name="vendor_id" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="purchase_date" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+
+                        <page string="Manufacturing Information" invisible="not production_id">
+                            <group>
+                                <group>
+                                    <field name="production_id" readonly="1"/>
+                                    <field name="lot_id"/>
+                                </group>
+                                <group>
+                                    <field name="manufacturing_date" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+
+<!--                        <page string="Dates &amp; History">-->
+<!--                            <group>-->
+<!--                                <group>-->
+<!--                                    <field name="delivery_date" readonly="1" invisible="not delivery_date"/>-->
+<!--                                    <field name="return_date" readonly="1" invisible="not return_date"/>-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                    <field name="scrap_date" readonly="1" invisible="not scrap_date"/>-->
+<!--                                </group>-->
+<!--                            </group>-->
+<!--                            <group string="Stock Move Line" invisible="not move_line_id">-->
+<!--                                <group>-->
+<!--                                    <field name="move_line_id" readonly="1"/>-->
+<!--                                    <field name="picking_id" readonly="1"/>-->
+<!--                                </group>-->
+<!--                                <group>-->
+<!--                                    <label for="move_line_id" invisible="1"/>-->
+<!--                                </group>-->
+<!--                            </group>-->
+<!--                        </page>-->
+
+                        <page string="Notes">
+                            <field name="notes" placeholder="Add any notes about this serial number..."/>
+                        </page>
+                    </notebook>
+                </sheet>
+              <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <!-- Setsco Serial Number list View -->
+    <record id="view_setsco_serial_number_list" model="ir.ui.view">
+        <field name="name">setsco.serial.number.list</field>
+        <field name="model">setsco.serial.number</field>
+        <field name="arch" type="xml">
+            <list string="Setsco Serial Numbers" decoration-info="state=='new'"
+                  decoration-success="state=='warehouse'" decoration-primary="state=='delivered'" expand="1">
+                <header>
+                    <button name="%(action_setsco_serial_range_wizard)d" string="Create Serial Range"
+                            type="action" class="btn-primary" display="always"/>
+                    <button name="action_open_migration_serial_range_wizard" string="Create Serial Range (Migration)"
+                            type="object" class="btn-warning" display="always"/>
+                    <button name="%(action_mrp_selection_wizard)d" string="Assign to Manufacturing" 
+                            type="action" class="btn-secondary" display="always" groups="mrp.group_mrp_manager"/>
+                    <button name="action_reverse_transfer" string="Reverse Transfer" 
+                            type="object" class="btn-warning" groups="setsco_serial_number.group_setsco_reverse_transfer"
+                            confirm="Are you sure you want to reverse the transfer for selected serials?"/>
+                    <button name="action_void_from_production" string="Void from Production" 
+                            type="object" class="btn-warning"
+                            confirm="Are you sure you want to remove the selected SETSCO serial numbers from their manufacturing orders? "/>
+                    <button name="action_set_scrapped" string="Scrap" 
+                            type="object" class="btn-danger"
+                            confirm="Are you sure you want to scrap the selected SETSCO serial numbers? " groups="setsco_serial_number.group_setsco_scrap"/>
+                    <button name="assign_setsco_to_internal_company" string="Assign to Internal Company"
+                            type="object" class="btn-secondary" groups="base.group_multi_company"/>
+                    <button name="receive_setsco_from_internal_company" string="Receive from Internal Company"
+                            type="object" class="btn-secondary" groups="base.group_multi_company"/>
+              
+                </header>
+                <field name="name"/>
+                <field name="serial_type"/>
+                <field name="product_id"/>
+                <field name="state"/>
+                <field name="picking_id" optional="hide"/>
+                <field name="invoice_id" optional="hide"/>
+                <field name="invoice_number" optional="hide"/>
+                <field name="vendor_id"/>
+                <field name="production_id"/>
+                <field name="purchase_date"/>
+                <field name="location_id"/>
+                <field name="current_owner" column_invisible="1"/>
+                <field name="is_available"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Setsco Serial Number Search View -->
+    <record id="view_setsco_serial_number_search" model="ir.ui.view">
+        <field name="name">setsco.serial.number.search</field>
+        <field name="model">setsco.serial.number</field>
+        <field name="arch" type="xml">
+            <search string="Setsco Serial Numbers">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="vendor_id"/>
+                <field name="invoice_number"/>
+                <field name="serial_type"/>
+                <field name="production_id"/>
+                <field name="picking_id"/>
+                <field name="invoice_id"/>
+                <field name="setsco_category_id"/>
+                <separator/>
+                <filter string="Available" name="available" domain="[('is_available', '=', True)]"/>
+                <filter string="In Manufacturing" name="manufacturing" domain="[('state', '=', 'manufacturing')]"/>
+                <filter string="In Warehouse" name="warehouse" domain="[('state', '=', 'warehouse')]"/>
+                <filter string="Delivered" name="delivered" domain="[('state', '=', 'delivered')]"/>
+                <filter string="With Invoice" name="with_invoice" domain="[('invoice_id', '!=', False)]"/>
+                <filter string="TUV" name="tuv" domain="[('serial_type', '=', 'tuv')]"/>
+                <filter string="Setsco" name="setsco" domain="[('serial_type', '=', 'setsco')]"/>
+                <filter string="Category Filter" name="category_filter" domain="[('setsco_category_id', '!=', False)]"/>
+                <filter string="Available by Category" name="available_by_category" domain="[('state', '=', 'new'), ('setsco_category_id', '!=', False)]"/>
+                <separator/>
+                <group expand="1" string="Group By">
+                    <filter string="Internal Company" name="group_internal_company" domain="[]" context="{'group_by': 'internal_company_id'}"/>
+                    <filter string="Product" name="group_product" domain="[]" context="{'group_by': 'product_id'}"/>
+                    <filter string="Serial Type" name="group_serial_type" domain="[]" context="{'group_by': 'serial_type'}"/>
+                     <filter string="Setsco Category" name="group_setsco_category" domain="[]" context="{'group_by': 'setsco_category_id'}"/>
+                    <filter string="State" name="group_state" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter string="Delivery Order" name="group_picking" domain="[]" context="{'group_by': 'picking_id'}"/>
+                    <filter string="Invoice" name="group_invoice" domain="[]" context="{'group_by': 'invoice_id'}"/>
+                    <filter string="Vendor" name="group_vendor" domain="[]" context="{'group_by': 'vendor_id'}"/>
+                    <filter string="Location" name="group_location" domain="[]" context="{'group_by': 'location_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Setsco Serial Number Action -->
+    <record id="action_setsco_serial_number" model="ir.actions.act_window">
+        <field name="name">Serial Numbers</field>
+        <field name="res_model">setsco.serial.number</field>
+        <field name="view_mode">list,form</field>
+        <field name="context">{'search_default_group_internal_company':1, 'search_default_group_setsco_category':1,'search_default_group_state':1,}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Setsco Serial Number!
+            </p>
+            <p>
+                Setsco Serial Numbers provide enhanced traceability for your products
+                throughout the purchase, manufacturing, and delivery process.
+            </p>
+        </field>
+    </record>
+
+    
+    <menuitem id="menu_inventory_setsco_serial_numbers" name="Serial Numbers"
+              parent="stock.menu_stock_inventory_control"
+              action="action_setsco_serial_number" sequence="120"/>
+    <menuitem id="menu_mrp_setsco_serial_numbers" name="Serial Numbers"
+              parent="mrp.menu_mrp_bom"
+              action="action_setsco_serial_number" sequence="120"/>
+
+</odoo> 

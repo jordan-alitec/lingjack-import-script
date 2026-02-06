@@ -1,0 +1,24 @@
+<odoo>
+    <record id="view_inventory_settings_inherit_note" model="ir.ui.view">
+        <field name="name">res.config.settings.inherit.note.delivery</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="stock.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='stock']/block[@name='operations_setting_container']/setting[@id='reception_report']"
+                   position="after">
+                <setting>
+                    <field name="delivery_note"/>
+                </setting>
+            </xpath>
+            <xpath expr="//app[@name='sale_management']/block[@name='quotation_order_setting_container']/setting[@id='block_print_sale_order']" position="after">
+                <setting string="Pro-Forma Invoice Note">
+                    <div class="content-group right">
+                        <field name="proforma_invoice_text"
+                               nolabel="1"
+                               placeholder="Enter Pro-Forma invoice Note"/>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="report_receiving_incoming_label_document">
+   
+            <t t-foreach="docs" t-as="o">
+
+                <t t-foreach="o.move_ids_without_package.filtered(lambda m: m.product_uom_qty)" t-as="move">
+
+                    <div class="page" style="padding-top:0px; margin-top:0px;">
+
+                        <t t-foreach="range(3)" t-as="i">
+
+                            <div style="padding:10px; margin-bottom:10px;">
+
+                                <h3 style="text-align:center; font-weight:bold;">
+
+                                Receiving Incoming Label
+
+                                </h3>
+
+                                <!-- HEADER -->
+
+                                <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; position:relative;">
+
+                                    <!-- LEFT: WH/IN + previous transfer + Com No QR -->
+
+                                    <div style="display:flex; flex:1; align-items:flex-start;">
+
+                                        <!-- WH/IN + previous transfer -->
+
+                                        <div style="flex:1;">
+
+                                            <table class="table table-borderless" style="width:100%;">
+
+                                                <tr>
+
+                                                    <td style="font-weight:bold; font-size:38px;">
+
+                                                        <strong>
+
+                                                            <span t-field="o.name"/>
+
+                                                        </strong>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td style="font-weight:bold; font-size:24px;">
+
+                                                        <strong>
+
+                                                            <span t-esc="o.previous_transfer"/>
+
+                                                        </strong>
+
+                                                    </td>
+
+                                                </tr>
+
+                                            </table>
+
+                                        </div>
+
+                                        <!-- Com No: [QR] block -->
+
+                                        <div style="width:130px; text-align:left; padding-left:10px; flex-shrink:0;">
+
+                                            <table class="table table-borderless" style="width:auto;">
+
+                                                <tr>
+
+                                                    <td style="white-space:nowrap;">
+
+                                                        <strong>Com No:</strong>
+
+                                                    </td>
+
+                                                </tr>
+
+                                                <tr>
+
+                                                    <td>
+
+                                                        <img t-esc="move.product_id.default_code" t-options="{'widget': 'barcode','symbology': 'QR', 'width': 100, 'height': 100, 'img_style': 'width: 92px; height: 92px;' }"/>
+
+                                                    </td>
+
+                                                </tr>
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- RIGHT: Trans No QR - FORCED TO RIGHT SIDE -->
+
+                                    <div style="position:absolute; right:0; top:55;">
+
+                                        <table style="width:auto;" class="table table-borderless">
+
+                                            <tr>
+
+                                                <td style="white-space: nowrap;">
+
+                                                    <strong>Trans No:</strong>
+
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td>
+
+                                                    <img t-esc="o.name" t-options="{ 'widget': 'barcode', 'symbology': 'QR','width': 100, 'height': 100, 'img_style': 'width: 92px; height: 92px;'                                                  }"/>
+
+                                                </td>
+
+                                            </tr>
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
+
+                                <!-- SUPPLIER / HEADER TABLE -->
+
+                                <table style="width:100%; margin-bottom:10px;" class="table table-borderless">
+
+                                    <tr>
+
+                                        <td style="padding: 2px 4px; width:25%;">
+
+                                            <strong>Supplier</strong>
+
+                                        </td>
+
+                                        <td style="padding: 2px 4px; width:2%;">:</td>
+
+                                        <td style="padding: 2px 4px;">
+
+                                            <span t-field="o.partner_id.name"/>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td style="padding: 2px 4px;">
+
+                                            <strong>Supplier Reference Number</strong>
+
+                                        </td>
+
+                                        <td style="padding: 2px 4px;">:</td>
+
+                                        <td style="padding: 2px 4px;">
+
+                                            <span t-field="o.supplier_do_number"/>
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <td style="padding: 2px 4px;">
+
+                                            <strong>Receiving Date</strong>
+
+                                        </td>
+
+                                        <td style="padding: 2px 4px;">:</td>
+
+                                        <td style="padding: 2px 4px;">
+
+                                            <span t-field="o.scheduled_date" t-options="{'widget':'date'}"/>
+
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+
+                                <!-- LINES TABLE -->
+
+                                <table style="width:100%; border: 1px solid #000; border-collapse: collapse; font-size:11px;" class="table">
+
+                                    <thead>
+
+                                        <tr style="background:#f0f0f0;">
+
+                                            <th style="border: 1px solid #000; padding: 5px;min-width: 80px;">Com No</th>
+
+                                            <th style="border: 1px solid #000; padding: 5px;min-width: 300px;">Description</th>
+
+                                            <th style="border: 1px solid #000; padding: 5px; text-align:center;min-width: 100px;">Total Order Qty </th>
+
+                                            <th style="border: 1px solid #000; padding: 5px; text-align:center;min-width: 80px;">Passed Qty </th>
+
+                                            <th style="border: 1px solid #000; padding: 5px; text-align:center;min-width: 80px;">QC Checked</th>
+
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>
+
+                                        <tr>
+
+                                            <td style="border: 1px solid #000; padding: 5px; font-weight:bold; font-size:23px;">
+
+                                                <span t-field="move.product_id.default_code"/>
+
+                                            </td>
+
+                                            <td style="border: 1px solid #000; padding: 5px;">
+
+                                                <span t-if="move.description_picking" t-field="move.description_picking"/>
+
+                                                <span t-else="" t-field="move.product_id.name"/>
+
+                                            </td>
+
+                                            <td style="border: 1px solid #000; padding: 5px; text-align:center; font-weight:bold; font-size:20px;">
+
+                                                <span t-field="move.product_uom_qty"/>
+
+                                            </td>
+
+                                            <td style="border: 1px solid #000; padding: 5px;"/>
+
+                                            <td style="border: 1px solid #000; padding: 5px;"/>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                            <t t-if="i != 2">
+
+                                <hr style="border: 1px solid grey; margin: 5px 0;"/>
+
+                            </t>
+
+                        </t>
+
+                    </div>
+
+                    <!-- Force page break after each product -->
+
+                    <t t-if="move_index != (len(o.move_ids_without_package.filtered(lambda m: m.product_uom_qty)) - 1)">
+
+                        <div style="page-break-after: always;"/>
+
+                    </t>
+
+                </t>
+
+            </t>
+
+    </template>
+
+    <template id="report_receiving_incoming_label">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="lingjack_print.report_receiving_incoming_label_document" t-lang="o._get_report_lang()"/>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_report_receiving_incoming_label" model="ir.actions.report">
+        <field name="name">Receiving Incoming Label</field>
+        <field name="model">stock.picking</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lingjack_print.report_receiving_incoming_label</field>
+        <field name="report_file">lingjack_print.report_receiving_incoming_label</field>
+        <field name="print_report_name">'Receiving Incoming Label - %s' % (object.name)</field>
+        <field name="binding_model_id" ref="stock.model_stock_picking"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

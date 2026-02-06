@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="inline_barcode_scanner.InlineBarcodeScannerWidget" owl="1">
+        <div class="o_field_widget o_field_char o_inline_barcode_scanner_container">
+            <span t-if="props.readonly" t-esc="props.record.data[props.name] || ''" />
+            <div t-else="" class="o_inline_barcode_scanner_wrapper">
+                <input t-att-id="props.id"
+                       t-att-value="props.record.data[props.name] || ''"
+                       type="text"
+                       t-ref="barcodeInput"
+                       t-att-placeholder="props.placeholder"
+                       class="o_input o_inline_barcode_input"
+                       autocomplete="on"/>
+                <button class="o_inline_barcode_scan_button"
+                        t-on-click="onScanButtonClick"
+                        title="Scan Barcode/QR Code"
+                        aria-label="Scan Barcode/QR Code"
+                        type="button">
+                    <i class="fa fa-qrcode"/>
+                </button>
+            </div>
+        </div>
+    </t>
+</templates>
+
+
+
+
+
+

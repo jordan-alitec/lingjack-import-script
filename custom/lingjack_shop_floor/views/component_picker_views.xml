@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Component Picker Form View -->
+    <record id="view_shop_floor_component_picker_form" model="ir.ui.view">
+        <field name="name">shop.floor.component.picker.form</field>
+        <field name="model">shop.floor.component.picker</field>
+        <field name="arch" type="xml">
+            <form string="Pick Components">
+
+                
+                <sheet>
+                    <div class="oe_title">
+                        <h1 style="font-size: 24px;">Pick Components</h1>
+                        <h2 style="font-size: 18px; color: #666;">
+                            Work Order: <field name="workorder_id" readonly="1" nolabel="1"/>
+                        </h2>
+                    </div>
+                    
+                    <group>
+                        <field name="component_line_ids" nolabel="1">
+                            <list string="Components to Pick" editable="bottom">
+                                <field name="product_id"/>
+                                <field name="available_quantity" readonly="1"/>
+                                <field name="quantity_to_pick" 
+                                       decoration-warning="quantity_to_pick > available_quantity"
+                                       decoration-success="quantity_to_pick > 0 and quantity_to_pick &lt;= available_quantity"/>
+                                <field name="uom_id" readonly="1"/>
+                            </list>
+                        </field>
+                    </group>
+                </sheet>
+                <footer>
+
+                    <button name="action_pick_components"
+                            string="PICK COMPONENTS"
+                            type="object"
+                            class="btn-primary"
+                            style="font-size: 16px; padding: 10px 20px;"/>
+                    <button string="Cancel"
+                            class="btn-secondary"
+                            special="cancel"/>
+
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Component Line Form View (for inline editing) -->
+    <record id="view_shop_floor_component_line_form" model="ir.ui.view">
+        <field name="name">shop.floor.component.line.form</field>
+        <field name="model">shop.floor.component.line</field>
+        <field name="arch" type="xml">
+            <form string="Component Line">
+                <group>
+                    <field name="product_id" readonly="1"/>
+                    <field name="available_quantity" readonly="1"/>
+                    <field name="quantity_to_pick"/>
+                    <field name="uom_id" readonly="1"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo> 

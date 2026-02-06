@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Control Tag List View -->
+    <record id="view_control_tag_list" model="ir.ui.view">
+        <field name="name">control.tag.list</field>
+        <field name="model">control.tag</field>
+        <field name="groups_id" eval="[(4, ref('lingjack_service.group_control_tag'))]"/>
+        <field name="arch" type="xml">
+            <list string="Control Tags" create="false" edit="false" delete="false">
+                <field name="name"/>
+                <field name="invoice_number"/>
+                <field name="customer_name"/>
+                <field name="invoice_date"/>
+                <field name="customer_reference"/>
+                <field name="project"/>
+                <field name="item_code"/>
+                <field name="quantity"/>
+                <field name="key_by"/>
+                <field name="salesperson"/>
+                <field name="purchase_order"/>
+                <field name="serial_id"/>
+                <field name="invoice_id" column_invisible="1"/>
+                <field name="move_line_id" column_invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Control Tag Action (restricted to Control Tag group) -->
+    <record id="action_control_tag" model="ir.actions.act_window">
+        <field name="name">Control Tags</field>
+        <field name="res_model">control.tag</field>
+        <field name="view_mode">list</field>
+        <field name="groups_id" eval="[(4, ref('lingjack_service.group_control_tag'))]"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No control tags yet.
+            </p>
+            <p>
+                Control tags are generated from stock move lines when validating.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu: Sales > Products > Control Tags -->
+    <menuitem id="menu_control_tag"
+              name="Control Tags"
+              parent="sale.product_menu_catalog"
+              action="action_control_tag"
+              sequence="50"
+              groups="lingjack_service.group_control_tag"/>
+</odoo>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="hr_view_pdf_form" model="ir.ui.view">
+            <field name="name">hr.employee.pdfform</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <pdfForm>
+                    <pdfTemplate pdfid="1193">Employee Information Sheet 16.pdf</pdfTemplate>
+                    <field name="department_id" position="{'page':1,'posX':0.108,'posY':0.894,'width':0.211,'height':0.018,'alignment':'center'}"/>
+                    <field name="name" position="{'page':1,'posX':0.073,'posY':0.753,'width':0.418,'height':0.02,'alignment':'center'}"/>
+                    <field name="work_email" position="{'page':1,'posX':0.675,'posY':0.475,'width':0.265,'height':0.016,'alignment':'center'}"/>
+                    <field name="job_title" position="{'page':1,'posX':0.069,'posY':0.802,'width':0.416,'height':0.021,'alignment':'center'}"/>
+                    <field name="work_phone" position="{'page':1,'posX':0.52,'posY':0.804,'width':0.2,'height':0.019,'alignment':'center'}"/>
+                    <field name="emergency_contact" position="{'page':1,'posX':0.434,'posY':0.896,'width':0.216,'height':0.015,'alignment':'center'}"/>
+                    <field name="birthday" position="{'page':1,'posX':0.753,'posY':0.802,'width':0.19,'height':0.019,'alignment':'center'}"/>
+                    <field name="company_id" position="{'page':1,'posX':0.212,'posY':0.477,'width':0.341,'height':0.016,'alignment':'center'}" required="True"/>
+                    <field name="emergency_phone" position="{'page':1,'posX':0.771,'posY':0.895,'width':0.171,'height':0.017,'alignment':'center'}"/>
+                </pdfForm>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_pdfform_fill">
+            <field name="name">hr pdfform fill</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">pdfForm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref='just_pdfform.hr_view_pdf_form'/>
+        </record>
+        <record id="hr_pdfform_list" model="ir.ui.view">
+            <field name="name">hr.employee.pdfform.list</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <list string="Employee Information Sheet" action="%(just_pdfform.action_pdfform_fill)d" type="action">
+                    <field name="name"/>
+                    <field name="work_email"/>
+                    <field name="job_title"/>
+                    <field name="work_phone"/>
+                    <field name="emergency_contact"/>
+                    <field name="birthday"/>
+                    <field name="company_id"/>
+                    <field name="emergency_phone"/>
+                </list>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_pdfform_list">
+            <field name="name">hr pdfform demo</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_mode">list,pdfForm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref='just_pdfform.hr_pdfform_list'/>
+        </record>
+        <record id="hr_employee_pdf_form" model="ir.ui.view">
+            <field name="name">hr.employee.pdf_form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(just_pdfform.action_pdfform_fill)d" icon="fa-address-card" type="action" context="{'res_id': id}" invisible="not parent_id and not child_ids">
+                        <div class="o_stat_info">
+                            <span class="o_stat_text">HR Form</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_pdf_form" model="ir.ui.view">
+            <field name="name">contract pdf form</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <pdfForm>
+                    <pdfTemplate pdfid="1188">odoo bpmn workflow Purchasing contract.pdf</pdfTemplate>
+                    <field name="myCompany" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options="{'no_open':true}" readonly="True" required="false" position="{'page':1,'posX':0.6,'posY':0.217,'width':0.333,'height':0.016,'alignment':'left'}"/>
+                    <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options="{'no_open':true}" readonly="True" required="false" position="{'page':1,'posX':0.18,'posY':0.218,'width':0.335,'height':0.015,'alignment':'left'}"/>
+                    <field name="validity_date" widget="date" options="{'no_open':true}" readonly="True" required="false" position="{'page':1,'posX':0.636,'posY':0.822,'width':0.16,'height':0.017,'alignment':'center'}"/>
+                    <field name="user_id" widget="digitalsign" readonly="user_id != uid" options="{'full_name':'user_id','signatureField':'digital_signature','signState':['saleSigner','default']}" position="{'page':4,'posX':0.685,'posY':0.841,'width':0.172,'height':0.047,'alignment':'center'}"/>
+                    <field name="write_date" widget="date" options="{'no_open':true}" readonly="True" position="{'page':4,'posX':0.681,'posY':0.901,'width':0.237,'height':0.018,'alignment':'left'}"/>
+                    <field name="signature" widget="digitalsign" readonly="user_id == uid" options="{'signState':['signed_by','default']}" position="{'page':4,'posX':0.318,'posY':0.841,'width':0.172,'height':0.047,'alignment':'center'}"/>
+                    <field name="signed_on" widget="date" position="{'page':4,'posX':0.316,'posY':0.901,'width':0.237,'height':0.018,'alignment':'left'}"/>
+                    <field name="signed_by" invisible="true" position="{'page':4,'posX':0.316,'posY':0.934,'width':0.2,'height':0.015,'alignment':'center'}"/>
+                    <field name="saleSigner" invisible="true" position="{'page':4,'posX':0.683,'posY':0.934,'width':0.2,'height':0.015,'alignment':'center'}"/>
+                    <field name="name" options="{'no_open':true}" readonly="true" required="True" position="{'page':5,'posX':0.404,'posY':0.209,'width':0.203,'height':0.047,'alignment':'center'}"/>
+                    <field name="date_order" widget="date" options="{}" required="True" position="{'page':5,'posX':0.263,'posY':0.32,'width':0.202,'height':0.017,'alignment':'left'}"/>
+                    <field name="validity_date" widget="date" options="{'no_open':true}" readonly="True" position="{'page':5,'posX':0.297,'posY':0.346,'width':0.194,'height':0.017,'alignment':'left'}"/>
+                    <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options="{'no_open':true}" readonly="true" required="True" position="{'page':5,'posX':0.482,'posY':0.308,'width':0.397,'height':0.016,'alignment':'left'}"/>
+                    <field name="payment_term_id" options="{'no_open':true}" readonly="true" position="{'page':5,'posX':0.279,'posY':0.886,'width':0.45,'height':0.018,'alignment':'left'}"/>
+                    <field name="amount_untaxed" widget="monetary" options="{'no_open':true}" readonly="True" position="{'page':5,'posX':0.733,'posY':0.666,'width':0.143,'height':0.018,'alignment':'right'}"/>
+                    <field name="amount_tax" widget="monetary" options="{'no_open':true}" readonly="True" position="{'page':5,'posX':0.733,'posY':0.7,'width':0.143,'height':0.018,'alignment':'right'}"/>
+                    <field name="amount_total" widget="monetary" options="{'no_open':true}" readonly="True" position="{'page':5,'posX':0.733,'posY':0.731,'width':0.143,'height':0.018,'alignment':'right'}"/>
+                    <field name="order_line" options="{'no_open':true}" readonly="True" position="{'page':5,'posX':0.11,'posY':0.419,'width':0.819,'height':0.014,'alignment':'center'}">
+                        <list string="Sales Order Lines" limit="10" create="0" delete="0">
+                            <field name="product_template_id" field_id="product_template_id_0"/>
+                            <field name="name" field_id="name_0"/>
+                            <field name="product_uom_qty" on_change="1" field_id="product_uom_qty_0"/>
+                            <field name="qty_delivered" field_id="qty_delivered_0"/>
+                            <field name="qty_invoiced" field_id="qty_invoiced_0"/>
+                            <field name="price_unit" on_change="1" field_id="price_unit_0"/>
+                            <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" on_change="1" field_id="tax_id_0"/>
+                            <field name="price_subtotal" field_id="price_subtotal_0"/>
+                        </list>
+                    </field>
+                    <field name="note" widget="html" options="{'no_open':true}" readonly="true" position="{'page':5,'posX':0.144,'posY':0.806,'width':0.754,'height':0.018,'alignment':'left'}"/>
+                </pdfForm>
+            </field>
+        </record>
+        <record id="sale_order_report" model="ir.ui.view">
+            <field name="name">sale order report</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <pdfForm edit="0">
+                    <pdfTemplate pdfid="1189">sales order.pdf</pdfTemplate>
+                    <field name="name" options="{'no_open':true}" required="True" position="{'page':1,'posX':0.359,'posY':0.036,'width':0.203,'height':0.047,'alignment':'center'}"/>
+                    <field name="date_order" widget="date" options="{'no_open':true}" required="True" position="{'page':1,'posX':0.216,'posY':0.149,'width':0.202,'height':0.017,'alignment':'left'}"/>
+                    <field name="validity_date" widget="date" options="{'no_open':true}" readonly="True" position="{'page':1,'posX':0.217,'posY':0.175,'width':0.2,'height':0.018,'alignment':'left'}"/>
+                    <field name="partner_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options="{'no_open':true}" required="True" position="{'page':1,'posX':0.476,'posY':0.147,'width':0.434,'height':0.02,'alignment':'left'}"/>
+                    <field name="payment_term_id" options="{'no_open':true}" position="{'page':1,'posX':0.192,'posY':0.802,'width':0.45,'height':0.018,'alignment':'left'}"/>
+                    <field name="amount_untaxed" widget="monetary" options="{'no_open':true}" readonly="True" position="{'page':1,'posX':0.802,'posY':0.56,'width':0.143,'height':0.018,'alignment':'right'}"/>
+                    <field name="amount_tax" widget="monetary" options="{'no_open':true}" readonly="True" position="{'page':1,'posX':0.801,'posY':0.589,'width':0.143,'height':0.018,'alignment':'right'}"/>
+                    <field name="amount_total" widget="monetary" options="{'no_open':true}" readonly="True" position="{'page':1,'posX':0.801,'posY':0.616,'width':0.143,'height':0.018,'alignment':'right'}"/>
+                    <field name="order_line" options="{'no_open':true}" readonly="True" position="{'page':1,'posX':0.055,'posY':0.243,'width':0.897,'height':0.016,'alignment':'center'}">
+                        <list string="Sales Order Lines" limit="10" create="0" delete="0">
+                            <field name="product_template_id" field_id="product_template_id_0"/>
+                            <field name="name" field_id="name_0"/>
+                            <field name="product_uom_qty" on_change="1" field_id="product_uom_qty_0"/>
+                            <field name="qty_delivered" field_id="qty_delivered_0"/>
+                            <field name="qty_invoiced" field_id="qty_invoiced_0"/>
+                            <field name="price_unit" on_change="1" field_id="price_unit_0"/>
+                            <field name="tax_id" widget="many2many_tags" options="{'no_create': True}" on_change="1" field_id="tax_id_0"/>
+                            <field name="price_subtotal" field_id="price_subtotal_0"/>
+                        </list>
+                    </field>
+                    <field name="note" widget="html" options="{'no_open':true}" position="{'page':1,'posX':0.059,'posY':0.69,'width':0.888,'height':0.015,'alignment':'left'}"/>
+                </pdfForm>
+            </field>
+        </record>
+        <record id="print_without_template" model="ir.ui.view">
+            <field name="name">print without template</field>
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <pdfForm edit="0">
+                    <pdfTemplate pdfid="1190">invoice empty.pdf</pdfTemplate>
+                    <field name="validity_date" widget="date" options="{'no_open':true}" readonly="false" required="True" position="{'page':1,'posX':0.262,'posY':0.142,'width':0.13,'height':0.01,'alignment':'left'}"/>
+                    <field name="partner_id" readonly="false" required="True" position="{'page':1,'posX':0.483,'posY':0.428,'width':0.158,'height':0.01,'alignment':'left'}"/>
+                    <field name="amount_total" widget="monetary" options="{'no_open':true}" readonly="True" position="{'page':1,'posX':0.669,'posY':0.309,'width':0.108,'height':0.011,'alignment':'right'}"/>
+                </pdfForm>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="action_pdf_contract_demo">
+            <field name="name">contract pdf from demo</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">pdfForm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="just_pdfform.view_pdf_form" />
+        </record>
+        <record model="ir.actions.act_window" id="action_sale_order_report">
+            <field name="name">sale order report</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">pdfForm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="just_pdfform.sale_order_report" />
+        </record>
+        <record model="ir.actions.act_window" id="action_print_without_template">
+            <field name="name">print without template</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_mode">pdfForm</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_id" ref="just_pdfform.print_without_template" />
+        </record>
+        <record model="ir.actions.act_window" id="action_pdf_form_view">
+            <field name="name">pdf form view</field>
+            <field name="res_model">ir.ui.view</field>
+            <field name="view_mode">list,form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="domain">[('type', '=', 'pdfForm')]</field>
+            <field name="view_id" ref="base.view_view_tree" />
+        </record>
+        <record id="sale_order_pdfform_view" model="ir.ui.view">
+            <field name="name">sale.order.pdfform</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_view_invoice']" position="before">
+                    <button type="action"
+                       name="%(just_pdfform.action_pdf_contract_demo)d"
+                       class="oe_stat_button"
+                       icon="fa-handshake-o "
+                       invisible="not require_signature" context="{'res_id': id}">
+                        <field name="amount_total" widget="statinfo" string="Contract"/>
+                    </button>
+                    <button type="action"
+                       name="%(just_pdfform.action_sale_order_report)d"
+                       class="oe_stat_button"
+                       icon="fa-file"
+                       invisible="not require_signature" context="{'res_id': id}">
+                        <field name="amount_total" widget="statinfo" string="Report"/>
+                    </button>
+                    <button type="action"
+                       name="%(just_pdfform.action_print_without_template)d"
+                       class="oe_stat_button"
+                       icon="fa-print"
+                       invisible="not require_signature" context="{'res_id': id}">
+                        <field name="amount_total" widget="statinfo" string="No_Background"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+        <menuitem id="menu_pdf_form" name="PDF Form demo" parent="sale.sale_menu_root" sequence="900"/>
+        <menuitem id="menu_pdf_form_view" name="PDFForm View" parent="menu_pdf_form" action="action_pdf_form_view"/>
+        <menuitem id="menu_pdf_form_list" name="HR PDFForm demo" parent="menu_pdf_form" action="action_pdfform_list"/>
+    </data>
+</odoo>

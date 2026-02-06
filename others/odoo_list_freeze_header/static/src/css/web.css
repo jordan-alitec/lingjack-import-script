@@ -1,0 +1,48 @@
+.o_list_view .o_list_table th{
+    background-color: #eee;
+    position: sticky !important;
+    z-index: 50;
+    top: 0;
+}
+
+
+.o_field_x2many.o_list_view .table-responsive {
+    max-height: 400px;
+    overflow-y: scroll !important; /* Ensures scroll bar visibility */
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on macOS */
+    scrollbar-width: thin; /* Makes the scroll bar thinner for Firefox */
+}
+
+.o_field_x2many.o_list_view::-webkit-scrollbar {
+    width: 8px; /* Scrollbar width for Chrome/Safari */
+}
+
+.o_field_x2many.o_list_view::-webkit-scrollbar-thumb {
+    background: #ccc; /* Scrollbar thumb color */
+    border-radius: 4px; /* Scrollbar thumb roundness */
+}
+
+.o_field_x2many.o_list_view::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Scrollbar track color */
+}
+
+
+.o_list_view .o_optional_columns_dropdown_toggle {
+    z-index: 50 !important;
+
+}
+
+.o_notebook_headers
+{ 
+    position: sticky !important;
+    z-index: 99;
+    top: 0;
+}   
+
+.o_list_footer.cursor-default
+{ 
+    background-color: #eee;
+    position: sticky !important;
+    z-index: 100;
+    bottom: 0;
+}  
