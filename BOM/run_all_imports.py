@@ -126,7 +126,7 @@ def run_all():
         serial_mod.main()
 
     # Execute steps in the requested order
-    _run_step("Employee import", step_employee)
+    # _run_step("Employee import", step_employee)
     _run_step("Empty Cabinet BoM import", step_empty_cabinet_bom)
     _run_step("Actual BoM import", step_actual_bom)
     _run_step("Operation import", step_operation)

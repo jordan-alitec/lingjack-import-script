@@ -51,12 +51,12 @@ except ImportError:
     print(f"Warning: Failed to import config from {config_path}")
     print("Please ensure config.py exists in the BOM directory")
     # Fallback defaults
-    # ODOO_URL = 'https://lingjack-data-migration-script-27115365.dev.odoo.com'
-    # ODOO_DB = 'lingjack-data-migration-script-27115365'
-    ODOO_URL = 'http://localhost:8099'
-    ODOO_DB = 'lingjack-main'
-    ODOO_USERNAME = 'admin'
-    ODOO_PASSWORD = 'admin'
+    # Odoo Connection Settings
+    ODOO_URL = 'http://localhost:8099'  # Your Odoo server URL
+    ODOO_DB = 'lingjack-rerun'            # Your Odoo database name
+    ODOO_USERNAME = 'admin'              # Your Odoo username
+    ODOO_PASSWORD = 'admin'              # Your Odoo password
+
     EMPLOYEE_EXCEL_FILE = 'employee.xlsx'
     DRY_RUN = False
 

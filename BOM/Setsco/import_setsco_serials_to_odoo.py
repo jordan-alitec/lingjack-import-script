@@ -167,7 +167,7 @@ class SetscoSerialImporter:
             logger.debug(f"Found setsco.category for sheet '{sheet_name}': ID {category_ids[0]}")
             return category_ids[0]
         
-        logger.warning(f"No setsco.category found for sheet '{sheet_name}'")
+        logger.warning(f"Nos setsco.category found for sheet '{sheet_name}'")
         return None
 
     def find_product_by_default_code(self, default_code) -> Optional[int]:

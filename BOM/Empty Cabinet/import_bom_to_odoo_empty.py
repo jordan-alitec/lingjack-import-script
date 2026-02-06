@@ -129,7 +129,13 @@ class OdooBoMImporter:
             return product_ids[0]
         return None
     
-    def create_product(self, reference: str, name: str = None, auto_create: bool = True) -> Optional[int]:
+    def create_product(
+        self,
+        reference: str,
+        name: str = None,
+        auto_create: bool = True,
+        uom_name: Optional[str] = None,
+    ) -> Optional[int]:
         """
         Create a product in Odoo
         
@@ -192,28 +198,44 @@ class OdooBoMImporter:
             logger.warning(f"Could not find product category: {e}")
             categ_id = False
         
-        # Get default UOM (Units)
-        try:
-            uom_ids = self.models.execute_kw(
-                self.db, self.uid, self.password,
-                'uom.uom',
-                'search',
-                [[('name', '=', 'Units')]],
-                {'limit': 1}
-            )
-            if not uom_ids:
-                # Try to find any UOM
+        # Get product UOM, prioritizing UOM from Excel column if provided
+        uom_id = False
+        # 1) Try UOM from Excel column (via helper) if given
+        if uom_name:
+            try:
+                uom_from_column = self.find_or_create_uom(uom_name)
+                if uom_from_column:
+                    uom_id = uom_from_column
+            except Exception as e:
+                logger.warning(f"Could not resolve UOM '{uom_name}' from column: {e}")
+
+        # 2) Fallback to default UOM (Units) if nothing found from column
+        if not uom_id:
+            try:
                 uom_ids = self.models.execute_kw(
-                    self.db, self.uid, self.password,
+                    self.db,
+                    self.uid,
+                    self.password,
                     'uom.uom',
                     'search',
-                    [[]],
-                    {'limit': 1}
+                    [[('name', '=', 'Units')]],
+                    {'limit': 1},
                 )
-            uom_id = uom_ids[0] if uom_ids else False
-        except Exception as e:
-            logger.warning(f"Could not find UOM: {e}")
-            uom_id = False
+                if not uom_ids:
+                    # Try to find any UOM
+                    uom_ids = self.models.execute_kw(
+                        self.db,
+                        self.uid,
+                        self.password,
+                        'uom.uom',
+                        'search',
+                        [[]],
+                        {'limit': 1},
+                    )
+                uom_id = uom_ids[0] if uom_ids else False
+            except Exception as e:
+                logger.warning(f"Could not find default UOM: {e}")
+                uom_id = False
         
         # Create product template first
         product_vals = {
@@ -507,10 +529,16 @@ class OdooBoMImporter:
                     # Create product if not found
                     logger.info(f"BoM {bom_idx}: Product '{bom_data['reference']}' not found, creating...")
                     try:
+                        # Use the first component's UOM as the product UOM when available
+                        uom_name = None
+                        if bom_data['components']:
+                            uom_name = bom_data['components'][0].get('uom')
+
                         product_id = self.create_product(
                             bom_data['reference'],
                             bom_data['product_name'],
-                            auto_create=True
+                            auto_create=True,
+                            uom_name=uom_name,
                         )
                         if not product_id:
                             error_msg = f"BoM {bom_idx}: Failed to create product with reference '{bom_data['reference']}'. Check logs for details."
@@ -547,7 +575,8 @@ class OdooBoMImporter:
                             comp_product_id = self.create_product(
                                 component['component_ref'],
                                 name=None,  # Component name not available in Excel
-                                auto_create=True
+                                auto_create=True,
+                                uom_name=component.get('uom'),
                             )
                             if not comp_product_id:
                                 error_msg = f"BoM {bom_idx}, Component {comp_idx}: Failed to create product '{component['component_ref']}'"
@@ -623,10 +652,10 @@ def main():
 
         import config  # now resolves to BOM root config.py
 
-        ODOO_URL = getattr(config, "ODOO_URL", "http://localhost:8069")
-        ODOO_DB = getattr(config, "ODOO_DB", "your_database_name")
-        ODOO_USERNAME = getattr(config, "ODOO_USERNAME", "admin")
-        ODOO_PASSWORD = getattr(config, "ODOO_PASSWORD", "admin")
+        ODOO_URL = getattr(config, "ODOO_URL", "https://lingjack-data-migration-script-27889585.dev.odoo.com")
+        ODOO_DB = getattr(config, "ODOO_DB", "lingjack-data-migration-script-27889585")
+        ODOO_USERNAME = getattr(config, "ODOO_USERNAME", "DataMigration1")
+        ODOO_PASSWORD = getattr(config, "ODOO_PASSWORD", "Alitec!@#456789")
         # Prefer BOM_* keys from central config, fall back to legacy names if present
         EXCEL_FILE = getattr(
             config,
@@ -640,10 +669,12 @@ def main():
         )
     except ImportError:
         # Default configuration - UPDATE THESE VALUES
-        ODOO_URL = "http://localhost:8069"  # Change to your Odoo URL
-        ODOO_DB = "your_database_name"  # Change to your database name
-        ODOO_USERNAME = "admin"  # Change to your username
-        ODOO_PASSWORD = "admin"  # Change to your password
+        # Odoo Connection Settings
+        ODOO_URL = 'https://lingjack-data-migration-script-27889585.dev.odoo.com'  # Your Odoo server URL
+        ODOO_DB = 'lingjack-data-migration-script-27889585'            # Your Odoo database name
+        ODOO_USERNAME = 'DataMigration1'              # Your Odoo username
+        ODOO_PASSWORD = 'Alitec!@#456789'              # Your Odoo password
+
         EXCEL_FILE = "output.xlsx"
         DRY_RUN = True  # Set to False to actually import
     

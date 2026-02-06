@@ -4,10 +4,10 @@ Copy this file to config.py and update with your Odoo credentials
 """
 
 # Odoo Connection Settings
-ODOO_URL = 'https://lingjack-data-migration-script-27433965.dev.odoo.com'  # Your Odoo server URL
-ODOO_DB = 'lingjack-data-migration-script-27433965'            # Your Odoo database name
-ODOO_USERNAME = 'admin'              # Your Odoo username
-ODOO_PASSWORD = 'Alitec!@#456'  
+ODOO_URL = 'https://lingjack-data-migration-script-27889585.dev.odoo.com'  # Your Odoo server URL
+ODOO_DB = 'lingjack-data-migration-script-27889585'            # Your Odoo database name
+ODOO_USERNAME = 'DataMigration1'              # Your Odoo username
+ODOO_PASSWORD = 'Alitec!@#456789'              # Your Odoo password
 
 EXCEL_FILE = 'output.xlsx'    # Path to Excel file
 DRY_RUN = False                       # Set to False to actually import
