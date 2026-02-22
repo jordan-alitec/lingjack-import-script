@@ -38,7 +38,7 @@ script_dir = Path(__file__).resolve().parent
 
 # Odoo connection (override via env or config if needed)
 ODOO_URL = 'http://localhost:8099'
-ODOO_DB = 'lingjack-migration-2'
+ODOO_DB = 'lingjack-test4'
 ODOO_USERNAME = 'dataimport'
 ODOO_PASSWORD = 'Admin@123456'
 

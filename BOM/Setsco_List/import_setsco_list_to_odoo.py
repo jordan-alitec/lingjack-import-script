@@ -49,14 +49,14 @@ if str(bom_dir) not in sys.path:
 # ODOO_USERNAME = 'odoo_import'
 # ODOO_PASSWORD = '7ND_5V>32q=-&6a|,aHh'
 
-# ODOO_URL = 'http://localhost:8099'
-# ODOO_DB = 'lingjack-test4'
-# ODOO_USERNAME = 'dataimport'
-# ODOO_PASSWORD = 'Admin@123456'
-ODOO_URL = 'https://lingjack-data-migration-script-28135253.dev.odoo.com'
-ODOO_DB = 'lingjack-data-migration-script-28135253'
+ODOO_URL = 'http://localhost:8099'
+ODOO_DB = 'lingjack-test4'
 ODOO_USERNAME = 'dataimport'
 ODOO_PASSWORD = 'Admin@123456'
+# ODOO_URL = 'https://lingjack-data-migration-script-28135253.dev.odoo.com'
+# ODOO_DB = 'lingjack-data-migration-script-28135253'
+# ODOO_USERNAME = 'dataimport'
+# ODOO_PASSWORD = 'Admin@123456'
 
 DRY_RUN = False
 SETSCO_LIST_EXCEL_FILE = 'SetscoList.xlsx'
@@ -646,7 +646,7 @@ class SetscoListImporter:
                     if sid:
                         stats['total_serials_created'] += 1
                 stats['processed_rows'] += 1
-                logger.error(f"Production row {idx + 2}: {serial_name} {sid}", exc_info=True)
+                logger.info(f"Production row {idx + 2}: {serial_name} {sid}")
             except Exception as e:
                 logger.error(f"Production row {idx + 2}: {e}", exc_info=True)
                 stats['errors'] += 1

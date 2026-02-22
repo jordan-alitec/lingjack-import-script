@@ -71,6 +71,11 @@ ODOO_PASSWORD = 'Admin@123456'
 # ODOO_DB = 'alitecpteltd-lingjack-main-21976694'
 # ODOO_USERNAME = 'dataimport'
 # ODOO_PASSWORD = 'Admin@123456'
+
+# ODOO_URL = 'https://lingjack-data-migration-script-28135253.dev.odoo.com'
+# ODOO_DB = 'lingjack-data-migration-script-28135253'
+# ODOO_USERNAME = 'dataimport'
+# ODOO_PASSWORD = 'Admin@123456'
 DRY_RUN = False
 
 EXCEL_FILE = script_dir / "DeliveryOrderSetco.xlsx"
@@ -439,8 +444,12 @@ class OdooDoSetscoImporter:
         if product_id:
             setsco_category_id = self.get_product_setsco_category(product_id)
         setco_not_created_reasons: List[str] = []
-
+        i = 0
         for name in setsco_names:
+            if i > 500:
+                break
+            i += 1
+          
             serial_id = self.find_setsco_serial_by_name(name)
             if move_line_id:
                 if serial_id:
@@ -479,7 +488,7 @@ class OdooDoSetscoImporter:
                             "invoice_id": invoice_id,
                         })
                     created += 1
-                    logger.info("Created serial %s, linked to move_line %s, delivered", name, move_line_id)
+                    logger.info("Created serial %s, linked to move_line %s, delivered row %s", name, move_line_id, raw_row)
             else:
                 if serial_id:
                     recs = self._read("setsco.serial.number", [serial_id], ["state"])

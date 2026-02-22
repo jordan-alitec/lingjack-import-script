@@ -783,7 +783,7 @@ def main():
     script_dir = Path(__file__).resolve().parent
     repo_root = script_dir.parent
     default_mo_path = repo_root / 'MRP' / 'Raw Script' / 'Outstanding-MO.xlsx'
-    default_swo_path = repo_root / 'SWO' / 'Raw Script' / '260204_swo-template.xlsx'
+    default_swo_path = repo_root / 'SWO' / 'Raw Script' / 'swo.xlsx'
 
     # ODOO_URL = os.environ.get('ODOO_URL', 'http://localhost:8069')
     # ODOO_DB = os.environ.get('ODOO_DB', 'lingjack-test')
@@ -795,15 +795,15 @@ def main():
     # ODOO_USERNAME = 'dataimport'
     # ODOO_PASSWORD = 'Admin@123456'
 
-    # ODOO_URL = 'http://localhost:8099'
-    # ODOO_DB = 'lingjack-test4'
-    # ODOO_USERNAME = 'dataimport'
-    # ODOO_PASSWORD = 'Admin@123456'
-
-    ODOO_URL = 'https://lingjack-data-migration-script-28135253.dev.odoo.com'
-    ODOO_DB = 'lingjack-data-migration-script-28135253'
+    ODOO_URL = 'http://localhost:8099'
+    ODOO_DB = 'lingjack-test4'
     ODOO_USERNAME = 'dataimport'
     ODOO_PASSWORD = 'Admin@123456'
+
+    # ODOO_URL = 'https://lingjack-data-migration-script-28135253.dev.odoo.com'
+    # ODOO_DB = 'lingjack-data-migration-script-28135253'
+    # ODOO_USERNAME = 'dataimport'
+    # ODOO_PASSWORD = 'Admin@123456'
 
     MO_EXCEL = os.environ.get('MRP_MO_EXCEL', str(default_mo_path))
     SWO_EXCEL = os.environ.get('MRP_SWO_EXCEL', str(default_swo_path))
