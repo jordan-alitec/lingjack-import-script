@@ -39,7 +39,7 @@ try:
     SETSCO_LIST_EXCEL_FILE = getattr(config, 'SETSCO_LIST_EXCEL_FILE', 'SetscoList.xlsx')
 except ImportError:
     ODOO_URL = 'http://localhost:8099'
-    ODOO_DB = 'lingjack-run'
+    ODOO_DB = 'lingjack4'
     ODOO_USERNAME = 'dataimport'
     ODOO_PASSWORD = 'Admin@12345678'
     DRY_RUN = True
@@ -74,7 +74,7 @@ COL_SETCO_CATEGORY = 'Setco Category'
 SHEET_OFFICE = 'Office'
 SHEET_WAREHOUSE = 'Warehouse'
 SHEET_PRODUCTION = 'Production'
-SHEETS_ORDER = [SHEET_OFFICE, SHEET_WAREHOUSE, SHEET_PRODUCTION]
+SHEETS_ORDER = [ SHEET_PRODUCTION]
 
 WAREHOUSE_ID = 1
 

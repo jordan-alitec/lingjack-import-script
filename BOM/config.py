@@ -123,6 +123,13 @@ BOM_COLUMN_MAPPING = {
 }
 
 # ============================================================================
+# QC TEMPLATE TO BOM LINK IMPORT SETTINGS
+# ============================================================================
+# Excel: column B = quality.spreadsheet.template name, column C = product default_code (Com No)
+QC_TEMPLATE_EXCEL_FILE = 'QC-Template.xlsx'
+QC_TEMPLATE_DRY_RUN = False  # Set to False to actually link BOMs to QC templates
+
+# ============================================================================
 # SETSCO SERIAL NUMBER IMPORT SETTINGS
 # ============================================================================
 

@@ -6400,3 +6400,1030 @@
 2026-02-08 14:37:17 - ERROR - __main__ - Failed action_start MO id=300: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
 2026-02-08 14:37:17 - INFO - __main__ - Step 7: Apply dates (draft/Non-Stock MOs only) and swap_old_name
 2026-02-08 14:37:19 - INFO - __main__ - Import complete. MOs: 132, SWOs: 32
+2026-02-22 10:19:05 - INFO - __main__ - ============================================================
+2026-02-22 10:19:05 - INFO - __main__ - MRP / SWO Import Script
+2026-02-22 10:19:05 - INFO - __main__ - Log file: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP-Odoo/mrp_swo_import_errors.log
+2026-02-22 10:19:05 - INFO - __main__ - ============================================================
+2026-02-22 10:19:05 - INFO - __main__ - MO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP/Raw Script/Outstanding-MO.xlsx
+2026-02-22 10:19:05 - INFO - __main__ - SWO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/SWO/Raw Script/swo.xlsx
+2026-02-22 10:19:05 - INFO - __main__ - Dry run: True
+2026-02-22 10:19:05 - INFO - __main__ - Connected to Odoo DB 'lingjack-test4' as 'dataimport'
+2026-02-22 10:19:05 - INFO - __main__ - Step 1: Import all MO from Outstanding-MO
+2026-02-22 10:19:37 - INFO - __main__ - ============================================================
+2026-02-22 10:19:37 - INFO - __main__ - MRP / SWO Import Script
+2026-02-22 10:19:37 - INFO - __main__ - Log file: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP-Odoo/mrp_swo_import_errors.log
+2026-02-22 10:19:37 - INFO - __main__ - ============================================================
+2026-02-22 10:19:37 - INFO - __main__ - MO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP/Raw Script/Outstanding-MO.xlsx
+2026-02-22 10:19:37 - INFO - __main__ - SWO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/SWO/Raw Script/swo.xlsx
+2026-02-22 10:19:37 - INFO - __main__ - Dry run: False
+2026-02-22 10:19:37 - INFO - __main__ - Connected to Odoo DB 'lingjack-test4' as 'dataimport'
+2026-02-22 10:19:37 - INFO - __main__ - Step 1: Import all MO from Outstanding-MO
+2026-02-22 10:23:07 - INFO - __main__ - Parsed 161 PWO groups from Outstanding-MO (1090 total components)
+2026-02-22 10:23:07 - INFO - __main__ - Skipped PWO 143981 (old_pwo_number=PWO23-04-00072, product=0323754600000): product_qty would be 0 (Quantity To Produce 300.00 - quantity_produced 143981.00)
+2026-02-22 10:23:07 - INFO - __main__ - Skipped PWO 145780 (old_pwo_number=PWO23-11-00091, product=0323783100000): product_qty would be 0 (Quantity To Produce 200.00 - quantity_produced 145780.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 156896 (old_pwo_number=PWO24-03-00147, product=0320960100000): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 156896.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 159593 (old_pwo_number=PWO25-02-00104, product=0320880100000): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 159593.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 159848 (old_pwo_number=PWO25-03-00060, product=0304230000000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 159848.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160004 (old_pwo_number=PWO25-03-00172, product=0304950400000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 160004.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160052 (old_pwo_number=PWO25-03-00217, product=0304270000000): product_qty would be 0 (Quantity To Produce 17.00 - quantity_produced 160052.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160053 (old_pwo_number=PWO25-03-00218, product=0304280000000): product_qty would be 0 (Quantity To Produce 17.00 - quantity_produced 160053.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160179 (old_pwo_number=PWO25-04-00067, product=2180320000003): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 160179.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160348 (old_pwo_number=PWO25-05-00003, product=0311020000000): product_qty would be 0 (Quantity To Produce 38.00 - quantity_produced 160348.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160444 (old_pwo_number=PWO25-05-00058, product=2180320000003): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 160444.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160530 (old_pwo_number=PWO25-05-00130, product=2080361600000): product_qty would be 0 (Quantity To Produce 130.00 - quantity_produced 160530.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160531 (old_pwo_number=PWO25-05-00131, product=2080361700000): product_qty would be 0 (Quantity To Produce 130.00 - quantity_produced 160531.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160828 (old_pwo_number=PWO25-07-00010, product=0304940500000): product_qty would be 0 (Quantity To Produce 11.00 - quantity_produced 160828.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 160831 (old_pwo_number=PWO25-07-00013, product=7080230000000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 160831.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 161004 (old_pwo_number=PWO25-07-00143, product=2080021200000): product_qty would be 0 (Quantity To Produce 5.00 - quantity_produced 161004.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 161230 (old_pwo_number=PWO25-08-00138, product=2080927300000): product_qty would be 0 (Quantity To Produce 25.00 - quantity_produced 161230.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 161502 (old_pwo_number=PWO25-09-00136, product=2080361500000): product_qty would be 0 (Quantity To Produce 100.00 - quantity_produced 161502.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 161503 (old_pwo_number=PWO25-09-00137, product=0303650400000): product_qty would be 0 (Quantity To Produce 35.00 - quantity_produced 161503.00)
+2026-02-22 10:23:08 - INFO - __main__ - Skipped PWO 161504 (old_pwo_number=PWO25-09-00138, product=0303650100000): product_qty would be 0 (Quantity To Produce 49.00 - quantity_produced 161504.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161522 (old_pwo_number=PWO25-10-00005, product=2080150000001): product_qty would be 0 (Quantity To Produce 800.00 - quantity_produced 161522.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161593 (old_pwo_number=PWO25-10-00051, product=2080100000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 161593.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161670 (old_pwo_number=PWO25-10-00085, product=0307920600000): product_qty would be 0 (Quantity To Produce 15.00 - quantity_produced 161670.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161702 (old_pwo_number=PWO25-10-00105, product=0309870000000): product_qty would be 0 (Quantity To Produce 30.00 - quantity_produced 161702.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161703 (old_pwo_number=PWO25-10-00106, product=0309820000000): product_qty would be 0 (Quantity To Produce 30.00 - quantity_produced 161703.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161704 (old_pwo_number=PWO25-10-00107, product=0309780300000): product_qty would be 0 (Quantity To Produce 40.00 - quantity_produced 161704.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161790 (old_pwo_number=PWO25-11-00009, product=2080361800000): product_qty would be 0 (Quantity To Produce 11.00 - quantity_produced 161790.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161814 (old_pwo_number=PWO25-11-00019, product=2080150000001): product_qty would be 0 (Quantity To Produce 1500.00 - quantity_produced 161814.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161828 (old_pwo_number=PWO25-11-00027, product=0303920500000): product_qty would be 0 (Quantity To Produce 105.00 - quantity_produced 161828.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161873 (old_pwo_number=PWO25-11-00064, product=0300250100000): product_qty would be 0 (Quantity To Produce 30.00 - quantity_produced 161873.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161903 (old_pwo_number=PWO25-11-00083, product=2080150000001): product_qty would be 0 (Quantity To Produce 700.00 - quantity_produced 161903.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 161983 (old_pwo_number=PWO25-11-00114, product=0300700000000): product_qty would be 0 (Quantity To Produce 1285.00 - quantity_produced 161983.00)
+2026-02-22 10:23:09 - INFO - __main__ - Skipped PWO 162047 (old_pwo_number=PWO25-12-00010, product=7080160200000): product_qty would be 0 (Quantity To Produce 115.00 - quantity_produced 162047.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162048 (old_pwo_number=PWO25-12-00011, product=0308116200000): product_qty would be 0 (Quantity To Produce 200.00 - quantity_produced 162048.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162101 (old_pwo_number=PWO25-12-00040, product=7080010000000): product_qty would be 0 (Quantity To Produce 10.00 - quantity_produced 162101.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162153 (old_pwo_number=PWO25-12-00071, product=2080080000000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162153.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162155 (old_pwo_number=PWO25-12-00073, product=2080120000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162155.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162156 (old_pwo_number=PWO25-12-00074, product=2080170200000): product_qty would be 0 (Quantity To Produce 100.00 - quantity_produced 162156.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162220 (old_pwo_number=PWO25-12-00100, product=2080170200000): product_qty would be 0 (Quantity To Produce 60.00 - quantity_produced 162220.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162250 (old_pwo_number=PWO25-12-00125, product=2180560000003): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162250.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162251 (old_pwo_number=PWO25-12-00126, product=0306720600000): product_qty would be 0 (Quantity To Produce 50.00 - quantity_produced 162251.00)
+2026-02-22 10:23:10 - INFO - __main__ - Skipped PWO 162252 (old_pwo_number=PWO25-12-00127, product=0312430000000): product_qty would be 0 (Quantity To Produce 130.00 - quantity_produced 162252.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162272 (old_pwo_number=PWO26-01-00010, product=2080150000001): product_qty would be 0 (Quantity To Produce 1200.00 - quantity_produced 162272.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162274 (old_pwo_number=PWO26-01-00012, product=7080071600000): product_qty would be 0 (Quantity To Produce 15.00 - quantity_produced 162274.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162295 (old_pwo_number=PWO26-01-00026, product=0300320700000): product_qty would be 0 (Quantity To Produce 39.00 - quantity_produced 162295.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162297 (old_pwo_number=PWO26-01-00028, product=0309790000000): product_qty would be 0 (Quantity To Produce 1240.00 - quantity_produced 162297.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162312 (old_pwo_number=PWO26-01-00043, product=2080100000000): product_qty would be 0 (Quantity To Produce 18.00 - quantity_produced 162312.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162333 (old_pwo_number=PWO26-01-00055, product=8080140024001): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162333.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162339 (old_pwo_number=PWO26-01-00061, product=0321120900000): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162339.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162374 (old_pwo_number=PWO26-01-00079, product=8080010021001): product_qty would be 0 (Quantity To Produce 95.00 - quantity_produced 162374.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162376 (old_pwo_number=PWO26-01-00081, product=8080010025003): product_qty would be 0 (Quantity To Produce 22.00 - quantity_produced 162376.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162377 (old_pwo_number=PWO26-01-00082, product=0307920400000): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162377.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162379 (old_pwo_number=PWO26-01-00084, product=0304210000000): product_qty would be 0 (Quantity To Produce 50.00 - quantity_produced 162379.00)
+2026-02-22 10:23:11 - INFO - __main__ - Skipped PWO 162380 (old_pwo_number=PWO26-01-00085, product=0304220000000): product_qty would be 0 (Quantity To Produce 50.00 - quantity_produced 162380.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162385 (old_pwo_number=PWO26-01-00089, product=0301270000000): product_qty would be 0 (Quantity To Produce 1000.00 - quantity_produced 162385.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162386 (old_pwo_number=PWO26-01-00090, product=0301040000000): product_qty would be 0 (Quantity To Produce 1500.00 - quantity_produced 162386.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162435 (old_pwo_number=PWO26-01-00098, product=2080927200001): product_qty would be 0 (Quantity To Produce 10.00 - quantity_produced 162435.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162437 (old_pwo_number=PWO26-01-00100, product=2080233000001): product_qty would be 0 (Quantity To Produce 8.00 - quantity_produced 162437.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162438 (old_pwo_number=PWO26-01-00101, product=0302390900000): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 162438.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162448 (old_pwo_number=PWO26-01-00111, product=2180480000001): product_qty would be 0 (Quantity To Produce 10.00 - quantity_produced 162448.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162459 (old_pwo_number=PWO26-01-00113, product=9070010000000): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162459.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162460 (old_pwo_number=PWO26-01-00114, product=0300310100000): product_qty would be 0 (Quantity To Produce 17.00 - quantity_produced 162460.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162463 (old_pwo_number=PWO26-01-00117, product=0301590000000): product_qty would be 0 (Quantity To Produce 15.00 - quantity_produced 162463.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162479 (old_pwo_number=PWO26-01-00129, product=9080350000001): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162479.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162480 (old_pwo_number=PWO26-01-00130, product=0323757400001): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162480.00)
+2026-02-22 10:23:12 - INFO - __main__ - Skipped PWO 162481 (old_pwo_number=PWO26-01-00131, product=2180440000000): product_qty would be 0 (Quantity To Produce 64.00 - quantity_produced 162481.00)
+2026-02-22 10:23:13 - INFO - __main__ - Skipped PWO 162482 (old_pwo_number=PWO26-01-00132, product=2080927200001): product_qty would be 0 (Quantity To Produce 20.00 - quantity_produced 162482.00)
+2026-02-22 10:23:13 - INFO - __main__ - Skipped PWO 162483 (old_pwo_number=PWO26-01-00133, product=2080232900002): product_qty would be 0 (Quantity To Produce 10.00 - quantity_produced 162483.00)
+2026-02-22 10:23:13 - INFO - __main__ - Skipped PWO 162484 (old_pwo_number=PWO26-01-00134, product=2180580000004): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162484.00)
+2026-02-22 10:23:13 - INFO - __main__ - Skipped PWO 162485 (old_pwo_number=PWO26-01-00135, product=2080233000002): product_qty would be 0 (Quantity To Produce 45.00 - quantity_produced 162485.00)
+2026-02-22 10:23:13 - INFO - __main__ - Created product: 7080200026001 (reference=7080200026001, id=39457)
+2026-02-22 10:23:14 - INFO - __main__ - Created product: 0308011526001 (reference=0308011526001, id=39458)
+2026-02-22 10:23:14 - INFO - __main__ - Skipped PWO 162487 (old_pwo_number=PWO26-01-00137, product=7080200026001): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162487.00)
+2026-02-22 10:23:14 - INFO - __main__ - Skipped PWO 162489 (old_pwo_number=PWO26-01-00138, product=0308011526001): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162489.00)
+2026-02-22 10:23:14 - INFO - __main__ - Created product: 7080050126001 (reference=7080050126001, id=39459)
+2026-02-22 10:23:15 - INFO - __main__ - Created product: 0307980326002 (reference=0307980326002, id=39460)
+2026-02-22 10:23:15 - INFO - __main__ - Skipped PWO 162490 (old_pwo_number=PWO26-01-00139, product=7080050126001): product_qty would be 0 (Quantity To Produce 9.00 - quantity_produced 162490.00)
+2026-02-22 10:23:15 - INFO - __main__ - Skipped PWO 162491 (old_pwo_number=PWO26-01-00140, product=8080009918001): product_qty would be 0 (Quantity To Produce 400.00 - quantity_produced 162491.00)
+2026-02-22 10:23:15 - INFO - __main__ - Skipped PWO 162492 (old_pwo_number=PWO26-01-00141, product=0307980326002): product_qty would be 0 (Quantity To Produce 9.00 - quantity_produced 162492.00)
+2026-02-22 10:23:15 - INFO - __main__ - Created product: 7080053926001 (reference=7080053926001, id=39461)
+2026-02-22 10:23:15 - INFO - __main__ - Created product: 0307980326001 (reference=0307980326001, id=39462)
+2026-02-22 10:23:16 - INFO - __main__ - Skipped PWO 162493 (old_pwo_number=PWO26-01-00142, product=7080053926001): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 162493.00)
+2026-02-22 10:23:16 - INFO - __main__ - Skipped PWO 162494 (old_pwo_number=PWO26-01-00143, product=0307980326001): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 162494.00)
+2026-02-22 10:23:16 - INFO - __main__ - Created product: 7080170326002 (reference=7080170326002, id=39463)
+2026-02-22 10:23:16 - INFO - __main__ - Created product: 0308991126001 (reference=0308991126001, id=39464)
+2026-02-22 10:23:16 - INFO - __main__ - Skipped PWO 162495 (old_pwo_number=PWO26-01-00144, product=7080170326002): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162495.00)
+2026-02-22 10:23:16 - INFO - __main__ - Skipped PWO 162496 (old_pwo_number=PWO26-01-00145, product=0306730200000): product_qty would be 0 (Quantity To Produce 64.00 - quantity_produced 162496.00)
+2026-02-22 10:23:17 - INFO - __main__ - Skipped PWO 162497 (old_pwo_number=PWO26-01-00146, product=0308991126001): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162497.00)
+2026-02-22 10:23:17 - INFO - __main__ - Created product: 7080180426001 (reference=7080180426001, id=39465)
+2026-02-22 10:23:17 - INFO - __main__ - Created product: 0308991226001 (reference=0308991226001, id=39466)
+2026-02-22 10:23:17 - INFO - __main__ - Skipped PWO 162498 (old_pwo_number=PWO26-01-00147, product=7080180426001): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162498.00)
+2026-02-22 10:23:17 - INFO - __main__ - Skipped PWO 162499 (old_pwo_number=PWO26-01-00148, product=0308991226001): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162499.00)
+2026-02-22 10:23:17 - INFO - __main__ - Skipped PWO 162500 (old_pwo_number=PWO26-01-00149, product=0302390900000): product_qty would be 0 (Quantity To Produce 56.00 - quantity_produced 162500.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162502 (old_pwo_number=PWO26-02-00002, product=2080150200000): product_qty would be 0 (Quantity To Produce 28.00 - quantity_produced 162502.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162507 (old_pwo_number=PWO26-02-00006, product=9070010000000): product_qty would be 0 (Quantity To Produce 160.00 - quantity_produced 162507.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162514 (old_pwo_number=PWO26-02-00013, product=7080240000000): product_qty would be 0 (Quantity To Produce 40.00 - quantity_produced 162514.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162516 (old_pwo_number=PWO26-02-00015, product=7080010000000): product_qty would be 0 (Quantity To Produce 100.00 - quantity_produced 162516.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162517 (old_pwo_number=PWO26-02-00016, product=0307940100000): product_qty would be 0 (Quantity To Produce 108.00 - quantity_produced 162517.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162518 (old_pwo_number=PWO26-02-00017, product=7080020000000): product_qty would be 0 (Quantity To Produce 60.00 - quantity_produced 162518.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162519 (old_pwo_number=PWO26-02-00018, product=0307950100000): product_qty would be 0 (Quantity To Produce 60.00 - quantity_produced 162519.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162522 (old_pwo_number=PWO26-02-00021, product=0303650400000): product_qty would be 0 (Quantity To Produce 75.00 - quantity_produced 162522.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162523 (old_pwo_number=PWO26-02-00022, product=0303650100000): product_qty would be 0 (Quantity To Produce 85.00 - quantity_produced 162523.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162526 (old_pwo_number=PWO26-02-00025, product=2080120000000): product_qty would be 0 (Quantity To Produce 160.00 - quantity_produced 162526.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162533 (old_pwo_number=PWO26-02-00028, product=2080120000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162533.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162534 (old_pwo_number=PWO26-02-00029, product=2080100000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162534.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162540 (old_pwo_number=PWO26-02-00034, product=2080860000000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162540.00)
+2026-02-22 10:23:18 - INFO - __main__ - Skipped PWO 162542 (old_pwo_number=PWO26-02-00036, product=2080251400000): product_qty would be 0 (Quantity To Produce 100.00 - quantity_produced 162542.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162543 (old_pwo_number=PWO26-02-00037, product=2080160400000): product_qty would be 0 (Quantity To Produce 360.00 - quantity_produced 162543.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162544 (old_pwo_number=PWO26-02-00038, product=2080130200000): product_qty would be 0 (Quantity To Produce 1000.00 - quantity_produced 162544.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162546 (old_pwo_number=PWO26-02-00040, product=0306630000000): product_qty would be 0 (Quantity To Produce 1800.00 - quantity_produced 162546.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162555 (old_pwo_number=PWO26-02-00041, product=2080150000001): product_qty would be 0 (Quantity To Produce 1000.00 - quantity_produced 162555.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162556 (old_pwo_number=PWO26-02-00042, product=2080233000001): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162556.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162560 (old_pwo_number=PWO26-02-00043, product=2080160000000): product_qty would be 0 (Quantity To Produce 50.00 - quantity_produced 162560.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162561 (old_pwo_number=PWO26-02-00044, product=7080020900000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162561.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162562 (old_pwo_number=PWO26-02-00045, product=0308072100000): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 162562.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162563 (old_pwo_number=PWO26-02-00046, product=7080290700000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162563.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162564 (old_pwo_number=PWO26-02-00047, product=0308991300000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162564.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162567 (old_pwo_number=PWO26-02-00050, product=0309780000000): product_qty would be 0 (Quantity To Produce 2700.00 - quantity_produced 162567.00)
+2026-02-22 10:23:19 - INFO - __main__ - Skipped PWO 162589 (old_pwo_number=PWO26-02-00052, product=0323911600000): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162589.00)
+2026-02-22 10:23:20 - INFO - __main__ - Created product: 0314780019010 (reference=0314780019010, id=39467)
+2026-02-22 10:23:20 - INFO - __main__ - Skipped PWO 162590 (old_pwo_number=PWO26-02-00053, product=0314780019010): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162590.00)
+2026-02-22 10:23:20 - INFO - __main__ - Skipped PWO 162591 (old_pwo_number=PWO26-02-00054, product=0314783900000): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162591.00)
+2026-02-22 10:23:20 - INFO - __main__ - Skipped PWO 162592 (old_pwo_number=PWO26-02-00055, product=2080030400000): product_qty would be 0 (Quantity To Produce 243.00 - quantity_produced 162592.00)
+2026-02-22 10:23:20 - INFO - __main__ - Skipped PWO 162601 (old_pwo_number=PWO26-02-00056, product=7080290025002): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162601.00)
+2026-02-22 10:23:20 - INFO - __main__ - Created product: 7080054026001 (reference=7080054026001, id=39468)
+2026-02-22 10:23:21 - INFO - __main__ - Created product: 0307980726001 (reference=0307980726001, id=39469)
+2026-02-22 10:23:21 - INFO - __main__ - Skipped PWO 162602 (old_pwo_number=PWO26-02-00057, product=7080054026001): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162602.00)
+2026-02-22 10:23:21 - INFO - __main__ - Skipped PWO 162603 (old_pwo_number=PWO26-02-00058, product=0307980726001): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162603.00)
+2026-02-22 10:23:21 - INFO - __main__ - Skipped PWO 162605 (old_pwo_number=PWO26-02-00060, product=2080926000000): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162605.00)
+2026-02-22 10:23:21 - INFO - __main__ - Created product: 7080290726002 (reference=7080290726002, id=39470)
+2026-02-22 10:23:22 - INFO - __main__ - Created product: 0308991326001 (reference=0308991326001, id=39471)
+2026-02-22 10:23:22 - INFO - __main__ - Skipped PWO 162606 (old_pwo_number=PWO26-02-00061, product=7080290726002): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162606.00)
+2026-02-22 10:23:22 - INFO - __main__ - Skipped PWO 162607 (old_pwo_number=PWO26-02-00062, product=0308991326001): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162607.00)
+2026-02-22 10:23:22 - INFO - __main__ - Created product: 7080053726002 (reference=7080053726002, id=39472)
+2026-02-22 10:23:22 - INFO - __main__ - Created product: 0308119326001 (reference=0308119326001, id=39473)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162608 (old_pwo_number=PWO26-02-00063, product=7080053726002): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162608.00)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162609 (old_pwo_number=PWO26-02-00064, product=0308119326001): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162609.00)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162610 (old_pwo_number=PWO26-02-00065, product=2080362000000): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162610.00)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162611 (old_pwo_number=PWO26-02-00066, product=0308034000000): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162611.00)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162612 (old_pwo_number=PWO26-02-00067, product=0300330300000): product_qty would be 0 (Quantity To Produce 64.00 - quantity_produced 162612.00)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162613 (old_pwo_number=PWO26-02-00068, product=2180580026001): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162613.00)
+2026-02-22 10:23:23 - INFO - __main__ - Created product: 7080050118019 (reference=7080050118019, id=39474)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162614 (old_pwo_number=PWO26-02-00069, product=7080050118019): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162614.00)
+2026-02-22 10:23:23 - INFO - __main__ - Skipped PWO 162615 (old_pwo_number=PWO26-02-00070, product=0307980318011): product_qty would be 0 (Quantity To Produce 2.00 - quantity_produced 162615.00)
+2026-02-22 10:23:24 - INFO - __main__ - Skipped PWO 162617 (old_pwo_number=PWO26-02-00071, product=7080050700000): product_qty would be 0 (Quantity To Produce 100.00 - quantity_produced 162617.00)
+2026-02-22 10:23:24 - INFO - __main__ - Skipped PWO 162618 (old_pwo_number=PWO26-02-00072, product=0307981700000): product_qty would be 0 (Quantity To Produce 100.00 - quantity_produced 162618.00)
+2026-02-22 10:23:24 - INFO - __main__ - Skipped PWO 162619 (old_pwo_number=PWO26-02-00073, product=2180580100000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162619.00)
+2026-02-22 10:23:24 - INFO - __main__ - Skipped PWO 162620 (old_pwo_number=PWO26-02-00074, product=2080927300000): product_qty would be 0 (Quantity To Produce 12.00 - quantity_produced 162620.00)
+2026-02-22 10:23:24 - INFO - __main__ - Created product: 2080927400000 (reference=2080927400000, id=39475)
+2026-02-22 10:23:24 - INFO - __main__ - Skipped PWO 162621 (old_pwo_number=PWO26-02-00075, product=2080927400000): product_qty would be 0 (Quantity To Produce 12.00 - quantity_produced 162621.00)
+2026-02-22 10:23:24 - INFO - __main__ - Skipped PWO 162622 (old_pwo_number=PWO26-02-00076, product=2080880000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162622.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162623 (old_pwo_number=PWO26-02-00077, product=2180330000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162623.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162624 (old_pwo_number=PWO26-02-00078, product=7080053700000): product_qty would be 0 (Quantity To Produce 10.00 - quantity_produced 162624.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162625 (old_pwo_number=PWO26-02-00079, product=0308119300000): product_qty would be 0 (Quantity To Produce 10.00 - quantity_produced 162625.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162626 (old_pwo_number=PWO26-02-00080, product=2080173600000): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 162626.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162627 (old_pwo_number=PWO26-02-00081, product=2080170800000): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 162627.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162628 (old_pwo_number=PWO26-02-00082, product=2180570000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162628.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162629 (old_pwo_number=PWO26-02-00083, product=2180550000000): product_qty would be 0 (Quantity To Produce 3.00 - quantity_produced 162629.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162630 (old_pwo_number=PWO26-02-00084, product=7080020200000): product_qty would be 0 (Quantity To Produce 5.00 - quantity_produced 162630.00)
+2026-02-22 10:23:25 - INFO - __main__ - Skipped PWO 162631 (old_pwo_number=PWO26-02-00085, product=0307950700000): product_qty would be 0 (Quantity To Produce 5.00 - quantity_produced 162631.00)
+2026-02-22 10:23:26 - INFO - __main__ - Created product: 7080053926002 (reference=7080053926002, id=39476)
+2026-02-22 10:23:26 - INFO - __main__ - Skipped PWO 162640 (old_pwo_number=PWO26-02-00087, product=7080053926002): product_qty would be 0 (Quantity To Produce 54.00 - quantity_produced 162640.00)
+2026-02-22 10:23:26 - INFO - __main__ - Skipped PWO 162641 (old_pwo_number=PWO26-02-00088, product=8080010000006): product_qty would be 0 (Quantity To Produce 54.00 - quantity_produced 162641.00)
+2026-02-22 10:23:26 - INFO - __main__ - Skipped PWO 162642 (old_pwo_number=PWO26-02-00089, product=0318081000000): product_qty would be 0 (Quantity To Produce 5.00 - quantity_produced 162642.00)
+2026-02-22 10:23:26 - INFO - __main__ - Skipped PWO 162643 (old_pwo_number=PWO26-02-00090, product=2180560000002): product_qty would be 0 (Quantity To Produce 14.00 - quantity_produced 162643.00)
+2026-02-22 10:23:26 - INFO - __main__ - Skipped PWO 162644 (old_pwo_number=PWO26-02-00091, product=2180310000001): product_qty would be 0 (Quantity To Produce 4.00 - quantity_produced 162644.00)
+2026-02-22 10:23:26 - INFO - __main__ - Skipped PWO 162645 (old_pwo_number=PWO26-02-00092, product=2080164200000): product_qty would be 0 (Quantity To Produce 150.00 - quantity_produced 162645.00)
+2026-02-22 10:23:26 - INFO - __main__ - Skipped PWO 162646 (old_pwo_number=PWO26-02-00093, product=2080132100000): product_qty would be 0 (Quantity To Produce 300.00 - quantity_produced 162646.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162647 (old_pwo_number=PWO26-02-00094, product=2080150400002): product_qty would be 0 (Quantity To Produce 50.00 - quantity_produced 162647.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162648 (old_pwo_number=PWO26-02-00095, product=2080071300003): product_qty would be 0 (Quantity To Produce 50.00 - quantity_produced 162648.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162649 (old_pwo_number=PWO26-02-00096, product=0321030300000): product_qty would be 0 (Quantity To Produce 14.00 - quantity_produced 162649.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162650 (old_pwo_number=PWO26-02-00097, product=0307980118001): product_qty would be 0 (Quantity To Produce 54.00 - quantity_produced 162650.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162651 (old_pwo_number=PWO26-02-00098, product=0309880100000): product_qty would be 0 (Quantity To Produce 14.00 - quantity_produced 162651.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162652 (old_pwo_number=PWO26-02-00099, product=0304290000000): product_qty would be 0 (Quantity To Produce 14.00 - quantity_produced 162652.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162653 (old_pwo_number=PWO26-02-00100, product=0306710400000): product_qty would be 0 (Quantity To Produce 6.00 - quantity_produced 162653.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162654 (old_pwo_number=PWO26-02-00101, product=0309840000000): product_qty would be 0 (Quantity To Produce 60.00 - quantity_produced 162654.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162655 (old_pwo_number=PWO26-02-00102, product=0323777400000): product_qty would be 0 (Quantity To Produce 70.00 - quantity_produced 162655.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162656 (old_pwo_number=PWO26-02-00103, product=2180320000003): product_qty would be 0 (Quantity To Produce 1.00 - quantity_produced 162656.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162657 (old_pwo_number=PWO26-02-00104, product=0307920400000): product_qty would be 0 (Quantity To Produce 100.00 - quantity_produced 162657.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162658 (old_pwo_number=PWO26-02-00105, product=0300330300000): product_qty would be 0 (Quantity To Produce 64.00 - quantity_produced 162658.00)
+2026-02-22 10:23:27 - INFO - __main__ - Skipped PWO 162659 (old_pwo_number=PWO26-02-00106, product=0307920600000): product_qty would be 0 (Quantity To Produce 50.00 - quantity_produced 162659.00)
+2026-02-22 10:23:27 - WARNING - __main__ - No MOs created; aborting rest of import.
+2026-02-22 11:00:23 - INFO - __main__ - ============================================================
+2026-02-22 11:00:23 - INFO - __main__ - MRP / SWO Import Script
+2026-02-22 11:00:23 - INFO - __main__ - Log file: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP-Odoo/mrp_swo_import_errors.log
+2026-02-22 11:00:23 - INFO - __main__ - ============================================================
+2026-02-22 11:00:23 - INFO - __main__ - MO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP/Raw Script/Outstanding-MO.xlsx
+2026-02-22 11:00:23 - INFO - __main__ - SWO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/SWO/Raw Script/swo.xlsx
+2026-02-22 11:00:23 - INFO - __main__ - Dry run: False
+2026-02-22 11:00:23 - INFO - __main__ - Connected to Odoo DB 'lingjack-test4' as 'dataimport'
+2026-02-22 11:00:23 - INFO - __main__ - Step 1: Import all MO from Outstanding-MO
+2026-02-22 11:03:53 - INFO - __main__ - Parsed 161 PWO groups from Outstanding-MO (1090 total components)
+2026-02-22 11:03:53 - INFO - __main__ - Created MO 13 (old_pwo_number=PWO23-04-00072) with 1 component(s)
+2026-02-22 11:03:53 - INFO - __main__ - Created MO 14 (old_pwo_number=PWO23-11-00091) with 1 component(s)
+2026-02-22 11:03:53 - INFO - __main__ - Created MO 15 (old_pwo_number=PWO24-03-00147) with 1 component(s)
+2026-02-22 11:03:53 - INFO - __main__ - Created MO 16 (old_pwo_number=PWO25-02-00104) with 4 component(s)
+2026-02-22 11:03:53 - INFO - __main__ - Created MO 17 (old_pwo_number=PWO25-03-00060) with 1 component(s)
+2026-02-22 11:03:53 - INFO - __main__ - Created MO 18 (old_pwo_number=PWO25-03-00172) with 1 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 19 (old_pwo_number=PWO25-03-00217) with 1 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 20 (old_pwo_number=PWO25-03-00218) with 1 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 21 (old_pwo_number=PWO25-04-00067) with 11 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 22 (old_pwo_number=PWO25-05-00003) with 1 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 23 (old_pwo_number=PWO25-05-00058) with 11 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 24 (old_pwo_number=PWO25-05-00130) with 6 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 25 (old_pwo_number=PWO25-05-00131) with 6 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 26 (old_pwo_number=PWO25-07-00010) with 1 component(s)
+2026-02-22 11:03:54 - INFO - __main__ - Created MO 27 (old_pwo_number=PWO25-07-00013) with 1 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 28 (old_pwo_number=PWO25-07-00143) with 13 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 29 (old_pwo_number=PWO25-08-00138) with 7 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 30 (old_pwo_number=PWO25-09-00136) with 6 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 31 (old_pwo_number=PWO25-09-00137) with 2 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 32 (old_pwo_number=PWO25-09-00138) with 2 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 33 (old_pwo_number=PWO25-10-00005) with 10 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 34 (old_pwo_number=PWO25-10-00051) with 9 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 35 (old_pwo_number=PWO25-10-00085) with 3 component(s)
+2026-02-22 11:03:55 - INFO - __main__ - Created MO 36 (old_pwo_number=PWO25-10-00105) with 7 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 37 (old_pwo_number=PWO25-10-00106) with 7 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 38 (old_pwo_number=PWO25-10-00107) with 7 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 39 (old_pwo_number=PWO25-11-00009) with 6 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 40 (old_pwo_number=PWO25-11-00019) with 10 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 41 (old_pwo_number=PWO25-11-00027) with 1 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 42 (old_pwo_number=PWO25-11-00064) with 2 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 43 (old_pwo_number=PWO25-11-00083) with 10 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 44 (old_pwo_number=PWO25-11-00114) with 3 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 45 (old_pwo_number=PWO25-12-00010) with 5 component(s)
+2026-02-22 11:03:56 - INFO - __main__ - Created MO 46 (old_pwo_number=PWO25-12-00011) with 3 component(s)
+2026-02-22 11:03:57 - INFO - __main__ - Created MO 47 (old_pwo_number=PWO25-12-00040) with 7 component(s)
+2026-02-22 11:03:57 - INFO - __main__ - Created MO 48 (old_pwo_number=PWO25-12-00071) with 7 component(s)
+2026-02-22 11:03:57 - INFO - __main__ - Created MO 49 (old_pwo_number=PWO25-12-00073) with 6 component(s)
+2026-02-22 11:03:57 - INFO - __main__ - Created MO 50 (old_pwo_number=PWO25-12-00074) with 13 component(s)
+2026-02-22 11:03:57 - INFO - __main__ - Created MO 51 (old_pwo_number=PWO25-12-00100) with 13 component(s)
+2026-02-22 11:03:57 - INFO - __main__ - Created MO 52 (old_pwo_number=PWO25-12-00125) with 18 component(s)
+2026-02-22 11:03:58 - INFO - __main__ - Created MO 53 (old_pwo_number=PWO25-12-00126) with 12 component(s)
+2026-02-22 11:03:58 - INFO - __main__ - Created MO 54 (old_pwo_number=PWO25-12-00127) with 6 component(s)
+2026-02-22 11:03:58 - INFO - __main__ - Created MO 55 (old_pwo_number=PWO26-01-00010) with 10 component(s)
+2026-02-22 11:03:58 - INFO - __main__ - Created MO 56 (old_pwo_number=PWO26-01-00012) with 5 component(s)
+2026-02-22 11:03:58 - INFO - __main__ - Created MO 57 (old_pwo_number=PWO26-01-00026) with 6 component(s)
+2026-02-22 11:03:58 - INFO - __main__ - Created MO 58 (old_pwo_number=PWO26-01-00028) with 7 component(s)
+2026-02-22 11:03:58 - INFO - __main__ - Created MO 59 (old_pwo_number=PWO26-01-00043) with 6 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 60 (old_pwo_number=PWO26-01-00055) with 18 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 61 (old_pwo_number=PWO26-01-00061) with 2 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 62 (old_pwo_number=PWO26-01-00079) with 14 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 63 (old_pwo_number=PWO26-01-00081) with 14 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 64 (old_pwo_number=PWO26-01-00082) with 5 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 65 (old_pwo_number=PWO26-01-00084) with 1 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 66 (old_pwo_number=PWO26-01-00085) with 1 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 67 (old_pwo_number=PWO26-01-00089) with 2 component(s)
+2026-02-22 11:03:59 - INFO - __main__ - Created MO 68 (old_pwo_number=PWO26-01-00090) with 2 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 69 (old_pwo_number=PWO26-01-00098) with 9 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 70 (old_pwo_number=PWO26-01-00100) with 8 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 71 (old_pwo_number=PWO26-01-00101) with 7 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 72 (old_pwo_number=PWO26-01-00111) with 10 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 73 (old_pwo_number=PWO26-01-00113) with 6 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 74 (old_pwo_number=PWO26-01-00114) with 2 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 75 (old_pwo_number=PWO26-01-00117) with 3 component(s)
+2026-02-22 11:04:00 - INFO - __main__ - Created MO 76 (old_pwo_number=PWO26-01-00129) with 6 component(s)
+2026-02-22 11:04:01 - INFO - __main__ - Created MO 77 (old_pwo_number=PWO26-01-00130) with 8 component(s)
+2026-02-22 11:04:01 - INFO - __main__ - Created MO 78 (old_pwo_number=PWO26-01-00131) with 17 component(s)
+2026-02-22 11:04:01 - INFO - __main__ - Created MO 79 (old_pwo_number=PWO26-01-00132) with 9 component(s)
+2026-02-22 11:04:01 - INFO - __main__ - Created MO 80 (old_pwo_number=PWO26-01-00133) with 8 component(s)
+2026-02-22 11:04:01 - INFO - __main__ - Created MO 81 (old_pwo_number=PWO26-01-00134) with 11 component(s)
+2026-02-22 11:04:01 - INFO - __main__ - Created MO 82 (old_pwo_number=PWO26-01-00135) with 8 component(s)
+2026-02-22 11:04:01 - INFO - __main__ - Created MO 83 (old_pwo_number=PWO26-01-00137) with 2 component(s)
+2026-02-22 11:04:02 - INFO - __main__ - Created MO 84 (old_pwo_number=PWO26-01-00138) with 6 component(s)
+2026-02-22 11:04:02 - INFO - __main__ - Created MO 85 (old_pwo_number=PWO26-01-00139) with 5 component(s)
+2026-02-22 11:04:02 - INFO - __main__ - Created MO 86 (old_pwo_number=PWO26-01-00140) with 14 component(s)
+2026-02-22 11:04:02 - INFO - __main__ - Created MO 87 (old_pwo_number=PWO26-01-00141) with 5 component(s)
+2026-02-22 11:04:02 - INFO - __main__ - Created MO 88 (old_pwo_number=PWO26-01-00142) with 6 component(s)
+2026-02-22 11:04:02 - INFO - __main__ - Created MO 89 (old_pwo_number=PWO26-01-00143) with 7 component(s)
+2026-02-22 11:04:02 - INFO - __main__ - Created MO 90 (old_pwo_number=PWO26-01-00144) with 5 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 91 (old_pwo_number=PWO26-01-00145) with 13 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 92 (old_pwo_number=PWO26-01-00146) with 6 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 93 (old_pwo_number=PWO26-01-00147) with 5 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 94 (old_pwo_number=PWO26-01-00148) with 6 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 95 (old_pwo_number=PWO26-01-00149) with 7 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 96 (old_pwo_number=PWO26-02-00002) with 10 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 97 (old_pwo_number=PWO26-02-00006) with 6 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 98 (old_pwo_number=PWO26-02-00013) with 1 component(s)
+2026-02-22 11:04:03 - INFO - __main__ - Created MO 99 (old_pwo_number=PWO26-02-00015) with 7 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 100 (old_pwo_number=PWO26-02-00016) with 4 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 101 (old_pwo_number=PWO26-02-00017) with 7 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 102 (old_pwo_number=PWO26-02-00018) with 4 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 103 (old_pwo_number=PWO26-02-00021) with 2 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 104 (old_pwo_number=PWO26-02-00022) with 2 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 105 (old_pwo_number=PWO26-02-00025) with 9 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 106 (old_pwo_number=PWO26-02-00028) with 3 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 107 (old_pwo_number=PWO26-02-00029) with 3 component(s)
+2026-02-22 11:04:04 - INFO - __main__ - Created MO 108 (old_pwo_number=PWO26-02-00034) with 11 component(s)
+2026-02-22 11:04:05 - INFO - __main__ - Created MO 109 (old_pwo_number=PWO26-02-00036) with 9 component(s)
+2026-02-22 11:04:05 - INFO - __main__ - Created MO 110 (old_pwo_number=PWO26-02-00037) with 10 component(s)
+2026-02-22 11:04:05 - INFO - __main__ - Created MO 111 (old_pwo_number=PWO26-02-00038) with 10 component(s)
+2026-02-22 11:04:05 - INFO - __main__ - Created MO 112 (old_pwo_number=PWO26-02-00040) with 7 component(s)
+2026-02-22 11:04:05 - INFO - __main__ - Created MO 113 (old_pwo_number=PWO26-02-00041) with 10 component(s)
+2026-02-22 11:04:05 - INFO - __main__ - Created MO 114 (old_pwo_number=PWO26-02-00042) with 8 component(s)
+2026-02-22 11:04:05 - INFO - __main__ - Created MO 115 (old_pwo_number=PWO26-02-00043) with 9 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 116 (old_pwo_number=PWO26-02-00044) with 9 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 117 (old_pwo_number=PWO26-02-00045) with 4 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 118 (old_pwo_number=PWO26-02-00046) with 5 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 119 (old_pwo_number=PWO26-02-00047) with 5 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 120 (old_pwo_number=PWO26-02-00050) with 7 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 121 (old_pwo_number=PWO26-02-00052) with 1 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 122 (old_pwo_number=PWO26-02-00053) with 1 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 123 (old_pwo_number=PWO26-02-00054) with 1 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 124 (old_pwo_number=PWO26-02-00055) with 15 component(s)
+2026-02-22 11:04:06 - INFO - __main__ - Created MO 125 (old_pwo_number=PWO26-02-00056) with 1 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 126 (old_pwo_number=PWO26-02-00057) with 9 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 127 (old_pwo_number=PWO26-02-00058) with 4 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 128 (old_pwo_number=PWO26-02-00060) with 14 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 129 (old_pwo_number=PWO26-02-00061) with 5 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 130 (old_pwo_number=PWO26-02-00062) with 5 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 131 (old_pwo_number=PWO26-02-00063) with 8 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 132 (old_pwo_number=PWO26-02-00064) with 5 component(s)
+2026-02-22 11:04:07 - INFO - __main__ - Created MO 133 (old_pwo_number=PWO26-02-00065) with 13 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 134 (old_pwo_number=PWO26-02-00066) with 3 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 135 (old_pwo_number=PWO26-02-00067) with 4 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 136 (old_pwo_number=PWO26-02-00068) with 11 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 137 (old_pwo_number=PWO26-02-00069) with 7 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 138 (old_pwo_number=PWO26-02-00070) with 5 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 139 (old_pwo_number=PWO26-02-00071) with 8 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 140 (old_pwo_number=PWO26-02-00072) with 5 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 141 (old_pwo_number=PWO26-02-00073) with 5 component(s)
+2026-02-22 11:04:08 - INFO - __main__ - Created MO 142 (old_pwo_number=PWO26-02-00074) with 7 component(s)
+2026-02-22 11:04:09 - INFO - __main__ - Created MO 143 (old_pwo_number=PWO26-02-00075) with 7 component(s)
+2026-02-22 11:04:09 - INFO - __main__ - Created MO 144 (old_pwo_number=PWO26-02-00076) with 12 component(s)
+2026-02-22 11:04:09 - INFO - __main__ - Created MO 145 (old_pwo_number=PWO26-02-00077) with 18 component(s)
+2026-02-22 11:04:09 - INFO - __main__ - Created MO 146 (old_pwo_number=PWO26-02-00078) with 8 component(s)
+2026-02-22 11:04:09 - INFO - __main__ - Created MO 147 (old_pwo_number=PWO26-02-00079) with 4 component(s)
+2026-02-22 11:04:09 - INFO - __main__ - Created MO 148 (old_pwo_number=PWO26-02-00080) with 7 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 149 (old_pwo_number=PWO26-02-00081) with 9 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 150 (old_pwo_number=PWO26-02-00082) with 9 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 151 (old_pwo_number=PWO26-02-00083) with 16 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 152 (old_pwo_number=PWO26-02-00084) with 7 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 153 (old_pwo_number=PWO26-02-00085) with 3 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 154 (old_pwo_number=PWO26-02-00087) with 10 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 155 (old_pwo_number=PWO26-02-00088) with 11 component(s)
+2026-02-22 11:04:10 - INFO - __main__ - Created MO 156 (old_pwo_number=PWO26-02-00089) with 4 component(s)
+2026-02-22 11:04:11 - INFO - __main__ - Created MO 157 (old_pwo_number=PWO26-02-00090) with 18 component(s)
+2026-02-22 11:04:11 - INFO - __main__ - Created MO 158 (old_pwo_number=PWO26-02-00091) with 12 component(s)
+2026-02-22 11:04:11 - INFO - __main__ - Created MO 159 (old_pwo_number=PWO26-02-00092) with 10 component(s)
+2026-02-22 11:04:11 - INFO - __main__ - Created MO 160 (old_pwo_number=PWO26-02-00093) with 10 component(s)
+2026-02-22 11:04:11 - INFO - __main__ - Created MO 161 (old_pwo_number=PWO26-02-00094) with 12 component(s)
+2026-02-22 11:04:11 - INFO - __main__ - Created MO 162 (old_pwo_number=PWO26-02-00095) with 4 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 163 (old_pwo_number=PWO26-02-00096) with 1 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 164 (old_pwo_number=PWO26-02-00097) with 5 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 165 (old_pwo_number=PWO26-02-00098) with 14 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 166 (old_pwo_number=PWO26-02-00099) with 1 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 167 (old_pwo_number=PWO26-02-00100) with 12 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 168 (old_pwo_number=PWO26-02-00101) with 7 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 169 (old_pwo_number=PWO26-02-00102) with 2 component(s)
+2026-02-22 11:04:12 - INFO - __main__ - Created MO 170 (old_pwo_number=PWO26-02-00103) with 11 component(s)
+2026-02-22 11:04:13 - INFO - __main__ - Created MO 171 (old_pwo_number=PWO26-02-00104) with 5 component(s)
+2026-02-22 11:04:13 - INFO - __main__ - Created MO 172 (old_pwo_number=PWO26-02-00105) with 4 component(s)
+2026-02-22 11:04:13 - INFO - __main__ - Created MO 173 (old_pwo_number=PWO26-02-00106) with 3 component(s)
+2026-02-22 11:04:13 - INFO - __main__ - Step 2: Import SWO (all groups; column I may be empty)
+2026-02-22 11:04:14 - INFO - __main__ - Parsed 44 SWO rows from template
+2026-02-22 11:04:15 - WARNING - __main__ - SWO SWO25-05-0018: sale.order not found for name 'None', creating SWO without linked sale.order
+2026-02-22 11:04:15 - WARNING - __main__ - SWO SWO25-10-0023: sale.order not found for name 'None', creating SWO without linked sale.order
+2026-02-22 11:04:15 - INFO - __main__ - Created product: 7080100226001 (reference=7080100226001, id=39477)
+2026-02-22 11:04:15 - WARNING - __main__ - SWO SWO25-09-0033: sale.order not found for name 'None', creating SWO without linked sale.order
+2026-02-22 11:04:16 - WARNING - __main__ - SWO SWO26-01-0039: sale.order not found for name 'None', creating SWO without linked sale.order
+2026-02-22 11:04:16 - INFO - __main__ - Step 3: Confirm all SWO
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=7
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=8
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=9
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=10
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=11
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=12
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=13
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=14
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=15
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=16
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=17
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=18
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=19
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=20
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=21
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=22
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=23
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=24
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=25
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=26
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=27
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=28
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=29
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=30
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=31
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=32
+2026-02-22 11:04:16 - INFO - __main__ - Confirmed SWO id=33
+2026-02-22 11:04:17 - INFO - __main__ - Confirmed SWO id=34
+2026-02-22 11:04:17 - INFO - __main__ - Confirmed SWO id=35
+2026-02-22 11:04:17 - INFO - __main__ - Confirmed SWO id=36
+2026-02-22 11:04:17 - INFO - __main__ - Confirmed SWO id=37
+2026-02-22 11:04:17 - INFO - __main__ - Confirmed SWO id=38
+2026-02-22 11:04:17 - INFO - __main__ - Step 4: Link SWO to MO (by PWO name + product_id)
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 24 (PWO=PWO25-05-00130, product_id=34584) to SWO lines [15]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 25 (PWO=PWO25-05-00131, product_id=34628) to SWO lines [16]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 30 (PWO=PWO25-09-00136, product_id=34852) to SWO lines [23]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 31 (PWO=PWO25-09-00137, product_id=33798) to SWO lines [22]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 32 (PWO=PWO25-09-00138, product_id=33797) to SWO lines [21]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 33 (PWO=PWO25-10-00005, product_id=36404) to SWO lines [31]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 39 (PWO=PWO25-11-00009, product_id=36074) to SWO lines [17]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 40 (PWO=PWO25-11-00019, product_id=36404) to SWO lines [48]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 43 (PWO=PWO25-11-00083, product_id=36404) to SWO lines [29]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 50 (PWO=PWO25-12-00074, product_id=35212) to SWO lines [24]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 55 (PWO=PWO26-01-00010, product_id=36404) to SWO lines [7]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 60 (PWO=PWO26-01-00055, product_id=36282) to SWO lines [49]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 62 (PWO=PWO26-01-00079, product_id=35000) to SWO lines [19]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 63 (PWO=PWO26-01-00081, product_id=36739) to SWO lines [18]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 69 (PWO=PWO26-01-00098, product_id=35853) to SWO lines [40]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 70 (PWO=PWO26-01-00100, product_id=35796) to SWO lines [32]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 72 (PWO=PWO26-01-00111, product_id=36528) to SWO lines [36]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 76 (PWO=PWO26-01-00129, product_id=36909) to SWO lines [12]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 78 (PWO=PWO26-01-00131, product_id=36549) to SWO lines [34]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 79 (PWO=PWO26-01-00132, product_id=35853) to SWO lines [28]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 80 (PWO=PWO26-01-00133, product_id=36213) to SWO lines [27]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 81 (PWO=PWO26-01-00134, product_id=35860) to SWO lines [25]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 82 (PWO=PWO26-01-00135, product_id=36431) to SWO lines [26]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 83 (PWO=PWO26-01-00137, product_id=39457) to SWO lines [10]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 85 (PWO=PWO26-01-00139, product_id=39459) to SWO lines [11]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 88 (PWO=PWO26-01-00142, product_id=39461) to SWO lines [13]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 90 (PWO=PWO26-01-00144, product_id=39463) to SWO lines [9]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 93 (PWO=PWO26-01-00147, product_id=39465) to SWO lines [14]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 103 (PWO=PWO26-02-00021, product_id=33798) to SWO lines [38]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 104 (PWO=PWO26-02-00022, product_id=33797) to SWO lines [37]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 108 (PWO=PWO26-02-00034, product_id=36845) to SWO lines [39]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 113 (PWO=PWO26-02-00041, product_id=36404) to SWO lines [33]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 114 (PWO=PWO26-02-00042, product_id=35796) to SWO lines [42]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 115 (PWO=PWO26-02-00043, product_id=34927) to SWO lines [46]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 116 (PWO=PWO26-02-00044, product_id=35991) to SWO lines [45]
+2026-02-22 11:04:17 - INFO - __main__ - Linked MO 118 (PWO=PWO26-02-00046, product_id=35727) to SWO lines [43]
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 8 (PWO PWO26-01-00083 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 20 (PWO PWO26-01-00104 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 30 (PWO PWO26-02-00035 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 35 (PWO PWO26-01-00125 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 41 (PWO PWO26-02-00030 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 44 (PWO PWO26-02-00009 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 47 (PWO PWO26-01-00078 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Set old_qty_produced=0.00 on SWO line 50 (PWO PWO26-02-00048 not found)
+2026-02-22 11:04:17 - INFO - __main__ - Step 5: Confirm MO (skip Non-Stock); write dates before button_plan
+2026-02-22 11:04:18 - INFO - __main__ - Confirmed MO id=13
+2026-02-22 11:04:18 - DEBUG - __main__ - Wrote dates on MO id=13 (before button_plan)
+2026-02-22 11:04:18 - INFO - __main__ - Planned MO id=13 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:18 - INFO - __main__ - Confirmed MO id=14
+2026-02-22 11:04:18 - DEBUG - __main__ - Wrote dates on MO id=14 (before button_plan)
+2026-02-22 11:04:18 - INFO - __main__ - Planned MO id=14 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:18 - INFO - __main__ - Confirmed MO id=15
+2026-02-22 11:04:18 - DEBUG - __main__ - Wrote dates on MO id=15 (before button_plan)
+2026-02-22 11:04:18 - INFO - __main__ - Planned MO id=15 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:18 - INFO - __main__ - Confirmed MO id=16
+2026-02-22 11:04:18 - DEBUG - __main__ - Wrote dates on MO id=16 (before button_plan)
+2026-02-22 11:04:18 - INFO - __main__ - Planned MO id=16 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:18 - INFO - __main__ - Confirmed MO id=17
+2026-02-22 11:04:18 - DEBUG - __main__ - Wrote dates on MO id=17 (before button_plan)
+2026-02-22 11:04:18 - INFO - __main__ - Planned MO id=17 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:18 - INFO - __main__ - Confirmed MO id=18
+2026-02-22 11:04:18 - DEBUG - __main__ - Wrote dates on MO id=18 (before button_plan)
+2026-02-22 11:04:18 - INFO - __main__ - Planned MO id=18 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:19 - INFO - __main__ - Confirmed MO id=19
+2026-02-22 11:04:19 - DEBUG - __main__ - Wrote dates on MO id=19 (before button_plan)
+2026-02-22 11:04:19 - INFO - __main__ - Planned MO id=19 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:19 - INFO - __main__ - Confirmed MO id=20
+2026-02-22 11:04:19 - DEBUG - __main__ - Wrote dates on MO id=20 (before button_plan)
+2026-02-22 11:04:19 - INFO - __main__ - Planned MO id=20 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:19 - INFO - __main__ - Confirmed MO id=21
+2026-02-22 11:04:19 - DEBUG - __main__ - Wrote dates on MO id=21 (before button_plan)
+2026-02-22 11:04:19 - INFO - __main__ - Planned MO id=21 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:19 - INFO - __main__ - Confirmed MO id=22
+2026-02-22 11:04:19 - DEBUG - __main__ - Wrote dates on MO id=22 (before button_plan)
+2026-02-22 11:04:19 - INFO - __main__ - Planned MO id=22 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:19 - INFO - __main__ - Confirmed MO id=23
+2026-02-22 11:04:19 - DEBUG - __main__ - Wrote dates on MO id=23 (before button_plan)
+2026-02-22 11:04:19 - INFO - __main__ - Planned MO id=23 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:19 - INFO - __main__ - Confirmed MO id=24
+2026-02-22 11:04:19 - DEBUG - __main__ - Wrote dates on MO id=24 (before button_plan)
+2026-02-22 11:04:19 - INFO - __main__ - Planned MO id=24 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:19 - INFO - __main__ - Confirmed MO id=25
+2026-02-22 11:04:19 - DEBUG - __main__ - Wrote dates on MO id=25 (before button_plan)
+2026-02-22 11:04:20 - INFO - __main__ - Planned MO id=25 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:20 - INFO - __main__ - Confirmed MO id=26
+2026-02-22 11:04:20 - DEBUG - __main__ - Wrote dates on MO id=26 (before button_plan)
+2026-02-22 11:04:20 - INFO - __main__ - Planned MO id=26 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:20 - INFO - __main__ - Confirmed MO id=27
+2026-02-22 11:04:20 - DEBUG - __main__ - Wrote dates on MO id=27 (before button_plan)
+2026-02-22 11:04:20 - INFO - __main__ - Planned MO id=27 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:20 - INFO - __main__ - Confirmed MO id=28
+2026-02-22 11:04:20 - DEBUG - __main__ - Wrote dates on MO id=28 (before button_plan)
+2026-02-22 11:04:20 - INFO - __main__ - Planned MO id=28 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:20 - INFO - __main__ - Confirmed MO id=29
+2026-02-22 11:04:20 - DEBUG - __main__ - Wrote dates on MO id=29 (before button_plan)
+2026-02-22 11:04:20 - INFO - __main__ - Planned MO id=29 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:20 - INFO - __main__ - Confirmed MO id=30
+2026-02-22 11:04:20 - DEBUG - __main__ - Wrote dates on MO id=30 (before button_plan)
+2026-02-22 11:04:20 - INFO - __main__ - Planned MO id=30 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:20 - INFO - __main__ - Confirmed MO id=31
+2026-02-22 11:04:20 - DEBUG - __main__ - Wrote dates on MO id=31 (before button_plan)
+2026-02-22 11:04:20 - INFO - __main__ - Planned MO id=31 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:21 - INFO - __main__ - Confirmed MO id=32
+2026-02-22 11:04:21 - DEBUG - __main__ - Wrote dates on MO id=32 (before button_plan)
+2026-02-22 11:04:21 - INFO - __main__ - Planned MO id=32 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:21 - INFO - __main__ - Confirmed MO id=33
+2026-02-22 11:04:21 - DEBUG - __main__ - Wrote dates on MO id=33 (before button_plan)
+2026-02-22 11:04:21 - INFO - __main__ - Planned MO id=33 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:21 - INFO - __main__ - Confirmed MO id=34
+2026-02-22 11:04:21 - DEBUG - __main__ - Wrote dates on MO id=34 (before button_plan)
+2026-02-22 11:04:21 - INFO - __main__ - Planned MO id=34 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:21 - INFO - __main__ - Confirmed MO id=35
+2026-02-22 11:04:21 - DEBUG - __main__ - Wrote dates on MO id=35 (before button_plan)
+2026-02-22 11:04:21 - INFO - __main__ - Planned MO id=35 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:21 - INFO - __main__ - Confirmed MO id=36
+2026-02-22 11:04:21 - DEBUG - __main__ - Wrote dates on MO id=36 (before button_plan)
+2026-02-22 11:04:21 - INFO - __main__ - Planned MO id=36 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:21 - INFO - __main__ - Confirmed MO id=37
+2026-02-22 11:04:21 - DEBUG - __main__ - Wrote dates on MO id=37 (before button_plan)
+2026-02-22 11:04:21 - INFO - __main__ - Planned MO id=37 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:22 - INFO - __main__ - Confirmed MO id=38
+2026-02-22 11:04:22 - DEBUG - __main__ - Wrote dates on MO id=38 (before button_plan)
+2026-02-22 11:04:22 - INFO - __main__ - Planned MO id=38 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:22 - INFO - __main__ - Confirmed MO id=39
+2026-02-22 11:04:22 - DEBUG - __main__ - Wrote dates on MO id=39 (before button_plan)
+2026-02-22 11:04:22 - INFO - __main__ - Planned MO id=39 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:22 - INFO - __main__ - Confirmed MO id=40
+2026-02-22 11:04:22 - DEBUG - __main__ - Wrote dates on MO id=40 (before button_plan)
+2026-02-22 11:04:22 - INFO - __main__ - Planned MO id=40 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:22 - INFO - __main__ - Confirmed MO id=41
+2026-02-22 11:04:22 - DEBUG - __main__ - Wrote dates on MO id=41 (before button_plan)
+2026-02-22 11:04:22 - INFO - __main__ - Planned MO id=41 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:22 - INFO - __main__ - Confirmed MO id=42
+2026-02-22 11:04:22 - DEBUG - __main__ - Wrote dates on MO id=42 (before button_plan)
+2026-02-22 11:04:22 - INFO - __main__ - Planned MO id=42 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:22 - INFO - __main__ - Confirmed MO id=43
+2026-02-22 11:04:22 - DEBUG - __main__ - Wrote dates on MO id=43 (before button_plan)
+2026-02-22 11:04:22 - INFO - __main__ - Planned MO id=43 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:22 - INFO - __main__ - Confirmed MO id=44
+2026-02-22 11:04:22 - DEBUG - __main__ - Wrote dates on MO id=44 (before button_plan)
+2026-02-22 11:04:23 - INFO - __main__ - Planned MO id=44 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:23 - INFO - __main__ - Confirmed MO id=45
+2026-02-22 11:04:23 - DEBUG - __main__ - Wrote dates on MO id=45 (before button_plan)
+2026-02-22 11:04:23 - INFO - __main__ - Planned MO id=45 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:23 - INFO - __main__ - Confirmed MO id=46
+2026-02-22 11:04:23 - DEBUG - __main__ - Wrote dates on MO id=46 (before button_plan)
+2026-02-22 11:04:23 - INFO - __main__ - Planned MO id=46 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:23 - INFO - __main__ - Confirmed MO id=47
+2026-02-22 11:04:23 - DEBUG - __main__ - Wrote dates on MO id=47 (before button_plan)
+2026-02-22 11:04:23 - INFO - __main__ - Planned MO id=47 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:23 - INFO - __main__ - Confirmed MO id=48
+2026-02-22 11:04:23 - DEBUG - __main__ - Wrote dates on MO id=48 (before button_plan)
+2026-02-22 11:04:23 - INFO - __main__ - Planned MO id=48 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:23 - INFO - __main__ - Confirmed MO id=49
+2026-02-22 11:04:23 - DEBUG - __main__ - Wrote dates on MO id=49 (before button_plan)
+2026-02-22 11:04:23 - INFO - __main__ - Planned MO id=49 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:23 - INFO - __main__ - Confirmed MO id=50
+2026-02-22 11:04:23 - DEBUG - __main__ - Wrote dates on MO id=50 (before button_plan)
+2026-02-22 11:04:24 - INFO - __main__ - Planned MO id=50 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:24 - INFO - __main__ - Confirmed MO id=51
+2026-02-22 11:04:24 - DEBUG - __main__ - Wrote dates on MO id=51 (before button_plan)
+2026-02-22 11:04:24 - INFO - __main__ - Planned MO id=51 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:24 - INFO - __main__ - Confirmed MO id=52
+2026-02-22 11:04:24 - DEBUG - __main__ - Wrote dates on MO id=52 (before button_plan)
+2026-02-22 11:04:24 - INFO - __main__ - Planned MO id=52 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:24 - INFO - __main__ - Confirmed MO id=53
+2026-02-22 11:04:24 - DEBUG - __main__ - Wrote dates on MO id=53 (before button_plan)
+2026-02-22 11:04:24 - INFO - __main__ - Planned MO id=53 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:24 - INFO - __main__ - Confirmed MO id=54
+2026-02-22 11:04:24 - DEBUG - __main__ - Wrote dates on MO id=54 (before button_plan)
+2026-02-22 11:04:24 - INFO - __main__ - Planned MO id=54 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:24 - INFO - __main__ - Confirmed MO id=55
+2026-02-22 11:04:24 - DEBUG - __main__ - Wrote dates on MO id=55 (before button_plan)
+2026-02-22 11:04:25 - INFO - __main__ - Planned MO id=55 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:25 - INFO - __main__ - Confirmed MO id=56
+2026-02-22 11:04:25 - DEBUG - __main__ - Wrote dates on MO id=56 (before button_plan)
+2026-02-22 11:04:25 - INFO - __main__ - Planned MO id=56 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:25 - INFO - __main__ - Confirmed MO id=57
+2026-02-22 11:04:25 - DEBUG - __main__ - Wrote dates on MO id=57 (before button_plan)
+2026-02-22 11:04:25 - INFO - __main__ - Planned MO id=57 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:25 - INFO - __main__ - Confirmed MO id=58
+2026-02-22 11:04:25 - DEBUG - __main__ - Wrote dates on MO id=58 (before button_plan)
+2026-02-22 11:04:25 - INFO - __main__ - Planned MO id=58 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:25 - INFO - __main__ - Confirmed MO id=59
+2026-02-22 11:04:25 - DEBUG - __main__ - Wrote dates on MO id=59 (before button_plan)
+2026-02-22 11:04:25 - INFO - __main__ - Planned MO id=59 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:25 - INFO - __main__ - Confirmed MO id=60
+2026-02-22 11:04:25 - DEBUG - __main__ - Wrote dates on MO id=60 (before button_plan)
+2026-02-22 11:04:25 - INFO - __main__ - Planned MO id=60 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:25 - INFO - __main__ - Confirmed MO id=61
+2026-02-22 11:04:26 - DEBUG - __main__ - Wrote dates on MO id=61 (before button_plan)
+2026-02-22 11:04:26 - INFO - __main__ - Planned MO id=61 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:26 - INFO - __main__ - Confirmed MO id=62
+2026-02-22 11:04:26 - DEBUG - __main__ - Wrote dates on MO id=62 (before button_plan)
+2026-02-22 11:04:26 - INFO - __main__ - Planned MO id=62 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:26 - INFO - __main__ - Confirmed MO id=63
+2026-02-22 11:04:26 - DEBUG - __main__ - Wrote dates on MO id=63 (before button_plan)
+2026-02-22 11:04:26 - INFO - __main__ - Planned MO id=63 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:26 - INFO - __main__ - Confirmed MO id=64
+2026-02-22 11:04:26 - DEBUG - __main__ - Wrote dates on MO id=64 (before button_plan)
+2026-02-22 11:04:26 - INFO - __main__ - Planned MO id=64 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:26 - INFO - __main__ - Confirmed MO id=65
+2026-02-22 11:04:26 - DEBUG - __main__ - Wrote dates on MO id=65 (before button_plan)
+2026-02-22 11:04:26 - INFO - __main__ - Planned MO id=65 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:26 - INFO - __main__ - Confirmed MO id=66
+2026-02-22 11:04:26 - DEBUG - __main__ - Wrote dates on MO id=66 (before button_plan)
+2026-02-22 11:04:26 - INFO - __main__ - Planned MO id=66 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:26 - INFO - __main__ - Confirmed MO id=67
+2026-02-22 11:04:26 - DEBUG - __main__ - Wrote dates on MO id=67 (before button_plan)
+2026-02-22 11:04:26 - INFO - __main__ - Planned MO id=67 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:27 - INFO - __main__ - Confirmed MO id=68
+2026-02-22 11:04:27 - DEBUG - __main__ - Wrote dates on MO id=68 (before button_plan)
+2026-02-22 11:04:27 - INFO - __main__ - Planned MO id=68 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:27 - INFO - __main__ - Confirmed MO id=69
+2026-02-22 11:04:27 - DEBUG - __main__ - Wrote dates on MO id=69 (before button_plan)
+2026-02-22 11:04:27 - INFO - __main__ - Planned MO id=69 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:27 - INFO - __main__ - Confirmed MO id=70
+2026-02-22 11:04:27 - DEBUG - __main__ - Wrote dates on MO id=70 (before button_plan)
+2026-02-22 11:04:27 - INFO - __main__ - Planned MO id=70 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:27 - INFO - __main__ - Confirmed MO id=71
+2026-02-22 11:04:27 - DEBUG - __main__ - Wrote dates on MO id=71 (before button_plan)
+2026-02-22 11:04:27 - INFO - __main__ - Planned MO id=71 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:27 - INFO - __main__ - Confirmed MO id=72
+2026-02-22 11:04:27 - DEBUG - __main__ - Wrote dates on MO id=72 (before button_plan)
+2026-02-22 11:04:27 - INFO - __main__ - Planned MO id=72 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:27 - INFO - __main__ - Confirmed MO id=73
+2026-02-22 11:04:27 - DEBUG - __main__ - Wrote dates on MO id=73 (before button_plan)
+2026-02-22 11:04:27 - INFO - __main__ - Planned MO id=73 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:28 - INFO - __main__ - Confirmed MO id=74
+2026-02-22 11:04:28 - DEBUG - __main__ - Wrote dates on MO id=74 (before button_plan)
+2026-02-22 11:04:28 - INFO - __main__ - Planned MO id=74 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:28 - INFO - __main__ - Confirmed MO id=75
+2026-02-22 11:04:28 - DEBUG - __main__ - Wrote dates on MO id=75 (before button_plan)
+2026-02-22 11:04:28 - INFO - __main__ - Planned MO id=75 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:28 - INFO - __main__ - Confirmed MO id=76
+2026-02-22 11:04:28 - DEBUG - __main__ - Wrote dates on MO id=76 (before button_plan)
+2026-02-22 11:04:28 - INFO - __main__ - Planned MO id=76 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:28 - INFO - __main__ - Confirmed MO id=77
+2026-02-22 11:04:28 - DEBUG - __main__ - Wrote dates on MO id=77 (before button_plan)
+2026-02-22 11:04:28 - INFO - __main__ - Planned MO id=77 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:28 - INFO - __main__ - Confirmed MO id=78
+2026-02-22 11:04:28 - DEBUG - __main__ - Wrote dates on MO id=78 (before button_plan)
+2026-02-22 11:04:28 - INFO - __main__ - Planned MO id=78 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:28 - INFO - __main__ - Confirmed MO id=79
+2026-02-22 11:04:29 - DEBUG - __main__ - Wrote dates on MO id=79 (before button_plan)
+2026-02-22 11:04:29 - INFO - __main__ - Planned MO id=79 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:29 - INFO - __main__ - Confirmed MO id=80
+2026-02-22 11:04:29 - DEBUG - __main__ - Wrote dates on MO id=80 (before button_plan)
+2026-02-22 11:04:29 - INFO - __main__ - Planned MO id=80 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:29 - INFO - __main__ - Confirmed MO id=81
+2026-02-22 11:04:29 - DEBUG - __main__ - Wrote dates on MO id=81 (before button_plan)
+2026-02-22 11:04:29 - INFO - __main__ - Planned MO id=81 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:29 - INFO - __main__ - Confirmed MO id=82
+2026-02-22 11:04:29 - DEBUG - __main__ - Wrote dates on MO id=82 (before button_plan)
+2026-02-22 11:04:29 - INFO - __main__ - Planned MO id=82 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:29 - INFO - __main__ - Confirmed MO id=83
+2026-02-22 11:04:29 - DEBUG - __main__ - Wrote dates on MO id=83 (before button_plan)
+2026-02-22 11:04:29 - INFO - __main__ - Planned MO id=83 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:29 - INFO - __main__ - Confirmed MO id=84
+2026-02-22 11:04:29 - DEBUG - __main__ - Wrote dates on MO id=84 (before button_plan)
+2026-02-22 11:04:29 - INFO - __main__ - Planned MO id=84 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:30 - INFO - __main__ - Confirmed MO id=85
+2026-02-22 11:04:30 - DEBUG - __main__ - Wrote dates on MO id=85 (before button_plan)
+2026-02-22 11:04:30 - INFO - __main__ - Planned MO id=85 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:30 - INFO - __main__ - Confirmed MO id=86
+2026-02-22 11:04:30 - DEBUG - __main__ - Wrote dates on MO id=86 (before button_plan)
+2026-02-22 11:04:30 - INFO - __main__ - Planned MO id=86 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:30 - INFO - __main__ - Confirmed MO id=87
+2026-02-22 11:04:30 - DEBUG - __main__ - Wrote dates on MO id=87 (before button_plan)
+2026-02-22 11:04:30 - INFO - __main__ - Planned MO id=87 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:30 - INFO - __main__ - Confirmed MO id=88
+2026-02-22 11:04:30 - DEBUG - __main__ - Wrote dates on MO id=88 (before button_plan)
+2026-02-22 11:04:30 - INFO - __main__ - Planned MO id=88 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:30 - INFO - __main__ - Confirmed MO id=89
+2026-02-22 11:04:30 - DEBUG - __main__ - Wrote dates on MO id=89 (before button_plan)
+2026-02-22 11:04:30 - INFO - __main__ - Planned MO id=89 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:30 - INFO - __main__ - Confirmed MO id=90
+2026-02-22 11:04:30 - DEBUG - __main__ - Wrote dates on MO id=90 (before button_plan)
+2026-02-22 11:04:30 - INFO - __main__ - Planned MO id=90 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:31 - INFO - __main__ - Confirmed MO id=91
+2026-02-22 11:04:31 - DEBUG - __main__ - Wrote dates on MO id=91 (before button_plan)
+2026-02-22 11:04:31 - INFO - __main__ - Planned MO id=91 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:31 - INFO - __main__ - Confirmed MO id=92
+2026-02-22 11:04:31 - DEBUG - __main__ - Wrote dates on MO id=92 (before button_plan)
+2026-02-22 11:04:31 - INFO - __main__ - Planned MO id=92 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:31 - INFO - __main__ - Confirmed MO id=93
+2026-02-22 11:04:31 - DEBUG - __main__ - Wrote dates on MO id=93 (before button_plan)
+2026-02-22 11:04:31 - INFO - __main__ - Planned MO id=93 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:31 - INFO - __main__ - Confirmed MO id=94
+2026-02-22 11:04:31 - DEBUG - __main__ - Wrote dates on MO id=94 (before button_plan)
+2026-02-22 11:04:31 - INFO - __main__ - Planned MO id=94 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:31 - INFO - __main__ - Confirmed MO id=95
+2026-02-22 11:04:31 - DEBUG - __main__ - Wrote dates on MO id=95 (before button_plan)
+2026-02-22 11:04:31 - INFO - __main__ - Planned MO id=95 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:31 - INFO - __main__ - Confirmed MO id=96
+2026-02-22 11:04:31 - DEBUG - __main__ - Wrote dates on MO id=96 (before button_plan)
+2026-02-22 11:04:31 - INFO - __main__ - Planned MO id=96 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:32 - INFO - __main__ - Confirmed MO id=97
+2026-02-22 11:04:32 - DEBUG - __main__ - Wrote dates on MO id=97 (before button_plan)
+2026-02-22 11:04:32 - INFO - __main__ - Planned MO id=97 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:32 - INFO - __main__ - Confirmed MO id=98
+2026-02-22 11:04:32 - DEBUG - __main__ - Wrote dates on MO id=98 (before button_plan)
+2026-02-22 11:04:32 - INFO - __main__ - Planned MO id=98 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:32 - INFO - __main__ - Confirmed MO id=99
+2026-02-22 11:04:32 - DEBUG - __main__ - Wrote dates on MO id=99 (before button_plan)
+2026-02-22 11:04:32 - INFO - __main__ - Planned MO id=99 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:32 - INFO - __main__ - Confirmed MO id=100
+2026-02-22 11:04:32 - DEBUG - __main__ - Wrote dates on MO id=100 (before button_plan)
+2026-02-22 11:04:32 - INFO - __main__ - Planned MO id=100 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:32 - INFO - __main__ - Confirmed MO id=101
+2026-02-22 11:04:32 - DEBUG - __main__ - Wrote dates on MO id=101 (before button_plan)
+2026-02-22 11:04:32 - INFO - __main__ - Planned MO id=101 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:32 - INFO - __main__ - Confirmed MO id=102
+2026-02-22 11:04:32 - DEBUG - __main__ - Wrote dates on MO id=102 (before button_plan)
+2026-02-22 11:04:32 - INFO - __main__ - Planned MO id=102 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:32 - INFO - __main__ - Confirmed MO id=103
+2026-02-22 11:04:32 - DEBUG - __main__ - Wrote dates on MO id=103 (before button_plan)
+2026-02-22 11:04:32 - INFO - __main__ - Planned MO id=103 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:33 - INFO - __main__ - Confirmed MO id=104
+2026-02-22 11:04:33 - DEBUG - __main__ - Wrote dates on MO id=104 (before button_plan)
+2026-02-22 11:04:33 - INFO - __main__ - Planned MO id=104 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:33 - INFO - __main__ - Confirmed MO id=105
+2026-02-22 11:04:33 - DEBUG - __main__ - Wrote dates on MO id=105 (before button_plan)
+2026-02-22 11:04:33 - INFO - __main__ - Planned MO id=105 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:33 - INFO - __main__ - Confirmed MO id=106
+2026-02-22 11:04:33 - DEBUG - __main__ - Wrote dates on MO id=106 (before button_plan)
+2026-02-22 11:04:33 - INFO - __main__ - Planned MO id=106 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:33 - INFO - __main__ - Confirmed MO id=107
+2026-02-22 11:04:33 - DEBUG - __main__ - Wrote dates on MO id=107 (before button_plan)
+2026-02-22 11:04:33 - INFO - __main__ - Planned MO id=107 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:33 - INFO - __main__ - Confirmed MO id=108
+2026-02-22 11:04:33 - DEBUG - __main__ - Wrote dates on MO id=108 (before button_plan)
+2026-02-22 11:04:33 - INFO - __main__ - Planned MO id=108 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:33 - INFO - __main__ - Confirmed MO id=109
+2026-02-22 11:04:33 - DEBUG - __main__ - Wrote dates on MO id=109 (before button_plan)
+2026-02-22 11:04:33 - INFO - __main__ - Planned MO id=109 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:34 - INFO - __main__ - Confirmed MO id=110
+2026-02-22 11:04:34 - DEBUG - __main__ - Wrote dates on MO id=110 (before button_plan)
+2026-02-22 11:04:34 - INFO - __main__ - Planned MO id=110 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:34 - INFO - __main__ - Confirmed MO id=111
+2026-02-22 11:04:34 - DEBUG - __main__ - Wrote dates on MO id=111 (before button_plan)
+2026-02-22 11:04:34 - INFO - __main__ - Planned MO id=111 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:34 - INFO - __main__ - Confirmed MO id=112
+2026-02-22 11:04:34 - DEBUG - __main__ - Wrote dates on MO id=112 (before button_plan)
+2026-02-22 11:04:34 - INFO - __main__ - Planned MO id=112 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:34 - INFO - __main__ - Confirmed MO id=113
+2026-02-22 11:04:34 - DEBUG - __main__ - Wrote dates on MO id=113 (before button_plan)
+2026-02-22 11:04:34 - INFO - __main__ - Planned MO id=113 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:34 - INFO - __main__ - Confirmed MO id=114
+2026-02-22 11:04:34 - DEBUG - __main__ - Wrote dates on MO id=114 (before button_plan)
+2026-02-22 11:04:34 - INFO - __main__ - Planned MO id=114 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:34 - INFO - __main__ - Confirmed MO id=115
+2026-02-22 11:04:35 - DEBUG - __main__ - Wrote dates on MO id=115 (before button_plan)
+2026-02-22 11:04:35 - INFO - __main__ - Planned MO id=115 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:35 - INFO - __main__ - Confirmed MO id=116
+2026-02-22 11:04:35 - DEBUG - __main__ - Wrote dates on MO id=116 (before button_plan)
+2026-02-22 11:04:35 - INFO - __main__ - Planned MO id=116 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:35 - INFO - __main__ - Confirmed MO id=117
+2026-02-22 11:04:35 - DEBUG - __main__ - Wrote dates on MO id=117 (before button_plan)
+2026-02-22 11:04:35 - INFO - __main__ - Planned MO id=117 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:35 - INFO - __main__ - Confirmed MO id=118
+2026-02-22 11:04:35 - DEBUG - __main__ - Wrote dates on MO id=118 (before button_plan)
+2026-02-22 11:04:35 - INFO - __main__ - Planned MO id=118 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:35 - INFO - __main__ - Confirmed MO id=119
+2026-02-22 11:04:35 - DEBUG - __main__ - Wrote dates on MO id=119 (before button_plan)
+2026-02-22 11:04:35 - INFO - __main__ - Planned MO id=119 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:35 - INFO - __main__ - Confirmed MO id=120
+2026-02-22 11:04:35 - DEBUG - __main__ - Wrote dates on MO id=120 (before button_plan)
+2026-02-22 11:04:35 - INFO - __main__ - Planned MO id=120 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:35 - INFO - __main__ - Confirmed MO id=121
+2026-02-22 11:04:35 - DEBUG - __main__ - Wrote dates on MO id=121 (before button_plan)
+2026-02-22 11:04:35 - INFO - __main__ - Planned MO id=121 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:36 - INFO - __main__ - Confirmed MO id=122
+2026-02-22 11:04:36 - DEBUG - __main__ - Wrote dates on MO id=122 (before button_plan)
+2026-02-22 11:04:36 - INFO - __main__ - Planned MO id=122 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:36 - INFO - __main__ - Confirmed MO id=123
+2026-02-22 11:04:36 - DEBUG - __main__ - Wrote dates on MO id=123 (before button_plan)
+2026-02-22 11:04:36 - INFO - __main__ - Planned MO id=123 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:36 - INFO - __main__ - Confirmed MO id=124
+2026-02-22 11:04:36 - DEBUG - __main__ - Wrote dates on MO id=124 (before button_plan)
+2026-02-22 11:04:36 - INFO - __main__ - Planned MO id=124 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:36 - INFO - __main__ - Confirmed MO id=125
+2026-02-22 11:04:36 - DEBUG - __main__ - Wrote dates on MO id=125 (before button_plan)
+2026-02-22 11:04:36 - INFO - __main__ - Planned MO id=125 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:36 - INFO - __main__ - Confirmed MO id=126
+2026-02-22 11:04:36 - DEBUG - __main__ - Wrote dates on MO id=126 (before button_plan)
+2026-02-22 11:04:36 - INFO - __main__ - Planned MO id=126 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:36 - INFO - __main__ - Confirmed MO id=127
+2026-02-22 11:04:36 - DEBUG - __main__ - Wrote dates on MO id=127 (before button_plan)
+2026-02-22 11:04:36 - INFO - __main__ - Planned MO id=127 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:37 - INFO - __main__ - Confirmed MO id=128
+2026-02-22 11:04:37 - DEBUG - __main__ - Wrote dates on MO id=128 (before button_plan)
+2026-02-22 11:04:37 - INFO - __main__ - Planned MO id=128 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:37 - INFO - __main__ - Confirmed MO id=129
+2026-02-22 11:04:37 - DEBUG - __main__ - Wrote dates on MO id=129 (before button_plan)
+2026-02-22 11:04:37 - INFO - __main__ - Planned MO id=129 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:37 - INFO - __main__ - Confirmed MO id=130
+2026-02-22 11:04:37 - DEBUG - __main__ - Wrote dates on MO id=130 (before button_plan)
+2026-02-22 11:04:37 - INFO - __main__ - Planned MO id=130 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:37 - INFO - __main__ - Confirmed MO id=131
+2026-02-22 11:04:37 - DEBUG - __main__ - Wrote dates on MO id=131 (before button_plan)
+2026-02-22 11:04:37 - INFO - __main__ - Planned MO id=131 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:37 - INFO - __main__ - Confirmed MO id=132
+2026-02-22 11:04:37 - DEBUG - __main__ - Wrote dates on MO id=132 (before button_plan)
+2026-02-22 11:04:37 - INFO - __main__ - Planned MO id=132 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:37 - INFO - __main__ - Confirmed MO id=133
+2026-02-22 11:04:37 - DEBUG - __main__ - Wrote dates on MO id=133 (before button_plan)
+2026-02-22 11:04:37 - INFO - __main__ - Planned MO id=133 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:38 - INFO - __main__ - Confirmed MO id=134
+2026-02-22 11:04:38 - DEBUG - __main__ - Wrote dates on MO id=134 (before button_plan)
+2026-02-22 11:04:38 - INFO - __main__ - Planned MO id=134 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:38 - INFO - __main__ - Confirmed MO id=135
+2026-02-22 11:04:38 - DEBUG - __main__ - Wrote dates on MO id=135 (before button_plan)
+2026-02-22 11:04:38 - INFO - __main__ - Planned MO id=135 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:38 - INFO - __main__ - Confirmed MO id=136
+2026-02-22 11:04:38 - DEBUG - __main__ - Wrote dates on MO id=136 (before button_plan)
+2026-02-22 11:04:38 - INFO - __main__ - Planned MO id=136 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:38 - INFO - __main__ - Confirmed MO id=137
+2026-02-22 11:04:38 - DEBUG - __main__ - Wrote dates on MO id=137 (before button_plan)
+2026-02-22 11:04:38 - INFO - __main__ - Planned MO id=137 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:38 - INFO - __main__ - Confirmed MO id=138
+2026-02-22 11:04:38 - DEBUG - __main__ - Wrote dates on MO id=138 (before button_plan)
+2026-02-22 11:04:38 - INFO - __main__ - Planned MO id=138 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:38 - INFO - __main__ - Confirmed MO id=139
+2026-02-22 11:04:38 - DEBUG - __main__ - Wrote dates on MO id=139 (before button_plan)
+2026-02-22 11:04:38 - INFO - __main__ - Planned MO id=139 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:39 - INFO - __main__ - Confirmed MO id=140
+2026-02-22 11:04:39 - DEBUG - __main__ - Wrote dates on MO id=140 (before button_plan)
+2026-02-22 11:04:39 - INFO - __main__ - Planned MO id=140 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:39 - INFO - __main__ - Confirmed MO id=141
+2026-02-22 11:04:39 - DEBUG - __main__ - Wrote dates on MO id=141 (before button_plan)
+2026-02-22 11:04:39 - INFO - __main__ - Planned MO id=141 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:39 - INFO - __main__ - Confirmed MO id=142
+2026-02-22 11:04:39 - DEBUG - __main__ - Wrote dates on MO id=142 (before button_plan)
+2026-02-22 11:04:39 - INFO - __main__ - Planned MO id=142 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:39 - INFO - __main__ - Confirmed MO id=143
+2026-02-22 11:04:39 - DEBUG - __main__ - Wrote dates on MO id=143 (before button_plan)
+2026-02-22 11:04:39 - INFO - __main__ - Planned MO id=143 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:39 - INFO - __main__ - Confirmed MO id=144
+2026-02-22 11:04:39 - DEBUG - __main__ - Wrote dates on MO id=144 (before button_plan)
+2026-02-22 11:04:39 - INFO - __main__ - Planned MO id=144 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:39 - INFO - __main__ - Confirmed MO id=145
+2026-02-22 11:04:40 - DEBUG - __main__ - Wrote dates on MO id=145 (before button_plan)
+2026-02-22 11:04:40 - INFO - __main__ - Planned MO id=145 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:40 - INFO - __main__ - Confirmed MO id=146
+2026-02-22 11:04:40 - DEBUG - __main__ - Wrote dates on MO id=146 (before button_plan)
+2026-02-22 11:04:40 - INFO - __main__ - Planned MO id=146 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:40 - INFO - __main__ - Confirmed MO id=147
+2026-02-22 11:04:40 - DEBUG - __main__ - Wrote dates on MO id=147 (before button_plan)
+2026-02-22 11:04:40 - INFO - __main__ - Planned MO id=147 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:40 - INFO - __main__ - Confirmed MO id=148
+2026-02-22 11:04:40 - DEBUG - __main__ - Wrote dates on MO id=148 (before button_plan)
+2026-02-22 11:04:40 - INFO - __main__ - Planned MO id=148 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:40 - INFO - __main__ - Confirmed MO id=149
+2026-02-22 11:04:40 - DEBUG - __main__ - Wrote dates on MO id=149 (before button_plan)
+2026-02-22 11:04:40 - INFO - __main__ - Planned MO id=149 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:40 - INFO - __main__ - Confirmed MO id=150
+2026-02-22 11:04:40 - DEBUG - __main__ - Wrote dates on MO id=150 (before button_plan)
+2026-02-22 11:04:40 - INFO - __main__ - Planned MO id=150 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:41 - INFO - __main__ - Confirmed MO id=151
+2026-02-22 11:04:41 - DEBUG - __main__ - Wrote dates on MO id=151 (before button_plan)
+2026-02-22 11:04:41 - INFO - __main__ - Planned MO id=151 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:41 - INFO - __main__ - Confirmed MO id=152
+2026-02-22 11:04:41 - DEBUG - __main__ - Wrote dates on MO id=152 (before button_plan)
+2026-02-22 11:04:41 - INFO - __main__ - Planned MO id=152 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:41 - INFO - __main__ - Confirmed MO id=153
+2026-02-22 11:04:41 - DEBUG - __main__ - Wrote dates on MO id=153 (before button_plan)
+2026-02-22 11:04:41 - INFO - __main__ - Planned MO id=153 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:41 - INFO - __main__ - Confirmed MO id=154
+2026-02-22 11:04:41 - DEBUG - __main__ - Wrote dates on MO id=154 (before button_plan)
+2026-02-22 11:04:41 - INFO - __main__ - Planned MO id=154 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:41 - INFO - __main__ - Confirmed MO id=155
+2026-02-22 11:04:41 - DEBUG - __main__ - Wrote dates on MO id=155 (before button_plan)
+2026-02-22 11:04:41 - INFO - __main__ - Planned MO id=155 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:41 - INFO - __main__ - Confirmed MO id=156
+2026-02-22 11:04:41 - DEBUG - __main__ - Wrote dates on MO id=156 (before button_plan)
+2026-02-22 11:04:41 - INFO - __main__ - Planned MO id=156 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:42 - INFO - __main__ - Confirmed MO id=157
+2026-02-22 11:04:42 - DEBUG - __main__ - Wrote dates on MO id=157 (before button_plan)
+2026-02-22 11:04:42 - INFO - __main__ - Planned MO id=157 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:42 - INFO - __main__ - Confirmed MO id=158
+2026-02-22 11:04:42 - DEBUG - __main__ - Wrote dates on MO id=158 (before button_plan)
+2026-02-22 11:04:42 - INFO - __main__ - Planned MO id=158 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:42 - INFO - __main__ - Confirmed MO id=159
+2026-02-22 11:04:42 - DEBUG - __main__ - Wrote dates on MO id=159 (before button_plan)
+2026-02-22 11:04:42 - INFO - __main__ - Planned MO id=159 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:42 - INFO - __main__ - Confirmed MO id=160
+2026-02-22 11:04:42 - DEBUG - __main__ - Wrote dates on MO id=160 (before button_plan)
+2026-02-22 11:04:42 - INFO - __main__ - Planned MO id=160 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:42 - INFO - __main__ - Confirmed MO id=161
+2026-02-22 11:04:42 - DEBUG - __main__ - Wrote dates on MO id=161 (before button_plan)
+2026-02-22 11:04:42 - INFO - __main__ - Planned MO id=161 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:42 - INFO - __main__ - Confirmed MO id=162
+2026-02-22 11:04:43 - DEBUG - __main__ - Wrote dates on MO id=162 (before button_plan)
+2026-02-22 11:04:43 - INFO - __main__ - Planned MO id=162 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:43 - INFO - __main__ - Confirmed MO id=163
+2026-02-22 11:04:43 - DEBUG - __main__ - Wrote dates on MO id=163 (before button_plan)
+2026-02-22 11:04:43 - INFO - __main__ - Planned MO id=163 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:43 - INFO - __main__ - Confirmed MO id=164
+2026-02-22 11:04:43 - DEBUG - __main__ - Wrote dates on MO id=164 (before button_plan)
+2026-02-22 11:04:43 - INFO - __main__ - Planned MO id=164 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:43 - INFO - __main__ - Confirmed MO id=165
+2026-02-22 11:04:43 - DEBUG - __main__ - Wrote dates on MO id=165 (before button_plan)
+2026-02-22 11:04:43 - INFO - __main__ - Planned MO id=165 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:43 - INFO - __main__ - Confirmed MO id=166
+2026-02-22 11:04:43 - DEBUG - __main__ - Wrote dates on MO id=166 (before button_plan)
+2026-02-22 11:04:43 - INFO - __main__ - Planned MO id=166 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:43 - INFO - __main__ - Confirmed MO id=167
+2026-02-22 11:04:43 - DEBUG - __main__ - Wrote dates on MO id=167 (before button_plan)
+2026-02-22 11:04:43 - INFO - __main__ - Planned MO id=167 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:44 - INFO - __main__ - Confirmed MO id=168
+2026-02-22 11:04:44 - DEBUG - __main__ - Wrote dates on MO id=168 (before button_plan)
+2026-02-22 11:04:44 - INFO - __main__ - Planned MO id=168 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:44 - INFO - __main__ - Confirmed MO id=169
+2026-02-22 11:04:44 - DEBUG - __main__ - Wrote dates on MO id=169 (before button_plan)
+2026-02-22 11:04:44 - INFO - __main__ - Planned MO id=169 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:44 - INFO - __main__ - Confirmed MO id=170
+2026-02-22 11:04:44 - DEBUG - __main__ - Wrote dates on MO id=170 (before button_plan)
+2026-02-22 11:04:44 - INFO - __main__ - Planned MO id=170 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:44 - INFO - __main__ - Confirmed MO id=171
+2026-02-22 11:04:44 - DEBUG - __main__ - Wrote dates on MO id=171 (before button_plan)
+2026-02-22 11:04:44 - INFO - __main__ - Planned MO id=171 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:44 - INFO - __main__ - Confirmed MO id=172
+2026-02-22 11:04:44 - DEBUG - __main__ - Wrote dates on MO id=172 (before button_plan)
+2026-02-22 11:04:44 - INFO - __main__ - Planned MO id=172 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:44 - INFO - __main__ - Confirmed MO id=173
+2026-02-22 11:04:44 - DEBUG - __main__ - Wrote dates on MO id=173 (before button_plan)
+2026-02-22 11:04:44 - INFO - __main__ - Planned MO id=173 (pick component created if warehouse manufacture_steps=pbm)
+2026-02-22 11:04:44 - INFO - __main__ - Step 6: action_start for in-progress MOs (exclude Non-Stock)
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=13: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=15: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=16: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=18: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=19: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=20: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=21: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=23: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:44 - ERROR - __main__ - Failed action_start MO id=24: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=25: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=26: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=27: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=28: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=29: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=30: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=31: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=32: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=33: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=34: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=35: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=36: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=37: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=40: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=41: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=44: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=45: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=47: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=48: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=49: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=50: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=53: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=54: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=56: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=57: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=58: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=59: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=60: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=61: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=64: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=65: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=66: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=67: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=70: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=71: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=72: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=73: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=74: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=77: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=80: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=81: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=82: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=84: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=86: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=87: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=89: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=92: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=94: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=95: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=96: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=97: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=98: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=99: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=100: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=102: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=105: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=109: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=110: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=112: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=114: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=115: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=117: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=124: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=128: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - ERROR - __main__ - Failed action_start MO id=135: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 11:04:45 - INFO - __main__ - Step 7: Apply dates (draft/Non-Stock MOs only) and swap_old_name
+2026-02-22 11:04:47 - INFO - __main__ - Import complete. MOs: 161, SWOs: 32
+2026-02-22 11:57:48 - INFO - __main__ - ============================================================
+2026-02-22 11:57:48 - INFO - __main__ - MRP / SWO Import Script
+2026-02-22 11:57:48 - INFO - __main__ - Log file: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP-Odoo/mrp_swo_import_errors.log
+2026-02-22 11:57:48 - INFO - __main__ - ============================================================
+2026-02-22 11:57:48 - INFO - __main__ - MO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/MRP/Raw Script/Outstanding-MO.xlsx
+2026-02-22 11:57:48 - INFO - __main__ - SWO Excel: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/SWO/Raw Script/swo.xlsx
+2026-02-22 11:57:48 - INFO - __main__ - Dry run: False
+2026-02-22 11:57:48 - INFO - __main__ - Connected to Odoo DB 'lingjack-test4' as 'dataimport'
+2026-02-22 11:57:48 - INFO - __main__ - Step 1: Import all MO from Outstanding-MO

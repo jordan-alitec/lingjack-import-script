@@ -1,0 +1,149 @@
+2026-02-22 12:52:24 - INFO - __main__ - Connected to http://localhost:8099 DB=lingjack-test4 as uid=97
+2026-02-22 12:52:24 - INFO - __main__ - Found 9986 stock.quant records to apply for product_id=35808
+2026-02-22 12:52:29 - ERROR - __main__ - Batch failed (quants 25976..26075): <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+Traceback (most recent call last):
+  File "/Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/control-tag/confrim_control_tag_quant.py", line 149, in run
+    action_apply_inventory_batch(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        models, ODOO_DB, uid, ODOO_PASSWORD,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        batch,
+        ^^^^^^
+        inventory_name=ref,
+        ^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/control-tag/confrim_control_tag_quant.py", line 112, in action_apply_inventory_batch
+    models.execute_kw(
+    ~~~~~~~~~~~~~~~~~^
+        db, uid, password,
+        ^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        {'context': context},
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/xmlrpc/client.py", line 1096, in __call__
+    return self.__send(self.__name, args)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/xmlrpc/client.py", line 1435, in __request
+    response = self.__transport.request(
+        self.__host,
+    ...<2 lines>...
+        verbose=self.__verbose
+        )
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/xmlrpc/client.py", line 1140, in request
+    return self.single_request(host, handler, request_body, verbose)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/xmlrpc/client.py", line 1156, in single_request
+    return self.parse_response(resp)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/xmlrpc/client.py", line 1325, in parse_response
+    return u.close()
+           ~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.0_1/Frameworks/Python.framework/Versions/3.14/lib/python3.14/xmlrpc/client.py", line 642, in close
+    raise Fault(**self._stack[0])
+xmlrpc.client.Fault: <Fault 1: 'Traceback (most recent call last):\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 165, in xmlrpc_2\n    response = self._xmlrpc(service)\n               ^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 140, in _xmlrpc\n    return dumps((result,))\n           ^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3/dist-packages/odoo/addons/base/controllers/rpc.py", line 114, in dumps\n    response = OdooMarshaller(allow_none=False).dumps(params)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 514, in dumps\n    dump(v, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 536, in __dump\n    f(self, value, write)\n  File "/usr/lib/python3.12/xmlrpc/client.py", line 540, in dump_nil\n    raise TypeError("cannot marshal None unless allow_none is enabled")\nTypeError: cannot marshal None unless allow_none is enabled\n'>
+2026-02-22 12:54:33 - INFO - __main__ - Connected to http://localhost:8099 DB=lingjack-test4 as uid=97
+2026-02-22 12:54:33 - INFO - __main__ - Found 9886 stock.quant records to apply for product_id=35808
+2026-02-22 12:54:38 - INFO - __main__ - Applied batch 1: 100 / 9886 quants
+2026-02-22 12:54:42 - INFO - __main__ - Applied batch 2: 200 / 9886 quants
+2026-02-22 12:54:47 - INFO - __main__ - Applied batch 3: 300 / 9886 quants
+2026-02-22 12:54:52 - INFO - __main__ - Applied batch 4: 400 / 9886 quants
+2026-02-22 12:54:57 - INFO - __main__ - Applied batch 5: 500 / 9886 quants
+2026-02-22 12:55:02 - INFO - __main__ - Applied batch 6: 600 / 9886 quants
+2026-02-22 12:55:06 - INFO - __main__ - Applied batch 7: 700 / 9886 quants
+2026-02-22 12:55:11 - INFO - __main__ - Applied batch 8: 800 / 9886 quants
+2026-02-22 12:55:16 - INFO - __main__ - Applied batch 9: 900 / 9886 quants
+2026-02-22 12:55:21 - INFO - __main__ - Applied batch 10: 1000 / 9886 quants
+2026-02-22 12:55:26 - INFO - __main__ - Applied batch 11: 1100 / 9886 quants
+2026-02-22 12:55:30 - INFO - __main__ - Applied batch 12: 1200 / 9886 quants
+2026-02-22 12:55:35 - INFO - __main__ - Applied batch 13: 1300 / 9886 quants
+2026-02-22 12:55:40 - INFO - __main__ - Applied batch 14: 1400 / 9886 quants
+2026-02-22 12:55:45 - INFO - __main__ - Applied batch 15: 1500 / 9886 quants
+2026-02-22 12:55:49 - INFO - __main__ - Applied batch 16: 1600 / 9886 quants
+2026-02-22 12:55:54 - INFO - __main__ - Applied batch 17: 1700 / 9886 quants
+2026-02-22 12:55:58 - INFO - __main__ - Applied batch 18: 1800 / 9886 quants
+2026-02-22 12:56:03 - INFO - __main__ - Applied batch 19: 1900 / 9886 quants
+2026-02-22 12:56:08 - INFO - __main__ - Applied batch 20: 2000 / 9886 quants
+2026-02-22 12:56:13 - INFO - __main__ - Applied batch 21: 2100 / 9886 quants
+2026-02-22 12:56:18 - INFO - __main__ - Applied batch 22: 2200 / 9886 quants
+2026-02-22 12:56:23 - INFO - __main__ - Applied batch 23: 2300 / 9886 quants
+2026-02-22 12:56:28 - INFO - __main__ - Applied batch 24: 2400 / 9886 quants
+2026-02-22 12:56:33 - INFO - __main__ - Applied batch 25: 2500 / 9886 quants
+2026-02-22 12:56:37 - INFO - __main__ - Applied batch 26: 2600 / 9886 quants
+2026-02-22 12:56:42 - INFO - __main__ - Applied batch 27: 2700 / 9886 quants
+2026-02-22 12:56:48 - INFO - __main__ - Applied batch 28: 2800 / 9886 quants
+2026-02-22 12:56:53 - INFO - __main__ - Applied batch 29: 2900 / 9886 quants
+2026-02-22 12:56:58 - INFO - __main__ - Applied batch 30: 3000 / 9886 quants
+2026-02-22 12:57:02 - INFO - __main__ - Applied batch 31: 3100 / 9886 quants
+2026-02-22 12:57:07 - INFO - __main__ - Applied batch 32: 3200 / 9886 quants
+2026-02-22 12:57:12 - INFO - __main__ - Applied batch 33: 3300 / 9886 quants
+2026-02-22 12:57:16 - INFO - __main__ - Applied batch 34: 3400 / 9886 quants
+2026-02-22 12:57:33 - INFO - __main__ - Applied batch 35: 3500 / 9886 quants
+2026-02-22 12:57:39 - INFO - __main__ - Applied batch 36: 3600 / 9886 quants
+2026-02-22 12:57:45 - INFO - __main__ - Applied batch 37: 3700 / 9886 quants
+2026-02-22 12:57:51 - INFO - __main__ - Applied batch 38: 3800 / 9886 quants
+2026-02-22 12:57:58 - INFO - __main__ - Applied batch 39: 3900 / 9886 quants
+2026-02-22 12:58:03 - INFO - __main__ - Applied batch 40: 4000 / 9886 quants
+2026-02-22 12:58:09 - INFO - __main__ - Applied batch 41: 4100 / 9886 quants
+2026-02-22 12:58:15 - INFO - __main__ - Applied batch 42: 4200 / 9886 quants
+2026-02-22 12:58:20 - INFO - __main__ - Applied batch 43: 4300 / 9886 quants
+2026-02-22 12:58:26 - INFO - __main__ - Applied batch 44: 4400 / 9886 quants
+2026-02-22 12:58:31 - INFO - __main__ - Applied batch 45: 4500 / 9886 quants
+2026-02-22 12:58:36 - INFO - __main__ - Applied batch 46: 4600 / 9886 quants
+2026-02-22 12:58:41 - INFO - __main__ - Applied batch 47: 4700 / 9886 quants
+2026-02-22 12:58:49 - INFO - __main__ - Applied batch 48: 4800 / 9886 quants
+2026-02-22 12:58:55 - INFO - __main__ - Applied batch 49: 4900 / 9886 quants
+2026-02-22 12:59:01 - INFO - __main__ - Applied batch 50: 5000 / 9886 quants
+2026-02-22 12:59:06 - INFO - __main__ - Applied batch 51: 5100 / 9886 quants
+2026-02-22 12:59:12 - INFO - __main__ - Applied batch 52: 5200 / 9886 quants
+2026-02-22 12:59:18 - INFO - __main__ - Applied batch 53: 5300 / 9886 quants
+2026-02-22 12:59:23 - INFO - __main__ - Applied batch 54: 5400 / 9886 quants
+2026-02-22 12:59:28 - INFO - __main__ - Applied batch 55: 5500 / 9886 quants
+2026-02-22 12:59:34 - INFO - __main__ - Applied batch 56: 5600 / 9886 quants
+2026-02-22 12:59:43 - INFO - __main__ - Applied batch 57: 5700 / 9886 quants
+2026-02-22 12:59:48 - INFO - __main__ - Applied batch 58: 5800 / 9886 quants
+2026-02-22 12:59:53 - INFO - __main__ - Applied batch 59: 5900 / 9886 quants
+2026-02-22 12:59:58 - INFO - __main__ - Applied batch 60: 6000 / 9886 quants
+2026-02-22 13:00:03 - INFO - __main__ - Applied batch 61: 6100 / 9886 quants
+2026-02-22 13:00:08 - INFO - __main__ - Applied batch 62: 6200 / 9886 quants
+2026-02-22 13:00:13 - INFO - __main__ - Applied batch 63: 6300 / 9886 quants
+2026-02-22 13:00:18 - INFO - __main__ - Applied batch 64: 6400 / 9886 quants
+2026-02-22 13:00:22 - INFO - __main__ - Applied batch 65: 6500 / 9886 quants
+2026-02-22 13:00:27 - INFO - __main__ - Applied batch 66: 6600 / 9886 quants
+2026-02-22 13:00:33 - INFO - __main__ - Applied batch 67: 6700 / 9886 quants
+2026-02-22 13:00:38 - INFO - __main__ - Applied batch 68: 6800 / 9886 quants
+2026-02-22 13:00:43 - INFO - __main__ - Applied batch 69: 6900 / 9886 quants
+2026-02-22 13:00:48 - INFO - __main__ - Applied batch 70: 7000 / 9886 quants
+2026-02-22 13:00:53 - INFO - __main__ - Applied batch 71: 7100 / 9886 quants
+2026-02-22 13:00:57 - INFO - __main__ - Applied batch 72: 7200 / 9886 quants
+2026-02-22 13:01:02 - INFO - __main__ - Applied batch 73: 7300 / 9886 quants
+2026-02-22 13:01:07 - INFO - __main__ - Applied batch 74: 7400 / 9886 quants
+2026-02-22 13:01:12 - INFO - __main__ - Applied batch 75: 7500 / 9886 quants
+2026-02-22 13:01:17 - INFO - __main__ - Applied batch 76: 7600 / 9886 quants
+2026-02-22 13:01:22 - INFO - __main__ - Applied batch 77: 7700 / 9886 quants
+2026-02-22 13:01:27 - INFO - __main__ - Applied batch 78: 7800 / 9886 quants
+2026-02-22 13:01:32 - INFO - __main__ - Applied batch 79: 7900 / 9886 quants
+2026-02-22 13:01:43 - INFO - __main__ - Applied batch 80: 8000 / 9886 quants
+2026-02-22 13:01:48 - INFO - __main__ - Applied batch 81: 8100 / 9886 quants
+2026-02-22 13:01:53 - INFO - __main__ - Applied batch 82: 8200 / 9886 quants
+2026-02-22 13:01:58 - INFO - __main__ - Applied batch 83: 8300 / 9886 quants
+2026-02-22 13:02:04 - INFO - __main__ - Applied batch 84: 8400 / 9886 quants
+2026-02-22 13:02:09 - INFO - __main__ - Applied batch 85: 8500 / 9886 quants
+2026-02-22 13:02:14 - INFO - __main__ - Applied batch 86: 8600 / 9886 quants
+2026-02-22 13:02:21 - INFO - __main__ - Applied batch 87: 8700 / 9886 quants
+2026-02-22 13:02:29 - INFO - __main__ - Applied batch 88: 8800 / 9886 quants
+2026-02-22 13:02:37 - INFO - __main__ - Applied batch 89: 8900 / 9886 quants
+2026-02-22 13:02:42 - INFO - __main__ - Applied batch 90: 9000 / 9886 quants
+2026-02-22 13:02:47 - INFO - __main__ - Applied batch 91: 9100 / 9886 quants
+2026-02-22 13:02:53 - INFO - __main__ - Applied batch 92: 9200 / 9886 quants
+2026-02-22 13:02:58 - INFO - __main__ - Applied batch 93: 9300 / 9886 quants
+2026-02-22 13:03:03 - INFO - __main__ - Applied batch 94: 9400 / 9886 quants
+2026-02-22 13:03:08 - INFO - __main__ - Applied batch 95: 9500 / 9886 quants
+2026-02-22 13:03:13 - INFO - __main__ - Applied batch 96: 9600 / 9886 quants
+2026-02-22 13:03:18 - INFO - __main__ - Applied batch 97: 9700 / 9886 quants
+2026-02-22 13:03:23 - INFO - __main__ - Applied batch 98: 9800 / 9886 quants
+2026-02-22 13:03:27 - INFO - __main__ - Applied batch 99: 9886 / 9886 quants
+2026-02-22 13:03:27 - INFO - __main__ - Finished: applied inventory for 9886 quants (product_id=35808, reference=Import From IND4)
+2026-02-22 13:03:27 - INFO - __main__ - Done.

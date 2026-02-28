@@ -66,7 +66,7 @@ try:
 except ImportError:
     logger.warning(f"Failed to import config from {config_path}")
     ODOO_URL = 'http://localhost:8099'
-    ODOO_DB = 'lingjack-run'
+    ODOO_DB = 'lingjack-test4'
     ODOO_USERNAME = 'dataimport'
     ODOO_PASSWORD = 'Admin@12345678'
     DRY_RUN = True

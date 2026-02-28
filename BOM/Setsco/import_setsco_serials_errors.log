@@ -57,3 +57,81 @@
 2026-01-30 23:47:04 - WARNING - import_setsco_serials_to_odoo - Nos setsco.category found for sheet 'Setsco Label - Fire Ext (Powder)'
 2026-01-30 23:47:04 - DEBUG - import_setsco_serials_to_odoo - Found product with default_code '2080100000000': ID 35337
 2026-01-30 23:47:04 - WARNING - import_setsco_serials_to_odoo - Nos setsco.category found for sheet 'Setsco Label - Fire Ext (Powder)'
+2026-02-22 12:06:54 - INFO - __main__ - Connected to Odoo DB 'alitecpteltd-lingjack-main-21976694' as 'dataimport'
+2026-02-22 12:06:54 - INFO - __main__ - ================================================================================
+2026-02-22 12:06:54 - INFO - __main__ - Setsco Serial Number Import Started
+2026-02-22 12:06:54 - INFO - __main__ - Excel file: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/BOM/Setsco/Setsco_Combined.xlsx
+2026-02-22 12:06:54 - INFO - __main__ - Dry run: False
+2026-02-22 12:06:54 - INFO - __main__ - ================================================================================
+2026-02-22 12:06:54 - INFO - __main__ - Loaded 198 rows from Excel
+2026-02-22 12:06:54 - INFO - __main__ - 
+--- Processing row 1/198 ---
+2026-02-22 12:06:54 - INFO - __main__ - Start: 2028901, End: 2029699, Location: Office, Sheet: 3071600, Com No: nan
+2026-02-22 12:06:54 - DEBUG - __main__ - Found setsco.category for sheet '3071600': ID 18
+2026-02-22 12:06:54 - INFO - __main__ - Serial type: setsco
+2026-02-22 12:06:55 - INFO - __main__ - 
+
+{'name': 'Office', 'usage': 'internal', 'location_id': 34}
+2026-02-22 12:06:55 - INFO - __main__ - Created location 'Office' (ID: 2429)
+2026-02-22 12:06:55 - INFO - __main__ - Location ID: 2429
+2026-02-22 12:06:55 - INFO - __main__ - Generated 799 serial numbers
+2026-02-22 12:06:55 - INFO - __main__ - Created serial number '2028901' (ID: 26544)
+2026-02-22 12:06:56 - INFO - __main__ - Created serial number '2028902' (ID: 26545)
+2026-02-22 12:06:56 - INFO - __main__ - Created serial number '2028903' (ID: 26546)
+2026-02-22 12:06:56 - INFO - __main__ - Created serial number '2028904' (ID: 26547)
+2026-02-22 12:06:57 - INFO - __main__ - Created serial number '2028905' (ID: 26548)
+2026-02-22 12:06:57 - INFO - __main__ - Created serial number '2028906' (ID: 26549)
+2026-02-22 12:06:58 - INFO - __main__ - Created serial number '2028907' (ID: 26550)
+2026-02-22 12:06:58 - INFO - __main__ - Created serial number '2028908' (ID: 26551)
+2026-02-22 12:06:58 - INFO - __main__ - Created serial number '2028909' (ID: 26552)
+2026-02-22 12:06:59 - INFO - __main__ - Created serial number '2028910' (ID: 26553)
+2026-02-22 12:06:59 - INFO - __main__ - Created serial number '2028911' (ID: 26554)
+2026-02-22 12:07:00 - INFO - __main__ - Created serial number '2028912' (ID: 26555)
+2026-02-22 12:07:00 - INFO - __main__ - Created serial number '2028913' (ID: 26556)
+2026-02-22 12:07:00 - INFO - __main__ - Created serial number '2028914' (ID: 26557)
+2026-02-22 12:07:01 - INFO - __main__ - Created serial number '2028915' (ID: 26558)
+2026-02-22 12:07:01 - INFO - __main__ - Created serial number '2028916' (ID: 26559)
+2026-02-22 12:07:02 - INFO - __main__ - Created serial number '2028917' (ID: 26560)
+2026-02-22 12:07:02 - INFO - __main__ - Created serial number '2028918' (ID: 26561)
+2026-02-22 12:07:02 - INFO - __main__ - Created serial number '2028919' (ID: 26562)
+2026-02-22 12:07:03 - INFO - __main__ - Created serial number '2028920' (ID: 26563)
+2026-02-22 12:07:03 - INFO - __main__ - Created serial number '2028921' (ID: 26564)
+2026-02-22 12:07:04 - INFO - __main__ - Created serial number '2028922' (ID: 26565)
+2026-02-22 12:07:04 - INFO - __main__ - Created serial number '2028923' (ID: 26566)
+2026-02-22 12:07:04 - INFO - __main__ - Created serial number '2028924' (ID: 26567)
+2026-02-22 12:07:05 - INFO - __main__ - Created serial number '2028925' (ID: 26568)
+2026-02-22 12:07:05 - INFO - __main__ - Created serial number '2028926' (ID: 26569)
+2026-02-22 12:07:06 - INFO - __main__ - Created serial number '2028927' (ID: 26570)
+2026-02-22 12:07:06 - INFO - __main__ - Created serial number '2028928' (ID: 26571)
+2026-02-22 12:07:06 - INFO - __main__ - Created serial number '2028929' (ID: 26572)
+2026-02-22 12:07:07 - INFO - __main__ - Created serial number '2028930' (ID: 26573)
+2026-02-22 12:07:07 - INFO - __main__ - Created serial number '2028931' (ID: 26574)
+2026-02-22 12:07:08 - INFO - __main__ - Created serial number '2028932' (ID: 26575)
+2026-02-22 12:07:08 - INFO - __main__ - Created serial number '2028933' (ID: 26576)
+2026-02-22 12:07:08 - INFO - __main__ - Created serial number '2028934' (ID: 26577)
+2026-02-22 12:07:09 - INFO - __main__ - Created serial number '2028935' (ID: 26578)
+2026-02-22 12:07:09 - INFO - __main__ - Created serial number '2028936' (ID: 26579)
+2026-02-22 12:07:10 - INFO - __main__ - Created serial number '2028937' (ID: 26580)
+2026-02-22 12:07:10 - INFO - __main__ - Created serial number '2028938' (ID: 26581)
+2026-02-22 12:07:10 - INFO - __main__ - Created serial number '2028939' (ID: 26582)
+2026-02-22 12:07:11 - INFO - __main__ - Created serial number '2028940' (ID: 26583)
+2026-02-22 12:07:11 - INFO - __main__ - Created serial number '2028941' (ID: 26584)
+2026-02-22 12:07:12 - INFO - __main__ - Created serial number '2028942' (ID: 26585)
+2026-02-22 12:07:12 - INFO - __main__ - Created serial number '2028943' (ID: 26586)
+2026-02-22 12:07:12 - INFO - __main__ - Created serial number '2028944' (ID: 26587)
+2026-02-22 12:07:13 - INFO - __main__ - Created serial number '2028945' (ID: 26588)
+2026-02-22 12:07:13 - INFO - __main__ - Created serial number '2028946' (ID: 26589)
+2026-02-22 12:07:14 - INFO - __main__ - Created serial number '2028947' (ID: 26590)
+2026-02-22 12:07:14 - INFO - __main__ - Created serial number '2028948' (ID: 26591)
+2026-02-22 12:07:14 - INFO - __main__ - Created serial number '2028949' (ID: 26592)
+2026-02-22 12:07:15 - INFO - __main__ - Created serial number '2028950' (ID: 26593)
+2026-02-22 12:07:15 - INFO - __main__ - Created serial number '2028951' (ID: 26594)
+2026-02-22 12:13:41 - INFO - import_setsco_serials_to_odoo - Connected to Odoo DB 'alitecpteltd-lingjack-main-21976694' as 'dataimport'
+2026-02-22 12:13:41 - DEBUG - import_setsco_serials_to_odoo - Found product with default_code '2080080000000': ID 34847
+2026-02-22 12:13:41 - WARNING - import_setsco_serials_to_odoo - Nos setsco.category found for sheet 'Setsco Label - Fire Ext (Powder)'
+2026-02-22 12:13:42 - DEBUG - import_setsco_serials_to_odoo - Found product with default_code '2080100000000': ID 35337
+2026-02-22 12:13:42 - WARNING - import_setsco_serials_to_odoo - Nos setsco.category found for sheet 'Setsco Label - Fire Ext (Powder)'
+2026-02-22 12:13:42 - DEBUG - import_setsco_serials_to_odoo - Found product with default_code '2080100000000': ID 35337
+2026-02-22 12:13:43 - WARNING - import_setsco_serials_to_odoo - Nos setsco.category found for sheet 'Setsco Label - Fire Ext (Powder)'
+2026-02-22 12:13:43 - DEBUG - import_setsco_serials_to_odoo - Found product with default_code '2080120000000': ID 34926
+2026-02-22 12:13:43 - WARNING - import_setsco_serials_to_odoo - Nos setsco.category found for sheet 'Setsco Label - Fire Ext (Powder)'

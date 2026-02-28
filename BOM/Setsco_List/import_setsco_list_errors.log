@@ -3416,3 +3416,229 @@ NoneType: None
 2026-02-08 14:52:34 - INFO - __main__ - Total serials created/updated: 10553
 2026-02-08 14:52:34 - INFO - __main__ - Errors: 1
 2026-02-08 14:52:34 - INFO - __main__ - ================================================================================
+2026-02-22 12:15:28 - INFO - __main__ - Connected to Odoo DB 'lingjack-test4' as 'dataimport'
+2026-02-22 12:15:28 - INFO - __main__ - ================================================================================
+2026-02-22 12:15:28 - INFO - __main__ - SetscoList.xlsx Import
+2026-02-22 12:15:28 - INFO - __main__ - Excel file: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/BOM/Setsco_List/SetscoList.xlsx
+2026-02-22 12:15:28 - INFO - __main__ - Dry run: False
+2026-02-22 12:15:28 - INFO - __main__ - Sheets: Office=False, Warehouse=False, Production=True
+2026-02-22 12:15:28 - INFO - __main__ - ================================================================================
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Water/Foam/Watermist)': ID 19
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Water/Foam/Watermist)': ID 19
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Water/Foam/Watermist)': ID 19
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Halotron)': ID 17
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Hose': ID 20
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:29 - INFO - __main__ - Processing sheet: Production (53 rows)
+2026-02-22 12:15:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:29 - DEBUG - __main__ - Found production order 'PWO25-12-00071': ID 48
+2026-02-22 12:15:32 - INFO - __main__ - Production row 2: 2027785 26675
+2026-02-22 12:15:32 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:32 - DEBUG - __main__ - No production order found for 'PWO25-12-00084'
+2026-02-22 12:15:50 - INFO - __main__ - Production row 3: 2028895 27563
+2026-02-22 12:15:50 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:50 - DEBUG - __main__ - No production order found for 'PWO25-11-00081'
+2026-02-22 12:15:50 - INFO - __main__ - Production row 4: 1998675 27570
+2026-02-22 12:15:51 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:15:51 - DEBUG - __main__ - Found production order 'PWO25-12-00073': ID 49
+2026-02-22 12:16:06 - INFO - __main__ - Production row 5: 2025799 28251
+2026-02-22 12:16:06 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:06 - DEBUG - __main__ - Found production order 'PWO25-12-00073': ID 49
+2026-02-22 12:16:27 - INFO - __main__ - Production row 6: 2026799 29251
+2026-02-22 12:16:27 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:27 - DEBUG - __main__ - No production order found for 'PWO25-12-00048'
+2026-02-22 12:16:38 - INFO - __main__ - Production row 7: 2027515 29751
+2026-02-22 12:16:38 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:38 - DEBUG - __main__ - No production order found for 'PWO25-11-00115'
+2026-02-22 12:16:38 - INFO - __main__ - Production row 8: 2028900 29756
+2026-02-22 12:16:38 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:38 - DEBUG - __main__ - No production order found for 'PWO25-11-00158'
+2026-02-22 12:16:41 - INFO - __main__ - Production row 9: 2027653 29876
+2026-02-22 12:16:41 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:41 - DEBUG - __main__ - No production order found for 'PWO26-01-00027'
+2026-02-22 12:16:43 - INFO - __main__ - Production row 10: 2029699 29995
+2026-02-22 12:16:43 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:43 - DEBUG - __main__ - No production order found for 'PWO26-01-00027'
+2026-02-22 12:16:44 - INFO - __main__ - Production row 11: 2029739 30035
+2026-02-22 12:16:44 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:44 - DEBUG - __main__ - No production order found for 'PWO26-01-00027'
+2026-02-22 12:16:45 - INFO - __main__ - Production row 12: 2029799 30095
+2026-02-22 12:16:45 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:45 - DEBUG - __main__ - No production order found for 'PWO26-01-00027'
+2026-02-22 12:16:45 - INFO - __main__ - Production row 13: 2030802 30098
+2026-02-22 12:16:46 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:16:46 - DEBUG - __main__ - Found production order 'PWO26-01-00043': ID 59
+2026-02-22 12:17:06 - INFO - __main__ - Production row 14: 2031690 30986
+2026-02-22 12:17:06 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:17:06 - DEBUG - __main__ - No production order found for 'PWO25-12-00122'
+2026-02-22 12:17:28 - INFO - __main__ - Production row 15: 2030799 31986
+2026-02-22 12:17:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:17:28 - DEBUG - __main__ - No production order found for 'PWO26-01-00048'
+2026-02-22 12:17:51 - INFO - __main__ - Production row 16: 2032799 32986
+2026-02-22 12:17:51 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:17:51 - DEBUG - __main__ - No production order found for 'PWO26-01-00062'
+2026-02-22 12:17:53 - INFO - __main__ - Production row 17: 2031799 33095
+2026-02-22 12:17:53 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:17:53 - DEBUG - __main__ - No production order found for 'PWO26-01-00124'
+2026-02-22 12:18:04 - INFO - __main__ - Production row 18: 2033799 33585
+2026-02-22 12:18:04 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:18:04 - DEBUG - __main__ - No production order found for 'PWO26-01-00124'
+2026-02-22 12:18:04 - INFO - __main__ - Production row 19: 2033809 33595
+2026-02-22 12:18:04 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:18:04 - DEBUG - __main__ - No production order found for 'PWO26-01-00088'
+2026-02-22 12:18:12 - INFO - __main__ - Production row 20: 2033159 33955
+2026-02-22 12:18:12 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:18:12 - DEBUG - __main__ - No production order found for 'PWO26-01-00110'
+2026-02-22 12:18:12 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:12 - DEBUG - __main__ - No production order found for 'PWO25-12-00110'
+2026-02-22 12:18:13 - INFO - __main__ - Production row 22: 2024689 33979
+2026-02-22 12:18:13 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:13 - DEBUG - __main__ - No production order found for 'PWO25-12-00111'
+2026-02-22 12:18:13 - INFO - __main__ - Production row 23: 2024699 33989
+2026-02-22 12:18:13 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:13 - DEBUG - __main__ - No production order found for 'PWO25-12-00111'
+2026-02-22 12:18:16 - INFO - __main__ - Production row 24: 2047844 34094
+2026-02-22 12:18:16 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:16 - DEBUG - __main__ - No production order found for 'PWO25-12-00083'
+2026-02-22 12:18:19 - INFO - __main__ - Production row 25: 2047994 34244
+2026-02-22 12:18:19 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:19 - DEBUG - __main__ - No production order found for 'PWO26-01-00064'
+2026-02-22 12:18:20 - INFO - __main__ - Production row 26: 2048239 34289
+2026-02-22 12:18:20 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:20 - DEBUG - __main__ - No production order found for 'PWO26-01-00064'
+2026-02-22 12:18:21 - INFO - __main__ - Production row 27: 2058494 34344
+2026-02-22 12:18:21 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:21 - DEBUG - __main__ - No production order found for 'PWO25-12-00047'
+2026-02-22 12:18:23 - INFO - __main__ - Production row 28: 2048094 34444
+2026-02-22 12:18:23 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (CO2)': ID 16
+2026-02-22 12:18:23 - DEBUG - __main__ - No production order found for 'PWO26-01-00063'
+2026-02-22 12:18:26 - INFO - __main__ - Production row 29: 2048194 34544
+2026-02-22 12:18:26 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Water/Foam/Watermist)': ID 19
+2026-02-22 12:18:26 - DEBUG - __main__ - Found production order 'PWO25-12-00074': ID 50
+2026-02-22 12:18:26 - INFO - __main__ - Production row 30: 1820798 34556
+2026-02-22 12:18:26 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Water/Foam/Watermist)': ID 19
+2026-02-22 12:18:26 - DEBUG - __main__ - Found production order 'PWO25-12-00074': ID 50
+2026-02-22 12:18:28 - INFO - __main__ - Production row 31: 1887899 34656
+2026-02-22 12:18:28 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Water/Foam/Watermist)': ID 19
+2026-02-22 12:18:28 - DEBUG - __main__ - Found production order 'PWO25-12-00074': ID 50
+2026-02-22 12:18:29 - INFO - __main__ - Production row 32: 2034723 34680
+2026-02-22 12:18:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Halotron)': ID 17
+2026-02-22 12:18:29 - DEBUG - __main__ - No production order found for 'PWO26-01-00091'
+2026-02-22 12:18:29 - INFO - __main__ - Production row 33: 1721504 34705
+2026-02-22 12:18:29 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:29 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:30 - INFO - __main__ - Production row 34: 357129 34730
+2026-02-22 12:18:30 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:30 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:31 - INFO - __main__ - Production row 35: 357104 34755
+2026-02-22 12:18:31 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:31 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:31 - INFO - __main__ - Production row 36: 357079 34780
+2026-02-22 12:18:31 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:31 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:32 - INFO - __main__ - Production row 37: 357054 34805
+2026-02-22 12:18:32 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:32 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:32 - INFO - __main__ - Production row 38: 357029 34830
+2026-02-22 12:18:32 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:32 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:33 - INFO - __main__ - Production row 39: 357004 34855
+2026-02-22 12:18:33 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:33 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:33 - INFO - __main__ - Production row 40: 356979 34880
+2026-02-22 12:18:33 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:33 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:34 - INFO - __main__ - Production row 41: 356954 34905
+2026-02-22 12:18:34 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:34 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:35 - INFO - __main__ - Production row 42: 356929 34930
+2026-02-22 12:18:35 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:35 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:35 - INFO - __main__ - Production row 43: 356904 34955
+2026-02-22 12:18:35 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:35 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:36 - INFO - __main__ - Production row 44: 356879 34980
+2026-02-22 12:18:36 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:36 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:36 - INFO - __main__ - Production row 45: 356854 35005
+2026-02-22 12:18:36 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:36 - DEBUG - __main__ - No production order found for 'PWO25-12-00024'
+2026-02-22 12:18:37 - INFO - __main__ - Production row 46: 356829 35030
+2026-02-22 12:18:37 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Hose Reel': ID 21
+2026-02-22 12:18:37 - DEBUG - __main__ - No production order found for 'PWO25-12-00133'
+2026-02-22 12:18:46 - INFO - __main__ - Production row 47: 357529 35430
+2026-02-22 12:18:46 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Hose': ID 20
+2026-02-22 12:18:46 - DEBUG - __main__ - No production order found for 'PWO25-11-00130'
+2026-02-22 12:18:50 - INFO - __main__ - Production row 48: 138679 35630
+2026-02-22 12:18:50 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:18:50 - DEBUG - __main__ - No production order found for 'PWO26-01-00005'
+2026-02-22 12:18:56 - INFO - __main__ - Production row 49: 2034031 35852
+2026-02-22 12:18:56 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:18:56 - DEBUG - __main__ - No production order found for 'PWO26-01-00005'
+2026-02-22 12:18:59 - INFO - __main__ - Production row 50: 2034159 35980
+2026-02-22 12:18:59 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:18:59 - DEBUG - __main__ - No production order found for 'PWO26-01-00005'
+2026-02-22 12:19:06 - INFO - __main__ - Production row 51: 2034475 36296
+2026-02-22 12:19:06 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:19:06 - DEBUG - __main__ - No production order found for 'PWO25-12-00116'
+2026-02-22 12:19:11 - INFO - __main__ - Production row 52: 2029100 36496
+2026-02-22 12:19:11 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:19:11 - DEBUG - __main__ - No production order found for 'PWO26-01-00018'
+2026-02-22 12:19:22 - INFO - __main__ - Production row 53: 2029580 36976
+2026-02-22 12:19:22 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:19:22 - DEBUG - __main__ - Found production order 'PWO26-02-00002': ID 96
+2026-02-22 12:19:25 - INFO - __main__ - Production row 54: 2034595 37096
+2026-02-22 12:19:25 - INFO - __main__ - ================================================================================
+2026-02-22 12:19:25 - INFO - __main__ - IMPORT SUMMARY
+2026-02-22 12:19:25 - INFO - __main__ - ================================================================================
+2026-02-22 12:19:25 - INFO - __main__ - Total rows processed: 52/53
+2026-02-22 12:19:25 - INFO - __main__ - Total serials created/updated: 10553
+2026-02-22 12:19:25 - INFO - __main__ - Errors: 1
+2026-02-22 12:19:25 - INFO - __main__ - ================================================================================

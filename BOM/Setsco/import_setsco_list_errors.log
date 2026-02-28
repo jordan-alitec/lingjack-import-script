@@ -401,3 +401,11 @@
 2026-01-30 23:34:02 - ERROR - __main__ - Production row 47: Setco Category 'Setsco Label - Hose Reel' not found.
 2026-01-30 23:34:02 - ERROR - __main__ - Production row 48: Setco Category 'Setsco Label - Fire Hose' not found.
 2026-01-30 23:34:02 - INFO - __main__ - Pre-run: FAILED
+2026-02-22 12:13:41 - INFO - __main__ - ================================================================================
+2026-02-22 12:13:41 - INFO - __main__ - SetscoList.xlsx Import
+2026-02-22 12:13:41 - INFO - __main__ - Excel file: /Users/jordan/Alitec/docker/odoo18/repo/lingjack-import-script/BOM/Setsco/SetscoList.xlsx
+2026-02-22 12:13:41 - INFO - __main__ - Dry run: False
+2026-02-22 12:13:41 - INFO - __main__ - ================================================================================
+2026-02-22 12:13:42 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:13:42 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18
+2026-02-22 12:13:43 - DEBUG - __main__ - Found setsco.category by name 'Setsco Label - Fire Ext (Powder)': ID 18

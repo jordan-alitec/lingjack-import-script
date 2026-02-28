@@ -274,11 +274,11 @@ class OdooMRPSWOImporter:
             old_swo_id = row_cells[13] if len(row_cells) > 13 else None
             old_swo_number = row_cells[14] if len(row_cells) > 14 else None
             # Column O (index 14): old_qty_produced for mrp.production
-            raw_o = row_cells[14] if len(row_cells) > 14 else None
-            try:
-                old_qty_produced = float(raw_o) if raw_o is not None else 0.0
-            except (TypeError, ValueError):
-                old_qty_produced = 0.0
+            # raw_o = row_cells[14] if len(row_cells) > 14 else None
+            # try:
+            #     old_qty_produced = float(raw_o) if raw_o is not None else 0.0
+            # except (TypeError, ValueError):
+            old_qty_produced = 0.0
 
             if not pwo_id:
                 continue

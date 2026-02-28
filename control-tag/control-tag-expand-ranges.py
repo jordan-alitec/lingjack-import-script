@@ -31,7 +31,7 @@ except ImportError:
     load_workbook = None
 
 script_dir = Path(__file__).resolve().parent
-DEFAULT_EXCEL = script_dir / "control-tag.xlsx"
+DEFAULT_EXCEL = script_dir / "control-tag-with-update-sheet.xlsx"
 DEFAULT_USER_EXCEL = script_dir / "user_control_tag.xlsx"
 
 
